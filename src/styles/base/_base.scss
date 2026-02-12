@@ -1,0 +1,56 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  margin: 0;
+}
+
+html {
+  font-size: $font-size-default;
+}
+
+body {
+  font-family: $font-primary;
+  @include font($size: $font-size, $height: $line-height, $weight: 400);
+}
+
+.h1 {
+  @include font($size: $font-h1-size, $height: $line-h1-height, $weight: 500);
+  @include media-mobile {
+    @include font($size: $font-h1-size-mobile, $height: $line-h1-height-mobile, $weight: 500);
+  }
+}
+
+.h2 {
+  @include font($size: $font-h2-size, $height: $line-h2-height, $weight: 500);
+  @include media-mobile {
+    @include font($size: $font-h2-size-mobile, $height: $line-h2-height-mobile, $weight: 500);
+  }
+}
+
+.h3 {
+  @include font($size: $font-h3-size, $height: $line-h3-height, $weight: 500);
+  @include media-mobile {
+    @include font($size: $font-h3-size-mobile, $height: $line-h3-height-mobile, $weight: 500);
+  }
+}
+
+.h4 {
+  @include font($size: $font-h4-size, $height: $line-h4-height, $weight: 500);
+  @include media-mobile {
+    @include font($size: $font-h4-size-mobile, $height: $line-h4-height-mobile, $weight: 500);
+  }
+}
+
+.h5 {
+  @include font($size: $font-h5-size, $height: $line-h5-height, $weight: 500);
+}
