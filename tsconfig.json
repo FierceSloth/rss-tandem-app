@@ -28,8 +28,7 @@
       "@components/*": ["src/components/*"],
       "@pages/*": ["src/pages/*"],
       "@assets/*": ["src/assets/*"],
-      "@api/*": ["src/api/*"],
-      "@controllers/*": ["src/controllers/*"],
+      "@service/*": ["src/service/*"],
       "@common/*": ["src/common/*"]
     }
   },
