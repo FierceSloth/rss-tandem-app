@@ -306,13 +306,13 @@ export class Header extends Component {
 appEmitter.on('router:navigate', () => {
   this.updateView();
 });
-
+````
 
 ### ✅ Как НАДО делать:
 
 Используйте метод `subscribeTo`. Он автоматически запоминает подписку и **сам отпишется**, когда для компонента вызовут `destroy()`.
 
-```typescript
+````typescript
 export class Header extends Component {
   constructor() {
     super({ tag: 'header', className: 'header' });
@@ -325,7 +325,6 @@ export class Header extends Component {
     });
   }
 }
-
 ````
 
 ## Резюме
