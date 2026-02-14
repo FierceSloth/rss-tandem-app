@@ -191,6 +191,8 @@ class ProductCard extends Component {
 }
 ```
 
+![alt text](./assets/prop-drilling-schema.png)
+
 **Почему это плохо?**
 
 1. **Жесткая связность:** `MainPage` и `ProductList` знают о логике корзины, хотя она им не нужна.
@@ -270,7 +272,7 @@ export class Header extends Component {
 }
 ```
 
-![alt text](image.png)
+![alt text](./assets/component-emitter-schema.png)
 
 ---
 
