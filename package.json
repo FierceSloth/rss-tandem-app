@@ -13,7 +13,7 @@
     ]
   },
   "validate-branch-name": {
-    "pattern": "^(master|main|develop|tandem)$|^(init|feat|fix|hotfix|release)/[A-Z]+-[A-Z]+-\\d+_[a-zA-Z][a-zA-Z0-9]*$",
+    "pattern": "^(master|main|develop|tandem)$|^(init|feat|fix|docs|refactor|style|chore)/[A-Z]+-[A-Z]+-\\d+_[a-zA-Z][a-zA-Z0-9]*$",
     "errorMsg": "Error: incorrect branch name. Example: feat/RSS-TD-01_implementLoginForm"
   },
   "scripts": {
