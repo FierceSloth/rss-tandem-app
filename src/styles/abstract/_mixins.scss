@@ -1,10 +1,6 @@
-@mixin font($size, $height, $weight: 400, $style: normal, $letter-spacing: normal) {
-  font-size: $size;
-  line-height: $height;
-  font-weight: $weight;
-  font-style: $style;
-  letter-spacing: $letter-spacing;
-}
+$desktop-width: 1197px;
+$tablet-width: 768px;
+$mobile-width: 414px;
 
 @mixin media-laptop {
   @media (max-width: $desktop-width) {

@@ -1,72 +1,82 @@
-$font-size-default: 10px;
+@use '../abstract/mixins' as *;
 
-$font-size-small: 1.2rem;
-$line-height-small: 1.6rem;
+:root {
+  --desktop-width: #{$desktop-width};
+  --tablet-width: #{$tablet-width};
+  --mobile-width: #{$mobile-width};
 
-$font-size-base: 1.4rem;
-$line-height-base: 2.1rem;
+  /* Colors: Backgrounds */
+  --bg-body: #050505;
+  --bg-surface: #0a0a0a;
+  --bg-panel: #0f0f0f;
 
-$font-size: 1.6rem;
-$line-height: 2.4rem;
+  /* Colors: Borders */
+  --border-subtle: #1f1f1f;
+  --border-focus: #333333;
 
-$font-h1-size: 4.4rem;
-$line-h1-height: 5.4rem;
+  /* Colors: Text */
+  --text-primary: #ffffff;
+  --text-secondary: #888888;
+  --text-tertiary: #444444;
 
-$font-h2-size: 3.2rem;
-$line-h2-height: 3.9rem;
+  /* Colors: Accents */
+  --accent-blue: #3b82f6;
+  --accent-red: #e93535;
+  --accent-orange: #ff5722;
+  --accent-green: #10b981;
 
-$font-h3-size: 2.4rem;
-$line-h3-height: 2.9rem;
+  /* Font Family */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', Consolas, monospace;
 
-$font-h4-size: 2.2rem;
-$line-h4-height: 2.6rem;
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
 
-$font-h5-size: 1.6rem;
-$line-h5-height: 2rem;
+  /* Base / Text */
+  --font-size-default: 10px;
 
-$font-h1-size-mobile: 4.2rem;
-$line-h1-height-mobile: 4.8rem;
+  --font-size-small: 1.2rem;
+  --line-height-small: 1.6rem;
 
-$font-h2-size-mobile: 2.4rem;
-$line-h2-height-mobile: 3rem;
+  --font-size-base: 1.4rem;
+  --line-height-base: 2.1rem;
 
-$font-h3-size-mobile: 2.2rem;
-$line-h3-height-mobile: 2.7rem;
+  --font-size-large: 1.6rem;
+  --line-height-large: 2.4rem;
 
-$font-h4-size-mobile: 2rem;
-$line-h4-height-mobile: 2.6rem;
+  /* Animation */
+  --transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 
-$bg-body: #050505;
-$bg-surface: #0a0a0a;
-$bg-panel: #0f0f0f;
+  /* Headings (Desktop) */
+  --font-h1-size: 4.4rem;
+  --line-h1-height: 5.4rem;
 
-$border-subtle: #1f1f1f;
-$border-focus: #333333;
+  --font-h2-size: 3.2rem;
+  --line-h2-height: 3.9rem;
 
-$text-primary: #ffffff;
-$text-secondary: #888888;
-$text-tertiary: #444444;
+  --font-h3-size: 2.4rem;
+  --line-h3-height: 2.9rem;
 
-$accent-blue: #3b82f6;
-$accent-red: #e93535;
-$accent-orange: #ff5722;
-$accent-green: #10b981;
+  --font-h4-size: 2.2rem;
+  --line-h4-height: 2.6rem;
 
-$font-primary:
-  'Inter',
-  -apple-system,
-  BlinkMacSystemFont,
-  'Segoe UI',
-  Roboto,
-  Helvetica,
-  Arial,
-  sans-serif;
-$font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', Consolas, monospace;
+  --font-h5-size: 1.6rem;
+  --line-h5-height: 2rem;
 
-$radius-sm: 4px;
-$radius-md: 6px;
-$radius-lg: 8px;
+  /* Headings (Mobile) */
+  @include media-mobile {
+    --font-h1-size-mobile: 4.2rem;
+    --line-h1-height-mobile: 4.8rem;
 
-$desktop-width: 1197px;
-$tablet-width: 768px;
-$mobile-width: 414px;
+    --font-h2-size-mobile: 2.4rem;
+    --line-h2-height-mobile: 3rem;
+
+    --font-h3-size-mobile: 2.2rem;
+    --line-h3-height-mobile: 2.7rem;
+
+    --font-h4-size-mobile: 2rem;
+    --line-h4-height-mobile: 2.6rem;
+  }
+}

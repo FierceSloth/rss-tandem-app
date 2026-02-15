@@ -1,5 +1,3 @@
-@import 'abstract/constants';
-@import 'abstract/mixins';
-@import 'abstract/placeholders';
-
-@import 'base/base';
+@use './abstract/constants';
+@use './abstract/mixins';
+@use './base/base';
