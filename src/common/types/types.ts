@@ -24,3 +24,12 @@ export interface IPage {
   render: () => void;
   destroy: () => void;
 }
+
+/* ========================================================================== */
+/*                            Validation Interfaces                           */
+/* ========================================================================== */
+
+export interface IValidateResult {
+  isValid: boolean;
+  errorMessage?: string;
+}
