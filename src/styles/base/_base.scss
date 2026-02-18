@@ -21,6 +21,14 @@ html {
 }
 
 body {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(2, auto);
+  gap: 20px;
+  place-content: center;
+  min-height: 100vh;
+
+  color: var(--text-primary);
   font-family: var(--font-primary);
   font-size: var(--font-size-large);
   line-height: var(--line-height-large);

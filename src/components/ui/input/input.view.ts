@@ -16,7 +16,8 @@ export class Input extends Component {
   private valid = false;
 
   constructor({ className = [], type = 'text', labelText = '', placeholder = '' }: IProps) {
-    super({ className: [styles.container, ...className] });
+    const cssClasses = [styles.container, ...(Array.isArray(className) ? className : [className])];
+    super({ className: cssClasses });
 
     const inputAttributes = {
       type,

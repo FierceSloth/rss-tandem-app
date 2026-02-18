@@ -109,3 +109,53 @@ submitBtn.addListener('click', () => {
 
 this.append(emailInput);
 ```
+
+## Card
+
+Универсальный контейнер для группировки контента. Поддерживает эффекты стекла (Glassmorphism), интерактивность и различные отступы.
+
+![alt text](./assets/card-preview.png)
+
+### Свойства (Props)
+
+| Свойство  | Тип                                      | Default | Описание                                                   |
+| :-------- | :--------------------------------------- | :------ | :--------------------------------------------------------- |
+| `padding` | `'none' \| 'sm' \| 'md' \| 'lg' \| 'hg'` | `'md'`  | Внутренние отступы                                         |
+| `glass`   | `boolean`                                | `false` | Включает эффект матового стекла (blur + transparency)      |
+| `hover`   | `boolean`                                | `false` | Добавляет анимацию и подсветку при наведении               |
+| `border`  | `boolean`                                | `true`  | Если `false`, убирает рамку и фон (для прозрачных оберток) |
+| `tag`     | `string`                                 | `'div'` | HTML-тег контейнера (`section`, `article`, `li` и т.д.)    |
+
+### Размеры Отсупов
+
+| Отсуп  | Размер (rem) |
+| :----- | :----------- |
+| `none` | 0            |
+| `sm`   | 1.2          |
+| `md`   | 2.4          |
+| `lg`   | 3.2          |
+| `hg`   | 4.8          |
+
+### Пример использования
+
+```typescript
+import { Card } from '@/components/common/card';
+import { Component } from '@/components/base/component';
+
+// 1. Создаем карточку (Контейнер)
+const card = new Card({
+  glass: true,       // Включаем эффект стекла
+  padding: 'lg',     // Большие отступы
+  className: ...
+});
+
+// 2. Создаем контент
+const title = new Component({ tag: 'h2', text: 'Welcome Back' });
+const text = new Component({ tag: 'p', text: 'Please sign in...' });
+
+// 3. ОБЯЗАТЕЛЬНО: Помещаем контент внутрь карточки
+card.append(title, text);
+
+// 4. Добавляем карточку на страницу
+this.append(card);
+```

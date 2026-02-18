@@ -16,7 +16,7 @@ export interface IComponent {
 }
 
 export interface IComponentChild {
-  className?: string[];
+  className?: string[] | string;
   children?: Component[];
 }
 
