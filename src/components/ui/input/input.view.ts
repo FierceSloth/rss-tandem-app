@@ -1,5 +1,7 @@
 import type { IComponentChild, IValidateResult } from '@common/types/types';
+import { mergeClassNames } from '@common/utils/class-names';
 import { Component } from '@components/base/component';
+
 import styles from './input.module.scss';
 
 interface IProps extends IComponentChild {
@@ -16,7 +18,7 @@ export class Input extends Component {
   private valid = false;
 
   constructor({ className = [], type = 'text', labelText = '', placeholder = '' }: IProps) {
-    const cssClasses = [styles.container, ...(Array.isArray(className) ? className : [className])];
+    const cssClasses = mergeClassNames(styles.container, className);
     super({ className: cssClasses });
 
     const inputAttributes = {
