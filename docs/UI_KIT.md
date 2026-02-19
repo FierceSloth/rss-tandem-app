@@ -159,3 +159,50 @@ card.append(title, text);
 // 4. Добавляем карточку на страницу
 this.append(card);
 ```
+
+## StatusBadge
+
+Индикатор статуса в терминальном стиле. Используется для отображения состояний (онлайн/оффлайн), ролей, версий или тегов технологий.
+Поддерживает пульсирующую анимацию и два варианта отображения: с рамкой (container) и без.
+
+![alt text](./assets/status-badge-preview.png)
+
+### Свойства (Props)
+
+| Свойство     | Тип                                    | Default    | Описание                                          |
+| :----------- | :------------------------------------- | :--------- | :------------------------------------------------ |
+| `text`       | `string`                               | —          | Текст бейджа (обязательное поле)                  |
+| `color`      | `'green' \| 'blue' \| 'gray' \| 'red'` | `'green'`  | Цвет текста и точки                               |
+| `container`  | `boolean`                              | `false`    | Добавляет фон и рамку вокруг бейджа               |
+| `dot`        | `boolean`                              | `true`     | Показывает круглую точку слева от текста          |
+| `animation`  | `boolean`                              | `true`     | Включает эффект пульсации (свечения) для точки    |
+
+### Пример использования
+
+```typescript
+import { StatusBadge } from '@/components/ui/status-badge/status-badge.view';
+
+// 1. Успешный статус с рамкой и пульсацией (по умолчанию)
+const onlineStatus = new StatusBadge({
+  text: 'System Online // v2.4.0',
+  color: 'green',
+  container: true,
+});
+
+// 2. Оффлайн статус без анимации
+const offlineStatus = new StatusBadge({
+  text: 'System Offline',
+  color: 'gray',
+  animation: false,
+});
+
+// 3. Простой тег без точки и рамки
+const versionTag = new StatusBadge({
+  text: 'Beta',
+  color: 'blue',
+  dot: false,
+  animation: false,
+});
+
+this.append(onlineStatus, offlineStatus, versionTag);
+```
