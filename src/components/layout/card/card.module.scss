@@ -1,15 +1,35 @@
 .card {
   position: relative;
 
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--card-bg, rgba(255, 255, 255, 0.03));
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--card-border, var(--border-subtle));
   border-radius: var(--radius-md);
 
   overflow: hidden;
   transition: var(--transition);
+}
+
+.color-gray {
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-border: rgba(255, 255, 255, 0.1);
+}
+
+.color-green {
+  --card-bg: rgba(16, 185, 129, 0.1);
+  --card-border: rgba(16, 185, 129, 0.3);
+}
+
+.color-blue {
+  --card-bg: rgba(59, 130, 246, 0.1);
+  --card-border: rgba(59, 130, 246, 0.3);
+}
+
+.color-red {
+  --card-bg: rgba(246, 59, 59, 0.1);
+  --card-border: rgba(246, 59, 59, 0.3);
 }
 
 .padding-none {

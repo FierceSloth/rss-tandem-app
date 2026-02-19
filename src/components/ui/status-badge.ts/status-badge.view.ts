@@ -15,7 +15,12 @@ interface IProps extends IComponentChild {
 }
 
 export class StatusBadge extends Component {
-  constructor({ className = [], text, color = 'green', dot = true, animation = true, container = false }: IProps) {
+  private textElement: Component;
+
+  constructor(
+    { className = [], text, color = 'green', dot = true, animation = true, container = false }: IProps,
+    ...children: Component[]
+  ) {
     const cssClasses = mergeClassNames(
       styles.statusBadge,
       styles[`color-${color}`],
@@ -23,14 +28,19 @@ export class StatusBadge extends Component {
       container && styles.container,
       className
     );
-    super({ className: cssClasses });
+    super({ className: cssClasses }, ...children);
 
     if (dot) {
       const dotElement = new Component({ tag: 'span', className: styles.dot });
       this.append(dotElement);
     }
 
-    const textElement = new Component({ tag: 'span', className: styles.text, text });
-    this.append(textElement);
+    this.textElement = new Component({ tag: 'span', className: styles.text, text });
+    this.append(this.textElement);
+  }
+
+  public setText(text: string): this {
+    this.textElement.setText(text);
+    return this;
   }
 }
