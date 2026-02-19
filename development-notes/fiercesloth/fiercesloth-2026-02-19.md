@@ -2,7 +2,7 @@
 
 ## Что было сделано:
 
-1. Завершенна ветка `feat/RSS-TD-03_implementBaseComponents`
+1. Завершенна ветка [`feat/RSS-TD-03_implementBaseComponents`](https://github.com/FierceSloth/rss-tandem-app/pull/3)
 2. Создан компонент StatusBadge
 3. Улучшен класс Card
 
