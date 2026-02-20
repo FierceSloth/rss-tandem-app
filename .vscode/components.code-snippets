@@ -1,0 +1,31 @@
+{
+  "Component View Template": {
+    "scope": "typescript",
+    "prefix": "view",
+    "description": "Generate base Component View template",
+    "body": [
+      "import type { IComponentChild } from '@common/types/types';",
+      "import { mergeClassNames } from '@common/utils/class-names';",
+      "import { Component } from '@components/base/component';",
+      "",
+      "import styles from './${TM_FILENAME_BASE/(.*)\\.view$/$1/}.module.scss';",
+      "",
+      "interface IProps extends IComponentChild {",
+      "}",
+      "",
+      "export class ${TM_FILENAME_BASE/(.*)\\.view$/${1:/pascalcase}/} extends Component {",
+      "\tconstructor({ className = [] }: IProps, ...children: Component[]) {",
+      "\t\tconst cssClasses = mergeClassNames(",
+      "\t\t\tstyles.${TM_FILENAME_BASE/(.*)\\.view$/${1:/camelcase}/},",
+      "\t\t\tclassName",
+      "\t\t);",
+      "",
+      "\t\tsuper({ className: cssClasses }, ...children);",
+      "",
+      "\t\t// const element = new Component({ className: styles.element });",
+      "\t\t// this.append(element);",
+      "\t}",
+      "}"
+    ]
+  }
+}
