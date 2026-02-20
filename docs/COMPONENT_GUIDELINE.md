@@ -100,7 +100,17 @@ src/
 
 ## 4. Базовый шаблон создания View
 
-При создании нового `*.view.ts` файла используйте следующий шаблон. Он гарантирует правильное наследование от базового класса `Component` и безопасное слияние классов через утилиту `mergeClassNames`.
+Для быстрого создания компонентов в проекте настроен **командный сниппет для VS Code** (находится в `.vscode/components.code-snippets`). Вам не нужно копировать код вручную!
+
+### ⚡ Как использовать автогенерацию:
+
+1. Создайте пустой файл для вашего компонента (например, `user-card.view.ts`).
+2. Откройте его, начните вводить слово `view` и нажмите `Tab` (или `Enter`).
+3. Редактор автоматически сгенерирует весь базовый код, сам подставит правильное название класса (в PascalCase) и пути до стилей на основе имени вашего файла.
+
+> **Важно:** Если автодополнение не сработало сразу, нажмите `Ctrl + Space` и выберите сниппет с названием `Component View Template` из списка. Убедитесь, что у вас открыта папка проекта как корневая в редакторе.
+
+Сниппет разворачивает следующий шаблон. Он гарантирует правильное наследование от базового класса `Component` и безопасное слияние классов через утилиту `mergeClassNames`:
 
 ```typescript
 import type { IComponentChild } from '@common/types/types';
@@ -111,21 +121,20 @@ import styles from './название-компонента.module.scss';
 
 // 1. Описываем интерфейс пропсов (настроек) компонента
 interface IProps extends IComponentChild {
-  tag?: keyof HTMLElementTagNameMap;
   // Добавьте кастомные свойства: color?: string, disabled?: boolean и т.д.
 }
 
 // 2. Наследуемся от базового класса Component
 export class НазваниеКомпонента extends Component {
-  constructor({ className = [], tag = 'div' /* дальше ваши кастомные свойства */ }: IProps, ...children: Component[]) {
+  constructor({ className = [] /* дальше ваши кастомные свойства */ }: IProps, ...children: Component[]) {
     // 3. Безопасно сливаем внутренние стили с классами, переданными снаружи
     const cssClasses = mergeClassNames(
-      styles.НазваниеКомпонента, // Укажите ваш главный класс из SCSS модуля
+      styles.названиеКомпонента, // Укажите ваш главный класс из SCSS модуля
       className
     );
 
     // 4. Инициализируем родительский класс
-    super({ tag: tag, className: cssClasses }, ...children);
+    super({ tag: 'div', className: cssClasses }, ...children);
 
     // 5. Ниже инициализируйте внутренние элементы и вызывайте this.append(...)
     // const chat = new Component({className: styles.chat, ...})
