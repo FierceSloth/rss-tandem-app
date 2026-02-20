@@ -41,12 +41,12 @@ export class Input extends Component {
   public validate(validator: Validator): boolean {
     const result = validator(this.getValue());
 
-    if (!result.isValid && result.errorMessage) {
-      this.setError(result.errorMessage);
-      this.valid = false;
-    } else {
+    if (result.isValid) {
       this.clearError();
       this.valid = true;
+    } else {
+      this.setError(result.errorMessage || '');
+      this.valid = false;
     }
     return this.valid;
   }
