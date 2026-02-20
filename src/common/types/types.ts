@@ -1,5 +1,3 @@
-import type { Component } from '@/components/base/component';
-
 /* ========================================================================== */
 /*                              Global Interfaces                             */
 /* ========================================================================== */
@@ -16,11 +14,19 @@ export interface IComponent {
 }
 
 export interface IComponentChild {
-  className?: string[];
-  children?: Component[];
+  className?: string[] | string;
 }
 
 export interface IPage {
   render: () => void;
   destroy: () => void;
+}
+
+/* ========================================================================== */
+/*                            Validation Interfaces                           */
+/* ========================================================================== */
+
+export interface IValidateResult {
+  isValid: boolean;
+  errorMessage?: string;
 }
