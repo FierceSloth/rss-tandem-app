@@ -1,0 +1,71 @@
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 0.4rem 1.2rem;
+
+  border-radius: var(--radius-sm);
+  color: var(--badge-color);
+
+  font-family: var(--font-mono, monospace);
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+
+  transition: all var(--transition, 0.3s ease);
+
+  &.container {
+    border: 1px solid var(--badge-border);
+    background-color: var(--badge-bg);
+  }
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+
+  background-color: var(--badge-color);
+}
+
+.color-gray {
+  --badge-color: var(--text-secondary);
+  --badge-bg: rgba(255, 255, 255, 0.05);
+  --badge-border: rgba(255, 255, 255, 0.1);
+}
+
+.color-green {
+  --badge-color: var(--accent-green);
+  --badge-bg: rgba(16, 185, 129, 0.1);
+  --badge-border: rgba(16, 185, 129, 0.3);
+}
+
+.color-blue {
+  --badge-color: var(--accent-blue);
+  --badge-bg: rgba(59, 130, 246, 0.1);
+  --badge-border: rgba(59, 130, 246, 0.3);
+}
+
+.color-red {
+  --badge-color: var(--accent-red);
+  --badge-bg: rgba(246, 59, 59, 0.1);
+  --badge-border: rgba(246, 59, 59, 0.3);
+}
+
+.animation .dot {
+  animation: pulse-ring 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 var(--badge-color);
+  }
+  70% {
+    box-shadow: 0 0 0 5px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
