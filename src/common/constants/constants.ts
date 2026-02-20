@@ -1,0 +1,3 @@
+const EMPTY = '';
+
+export { EMPTY };
