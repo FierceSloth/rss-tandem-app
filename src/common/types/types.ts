@@ -1,5 +1,3 @@
-import type { Component } from '@/components/base/component';
-
 /* ========================================================================== */
 /*                              Global Interfaces                             */
 /* ========================================================================== */
@@ -17,7 +15,6 @@ export interface IComponent {
 
 export interface IComponentChild {
   className?: string[] | string;
-  children?: Component[];
 }
 
 export interface IPage {
