@@ -1,23 +1,25 @@
-import { EMPTY } from '@/common/constants/constants';
 import { isHistoryState, pushState } from './utils/history';
 import { BASE_URL, BASE_URL_WITHOUT_LAST_SLASH, pathnameEqualsRoute, ROOT_URL } from './utils/path';
 import type { IPathData, IRoute } from './types';
-import { ROUTER_NAVIGATE, ROUTES } from './constants';
+import { ROUTES } from './constants';
 import type { IPage } from '@/common/types/types';
-import { UserService } from '@/service/user-service/user-service';
+import { UserService } from '@/service/user-service/user.service';
 import { routes } from './routes';
 import { appEmitter } from '@/common/utils/emitter';
 import { messages } from '@/common/constants/messages';
 import { extractQuery, matchRouteAndExtractParameters } from './core/route-matcher';
+import { Component } from '@/components/base/component';
+import { AppEvents } from '@/common/enums/enums';
 
 export class Router {
-  private root: HTMLElement;
+  private root: Component;
   private params: Record<string, string> = {};
   private currentPage: IPage | null = null;
   private readonly notFoundRoute: IRoute;
 
-  constructor(root: HTMLElement) {
-    this.root = root;
+  constructor() {
+    this.root = new Component({ attrs: { id: 'app' } });
+    document.body.append(this.root.node);
 
     const route = routes.find((r) => r.path === ROUTES.NOT_FOUND_PAGE);
     if (!route) {
@@ -25,7 +27,7 @@ export class Router {
     }
     this.notFoundRoute = route;
 
-    appEmitter.on<IPathData>(ROUTER_NAVIGATE, ({ page, params = {}, query = {} }: IPathData) => {
+    appEmitter.on<IPathData>(AppEvents.ROUTER_NAVIGATE, ({ page, params = {}, query = {} }: IPathData) => {
       this.navigateTo(page, params, query);
     });
   }
@@ -106,10 +108,11 @@ export class Router {
     if (this.currentPage?.destroy) {
       this.currentPage.destroy();
     }
-    this.root.innerHTML = EMPTY;
+    this.root.destroyChildren();
 
     const pageInstance: IPage = route.page();
-    pageInstance.render();
+    const pageElement = pageInstance.render();
+    this.root.append(pageElement);
     this.currentPage = pageInstance;
   }
 
@@ -130,7 +133,8 @@ export class Router {
 
   private validateQuery(path: string): void {
     if (path.indexOf('?') != path.lastIndexOf('?')) {
-      throw new Error(messages.errors.urlQueryCorrupted(path));
+      console.error(messages.errors.urlQueryCorrupted(path));
+      this.redirectToNotFound();
     }
   }
 

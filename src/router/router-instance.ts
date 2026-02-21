@@ -2,9 +2,9 @@ import { Router } from './router';
 
 let router: Router;
 
-export function createRouter(node: HTMLElement): Router {
+export function createRouter(): Router {
   if (!router) {
-    router = new Router(node);
+    router = new Router();
   }
   return router;
 }

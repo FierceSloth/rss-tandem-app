@@ -1,4 +1,5 @@
 import type { IPage } from '@/common/types/types';
+import { Component } from '@/components/base/component';
 import { vi } from 'vitest';
 
 vi.mock('@/router/routes', () => ({
@@ -7,7 +8,10 @@ vi.mock('@/router/routes', () => ({
       path: '/true-false/:id',
       meta: { secured: true },
       page: (): IPage => ({
-        render: (): void => {},
+        render: (): Component =>
+          new Component({
+            className: ['true-false', 'pageContainer'],
+          }),
         destroy: (): void => {},
       }),
     },
@@ -15,7 +19,10 @@ vi.mock('@/router/routes', () => ({
       path: '/quiz/:id',
       meta: { secured: true },
       page: (): IPage => ({
-        render: (): void => {},
+        render: (): Component =>
+          new Component({
+            className: ['quiz', 'pageContainer'],
+          }),
         destroy: (): void => {},
       }),
     },
@@ -23,7 +30,10 @@ vi.mock('@/router/routes', () => ({
       path: '/about',
       meta: { secured: false },
       page: (): IPage => ({
-        render: (): void => {},
+        render: (): Component =>
+          new Component({
+            className: ['about', 'pageContainer'],
+          }),
         destroy: (): void => {},
       }),
     },
@@ -31,7 +41,10 @@ vi.mock('@/router/routes', () => ({
       path: '/not-found',
       meta: { secured: false },
       page: (): IPage => ({
-        render: (): void => {},
+        render: (): Component =>
+          new Component({
+            className: ['not-found', 'pageContainer'],
+          }),
         destroy: (): void => {},
       }),
     },

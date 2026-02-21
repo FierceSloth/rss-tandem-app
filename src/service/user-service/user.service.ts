@@ -1,4 +1,4 @@
-import { STORAGE_KEYS } from '@/router/constants';
+import { STORAGE_KEYS } from '@/common/constants/constants';
 import type { UserDetails } from '@/service/user-service/types';
 
 export class UserService {

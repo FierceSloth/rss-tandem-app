@@ -1,9 +1,3 @@
-export const ROUTER_NAVIGATE = 'router:navigate';
-
-export const STORAGE_KEYS = {
-  AUTH: 'auth',
-} as const;
-
 export const ROUTES = {
   LANDING_PAGE: '/',
   ABOUT_PAGE: '/about',

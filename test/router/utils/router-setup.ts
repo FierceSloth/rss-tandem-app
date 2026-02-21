@@ -1,17 +1,14 @@
 import './routes.mock';
 import { beforeEach, afterEach, vi } from 'vitest';
 import { Router } from '@/router/router';
-import { UserService } from '@/service/user-service/user-service';
+import { UserService } from '@/service/user-service/user.service';
 
 export let testRouter: Router;
 export let pushStateSpy: ReturnType<typeof vi.spyOn>;
 
 export function setupRouter(): void {
   beforeEach(() => {
-    const root = document.createElement('div');
-    document.body.innerHTML = '';
-
-    testRouter = new Router(root);
+    testRouter = new Router();
     testRouter.init();
     vi.spyOn(UserService, 'isAuthenticated').mockReturnValue(true);
 

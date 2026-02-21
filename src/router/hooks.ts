@@ -1,11 +1,11 @@
 import { appEmitter } from '@/common/utils/emitter';
 import { router } from './router-instance';
-import { ROUTER_NAVIGATE } from './constants';
+import { AppEvents } from '@/common/enums/enums';
 
 export function useParams(): Record<string, string> {
   return router.getParams();
 }
 
 export function useNavigate(page: string, params = {}, query = {}): void {
-  appEmitter.emit(ROUTER_NAVIGATE, { page, params, query });
+  appEmitter.emit(AppEvents.ROUTER_NAVIGATE, { page, params, query });
 }

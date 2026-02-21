@@ -1,4 +1,4 @@
-import type { AppEvents } from '@common/types/types';
+import type { AppEvents } from '@common/enums/enums';
 
 type Listener<T = unknown> = (data: T) => void;
 
