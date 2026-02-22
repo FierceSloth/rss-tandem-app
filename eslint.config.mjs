@@ -60,7 +60,19 @@ export default defineConfig({
     'unicorn/prevent-abbreviations': [
       'error',
       {
-        allowList: { acc: true, env: true, i: true, j: true, props: true, Props: true, arr: true, Arr: true, el: true },
+        allowList: {
+          acc: true,
+          env: true,
+          i: true,
+          j: true,
+          props: true,
+          Props: true,
+          arr: true,
+          Arr: true,
+          el: true,
+          useParams: true,
+          params: true,
+        },
       },
     ],
     'max-lines-per-function': ['error', { max: 80, skipBlankLines: true, skipComments: true }],

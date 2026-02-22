@@ -1,10 +1,8 @@
+import type { Component } from '@/components/base/component';
+
 /* ========================================================================== */
 /*                              Global Interfaces                             */
 /* ========================================================================== */
-
-// prettier-ignore
-export type AppEvents =
-  | 'router:navigate';
 
 export interface IComponent {
   tag?: keyof HTMLElementTagNameMap;
@@ -18,7 +16,7 @@ export interface IComponentChild {
 }
 
 export interface IPage {
-  render: () => void;
+  render: () => Component;
   destroy: () => void;
 }
 
