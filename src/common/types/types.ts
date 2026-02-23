@@ -4,10 +4,6 @@ import type { Component } from '@/components/base/component';
 /*                              Global Interfaces                             */
 /* ========================================================================== */
 
-// prettier-ignore
-export type AppEvents =
-  | 'router:navigate';
-
 export interface IComponent {
   tag?: keyof HTMLElementTagNameMap;
   className?: string | string[];
@@ -16,11 +12,19 @@ export interface IComponent {
 }
 
 export interface IComponentChild {
-  className?: string[];
-  children?: Component[];
+  className?: string[] | string;
 }
 
 export interface IPage {
-  render: () => void;
+  render: () => Component;
   destroy: () => void;
+}
+
+/* ========================================================================== */
+/*                            Validation Interfaces                           */
+/* ========================================================================== */
+
+export interface IValidateResult {
+  isValid: boolean;
+  errorMessage?: string;
 }
