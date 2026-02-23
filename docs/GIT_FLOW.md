@@ -2,6 +2,14 @@
 
 В этом проекте мы придерживаемся строгих стандартов RS School.
 
+## Навигация
+
+- [1. Naming Convention: Ветки](#1-naming-convention-ветки)
+- [2. Commit Convention (Рабочие коммиты)](#2-commit-convention-рабочие-коммиты)
+- [3. Pull Request Title & Squash Commit](#3-pull-request-title--squash-commit)
+- [4. Pull Request Template](#4-pull-request-template)
+- [5. Development Diary: Работа с дневниками](#5-работа-с-дневниками-development-diary)
+
 ## 1. Naming Convention: Ветки
 
 Мы используем формат веток, привязанный к ID задач в Trello.
@@ -176,3 +184,15 @@ _REQUIRED for UI changes. Attach images or GIFs here. If no UI changes, delete t
 - [ ] My changes generate **no new warnings** in the console
 - [ ] I have removed `console.log` (except for critical error logging)
 ```
+
+## 5. Development Diary: Работа с дневниками
+
+### Правила ведения:
+
+1. **Единая ветка `diary`:** Мы не создаем новые ветки под каждую неделю. Для ведения дневников используется одна общая постоянная ветка `diary`. Никогда не пишите продуктовый код фичи и дневник в одной ветке.
+2. **Ежедневные коммиты:** Своя запись должна коммититься в тот же или на следующий день. _(Совет: перед созданием коммита делайте `git pull`, так как ветка общая для всей команды)._
+3. **Формат коммита:** Строго используйте шаблон `docs: add diary entry for YYYY-MM-DD`.
+   - _Пример:_ `docs: add diary entry for 2026-02-24`
+4. **Слияние (Merge):** При создании PR из ветки `diary` в основную ветку **ЗАПРЕЩЕНО** использовать `Squash and merge`. Используйте только:
+   - **Rebase and merge** (предпочтительно, сохраняет плоскую историю)
+   - **Create a merge commit**
