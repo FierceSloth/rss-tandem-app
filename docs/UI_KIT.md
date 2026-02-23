@@ -1,0 +1,245 @@
+# 🎨 UI Kit & Global Components
+
+## Навигация
+
+- [Button](#button)
+- [Input](#input)
+- [Card](#card)
+- [StatusBadge](#statusbadge)
+- [UI Components in Notion](#ui-components-in-notion)
+
+---
+
+## Button
+
+Компонент кнопки поддерживает темы и автоматическую обработку кликов.
+![alt text](./assets/button-preview.png)
+
+### Варианты (Variants)
+
+| Variant   | Описание               |
+| :-------- | :--------------------- |
+| `primary` | Основная (белая)       |
+| `ghost`   | Контурная (прозрачная) |
+
+### Пример использования
+
+```typescript
+import { Button } from '@/components/common/button';
+
+const button = new Button({
+  text: 'Click Me',
+  variant: 'primary',
+  onClick: () => console.log('Clicked!')
+});
+
+if (...) {
+  button.setDisabled(true);
+}
+
+this.append(button);
+```
+
+## Input
+
+Компонент поля ввода с поддержкой валидации, состояний ошибки и лейблов.
+Ошибка отображается снизу, не смещая контент.
+
+![alt text](./assets/input-preview.png)
+
+### Свойства (Props)
+
+| Свойство      | Тип        | Описание                                                         |
+| :------------ | :--------- | :--------------------------------------------------------------- |
+| `labelText`   | `string`   | Текст заголовка над полем (необязательно)                        |
+| `placeholder` | `string`   | Текст-подсказка внутри поля                                      |
+| `type`        | `string`   | Тип инпута (`text`, `password`, `email` и т.д.). Default: `text` |
+| `className`   | `string[]` | Дополнительные CSS классы                                        |
+
+### Публичные методы (API)
+
+| Метод               | Описание                                                                       |
+| :------------------ | :----------------------------------------------------------------------------- |
+| `getValue()`        | Возвращает текущее значение (string).                                          |
+| `setValue(val)`     | Устанавливает значение программно.                                             |
+| `validate(fn)`      | Запускает функцию-валидатор. Возвращает `true`/`false` и визуализирует ошибку. |
+| `setError(msg)`     | Принудительно показывает ошибку с заданным текстом.                            |
+| `clearError()`      | Скрывает ошибку и очищает текст сообщения.                                     |
+| `setDisabled(bool)` | Блокирует (`true`) или разблокирует (`false`) поле ввода.                      |
+
+### Пример использования
+
+```typescript
+import { Input } from '@/components/ui/input';
+import { IValidateResult } from '@/common/types/types';
+
+// 1. Создаем валидатор (чистая функция)
+const emailValidator = (value: string): IValidateResult => {
+  const brokenRules = [
+    {
+      condition: (email: string): boolean => email.length === 0,
+      errorMessage: 'Email is required',
+    },
+    {
+      condition: (email: string): boolean => !email.includes('@'),
+      errorMessage: 'Invalid email format',
+    },
+    // ... Добавляем сколько угодно проверок
+  ];
+
+  const firstBrokenRule = brokenRules.find((rule) => rule.condition(value));
+
+  if (firstBrokenRule) {
+    return { isValid: false, errorMessage: firstBrokenRule.errorMessage };
+  }
+
+  return { isValid: true };
+};
+
+// 2. Создаем компонент
+const emailInput = new Input({
+  labelText: 'Email Address',
+  type: 'email',
+  placeholder: 'user@tandem.com',
+});
+
+// 3. Вешаем валидацию на ввод (валидация в реальном времени)
+emailInput.addListener('input', () => {
+  emailInput.validate(emailValidator);
+});
+
+// 4. Или проверяем при отправке формы
+submitBtn.addListener('click', () => {
+  const isValid = emailInput.validate(emailValidator);
+
+  if (isValid) {
+    console.log('Sending data:', emailInput.getValue());
+  }
+});
+
+this.append(emailInput);
+```
+
+## Card
+
+Универсальный контейнер для группировки контента. Поддерживает эффекты стекла (Glassmorphism), интерактивность и различные отступы.
+
+![alt text](./assets/card-preview.png)
+
+### Свойства (Props)
+
+| Свойство  | Тип                                      | Default  | Описание                                                |
+| :-------- | :--------------------------------------- | :------- | :------------------------------------------------------ |
+| `tag`     | `string`                                 | `'div'`  | HTML-тег контейнера (`section`, `article`, `li` и т.д.) |
+| `padding` | `'none' \| 'sm' \| 'md' \| 'lg' \| 'hg'` | `'md'`   | Внутренние отступы                                      |
+| `color`   | `'gray' \| 'green' \| 'red' \| 'blue'`   | `'gray'` | Цветовая схема карточки (меняет фон и рамку)            |
+| `glass`   | `boolean`                                | `false`  | Включает эффект матового стекла (blur + transparency)   |
+
+### Размеры Отсупов
+
+| Отсуп  | Размер (rem) |
+| :----- | :----------- |
+| `none` | 0            |
+| `sm`   | 1.2          |
+| `md`   | 2.4          |
+| `lg`   | 3.2          |
+| `hg`   | 4.8          |
+
+### Пример использования
+
+```typescript
+import { Card } from '@/components/common/card';
+import { Component } from '@/components/base/component';
+
+// 1. Создаем карточку (Контейнер)
+const card = new Card({
+  glass: true,       // Включаем эффект стекла
+  padding: 'lg',     // Большие отступы
+  className: ...
+});
+
+// 2. Создаем контент
+const title = new Component({ tag: 'h2', text: 'Welcome Back' });
+const text = new Component({ tag: 'p', text: 'Please sign in...' });
+
+// 3. ОБЯЗАТЕЛЬНО: Помещаем контент внутрь карточки
+card.append(title, text);
+
+// 4. Добавляем карточку на страницу
+this.append(card);
+```
+
+## StatusBadge
+
+Индикатор статуса в терминальном стиле. Используется для отображения состояний (онлайн/оффлайн), ролей, версий или тегов технологий.
+Поддерживает пульсирующую анимацию и два варианта отображения: с рамкой (container) и без.
+
+![alt text](./assets/status-badge-preview.png)
+
+### Свойства (Props)
+
+| Свойство     | Тип                                    | Default    | Описание                                          |
+| :----------- | :------------------------------------- | :--------- | :------------------------------------------------ |
+| `text`       | `string`                               | —          | Текст бейджа (обязательное поле)                  |
+| `color`      | `'green' \| 'blue' \| 'gray' \| 'red'` | `'green'`  | Цвет текста и точки                               |
+| `container`  | `boolean`                              | `false`    | Добавляет фон и рамку вокруг бейджа               |
+| `dot`        | `boolean`                              | `true`     | Показывает круглую точку слева от текста          |
+| `animation`  | `boolean`                              | `true`     | Включает эффект пульсации (свечения) для точки    |
+
+### Пример использования
+
+```typescript
+import { StatusBadge } from '@/components/ui/status-badge/status-badge.view';
+
+// 1. Успешный статус с рамкой и пульсацией (по умолчанию)
+const onlineStatus = new StatusBadge({
+  text: 'System Online // v2.4.0',
+  color: 'green',
+  container: true,
+});
+
+// 2. Оффлайн статус без анимации
+const offlineStatus = new StatusBadge({
+  text: 'System Offline',
+  color: 'gray',
+  animation: false,
+});
+
+// 3. Простой тег без точки и рамки
+const versionTag = new StatusBadge({
+  text: 'Beta',
+  color: 'blue',
+  dot: false,
+  animation: false,
+});
+
+this.append(onlineStatus, offlineStatus, versionTag);
+```
+
+## UI Components in Notion
+
+**Ссылка на таблицу notion с UI компонентами**
+
+- [UI Components Tandem](https://www.notion.so/30a7624a7163808e976bfb7d0c173f5d?v=30a7624a716380f9ae23000c2725ed97&source=copy_link)
+
+### Структура таблицы
+
+- **Name** - название компонента (Status Badge, Button, Module Card и т.д.)
+- **Type** - тип HTML‑элемента (span, div, button и др.). Это предложенный вариант, котрый вы можете изменить на свое усмотрение
+- **Data** - чекбокс, нужны ли компоненту реальные данные
+- **Pages** - на каких страницах используется компонент (Landing Page, Auth Page, Quiz Round Page и т.п.)
+- \*\*Status - чекбокс готовности компонента (сделан/в работе)
+- **Notes** - дополнительные комментарии (что именно за часть карточки, технические метки и т.д)
+
+### Как пользоваться фильтром по страницам?
+
+1. Нажми сверху над колонками на вкладку `Pages` → `Contains` → `выбери нужную страницу` (например, Landing Page)
+2. Таблица покажет только компоненты, которые используются на выбранной странице
+3. Чтобы посмотреть другую страницу, поменяй значение в фильтре или выбери несколько страниц
+4. Чтобы снова видеть все компоненты, нажми на крестик в поле (инпуте) с выбранными страницами
+
+### Практическое использование
+
+1. Перед работой над конкретной страницей включаешь фильтр по этой странице и видишь список всех её компонентов
+2. По чекбоксу Status быстро понимаешь, какие компоненты уже готовы, а какие ещё нужно сделать
+3. Через Notes можно уточнять особенности реализации (часть карточки, финальный экран и т.д.), чтобы не держать детали в голове
