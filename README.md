@@ -32,3 +32,4 @@
 - [**Base Architecture**](./docs/BASE_COMPONENTS.md) — описание базового класса `Component` и работы с глобальной шиной событий `Emitter`.
 - [**Component Guideline**](./docs/COMPONENT_GUIDELINE.md) — стандарты создания компонентов (View/Controller) и файловой структуры.
 - [**UI Kit**](./docs/UI_KIT.md) — каталог готовых переиспользуемых интерфейсных элементов.
+- [**Router (Navigation)**](./docs/ROUTER.md) — описание работы с роутером.
