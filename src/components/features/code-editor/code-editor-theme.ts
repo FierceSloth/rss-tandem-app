@@ -42,14 +42,26 @@ export const editorTheme = EditorView.theme(
 export const editorHighlightStyle = HighlightStyle.define([
   { tag: [t.keyword, t.name], color: '#C678DD' },
   { tag: [t.deleted, t.character, t.propertyName, t.macroName], color: '#dd4a56' },
-  { tag: [t.function(t.variableName), t.labelName], color: 'var(--accent-blue)' },
+  {
+    tag: [
+      t.function(t.variableName),
+      t.labelName,
+      t.operator,
+      t.operatorKeyword,
+      t.url,
+      t.escape,
+      t.regexp,
+      t.link,
+      t.special(t.string),
+    ],
+    color: '#61AFEF',
+  },
   { tag: [t.color, t.constant(t.name), t.standard(t.name)], color: '#D19A66' },
   { tag: [t.definition(t.name), t.separator], color: '#d8e0f0' },
   {
     tag: [t.typeName, t.className, t.number, t.changed, t.annotation, t.modifier, t.self, t.namespace],
     color: '#D19A66',
   },
-  { tag: [t.operator, t.operatorKeyword, t.url, t.escape, t.regexp, t.link, t.special(t.string)], color: '#56B6C2' },
   { tag: [t.meta, t.comment], color: '#5C6370', fontStyle: 'italic' },
   { tag: t.heading, fontWeight: 'bold', color: '#E06C75' },
   { tag: [t.atom, t.bool, t.special(t.variableName)], color: '#D19A66' },
