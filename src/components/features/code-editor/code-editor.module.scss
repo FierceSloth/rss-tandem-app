@@ -1,0 +1,20 @@
+.codeEditor {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.35rem;
+  line-height: 24px;
+
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+
+  :global(.cm-editor) {
+    height: 100%;
+    width: 100%;
+  }
+
+  :global(.cm-scroller) {
+    font-family: inherit;
+  }
+}
