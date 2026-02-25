@@ -53,6 +53,8 @@ export class LandingPage implements IPage {
     const landing: Component = new Component({ className: [styles.landing, 'pageContainer'] });
     const codeEditor = new CodeEditor({
       initialCode: initialCode,
+      readOnly: true,
+      showLineNumbers: false,
     });
     landing.append(codeEditor);
 

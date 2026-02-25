@@ -17,4 +17,13 @@
   :global(.cm-scroller) {
     font-family: inherit;
   }
+
+  &.hideLines {
+    :global(.cm-gutters) {
+      display: none;
+    }
+    :global(.cm-content) {
+      padding-left: 4px;
+    }
+  }
 }

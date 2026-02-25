@@ -8,6 +8,7 @@ export const editorTheme = EditorView.theme(
       color: 'var(--text-primary)',
       backgroundColor: 'var(--bg-surface)',
       fontFamily: 'var(--font-mono)',
+      transition: 'all 0.3s',
     },
     '.cm-content': {
       caretColor: '#E93535',
@@ -34,6 +35,26 @@ export const editorTheme = EditorView.theme(
     '.cm-activeLineGutter': {
       backgroundColor: 'rgba(255, 255, 255, 0.03)',
       color: 'var(--text-primary)',
+    },
+    '.cm-foldPlaceholder': {
+      backgroundColor: 'transparent',
+      color: '#61AFEF',
+      border: 'none',
+      margin: '0 4px',
+      padding: '0 2px',
+      cursor: 'pointer',
+    },
+
+    '.cm-foldPlaceholder:hover': {
+      color: '#4b86b6',
+    },
+
+    '.cm-foldGutter .cm-gutterElement': {
+      color: 'var(--text-tertiary)',
+    },
+    '.cm-foldGutter .cm-gutterElement:hover': {
+      color: 'var(--text-primary)',
+      cursor: 'pointer',
     },
   },
   { dark: true }
