@@ -1,6 +1,6 @@
-import { isHistoryState, pushState } from './utils/history';
+import { isHistoryState, updateHistory } from './utils/history';
 import { BASE_URL, BASE_URL_WITHOUT_LAST_SLASH, pathnameEqualsRoute, ROOT_URL } from './utils/path';
-import type { IPathData, IRoute } from './types';
+import type { ILocationState, INavigateFunction, INavigateOptions, INavigationTarget, IRoute } from './types';
 import { ROUTES } from './constants';
 import type { IPage } from '@/common/types/types';
 import { UserService } from '@/service/user-service/user.service';
@@ -10,11 +10,13 @@ import { messages } from '@/common/constants/messages';
 import { extractQuery, matchRouteAndExtractParameters } from './core/route-matcher';
 import { Component } from '@/components/base/component';
 import { AppEvents } from '@/common/enums/enums';
+import { NavigationMode } from './navigation-mode';
 
 export class Router {
   private root: Component;
   private params: Record<string, string> = {};
   private currentPage: IPage | null = null;
+  private locationState: unknown = null;
   private readonly notFoundRoute: IRoute;
 
   constructor() {
@@ -27,15 +29,15 @@ export class Router {
     }
     this.notFoundRoute = route;
 
-    appEmitter.on<IPathData>(AppEvents.ROUTER_NAVIGATE, ({ page, params = {}, query = {} }: IPathData) => {
-      this.navigateTo(page, params, query);
+    appEmitter.on(AppEvents.ROUTER_NAVIGATE, ({ to, params, query, options }: INavigateFunction) => {
+      this.navigateTo(to, params, query, options);
     });
   }
 
   public init(): void {
     document.addEventListener('DOMContentLoaded', () => {
       const route: string = `${this.normalizePath(location.pathname)}${location.search ?? ''}`;
-      this.handleRoute(route, true);
+      this.handleRoute(route, NavigationMode.PUSH);
     });
 
     addEventListener('popstate', (event: PopStateEvent) => {
@@ -43,7 +45,10 @@ export class Router {
         ? event.state.path
         : `${location.pathname}${location.search ?? ''}`;
       const route: string = this.normalizePath(historyPath);
-      this.handleRoute(route, false);
+
+      this.locationState = event.state?.state ?? null;
+
+      this.handleRoute(route, NavigationMode.SKIP);
     });
   }
 
@@ -52,23 +57,38 @@ export class Router {
   }
 
   public navigateTo(
-    routePath: string,
+    to: string | number,
     parameters: Record<string, string> = {},
-    queryParameters: Record<string, string> = {}
+    queryParameters: Record<string, string> = {},
+    options?: INavigateOptions
   ): void {
-    let path = routePath;
-
+    if (typeof to === 'number') {
+      history.go(to);
+      return;
+    }
+    let path = to;
     for (const [key, value] of Object.entries(parameters)) {
       path = path.replace(`:${key}`, value);
     }
-
     const query = new URLSearchParams(queryParameters).toString();
-    const fullPath = query ? `${path}?${query}` : path;
+    path = query ? `${path}?${query}` : path;
 
-    this.handleRoute(fullPath, true);
+    const { replace = false, state = null } = options ?? {};
+
+    this.locationState = state;
+
+    this.handleRoute(path, replace ? NavigationMode.REPLACE : NavigationMode.PUSH);
   }
 
-  private handleRoute(fullPath: string, pushable = false): void {
+  public getLocation<T = unknown>(): ILocationState<T> {
+    return {
+      pathname: location.pathname,
+      search: location.search,
+      state: this.locationState as T | null,
+    };
+  }
+
+  private handleRoute(fullPath: string, mode: NavigationMode = NavigationMode.SKIP): void {
     this.validateQuery(fullPath);
     const [pathname, search = ''] = fullPath.split('?');
     const routeAndParameters = matchRouteAndExtractParameters(pathname, routes);
@@ -80,17 +100,17 @@ export class Router {
 
     const { route, params } = routeAndParameters;
 
-    const redirectPath = this.resolveSecurityRedirect(route);
-    if (redirectPath) {
-      this.navigateTo(redirectPath);
+    const redirect = this.resolveSecurity(route);
+    if (redirect) {
+      this.navigateTo(redirect.to, {}, {}, redirect.options);
       return;
     }
 
     const queryParameters = extractQuery(search);
     this.params = { ...params, ...queryParameters };
 
-    if (pushable && !pathnameEqualsRoute(route.path)) {
-      pushState(fullPath);
+    if (!pathnameEqualsRoute(route.path) && mode !== NavigationMode.SKIP) {
+      updateHistory(fullPath, this.locationState, mode);
     }
 
     this.render(route);
@@ -98,7 +118,7 @@ export class Router {
 
   private redirectToNotFound(): void {
     if (!pathnameEqualsRoute(this.notFoundRoute.path)) {
-      pushState(this.notFoundRoute.path);
+      updateHistory(this.notFoundRoute.path, null, NavigationMode.PUSH);
     }
 
     this.render(this.notFoundRoute);
@@ -138,13 +158,13 @@ export class Router {
     }
   }
 
-  private resolveSecurityRedirect(route: IRoute): string | null {
+  private resolveSecurity(route: IRoute): INavigationTarget | null {
     if (route.meta.secured && !UserService.isAuthenticated() && route.path !== ROUTES.AUTH_PAGE) {
-      return ROUTES.AUTH_PAGE;
+      return { to: ROUTES.AUTH_PAGE, options: { replace: true } };
     }
 
     if (UserService.isAuthenticated() && route.path === ROUTES.AUTH_PAGE) {
-      return ROUTES.LEVEL_SELECTION_PAGE;
+      return { to: ROUTES.LEVEL_SELECTION_PAGE, options: { replace: false } };
     }
 
     return null;

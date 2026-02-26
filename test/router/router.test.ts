@@ -1,12 +1,13 @@
 import { describe, it, expect } from 'vitest';
 import { ROUTES } from '@/router/constants';
 import { pushStateSpy, testRouter as router, setupRouter } from './utils/router-setup';
+import { TEST_URL } from 'test/constants/constants';
 
 describe('Router navigation', () => {
   setupRouter();
 
   it('should push state when navigating via navigateTo', () => {
-    router.navigateTo(ROUTES.TRUE_FALSE_PAGE, { id: '1' }, { level: '2', mode: 'junior' });
+    router.navigateTo(TEST_URL.TRUE_FALSE_LEVEL_MODE_JUNIOR);
 
     expect(pushStateSpy).toHaveBeenCalled();
   });
@@ -18,7 +19,7 @@ describe('Router navigation', () => {
   });
 
   it('should store params and query', () => {
-    router.navigateTo(ROUTES.TRUE_FALSE_PAGE, { id: '5' }, { level: '5', mode: 'middle' });
+    router.navigateTo(TEST_URL.TRUE_FALSE_LEVEL_MODE_MIDDLE);
     expect(router.getParams()).toEqual({
       id: '5',
       level: '5',
@@ -37,7 +38,7 @@ describe('Router navigation', () => {
     router.navigateTo(ROUTES.ABOUT_PAGE);
     expect(router.getParams()).toEqual({});
 
-    router.navigateTo(ROUTES.QUIZ_PAGE, { id: '2' }, { level: '1' });
+    router.navigateTo(TEST_URL.QUIZ_LEVEL);
     expect(router.getParams()).toEqual({
       id: '2',
       level: '1',
@@ -45,7 +46,7 @@ describe('Router navigation', () => {
   });
 
   it('should handle backward and forward history navigation', () => {
-    router.navigateTo(ROUTES.TRUE_FALSE_PAGE, { id: '1' }, { level: '2', mode: 'junior' });
+    router.navigateTo(TEST_URL.TRUE_FALSE_LEVEL_MODE_JUNIOR);
 
     expect(location.pathname).toContain('/true-false/1');
     expect(location.search).toBe('?level=2&mode=junior');
@@ -55,7 +56,7 @@ describe('Router navigation', () => {
       mode: 'junior',
     });
 
-    router.navigateTo(ROUTES.QUIZ_PAGE, { id: '2' }, { level: '1' });
+    router.navigateTo(TEST_URL.QUIZ_LEVEL);
 
     expect(location.pathname).toContain('/quiz/2');
     expect(location.search).toBe('?level=1');
@@ -64,9 +65,10 @@ describe('Router navigation', () => {
       level: '1',
     });
 
+    // Back navigation
     globalThis.dispatchEvent(
       new PopStateEvent('popstate', {
-        state: { path: '/true-false/1?level=2&mode=junior' },
+        state: { path: TEST_URL.TRUE_FALSE_LEVEL_MODE_JUNIOR },
       })
     );
 
@@ -76,9 +78,10 @@ describe('Router navigation', () => {
       mode: 'junior',
     });
 
+    // Forward navigation
     globalThis.dispatchEvent(
       new PopStateEvent('popstate', {
-        state: { path: '/quiz/2?level=1' },
+        state: { path: TEST_URL.QUIZ_LEVEL },
       })
     );
 
