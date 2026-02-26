@@ -8,7 +8,31 @@ interface IWorkerMessage {
 const timeToTry = 3000;
 
 export class CodeEngineService {
-  public execute(code: string): Promise<void> {
+  /**
+   * The method executes code and runs tests in an isolated sandbox,
+   * where all console.log statements are output via an emitter.
+   * In case of an error, it returns a
+   * Promise with a reject status containing the error.
+   *
+   * @param {string} code - executable code
+   * @param {string} tests - code with tests such as `if (...) throw new Error(...)`
+   * @returns {Promise<void>} resolves if all tests pass without errors.
+   *
+   * @throws {Error} In case of an error in the executable code or failure of tests
+   *
+   * @example
+   * const code = `function sum(a, b) {
+   *   return a + b;
+   * }`
+   *
+   * const tests = `
+   *  if (typeof sum !== 'function') throw new Error("Функция sum не найдена. Доступ запрещен.");
+   *  if (sum(2, 3) !== 5) throw new Error("Сигнатура sum(2, 3) не совпадает с ожидаемой (5).");
+   *  if (sum(-1, 1) !== 0) throw new Error("Сигнатура sum(-1, 1) не совпадает с ожидаемой (0).");
+   *`
+   * await execute(code, test);
+   */
+  public execute(code: string, tests: string): Promise<void> {
     return new Promise((resolve, reject) => {
       const workerString = `
         const originalLog = console.log;
@@ -30,6 +54,7 @@ export class CodeEngineService {
 
         try {
           ${code}
+          ${tests}
           self.postMessage({ type: '${WorkerMessageType.SUCCESS}' });
         } catch (error) {
           if (error instanceof Error) {
