@@ -7,3 +7,10 @@ export enum WorkerMessageType {
   SUCCESS = 'success',
   ERROR = 'error',
 }
+
+export enum TerminalLogType {
+  DEFAULT = 'default',
+  ERROR = 'error',
+  SUCCESS = 'success',
+  SYSTEM = 'system',
+}
