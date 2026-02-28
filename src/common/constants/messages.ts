@@ -7,3 +7,5 @@ export const messages = {
     pageNotFound: (page: string): string => `Page ${page} not found`,
   },
 };
+
+export const supabase_missing_error = 'Missing Supabase environment variables';
