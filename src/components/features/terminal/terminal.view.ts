@@ -13,7 +13,7 @@ export class Terminal extends Component {
     super({ className: cssClasses }, ...children);
   }
 
-  public print(text: string, type: TerminalLogType = TerminalLogType.DEFAULT): void {
+  public print(text: string, type: TerminalLogType = TerminalLogType.DEFAULT): Component {
     const entry = new Component({ className: styles[type] });
 
     let formattedText = text;
@@ -34,6 +34,8 @@ export class Terminal extends Component {
     this.append(entry);
 
     this.node.scrollTop = this.node.scrollHeight;
+
+    return content;
   }
 
   public clear(): void {

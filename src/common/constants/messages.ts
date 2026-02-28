@@ -9,7 +9,7 @@ export const messages = {
   terminal: {
     ready: 'System ready. Awaiting execution...',
     testsNotSet: 'Execution failed: Test suite is missing or undefined.',
-    running: 'Compiling and running code...',
+    running: 'Compiling and running code',
     success: 'Build successful. All test cases passed.',
   },
   engine: {

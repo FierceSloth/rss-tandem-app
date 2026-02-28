@@ -1,9 +1,12 @@
 import { messages } from '@/common/constants/messages';
 import { TerminalLogType, WorkerMessageType } from '@/common/enums/enums';
+import { CodeEngineService } from '@/service/code-engine/code-engine.service';
+import type { Component } from '@/components/base/component';
 import type { CodeEditor } from '@/components/features/code-editor/code-editor.view';
 import type { Terminal } from '@/components/features/terminal/terminal.view';
 import type { Button } from '@/components/ui/button/button.view';
-import { CodeEngineService } from '@/service/code-engine/code-engine.service';
+
+const laborIllussionTime = 1500;
 
 export class ExecutionController {
   private codeEditor: CodeEditor;
@@ -44,9 +47,15 @@ export class ExecutionController {
     const code = this.codeEditor.getValue();
 
     this.terminal.clear();
-    this.terminal.print(messages.terminal.running, TerminalLogType.SYSTEM);
+
+    const runningMessage = messages.terminal.running;
+    const runningLog = this.terminal.print(`${runningMessage}.`, TerminalLogType.SYSTEM);
+    const runningInterval = this.textAnimation(runningLog, runningMessage);
 
     try {
+      this.runButton.setDisabled(true);
+      await new Promise((resolve) => setTimeout(resolve, laborIllussionTime));
+
       await this.engine.execute(code, this.currentTests, (logMessage, messageType) => {
         const type = messageType === WorkerMessageType.SYSTEM ? TerminalLogType.SYSTEM : TerminalLogType.DEFAULT;
         this.terminal.print(logMessage, type);
@@ -56,6 +65,19 @@ export class ExecutionController {
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : String(error);
       this.terminal.print(errorMessage, TerminalLogType.ERROR);
+    } finally {
+      this.runButton.setDisabled(false);
+      clearInterval(runningInterval);
     }
   };
+
+  private textAnimation(textElement: Component, defaultText: string): ReturnType<typeof setInterval> {
+    const animationTime = 300;
+    const dotsTotal = 3;
+    let dots = 1;
+    return setInterval(() => {
+      dots = (dots % dotsTotal) + 1;
+      textElement.setText(`${defaultText}${'.'.repeat(dots)}`);
+    }, animationTime);
+  }
 }
