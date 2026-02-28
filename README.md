@@ -31,4 +31,5 @@
 - [**Git Flow & Collaboration**](./docs/GIT_FLOW.md) — правила работы с ветками, PR и коммитами.
 - [**Base Architecture**](./docs/BASE_COMPONENTS.md) — описание базового класса `Component` и работы с глобальной шиной событий `Emitter`.
 - [**Component Guideline**](./docs/COMPONENT_GUIDELINE.md) — стандарты создания компонентов (View/Controller) и файловой структуры.
+- [**Execution Module**](./docs/EXECUTION_MODULE.md) — архитектура среды выполнения кода: взаимодействие редактора, терминала и изолированного движка (Web Worker) через контроллер.
 - [**UI Kit**](./docs/UI_KIT.md) — каталог готовых переиспользуемых интерфейсных элементов.
