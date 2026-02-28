@@ -1,3 +1,4 @@
+import { messages } from '@/common/constants/messages';
 import { WorkerMessageType } from '@/common/enums/enums';
 
 interface IWorkerMessage {
@@ -5,7 +6,7 @@ interface IWorkerMessage {
   payload?: string;
 }
 
-const timeToTry = 3000;
+const timeToTry = 5000;
 
 export class CodeEngineService {
   /**
@@ -32,7 +33,11 @@ export class CodeEngineService {
    *`
    * await execute(code, test);
    */
-  public execute(code: string, tests: string): Promise<void> {
+  public execute(
+    code: string,
+    tests: string,
+    onLog?: (message: string, type: WorkerMessageType) => void
+  ): Promise<void> {
     return new Promise((resolve, reject) => {
       const workerString = `
         const originalLog = console.log;
@@ -45,7 +50,7 @@ export class CodeEngineService {
             try {
               return JSON.stringify(argument);
             } catch (error) {
-              return error instanceof Error ? \`[Error stringifying object: \${error.message}]\` : '[Unknown Error]';
+              return error instanceof Error ? \`${messages.engine.stringifyError} \${error.message}\` : '${messages.engine.unknownError}';
             }
           }).join(' ');
 
@@ -53,7 +58,9 @@ export class CodeEngineService {
         };
 
         try {
+          self.postMessage({ type: '${WorkerMessageType.SYSTEM}', payload: '${messages.engine.outputStart}' });
           ${code}
+          self.postMessage({ type: '${WorkerMessageType.SYSTEM}', payload: '${messages.engine.testsStart}' });
           ${tests}
           self.postMessage({ type: '${WorkerMessageType.SUCCESS}' });
         } catch (error) {
@@ -83,8 +90,11 @@ export class CodeEngineService {
         const { type, payload } = event.data as IWorkerMessage;
 
         switch (type) {
-          case WorkerMessageType.LOG: {
-            // TODO: send logs to the terminal using the emitter
+          case WorkerMessageType.LOG:
+          case WorkerMessageType.SYSTEM: {
+            if (onLog && payload) {
+              onLog(payload, type); // Передаем наружу и текст, и тип
+            }
             break;
           }
           case WorkerMessageType.SUCCESS: {
@@ -102,7 +112,7 @@ export class CodeEngineService {
 
       timer = setTimeout(() => {
         cleanup();
-        reject(new Error('Execution Timeout: Code took too long to run.'));
+        reject(new Error(messages.engine.timeout));
       }, timeToTry);
     });
   }

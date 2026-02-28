@@ -6,6 +6,9 @@
   font-size: 1.35rem;
   line-height: 24px;
 
+  height: 100%;
+  width: 100%;
+
   background-color: var(--bg-surface);
 
   :global(.cm-editor) {

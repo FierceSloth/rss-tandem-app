@@ -4,8 +4,9 @@ export enum AppEvents {
 
 export enum WorkerMessageType {
   LOG = 'log',
-  SUCCESS = 'success',
   ERROR = 'error',
+  SUCCESS = 'success',
+  SYSTEM = 'system',
 }
 
 export enum TerminalLogType {
