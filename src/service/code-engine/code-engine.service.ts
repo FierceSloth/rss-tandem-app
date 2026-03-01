@@ -1,3 +1,4 @@
+import { MAX_EXECUTION_TIME } from '@/common/constants/constants';
 import { messages } from '@/common/constants/messages';
 import { WorkerMessageType } from '@/common/enums/enums';
 
@@ -5,8 +6,6 @@ interface IWorkerMessage {
   type: WorkerMessageType;
   payload?: string;
 }
-
-const timeToTry = 5000;
 
 export class CodeEngineService {
   /**
@@ -27,9 +26,9 @@ export class CodeEngineService {
    * }`
    *
    * const tests = `
-   *  if (typeof sum !== 'function') throw new Error("Функция sum не найдена. Доступ запрещен.");
-   *  if (sum(2, 3) !== 5) throw new Error("Сигнатура sum(2, 3) не совпадает с ожидаемой (5).");
-   *  if (sum(-1, 1) !== 0) throw new Error("Сигнатура sum(-1, 1) не совпадает с ожидаемой (0).");
+   *  if (typeof sum !== 'function') throw new Error("ReferenceError: Function 'sum' is not defined.");
+   *  if (sum(2, 3) !== 5) throw new Error("Assertion failed: Expected sum(2, 3) to return 5.");
+   *  if (sum(-1, 1) !== 0) throw new Error("Assertion failed: Expected sum(-1, 1) to return 0.");
    *`
    * await execute(code, test);
    */
@@ -85,15 +84,15 @@ export class CodeEngineService {
         clearTimeout(timer);
       };
 
-      worker.addEventListener('message', (event) => {
+      worker.addEventListener('message', (event: MessageEvent<IWorkerMessage>) => {
         if (!event) return;
-        const { type, payload } = event.data as IWorkerMessage;
+        const { type, payload } = event.data;
 
         switch (type) {
           case WorkerMessageType.LOG:
           case WorkerMessageType.SYSTEM: {
             if (onLog && payload) {
-              onLog(payload, type); // Передаем наружу и текст, и тип
+              onLog(payload, type);
             }
             break;
           }
@@ -113,7 +112,7 @@ export class CodeEngineService {
       timer = setTimeout(() => {
         cleanup();
         reject(new Error(messages.engine.timeout));
-      }, timeToTry);
+      }, MAX_EXECUTION_TIME);
     });
   }
 }

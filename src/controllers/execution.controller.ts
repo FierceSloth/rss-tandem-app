@@ -1,12 +1,11 @@
 import { messages } from '@/common/constants/messages';
 import { TerminalLogType, WorkerMessageType } from '@/common/enums/enums';
 import { CodeEngineService } from '@/service/code-engine/code-engine.service';
+import { LABOR_ILLUSION_TIME } from '@/common/constants/constants';
 import type { Component } from '@/components/base/component';
 import type { CodeEditor } from '@/components/features/code-editor/code-editor.view';
 import type { Terminal } from '@/components/features/terminal/terminal.view';
 import type { Button } from '@/components/ui/button/button.view';
-
-const laborIllussionTime = 1500;
 
 export class ExecutionController {
   private codeEditor: CodeEditor;
@@ -54,7 +53,7 @@ export class ExecutionController {
 
     try {
       this.runButton.setDisabled(true);
-      await new Promise((resolve) => setTimeout(resolve, laborIllussionTime));
+      await new Promise((resolve) => setTimeout(resolve, LABOR_ILLUSION_TIME));
 
       await this.engine.execute(code, this.currentTests, (logMessage, messageType) => {
         const type = messageType === WorkerMessageType.SYSTEM ? TerminalLogType.SYSTEM : TerminalLogType.DEFAULT;

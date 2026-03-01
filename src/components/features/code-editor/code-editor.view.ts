@@ -4,7 +4,6 @@ import { Component } from '@components/base/component';
 
 import { EditorState } from '@codemirror/state';
 import { EditorView, basicSetup } from 'codemirror';
-// import { defaultKeymap } from '@codemirror/commands';
 import { javascript } from '@codemirror/lang-javascript';
 
 import styles from './code-editor.module.scss';

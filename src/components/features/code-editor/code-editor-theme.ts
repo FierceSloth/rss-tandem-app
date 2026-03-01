@@ -27,8 +27,8 @@ export const editorTheme = EditorView.theme(
       color: 'var(--text-tertiary)',
       borderRight: '1px solid var(--border-subtle)',
     },
-    '.cm-lineNumbers .cm-gutterElement': {
-      padding: '0 10px 0 5px !important',
+    '.cm-gutters .cm-lineNumbers .cm-gutterElement': {
+      padding: '0 10px 0 5px',
       minWidth: '35px',
       textAlign: 'right',
     },
