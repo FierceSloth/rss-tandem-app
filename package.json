@@ -18,7 +18,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && cp dist/index.html dist/404.html",
+    "build": "tsc && vite build",
     "preview": "vite preview",
     "prepare": "husky",
     "format": "prettier --write src",
@@ -52,7 +52,7 @@
     "vitest": "^4.0.18"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.97.0"
+    "@supabase/supabase-js": "^2.97.0",
     "@codemirror/commands": "^6.10.2",
     "@codemirror/lang-javascript": "^6.2.4",
     "@codemirror/state": "^6.5.4",
