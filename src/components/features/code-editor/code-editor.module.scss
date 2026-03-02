@@ -1,0 +1,47 @@
+.codeEditor {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.35rem;
+  line-height: 24px;
+
+  height: 100%;
+  width: 100%;
+
+  background-color: var(--bg-surface);
+
+  :global(.cm-editor) {
+    height: 100%;
+    width: 100%;
+  }
+
+  :global(.cm-scroller) {
+    font-family: inherit;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--border-focus, #333333);
+      border-radius: 4px;
+
+      &:hover {
+        background-color: var(--text-tertiary, #444444);
+      }
+    }
+  }
+
+  &.hideLines {
+    :global(.cm-gutters) {
+      display: none;
+    }
+    :global(.cm-content) {
+      padding-left: 4px;
+    }
+  }
+}

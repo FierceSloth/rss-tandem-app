@@ -13,12 +13,12 @@
     ]
   },
   "validate-branch-name": {
-    "pattern": "^(master|main|develop|tandem)$|^(init|feat|fix|docs|refactor|style|chore)/[A-Z]+-[A-Z]+-\\d+_[a-zA-Z][a-zA-Z0-9]*$",
+    "pattern": "^(master|main|develop|tandem|diary)$|^(init|feat|fix|docs|refactor|style|chore)/[A-Z]+-[A-Z]+-\\d+_[a-zA-Z][a-zA-Z0-9]*$",
     "errorMsg": "Error: incorrect branch name. Example: feat/RSS-TD-01_implementLoginForm"
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && cp dist/index.html dist/404.html",
+    "build": "tsc && vite build",
     "preview": "vite preview",
     "prepare": "husky",
     "format": "prettier --write src",
@@ -50,5 +50,13 @@
     "vite": "^7.2.4",
     "vite-tsconfig-paths": "^6.1.1",
     "vitest": "^4.0.18"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.97.0",
+    "@codemirror/commands": "^6.10.2",
+    "@codemirror/lang-javascript": "^6.2.4",
+    "@codemirror/state": "^6.5.4",
+    "@codemirror/view": "^6.39.15",
+    "codemirror": "^6.0.2"
   }
 }

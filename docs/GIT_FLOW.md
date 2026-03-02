@@ -8,7 +8,8 @@
 - [2. Commit Convention (Рабочие коммиты)](#2-commit-convention-рабочие-коммиты)
 - [3. Pull Request Title & Squash Commit](#3-pull-request-title--squash-commit)
 - [4. Pull Request Template](#4-pull-request-template)
-- [5. Development Diary: Работа с дневниками](#5-работа-с-дневниками-development-diary)
+- [5. Development Diary: Работа с дневниками](#5-development-diary-работа-с-дневниками)
+- [6. GitHub Issues Convention](#6-github-issues-convention)
 
 ## 1. Naming Convention: Ветки
 
@@ -196,3 +197,65 @@ _REQUIRED for UI changes. Attach images or GIFs here. If no UI changes, delete t
 4. **Слияние (Merge):** При создании PR из ветки `diary` в основную ветку **ЗАПРЕЩЕНО** использовать `Squash and merge`. Используйте только:
    - **Rebase and merge** (предпочтительно, сохраняет плоскую историю)
    - **Create a merge commit**
+
+## 6. GitHub Issues Convention
+
+Все новые задачи (баги, фичи, настройки) сначала заводятся в виде GitHub Issues. Это обеспечивает прозрачность разработки и позволяет автоматически закрывать задачи при слиянии кода.
+
+### 6.1 Именование (Issue Title)
+
+Название Issue должно быть фундаментом для будущих названий веток и Pull Request'ов.
+
+**Формат:**
+`[RSS-TD-ID] type: description` (или `RSS-CORE-00`, если задачи нет в Trello)
+
+**Правила:**
+Те же, что и для PR: тип в нижнем регистре, описание на английском, Imperative Mood, без точки в конце.
+
+**Примеры:**
+
+- ✅ `[RSS-TD-09] feat: implement supabase`
+- ✅ `[RSS-CORE-00] chore: setup eslint and prettier`
+- ✅ `[RSS-CORE-00] docs: add issues convention`
+
+### 6.2 Шаблон описания (Issue Body)
+
+Каждый Issue должен давать четкое понимание, что нужно сделать. Копируйте этот шаблон при создании задачи:
+
+```markdown
+## Description
+
+A brief description of what needs to be done and why.
+
+## Tasks
+
+- [ ] Task 1
+- [ ] Task 2
+- [ ] Task 3
+```
+
+### 6.3 Связь с Pull Request (Автозакрытие)
+
+Мы автоматизируем закрытие задач. Разработчик обязан привязать свой PR к Issue.
+
+Для этого в [Pull Request Template](#4-pull-request-template) в блоке `# ⚡️ Summary` необходимо добавить ключевое слово `Closes` и номер Issue в GitHub.
+
+**Пример в PR:**
+
+```markdown
+# ⚡️ Summary
+
+Added issues convention to git flow documentation.
+
+Closes #10
+```
+
+_Примечание: Issue закроется автоматически только после успешного Squash & Merge вашего PR в основную ветку._
+
+### 6.4 Синхронизация с Trello 📃
+
+Для поддержания актуальности доски в Trello, после создания GitHub Issue необходимо:
+
+1. Открыть соответствующую карточку в Trello.
+2. Прикрепить к ней созданный GitHub Issue (через раздел "Attachments" или Power-Up).
+3. Это действие автоматически добавит в GitHub Issue сообщение со ссылкой и статусом карточки Trello, обеспечивая двустороннюю связь между инструментами.
