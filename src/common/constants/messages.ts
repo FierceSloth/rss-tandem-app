@@ -6,6 +6,7 @@ export const messages = {
     urlQueryCorrupted: (url: string): string => `URL ${url} has more than 1 ?query sign`,
     pageNotFound: (page: string): string => `Page ${page} not found`,
     missingSupabaseEnv: 'Missing Supabase environment variables',
+    svgNotFound: 'Could not find SVG element in the string passed',
   },
   terminal: {
     ready: 'System ready. Awaiting execution...',

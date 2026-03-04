@@ -55,14 +55,14 @@ body {
   min-height: 100dvh;
 
   margin: 0 auto;
-  padding: 5svh 20px;
+  padding: 0 20px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
   @include media-tablet {
-    padding: 5svh 10px;
+    padding: 0 10px;
   }
 }
 
