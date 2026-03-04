@@ -10,6 +10,7 @@ import profileIcon from '@assets/svg/nav-icons/profile.svg?raw';
 
 import styles from './sidebar.module.scss';
 import { SidebarController } from './sidebar.controller';
+import { createSvgComponent } from '@/common/utils/create-svg';
 
 const navConfigs = [
   { path: ROUTES.DASHBOARD_PAGE, icon: dashboardIcon },
@@ -47,7 +48,8 @@ export class Sidebar extends Component {
         tag: 'button',
         className: styles.navItem,
       });
-      button.node.innerHTML = icon;
+      const svgElement = createSvgComponent(icon);
+      button.node.append(svgElement);
 
       this.navButtons[path] = button;
       this.append(button);
