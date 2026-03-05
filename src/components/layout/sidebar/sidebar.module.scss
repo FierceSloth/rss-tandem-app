@@ -1,19 +1,21 @@
 .sidebar {
-  background-color: var(--bg-body);
-  border-right: 1px solid var(--border-subtle);
-  width: auto;
-  min-height: 100vh;
-  height: 100%;
-  max-width: 80px;
+  position: sticky;
+  top: 0;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
 
-  gap: 16px;
+  width: 80px;
+  max-width: 80px;
+  height: 100vh;
 
   padding: 2.4rem 0;
+  gap: 16px;
+
+  background-color: var(--bg-body);
+  border-right: 1px solid var(--border-subtle);
 }
 
 .navItem {
