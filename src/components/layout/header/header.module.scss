@@ -1,0 +1,91 @@
+@use '../../../styles/abstract/mixins' as *;
+
+.header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 50;
+  margin: 0;
+  line-height: inherit;
+  background-color: var(--bg-body-09);
+  @include border-subtle-bottom;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-inline: clamp(var(--space-4), 5vw, var(--space-21));
+  max-width: 1470px;
+  height: 72px;
+
+  @include media-tablet {
+    padding-inline: clamp(var(--space-2), 4vw, var(--space-6));
+  }
+}
+
+.logoBadge {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  & .logoTitle {
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-2);
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: var(--font-size-semilarge);
+    font-family: var(--font-mono);
+  }
+}
+
+.middleNav {
+  display: flex;
+  align-items: center;
+  gap: clamp(var(--space-4), 2vw, var(--space-8));
+
+  &.hidden {
+    display: none;
+  }
+
+  & .aboutButton {
+    outline: none;
+    box-shadow: none;
+    color: var(--text-secondary);
+    font-size: var(--font-size-base);
+    @include header-button-style;
+  }
+}
+
+.authNav {
+  display: flex;
+  align-items: center;
+  gap: clamp(var(--space-3), 2vw, var(--space-6));
+
+  & .loginButton {
+    outline: none;
+    box-shadow: none;
+    font-size: var(--font-size-base);
+    @include header-button-style;
+  }
+
+  & .registerButton {
+    font-weight: 600;
+    font-size: var(--font-size-semibase);
+    line-height: var(--line-height-semibase);
+    padding: clamp(var(--space-2), 1.5vw, var(--space-2-5)) clamp(var(--space-4), 2vw, var(--space-5));
+    height: initial;
+    cursor: pointer;
+    background-image: none;
+    text-transform: none;
+    user-select: none;
+    appearance: none;
+
+    @include media-mobile {
+      display: none;
+    }
+  }
+}

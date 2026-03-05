@@ -1,21 +1,116 @@
-$desktop-width: 1197px;
-$tablet-width: 768px;
-$mobile-width: 414px;
+$desktop-max: 1470px;
+$laptop-max: 1197px;
+$desktop-small-max: 1024px;
+$tablet-max: 768px;
+$mobile-max: 414px;
+
+@mixin media-desktop {
+  @media (max-width: $desktop-max) {
+    @content;
+  }
+}
 
 @mixin media-laptop {
-  @media (max-width: $desktop-width) {
+  @media (max-width: $laptop-max) {
+    @content;
+  }
+}
+
+@mixin media-desktop-small {
+  @media (max-width: $desktop-small-max) {
     @content;
   }
 }
 
 @mixin media-tablet {
-  @media (max-width: $tablet-width) {
+  @media (max-width: $tablet-max) {
     @content;
   }
 }
 
 @mixin media-mobile {
-  @media (max-width: $mobile-width) {
+  @media (max-width: $mobile-max) {
     @content;
+  }
+}
+
+@mixin transition-colors($duration: 150ms, $timing: ease) {
+  transition-property:
+    color,
+    background-color,
+    border-color,
+    text-decoration-color,
+    fill,
+    stroke,
+    -webkit-text-decoration-color;
+  transition-duration: $duration;
+  transition-timing-function: $timing;
+}
+
+@mixin header-button-style {
+  color: var(--text-secondary);
+  font-weight: 500;
+  background: none;
+  border: none;
+  height: initial;
+  max-width: 4rem;
+  cursor: pointer;
+  user-select: none;
+  appearance: none;
+  white-space: nowrap;
+  @include transition-colors();
+
+  &:hover {
+    color: var(--text-primary);
+  }
+}
+
+@mixin space-transition {
+  transition-property: gap;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+}
+
+@mixin border-subtle-bottom {
+  border-bottom-width: 1px;
+  border-color: var(--border-subtle);
+}
+
+@mixin border-subtle-top {
+  border-top-width: 1px;
+  border-color: var(--border-subtle);
+}
+
+@mixin animate-pulse-slow {
+  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@mixin animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@mixin animate-pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 var(--badge-color);
+  }
+  70% {
+    box-shadow: 0 0 0 5px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
   }
 }

@@ -1,0 +1,60 @@
+@use '../../../styles/abstract/mixins' as *;
+
+.techItem {
+  display: flex;
+  align-items: center;
+  gap: clamp(var(--space-1), 2vw, var(--space-3));
+  cursor: pointer;
+
+  & svg :global(.hIconBorder),
+  & svg :global(.xIconBorder),
+  & svg :global(.genIconBorder),
+  & svg :global(.tagIconBorder) {
+    stroke: var(--border-focus);
+    @include transition-colors();
+  }
+
+  &:hover svg :global(.hIconBorder) {
+    stroke: var(--accent-yellow);
+  }
+
+  &:hover svg :global(.xIconBorder) {
+    stroke: var(--accent-blue);
+  }
+
+  &:hover svg :global(.genIconBorder) {
+    stroke: var(--accent-green);
+  }
+
+  &:hover svg :global(.tagIconBorder) {
+    stroke: var(--accent-red);
+  }
+
+  & .techName {
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: clamp(var(--font-size-default), 1vw, var(--font-size-small));
+    text-transform: uppercase;
+    @include transition-colors();
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
+  }
+
+  &:hover .techName {
+    color: var(--text-primary);
+  }
+
+  @include media-mobile {
+    gap: clamp(var(--space-1), 3vw, var(--space-2));
+    flex-direction: column;
+    align-items: center;
+
+    & .techName {
+      max-width: 80px;
+      text-align: center;
+      font-size: clamp(var(--font-size-default), 2vw, var(--font-size-small));
+    }
+  }
+}
