@@ -6,7 +6,7 @@ import { Component } from '@/components/base/component';
 import { Button } from '@/components/ui/button/button.view';
 import { HeaderController } from './header.controller';
 import { useNavigate } from '@/router/hooks';
-import { StatusBadge } from '@/components/ui/status-badge.ts/status-badge.view';
+import { StatusBadge } from '@/components/ui/status-badge/status-badge.view';
 import { EMPTY } from '@/common/constants/constants';
 
 interface IProps extends IComponentChild {}
@@ -30,7 +30,7 @@ export class Header extends Component {
     });
     this.registerButton = new Button({
       className: styles.registerButton,
-      text: messages.buttons.sighInAndRegister,
+      text: messages.buttons.signInAndRegister,
       type: 'button',
     });
     this.logoTitle = new Component({

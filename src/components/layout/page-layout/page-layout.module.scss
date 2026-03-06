@@ -17,6 +17,9 @@
 
 .noSidebar {
   grid-template-columns: 1fr;
+  @include media-tablet {
+    padding-bottom: 0;
+  }
 }
 
 .mainColumn {

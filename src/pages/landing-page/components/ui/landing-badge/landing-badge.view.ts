@@ -2,7 +2,7 @@ import styles from './landing-badge.module.scss';
 import type { IComponentChild } from '@common/types/types';
 import { mergeClassNames } from '@common/utils/class-names';
 import { Component } from '@components/base/component';
-import { StatusBadge } from '@/components/ui/status-badge.ts/status-badge.view';
+import { StatusBadge } from '@/components/ui/status-badge/status-badge.view';
 import { messages } from '@/pages/landing-page/common/constants/messages';
 
 interface IProps extends IComponentChild {}

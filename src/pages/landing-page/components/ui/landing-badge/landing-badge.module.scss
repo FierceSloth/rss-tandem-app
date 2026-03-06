@@ -1,4 +1,4 @@
-@use '../../../../../styles/abstract/mixins' as *;
+@use '@/styles/abstract/mixins' as *;
 
 .landingBadge {
   margin-bottom: clamp(var(--space-6), 5vw, var(--space-8));

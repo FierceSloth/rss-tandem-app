@@ -12,7 +12,7 @@ export const messages = {
   buttons: {
     about: 'About',
     logIn: 'Log in',
-    sighInAndRegister: 'Register',
+    signInAndRegister: 'Register',
   },
   errors: {
     urlQueryCorrupted: (url: string): string => `URL ${url} has more than 1 ?query sign`,

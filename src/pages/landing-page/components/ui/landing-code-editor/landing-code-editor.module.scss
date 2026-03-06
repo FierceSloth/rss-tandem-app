@@ -1,19 +1,16 @@
-@use '../../../../../styles/abstract/mixins' as *;
+@use '@/styles/abstract/mixins' as *;
 
 .codeEditor {
-  margin-top: var(--space-8);
-  height: 350px;
+  height: 352px;
   max-width: 640px;
   width: 100%;
   border-radius: var(--radius-lg);
-  overflow: hidden;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   background-color: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   user-select: none;
 
   @include media-desktop-small {
-    grid-row: 1 / 2;
     max-width: 100%;
   }
 
@@ -68,7 +65,7 @@
 
     & .code {
       flex: 1;
-      overflow: auto;
+      overflow-y: hidden;
     }
 
     & .windowFooter {

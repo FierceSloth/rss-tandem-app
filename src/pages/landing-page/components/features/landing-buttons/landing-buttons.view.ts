@@ -6,36 +6,40 @@ import { Button } from '@/components/ui/button/button.view';
 import { messages } from '@/pages/landing-page/common/constants/messages';
 import { createSvgComponent } from '@/common/utils/create-svg';
 import arrowRightIcon from '@assets/svg/landing-icons/arrow-right-icon.svg?raw';
+import { LandingButtonsController } from './landing-buttons.controller';
 
 interface IProps extends IComponentChild {
-  onStart: () => void;
-  onAbout: () => void;
+  withController?: boolean;
 }
 
 export class LandingButtons extends Component {
-  constructor({ onStart, onAbout, className = [] }: IProps, ...children: Component[]) {
+  public readonly startButton: Button;
+  public readonly aboutButton: Button;
+
+  constructor({ className = [], withController = true }: IProps, ...children: Component[]) {
     const cssClasses = mergeClassNames(styles.landingButtons, className);
     super({ className: cssClasses }, ...children);
 
-    const startButton = new Button({
+    this.startButton = new Button({
       className: styles.startPracticingButton,
       text: messages.buttons.startPracticing,
       type: 'button',
       variant: 'primary',
     });
-    const arriwRightSvgElement = createSvgComponent(arrowRightIcon);
-    startButton.node.append(arriwRightSvgElement);
+    const arrowRightSvgElement = createSvgComponent(arrowRightIcon);
+    this.startButton.node.append(arrowRightSvgElement);
 
-    const aboutButton = new Button({
+    this.aboutButton = new Button({
       className: styles.aboutProjectButton,
       text: messages.buttons.aboutProjectButton,
       type: 'button',
       variant: 'ghost',
     });
 
-    startButton.addListener('click', onStart);
-    aboutButton.addListener('click', onAbout);
+    this.append(this.startButton, this.aboutButton);
 
-    this.append(startButton, aboutButton);
+    if (withController) {
+      new LandingButtonsController(this);
+    }
   }
 }

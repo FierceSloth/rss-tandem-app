@@ -1,7 +1,7 @@
-@use '../../../styles/abstract/mixins' as *;
+@use '@/styles/abstract/mixins' as *;
 
 .header {
-  position: fixed;
+  position: sticky;
   left: 0;
   top: 0;
   right: 0;
@@ -18,12 +18,13 @@
   align-items: center;
   margin-left: auto;
   margin-right: auto;
-  padding-inline: clamp(var(--space-4), 5vw, var(--space-21));
-  max-width: 1470px;
+  max-width: var(--desktop-max);
   height: 72px;
+  padding: 0 20px;
 
   @include media-tablet {
     padding-inline: clamp(var(--space-2), 4vw, var(--space-6));
+    padding: 0 10px;
   }
 }
 
@@ -70,6 +71,10 @@
     box-shadow: none;
     font-size: var(--font-size-base);
     @include header-button-style;
+
+    @include media-mobile {
+      display: none;
+    }
   }
 
   & .registerButton {
@@ -83,9 +88,5 @@
     text-transform: none;
     user-select: none;
     appearance: none;
-
-    @include media-mobile {
-      display: none;
-    }
   }
 }

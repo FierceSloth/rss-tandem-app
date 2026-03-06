@@ -8,38 +8,36 @@ import genIcon from '@assets/svg/landing-icons/gen-icon.svg?raw';
 import { messages } from '@/pages/landing-page/common/constants/messages';
 import { createSvgComponent } from '@/common/utils/create-svg';
 
+export type TechVariant = 'hIcon' | 'xIcon' | 'genIcon' | 'tagIcon';
+
 interface ITech {
   name: string;
   svg: string;
 }
 
 interface IProps extends IComponentChild {
-  variant: 'hIcon' | 'xIcon' | 'genIcon' | 'tagIcon';
+  variant: TechVariant;
 }
 
-const techNamesAndIcons = new Map<string, ITech>([
-  ['hIcon', { name: messages.titles.coreJS, svg: hIcon }],
-  ['xIcon', { name: messages.titles.typeScript, svg: xIcon }],
-  ['genIcon', { name: messages.titles.algorithms, svg: genIcon }],
-  ['tagIcon', { name: messages.titles.systemDesign, svg: tagIcon }],
-]);
+const techStackConfig: Record<TechVariant, ITech> = {
+  hIcon: { name: messages.titles.coreJS, svg: hIcon },
+  xIcon: { name: messages.titles.typeScript, svg: xIcon },
+  genIcon: { name: messages.titles.algorithms, svg: genIcon },
+  tagIcon: { name: messages.titles.systemDesign, svg: tagIcon },
+};
 
 export class TechStack extends Component {
   constructor({ variant, className = [] }: IProps) {
     super({ className: [...className, styles.techItem] });
-    this.createTechStack(variant);
-  }
 
-  private createTechStack(variant: string): void {
-    const techStack = techNamesAndIcons.get(variant);
-    if (techStack) {
-      const techItemName: Component = new Component({
-        tag: 'span',
-        className: [styles.techName, styles[variant]],
-        text: techStack.name,
-      });
-      const icon: SVGSVGElement = createSvgComponent(techStack.svg);
-      this.node.append(icon, techItemName.node);
-    }
+    const { name, svg } = techStackConfig[variant];
+    const icon = createSvgComponent(svg);
+    const techItemName = new Component({
+      tag: 'span',
+      className: [styles.techName, styles[variant]],
+      text: name,
+    });
+
+    this.node.append(icon, techItemName.node);
   }
 }

@@ -1,34 +1,26 @@
-@use '../../styles/abstract/mixins' as *;
+@use '@/styles/abstract/mixins' as *;
 
 .landing {
-  padding-top: 72px;
-  position: relative;
-  z-index: 10;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  overflow: hidden;
 }
 
-.main {
-  display: grid;
+.mainContent {
+  padding-top: 20px;
   width: 100%;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(var(--space-10), 5vw, var(--space-24));
-  padding-top: clamp(var(--space-4), 5vw, var(--space-6));
-  padding-inline: clamp(var(--space-8), 4vw, var(--space-16));
-  padding-bottom: clamp(var(--space-16), 20vw, var(--space-20));
-
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin: 0 auto;
+  flex: 1;
 
   @include media-laptop {
-    gap: clamp(var(--space-8), 4vw, var(--space-16));
     @include space-transition;
   }
 
   @include media-desktop-small {
-    grid-template-columns: 1fr;
-    align-items: center;
+    flex-direction: column-reverse;
+    align-items: start;
+    gap: clamp(var(--space-8), 4vw, var(--space-16));
   }
 
   @include media-tablet {
@@ -40,4 +32,6 @@
 .mainDescription {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  flex: 1;
 }

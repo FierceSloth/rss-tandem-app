@@ -1,12 +1,8 @@
-@use '../../../styles/abstract/mixins' as *;
+@use '@/styles/abstract/mixins' as *;
 
 .footer {
-  position: fixed;
+  position: relative;
   z-index: 50;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  margin: 0;
 
   font-size: clamp(var(--font-size-default), 1vw, var(--font-size-semismall));
   line-height: var(--line-height-semismall);
@@ -16,13 +12,21 @@
   justify-content: space-between;
   align-items: center;
 
+  padding: 0 clamp(var(--space-2-5), 3vw, var(--space-5));
   min-height: clamp(3rem, 5vw, 4rem);
-  padding-inline: clamp(var(--space-2), 4vw, var(--space-6));
+  max-width: var(--desktop-max);
+
   background-color: var(--bg-body);
   @include border-subtle-top;
 
   @include media-tablet {
+    padding: 10px 12px;
     height: auto;
+  }
+
+  @include media-mobile {
+    margin-top: 20px;
+    flex-direction: column;
   }
 
   & .systemInfo {

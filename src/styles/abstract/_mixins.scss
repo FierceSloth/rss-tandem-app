@@ -1,8 +1,8 @@
-$desktop-max: 1470px;
+$desktop-max: 1600px;
 $laptop-max: 1197px;
 $desktop-small-max: 1024px;
 $tablet-max: 768px;
-$mobile-max: 414px;
+$mobile-max: 430px;
 
 @mixin media-desktop {
   @media (max-width: $desktop-max) {
