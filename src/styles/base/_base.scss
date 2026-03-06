@@ -51,31 +51,15 @@ body {
 }
 
 #app {
-  max-width: var(--desktop-max);
   width: 100%;
   min-height: 100dvh;
 
-  margin: 0 auto;
-  padding: 0 20px;
+  margin: 0;
+  padding: 0;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  @include media-tablet {
-    padding: 0 10px;
-  }
-}
-
-.pageContainer {
-  width: 100%;
-
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-
-  animation: fadeIn 1s ease-out forwards;
-  will-change: opacity;
 }
 
 /* Headings (Desktop) */
@@ -107,13 +91,4 @@ h5 {
   font-size: var(--font-h5-size);
   line-height: var(--line-h5-height);
   font-weight: 500;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }

@@ -1,6 +1,7 @@
 import styles from './landing-page.module.scss';
 import type { IPage } from '@/common/types/types';
 import { Component } from '@/components/base/component';
+import { PageLayout } from '@/components/layout/page-layout/page-layout.view';
 import { Header } from '@/components/layout/header/header.view';
 import { Footer } from '@/components/layout/footer/footer.view';
 import { useNavigate } from '@/router/hooks';
@@ -29,7 +30,7 @@ export class LandingPage implements IPage {
   }
 
   public render(): Component {
-    const landing: Component = new Component({ className: [styles.landing, 'pageContainer'] });
+    const root = new PageLayout({ className: styles.landing, withSidebar: false });
 
     const badge: LandingBadge = new LandingBadge({});
     const textContent: LandingTextContent = new LandingTextContent({});
@@ -41,8 +42,8 @@ export class LandingPage implements IPage {
     this.mainDescription.append(badge, textContent, buttons, techList);
     this.main.append(this.mainDescription, this.codeEditor);
 
-    landing.append(this.header, this.main, this.footer);
-    return landing;
+    root.append(this.header, this.main, this.footer);
+    return root;
   }
 
   public destroy(): void {}
