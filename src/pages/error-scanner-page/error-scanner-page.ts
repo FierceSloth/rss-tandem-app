@@ -1,11 +1,12 @@
 import styles from './error-scanner-page.module.scss';
 import type { IPage } from '@/common/types/types';
-import { Component } from '@/components/base/component';
+import type { Component } from '@/components/base/component';
+import { PageLayout } from '@/components/layout/page-layout/page-layout.view';
 
 export class ErrorScannerPage implements IPage {
   public render(): Component {
-    const errorScanner: Component = new Component({ className: [styles.errorScanner, 'pageContainer'] });
-    return errorScanner;
+    const root = new PageLayout({ className: styles.errorScanner, withSidebar: false });
+    return root;
   }
 
   public destroy(): void {}

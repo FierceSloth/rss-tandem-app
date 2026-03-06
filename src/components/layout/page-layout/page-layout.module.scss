@@ -1,0 +1,53 @@
+@use '@/styles/abstract/mixins' as *;
+
+.pageLayout {
+  width: 100%;
+  min-height: 100dvh;
+  display: grid;
+  position: relative;
+}
+
+.hasSidebar {
+  grid-template-columns: 80px 1fr;
+  @include media-tablet {
+    grid-template-columns: 1fr;
+    padding-bottom: 60px;
+  }
+}
+
+.noSidebar {
+  grid-template-columns: 1fr;
+}
+
+.mainColumn {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  flex-grow: 1;
+
+  animation: fadeIn 1s ease-out forwards;
+  will-change: opacity;
+  padding: 0 20px;
+
+  @include media-tablet {
+    padding: 0 10px;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
