@@ -30,6 +30,7 @@ export class LandingPage implements IPage {
     const textContent: LandingTextContent = new LandingTextContent({});
     const buttons: LandingButtons = new LandingButtons({});
     const techList: LandingTechList = new LandingTechList({});
+
     this.introContent.append(badge, textContent, buttons, techList);
     this.mainContent.append(this.introContent, this.codeEditor);
 
@@ -39,6 +40,7 @@ export class LandingPage implements IPage {
       header: this.header,
       footer: this.footer,
     });
+
     root.append(this.mainContent);
     return root;
   }

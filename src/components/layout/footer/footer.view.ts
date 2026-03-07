@@ -36,6 +36,10 @@ export class Footer extends Component {
   }
 
   public createLayout(): void {
+    const container = new Component({
+      className: styles.container,
+    });
+
     const systemInfoElement: Component = new Component({
       className: styles.systemInfo,
     });
@@ -54,6 +58,7 @@ export class Footer extends Component {
 
     systemStatusElement.append(statusBadge);
 
-    this.append(systemInfoElement, systemStatusElement);
+    container.append(systemInfoElement, systemStatusElement);
+    this.append(container);
   }
 }

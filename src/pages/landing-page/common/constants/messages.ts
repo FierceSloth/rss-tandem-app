@@ -10,7 +10,7 @@ export const messages = {
     algorithms: 'Algorithms',
     systemDesign: 'System Design',
     itemQ: 'Item Q-82312',
-    javaScriptArrays: 'JAVASCRIPT // ARRAYS',
+    javaScriptArrays: 'JAVASCRIPT // TANDEM',
   },
   buttons: {
     startPracticing: 'Start Practicing',

@@ -3,9 +3,14 @@
 .footer {
   position: relative;
   z-index: 50;
+  width: 100%;
+  background-color: var(--bg-body);
+  @include border-subtle-top;
+}
 
-  font-size: clamp(var(--font-size-default), 1vw, var(--font-size-semismall));
-  line-height: var(--line-height-semismall);
+.container {
+  margin: 0 auto;
+  max-width: var(--desktop-max);
 
   display: flex;
   flex-wrap: wrap;
@@ -14,10 +19,9 @@
 
   padding: 0 clamp(var(--space-2-5), 3vw, var(--space-5));
   min-height: clamp(3rem, 5vw, 4rem);
-  max-width: var(--desktop-max);
 
-  background-color: var(--bg-body);
-  @include border-subtle-top;
+  font-size: clamp(var(--font-size-default), 1vw, var(--font-size-semismall));
+  line-height: var(--line-height-semismall);
 
   @include media-tablet {
     padding: 10px 12px;
@@ -25,37 +29,37 @@
   }
 
   @include media-mobile {
-    margin-top: 20px;
+    margin-top: 10px;
     flex-direction: column;
   }
+}
 
-  & .systemInfo {
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-    gap: clamp(var(--space-1), 1.5vw, var(--space-2));
-    font-family: var(--font-mono);
+.systemInfo {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  gap: clamp(var(--space-1), 1.5vw, var(--space-2));
+  font-family: var(--font-mono);
+  overflow: hidden;
+
+  & .browser,
+  & .os,
+  & .ip {
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+  }
+
+  & .ip,
+  & .os {
     overflow: hidden;
-
-    & .browser,
-    & .os,
-    & .ip {
-      color: var(--text-tertiary);
-      text-transform: uppercase;
-    }
-
-    & .ip,
-    & .os {
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+    text-overflow: ellipsis;
   }
+}
 
-  & .systemStatus {
-    display: flex;
-    gap: clamp(var(--space-1), 1.5vw, var(--space-2));
-    align-items: center;
-    font-family: var(--font-mono);
-    padding: 0;
-  }
+.systemStatus {
+  display: flex;
+  gap: clamp(var(--space-1), 1.5vw, var(--space-2));
+  align-items: center;
+  font-family: var(--font-mono);
+  padding: 0;
 }

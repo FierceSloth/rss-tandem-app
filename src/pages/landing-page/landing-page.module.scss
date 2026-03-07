@@ -1,11 +1,16 @@
 @use '@/styles/abstract/mixins' as *;
 
 .mainContent {
-  padding-top: 20px;
+  padding: 20px 0;
   width: 100%;
+
+  flex-grow: 1;
+  min-width: 0;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
   margin: 0 auto;
 
   @include media-laptop {
@@ -16,10 +21,6 @@
     flex-direction: column-reverse;
     align-items: start;
     gap: clamp(var(--space-8), 4vw, var(--space-16));
-  }
-
-  @include media-tablet {
-    padding-top: clamp(var(--space-2-5), 1vw, var(--space-4));
   }
 }
 

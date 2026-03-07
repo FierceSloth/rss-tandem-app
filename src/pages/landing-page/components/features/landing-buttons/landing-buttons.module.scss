@@ -19,7 +19,6 @@
   & .startPracticingButton,
   & .aboutProjectButton {
     cursor: pointer;
-    font-size: var(--font-size-semilarge);
     line-height: var(--line-height-semilarge);
     padding-inline: clamp(var(--space-6), 2vw, var(--space-8));
     height: clamp(44px, 5vw, 52px);
@@ -28,10 +27,6 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
-    transition:
-      transform 0.2s ease,
-      opacity 0.2s ease;
   }
 
   & .startPracticingButton {

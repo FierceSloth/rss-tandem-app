@@ -13,12 +13,15 @@
 
   @include media-desktop-small {
     max-width: 100%;
+    border: none;
   }
 
   @include media-tablet {
-    justify-content: center;
-    row-gap: clamp(var(--space-2), 3vw, var(--space-3));
-    column-gap: clamp(var(--space-2), 3vw, var(--space-4));
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    column-gap: 1vw;
+
     padding-block: clamp(var(--space-4), 3vw, var(--space-6)) clamp(var(--space-4), 3vw, var(--space-8));
   }
 }
