@@ -72,6 +72,7 @@ export default defineConfig({
           el: true,
           useParams: true,
           params: true,
+          Params: true,
         },
       },
     ],
