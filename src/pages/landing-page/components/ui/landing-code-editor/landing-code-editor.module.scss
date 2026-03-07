@@ -15,7 +15,7 @@
   }
 
   @include media-desktop-small {
-    max-width: 100%;
+    display: none;
   }
 
   & .window {

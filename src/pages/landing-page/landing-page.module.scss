@@ -1,7 +1,7 @@
 @use '@/styles/abstract/mixins' as *;
 
 .mainContent {
-  padding: 20px 0;
+  padding-top: 20px;
   width: 100%;
 
   flex-grow: 1;
@@ -18,9 +18,8 @@
   }
 
   @include media-desktop-small {
-    flex-direction: column-reverse;
-    align-items: start;
-    gap: clamp(var(--space-8), 4vw, var(--space-16));
+    padding-bottom: 20px;
+    align-items: center;
   }
 }
 
