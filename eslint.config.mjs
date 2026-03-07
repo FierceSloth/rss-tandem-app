@@ -72,6 +72,8 @@ export default defineConfig({
           el: true,
           useParams: true,
           params: true,
+          util: true,
+          utils: true,
           Params: true,
         },
       },

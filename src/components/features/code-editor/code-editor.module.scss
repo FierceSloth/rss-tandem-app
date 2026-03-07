@@ -1,10 +1,12 @@
+@use '@/styles/abstract/mixins' as *;
+
 .codeEditor {
   flex: 1;
   display: flex;
   overflow: hidden;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 1.35rem;
-  line-height: 24px;
+  font-size: clamp(1.3rem, 0.5vw + 1.1rem, 1.4rem);
+  line-height: 1.5;
 
   height: 100%;
   width: 100%;
@@ -33,6 +35,10 @@
       &:hover {
         background-color: var(--text-tertiary, #444444);
       }
+    }
+
+    :global(.cm-content) {
+      width: 1px;
     }
   }
 

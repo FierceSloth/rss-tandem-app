@@ -1,29 +1,39 @@
 @use '../abstract/mixins' as *;
 
 :root {
-  --desktop-width: #{$desktop-width};
-  --tablet-width: #{$tablet-width};
-  --mobile-width: #{$mobile-width};
+  --desktop-max: #{$desktop-max};
+  --laptop-max: #{$laptop-max};
+  --desktop-small-max: #{$desktop-small-max};
+  --tablet-max: #{$tablet-max};
+  --mobile-max: #{$mobile-max};
 
   /* Colors: Backgrounds */
   --bg-body: #050505;
   --bg-surface: #0a0a0a;
   --bg-panel: #0f0f0f;
+  --bg-body-09: rgb(5 5 5 / 0.9);
 
   /* Colors: Borders */
   --border-subtle: #1f1f1f;
   --border-focus: #333333;
+  --border-light: #e5e7eb;
 
   /* Colors: Text */
   --text-primary: #ffffff;
   --text-secondary: #888888;
   --text-tertiary: #444444;
+  --text-success-dark: #14532d;
+  --text-success-light: #22c55e;
 
   /* Colors: Accents */
   --accent-blue: #3b82f6;
   --accent-red: #e93535;
   --accent-orange: #ff5722;
   --accent-green: #10b981;
+  --accent-yellow: #f7df1e;
+
+  /* Shadow */
+  --box-shadow-success: 0 0 8px rgba(16, 185, 129, 0.5);
 
   /* Font Family */
   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -34,22 +44,59 @@
   --radius-md: 6px;
   --radius-lg: 8px;
 
+  /* Spacing */
+  --space-1: 0.2rem;
+  --space-2: 0.8rem;
+  --space-2-5: 1rem;
+  --space-3: 1.2rem;
+  --space-4: 1.6rem;
+  --space-5: 2rem;
+  --space-6: 2.4rem;
+  --space-8: 3.2rem;
+  --space-10: 4rem;
+  --space-12: 4.8rem;
+  --space-16: 6.4rem;
+  --space-20: 8rem;
+  --space-21: 8.4rem;
+  --space-24: 9.6rem;
+
+  /* Letter Spacing */
+  --letter-spacing-narrowing-0-025: -0.025em;
+  --letter-spacing-0-025: 0.025em;
+  --letter-spacing-0-05: 0.05em;
+  --letter-spacing-2: 2px;
+
   /* Base / Text */
   --font-size-default: 10px;
+
+  --font-size-semismall: 1.1rem;
+  --line-height-semismall: 1.6rem;
 
   --font-size-small: 1.2rem;
   --line-height-small: 1.6rem;
 
+  --font-size-semibase: 1.3rem;
+  --line-height-semibase: 1.9rem;
+
   --font-size-base: 1.4rem;
   --line-height-base: 2.1rem;
+
+  --font-size-semilarge: 1.5rem;
+  --line-height-semilarge: 2.2rem;
 
   --font-size-large: 1.6rem;
   --line-height-large: 2.4rem;
 
+  --font-size-superlarge: 1.8rem;
+  --line-height-superlarge: 2.88rem;
+
   /* Animation */
-  --transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  --transition: all 0.3s, background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 
   /* Headings (Desktop) */
+  --font-size-h1-superlarge: 5.6rem;
+  --line-height-h1-superlarge: 6.2rem;
+
   --font-h1-size: 4.4rem;
   --line-h1-height: 5.4rem;
 
@@ -67,16 +114,16 @@
 
   /* Headings (Mobile) */
   @include media-mobile {
-    --font-h1-size-mobile: 4.2rem;
-    --line-h1-height-mobile: 4.8rem;
+    --font-h1-size: 4.2rem;
+    --line-h1-height: 4.8rem;
 
-    --font-h2-size-mobile: 2.4rem;
-    --line-h2-height-mobile: 3rem;
+    --font-h2-size: 2.4rem;
+    --line-h2-height: 3rem;
 
-    --font-h3-size-mobile: 2.2rem;
-    --line-h3-height-mobile: 2.7rem;
+    --font-h3-size: 2.2rem;
+    --line-h3-height: 2.7rem;
 
-    --font-h4-size-mobile: 2rem;
-    --line-h4-height-mobile: 2.6rem;
+    --font-h4-size: 2rem;
+    --line-h4-height: 2.6rem;
   }
 }

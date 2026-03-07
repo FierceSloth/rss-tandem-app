@@ -1,2 +1,31 @@
-.landing {
+@use '@/styles/abstract/mixins' as *;
+
+.mainContent {
+  padding-top: 20px;
+  width: 100%;
+
+  flex-grow: 1;
+  min-width: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin: 0 auto;
+
+  @include media-laptop {
+    @include space-transition;
+  }
+
+  @include media-desktop-small {
+    padding-bottom: 20px;
+    align-items: center;
+  }
+}
+
+.introContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 1;
 }

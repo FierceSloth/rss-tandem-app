@@ -4,6 +4,9 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: var(--border-light);
 }
 
 body,
@@ -23,8 +26,6 @@ html {
 body {
   color: var(--text-primary);
   font-family: var(--font-primary);
-  font-size: var(--font-size-large);
-  line-height: var(--line-height-large);
   font-weight: 400;
   position: relative;
   min-height: 100vh;

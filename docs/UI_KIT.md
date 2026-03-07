@@ -172,19 +172,48 @@ this.append(card);
 ## StatusBadge
 
 Индикатор статуса в терминальном стиле. Используется для отображения состояний (онлайн/оффлайн), ролей, версий или тегов технологий.
-Поддерживает пульсирующую анимацию и два варианта отображения: с рамкой (container) и без.
+
+Компонент поддерживает:
+
+- цветовые варианты
+- пульсирующие анимации
+- точку-индикатор
+- контейнерный режим (фон + рамка)
+- настройку размера индикатора
 
 ![alt text](./assets/status-badge-preview.png)
 
 ### Свойства (Props)
 
-| Свойство     | Тип                                    | Default    | Описание                                          |
-| :----------- | :------------------------------------- | :--------- | :------------------------------------------------ |
-| `text`       | `string`                               | —          | Текст бейджа (обязательное поле)                  |
-| `color`      | `'green' \| 'blue' \| 'gray' \| 'red'` | `'green'`  | Цвет текста и точки                               |
-| `container`  | `boolean`                              | `false`    | Добавляет фон и рамку вокруг бейджа               |
-| `dot`        | `boolean`                              | `true`     | Показывает круглую точку слева от текста          |
-| `animation`  | `boolean`                              | `true`     | Включает эффект пульсации (свечения) для точки    |
+| Свойство        | Тип                                                                           | Default          | Описание                                            |
+| :-------------- | :---------------------------------------------------------------------------- | :--------------- | :-------------------------------------------------- |
+| `text`          | `string`                                                                      | —                | Текст бейджа (обязательное поле)                    |
+| `color`         | `'primary' \| 'green' \| 'green-dark' \| 'blue' \| 'gray' \| 'red'`           | `'green'`        | Цвет текста и точки                                 |
+| `container`     | `boolean`                                                                     | `false`          | Добавляет фон и рамку вокруг бейджа                 |
+| `dot`           | `boolean`                                                                     | `true`           | Показывает круглую точку слева от текста            |
+| `dotSize`       | `string`                                                                      | `8`              | Размер точки (px добавляется автоматически)         |
+| `animation`     | `'none' \| 'pulse' \| 'pulse-ring' \| 'pulse-slow'`                           | `pulse-ring`     | Включает эффект пульсации (свечения) для точки      |
+| `capitalize`    | `boolean`                                                                     | `true`           | Делает текст uppercase                              |
+
+### Цветовые варианты
+
+| Цвет       | Описание                        |
+| :--------- | :------------------------------ |
+| primary    | основной текстовый цвет (white) |
+| green      | активный статус                 |
+| green-dark | тёмный вариант успеха           |
+| blue       | информационный                  |
+| gray       | нейтральный                     |
+| red        | ошибка / оффлайн                |
+
+### Варианты анимации
+
+| Animation  | Описание            |
+| :--------- | :------------------ |
+| pulse-ring | кольцевая пульсация |
+| pulse      | мягкая пульсация    |
+| pulse-slow | медленная пульсация |
+| none       | без анимации        |
 
 ### Пример использования
 
@@ -202,7 +231,7 @@ const onlineStatus = new StatusBadge({
 const offlineStatus = new StatusBadge({
   text: 'System Offline',
   color: 'gray',
-  animation: false,
+  animation: 'none',
 });
 
 // 3. Простой тег без точки и рамки
@@ -210,10 +239,17 @@ const versionTag = new StatusBadge({
   text: 'Beta',
   color: 'blue',
   dot: false,
-  animation: false,
+  animation: 'none',
 });
 
-this.append(onlineStatus, offlineStatus, versionTag);
+// Кастомный размер индикатора 10px
+const serviceStatus = new StatusBadge({
+  text: 'API Connected',
+  color: 'green',
+  dotSize: '10',
+});
+
+this.append(onlineStatus, offlineStatus, versionTag, serviceStatus);
 ```
 
 ## UI Components in Notion
