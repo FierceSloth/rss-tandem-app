@@ -4,7 +4,7 @@ import type { ILocationState, INavigateFunction, INavigateOptions, IRoute } from
 import { ROUTES } from './constants';
 import type { IPage } from '@/common/types/types';
 import { routes } from './routes';
-import { appEmitter } from '@/common/utils/emitter';
+import { appEmitter } from '@/common/utils/emitter.util';
 import { messages } from '@/common/constants/messages';
 import { extractQuery, matchRouteAndExtractParameters } from './core/route-matcher';
 import { Component } from '@/components/base/component';

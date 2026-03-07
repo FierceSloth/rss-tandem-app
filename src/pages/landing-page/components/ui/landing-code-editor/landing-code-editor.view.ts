@@ -1,6 +1,6 @@
 import styles from './landing-code-editor.module.scss';
 import type { IComponentChild } from '@common/types/types';
-import { mergeClassNames } from '@common/utils/class-names';
+import { mergeClassNames } from '@/common/utils/class-names.util';
 import { Component } from '@components/base/component';
 import { messages } from '@/pages/landing-page/common/constants/messages';
 import { CodeEditor } from '@/components/features/code-editor/code-editor.view';

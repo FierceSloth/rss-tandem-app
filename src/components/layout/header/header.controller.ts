@@ -1,6 +1,5 @@
 import type { Header } from './header.view';
 import { ROUTES } from '@/router/constants';
-import { messages } from '@/common/constants/messages';
 import type { useNavigate } from '@/router/hooks';
 
 export class HeaderController {
@@ -15,7 +14,6 @@ export class HeaderController {
 
   private init(): void {
     this.initListeners();
-    this.setLogoTitle();
   }
 
   private initListeners(): void {
@@ -30,9 +28,5 @@ export class HeaderController {
     this.view.onRegisterClick(() => {
       this.navigate(`${ROUTES.AUTH_PAGE}?view=register`);
     });
-  }
-
-  private setLogoTitle(): void {
-    this.view.setLogoTitle(messages.titles.logoTitle);
   }
 }

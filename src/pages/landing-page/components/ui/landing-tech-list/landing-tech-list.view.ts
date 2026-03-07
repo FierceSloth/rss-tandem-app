@@ -2,7 +2,7 @@ import styles from './landing-tech-list.module.scss';
 import type { TechVariant } from '@/components/ui/tech-stack/tech-stack.view';
 import { TechStack } from '@/components/ui/tech-stack/tech-stack.view';
 import type { IComponentChild } from '@common/types/types';
-import { mergeClassNames } from '@common/utils/class-names';
+import { mergeClassNames } from '@/common/utils/class-names.util';
 import { Component } from '@components/base/component';
 
 interface IProps extends IComponentChild {}

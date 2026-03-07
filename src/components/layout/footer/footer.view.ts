@@ -1,26 +1,31 @@
 import styles from './footer.module.scss';
 import { FooterController } from './footer.controller';
 import type { IComponentChild } from '@common/types/types';
-import { mergeClassNames } from '@common/utils/class-names';
+import { mergeClassNames } from '@/common/utils/class-names.util';
 import { Component } from '@components/base/component';
 import { StatusBadge } from '@/components/ui/status-badge/status-badge.view';
 import { messages } from '@/common/constants/messages';
 
-interface IProps extends IComponentChild {}
+interface IProps extends IComponentChild {
+  withController?: boolean;
+}
 
 export class Footer extends Component {
   private readonly browser: Component;
   private readonly os: Component;
   private readonly ip: Component;
 
-  constructor({ className = [] }: IProps, ...children: Component[]) {
+  constructor({ className = [], withController = true }: IProps, ...children: Component[]) {
     const cssClasses = mergeClassNames(styles.footer, className);
     super({ tag: 'footer', className: cssClasses }, ...children);
     this.browser = new Component({ tag: 'span', className: styles.browser });
     this.os = new Component({ tag: 'span', className: styles.os });
     this.ip = new Component({ tag: 'span', className: styles.ip });
     this.createLayout();
-    new FooterController(this);
+
+    if (withController) {
+      new FooterController(this);
+    }
   }
 
   public setBrowser(browser: string): void {

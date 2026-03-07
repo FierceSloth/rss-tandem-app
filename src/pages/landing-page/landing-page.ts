@@ -6,9 +6,9 @@ import { Header } from '@/components/layout/header/header.view';
 import { Footer } from '@/components/layout/footer/footer.view';
 import { LandingButtons } from './components/features/landing-buttons/landing-buttons.view';
 import { LandingBadge } from './components/ui/landing-badge/landing-badge.view';
-import { LandingTextContent } from './components/ui/landing-text-content/landing-text-content.view';
 import { LandingTechList } from './components/ui/landing-tech-list/landing-tech-list.view';
 import { LandingCodeEditor } from './components/ui/landing-code-editor/landing-code-editor.view';
+import { LandingTextContent } from './components/layout/landing-text-content/landing-text-content.view';
 
 export class LandingPage implements IPage {
   private readonly header: Header;

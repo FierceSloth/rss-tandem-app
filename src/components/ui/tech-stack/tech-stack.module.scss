@@ -6,10 +6,10 @@
   gap: clamp(var(--space-1), 2vw, var(--space-3));
   cursor: pointer;
 
-  & svg :global(.hIconBorder),
-  & svg :global(.xIconBorder),
-  & svg :global(.genIconBorder),
-  & svg :global(.tagIconBorder) {
+  svg :global(.hIconBorder),
+  svg :global(.xIconBorder),
+  svg :global(.genIconBorder),
+  svg :global(.tagIconBorder) {
     stroke: var(--border-focus);
     @include transition-colors();
   }
@@ -30,7 +30,7 @@
     stroke: var(--accent-red);
   }
 
-  & .techName {
+  .techName {
     color: var(--text-secondary);
     font-family: var(--font-mono);
     font-size: clamp(var(--font-size-default), 1vw, var(--font-size-small));
@@ -51,7 +51,7 @@
     flex-direction: column;
     align-items: center;
 
-    & .techName {
+    .techName {
       max-width: 80px;
       text-align: center;
       font-size: clamp(var(--font-size-default), 2vw, var(--font-size-small));

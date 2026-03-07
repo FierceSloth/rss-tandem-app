@@ -42,15 +42,15 @@
   font-family: var(--font-mono);
   overflow: hidden;
 
-  & .browser,
-  & .os,
-  & .ip {
+  .browser,
+  .os,
+  .ip {
     color: var(--text-tertiary);
     text-transform: uppercase;
   }
 
-  & .ip,
-  & .os {
+  .ip,
+  .os {
     overflow: hidden;
     text-overflow: ellipsis;
   }

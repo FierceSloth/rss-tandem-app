@@ -1,7 +1,7 @@
 import styles from './landing-text-content.module.scss';
 import { messages } from '@/pages/landing-page/common/constants/messages';
 import type { IComponentChild } from '@common/types/types';
-import { mergeClassNames } from '@common/utils/class-names';
+import { mergeClassNames } from '@/common/utils/class-names.util';
 import { Component } from '@components/base/component';
 
 interface IProps extends IComponentChild {}

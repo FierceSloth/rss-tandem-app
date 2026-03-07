@@ -1,6 +1,6 @@
 import styles from './header.module.scss';
 import type { IComponentChild } from '@common/types/types';
-import { mergeClassNames } from '@common/utils/class-names';
+import { mergeClassNames } from '@/common/utils/class-names.util';
 import { messages } from '@/common/constants/messages';
 import { Component } from '@/components/base/component';
 import { Button } from '@/components/ui/button/button.view';
@@ -9,7 +9,9 @@ import { useNavigate } from '@/router/hooks';
 import { StatusBadge } from '@/components/ui/status-badge/status-badge.view';
 import { EMPTY } from '@/common/constants/constants';
 
-interface IProps extends IComponentChild {}
+interface IProps extends IComponentChild {
+  withController?: boolean;
+}
 
 export class Header extends Component {
   private readonly aboutButton: Component;
@@ -17,7 +19,7 @@ export class Header extends Component {
   private readonly registerButton: Component;
   private readonly logoTitle: Component;
 
-  constructor({ className = [] }: IProps, ...children: Component[]) {
+  constructor({ className = [], withController = true }: IProps, ...children: Component[]) {
     const cssClasses = mergeClassNames(styles.header, className);
     super({ tag: 'header', className: cssClasses }, ...children);
     this.aboutButton = new Button({
@@ -36,10 +38,14 @@ export class Header extends Component {
     this.logoTitle = new Component({
       tag: 'span',
       className: styles.logoTitle,
+      text: messages.titles.logoTitle,
     });
 
     this.createLayout();
-    new HeaderController(this, useNavigate());
+
+    if (withController) {
+      new HeaderController(this, useNavigate());
+    }
   }
 
   public onAboutClick(handler: () => void): void {
@@ -52,10 +58,6 @@ export class Header extends Component {
 
   public onRegisterClick(handler: () => void): void {
     this.registerButton.addListener('click', handler);
-  }
-
-  public setLogoTitle(logoTitle: string): void {
-    this.logoTitle.setText(logoTitle);
   }
 
   private createLayout(): void {

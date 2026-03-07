@@ -16,8 +16,8 @@
     width: 100%;
   }
 
-  & .startPracticingButton,
-  & .aboutProjectButton {
+  .startPracticingButton,
+  .aboutProjectButton {
     cursor: pointer;
     line-height: var(--line-height-semilarge);
     padding-inline: clamp(var(--space-6), 2vw, var(--space-8));
@@ -29,7 +29,7 @@
     justify-content: center;
   }
 
-  & .startPracticingButton {
+  .startPracticingButton {
     font-weight: 600;
     gap: var(--space-2);
 
@@ -39,7 +39,7 @@
     }
   }
 
-  & .aboutProjectButton {
+  .aboutProjectButton {
     font-weight: 500;
   }
 }

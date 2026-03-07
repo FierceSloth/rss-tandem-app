@@ -6,7 +6,7 @@ import hIcon from '@assets/svg/landing-icons/h-icon.svg?raw';
 import tagIcon from '@assets/svg/landing-icons/tag-icon.svg?raw';
 import genIcon from '@assets/svg/landing-icons/gen-icon.svg?raw';
 import { messages } from '@/pages/landing-page/common/constants/messages';
-import { createSvgComponent } from '@/common/utils/create-svg';
+import { createSvgComponent } from '@/common/utils/create-svg.util';
 
 export type TechVariant = 'hIcon' | 'xIcon' | 'genIcon' | 'tagIcon';
 

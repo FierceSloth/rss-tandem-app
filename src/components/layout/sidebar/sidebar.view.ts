@@ -1,5 +1,5 @@
 import type { IComponentChild } from '@common/types/types';
-import { mergeClassNames } from '@common/utils/class-names';
+import { mergeClassNames } from '@/common/utils/class-names.util';
 import { Component } from '@components/base/component';
 import { ROUTES } from '@/router/constants';
 
@@ -10,7 +10,7 @@ import profileIcon from '@assets/svg/nav-icons/profile.svg?raw';
 
 import styles from './sidebar.module.scss';
 import { SidebarController } from './sidebar.controller';
-import { createSvgComponent } from '@/common/utils/create-svg';
+import { createSvgComponent } from '@/common/utils/create-svg.util';
 
 const navConfigs = [
   { path: ROUTES.DASHBOARD_PAGE, icon: dashboardIcon },

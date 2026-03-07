@@ -1,10 +1,10 @@
 import styles from './landing-buttons.module.scss';
 import type { IComponentChild } from '@common/types/types';
-import { mergeClassNames } from '@common/utils/class-names';
+import { mergeClassNames } from '@/common/utils/class-names.util';
 import { Component } from '@components/base/component';
 import { Button } from '@/components/ui/button/button.view';
 import { messages } from '@/pages/landing-page/common/constants/messages';
-import { createSvgComponent } from '@/common/utils/create-svg';
+import { createSvgComponent } from '@/common/utils/create-svg.util';
 import arrowRightIcon from '@assets/svg/landing-icons/arrow-right-icon.svg?raw';
 import { LandingButtonsController } from './landing-buttons.controller';
 

@@ -34,8 +34,7 @@ export class FooterController {
       const ip = await getIpAddress();
       const maskedIp = maskIp(ip);
       this.view.setIp(messages.titles.footerIpAddress(maskedIp));
-    } catch (error) {
-      console.error(messages.errors.errorFetchingIp(error instanceof Error ? error.message : String(error)));
+    } catch {
       this.view.setIp(messages.titles.footerIpAddress(messages.titles.statusUnavailable));
     }
   }

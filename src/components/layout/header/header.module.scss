@@ -33,7 +33,7 @@
   align-items: center;
   cursor: pointer;
 
-  & .logoTitle {
+  .logoTitle {
     text-transform: uppercase;
     letter-spacing: var(--letter-spacing-2);
     color: var(--text-primary);
@@ -52,7 +52,7 @@
     display: none;
   }
 
-  & .aboutButton {
+  .aboutButton {
     outline: none;
     box-shadow: none;
     color: var(--text-secondary);
@@ -66,7 +66,7 @@
   align-items: center;
   gap: clamp(var(--space-3), 2vw, var(--space-6));
 
-  & .loginButton {
+  .loginButton {
     outline: none;
     box-shadow: none;
     font-size: var(--font-size-base);
@@ -77,7 +77,7 @@
     }
   }
 
-  & .registerButton {
+  .registerButton {
     font-weight: 600;
     font-size: var(--font-size-semibase);
     line-height: var(--line-height-semibase);
