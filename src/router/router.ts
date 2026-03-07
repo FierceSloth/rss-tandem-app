@@ -1,9 +1,8 @@
 import { isHistoryState, updateHistory } from './utils/history';
-import { BASE_URL, BASE_URL_WITHOUT_LAST_SLASH, pathnameEqualsRoute, ROOT_URL } from './utils/path';
-import type { ILocationState, INavigateFunction, INavigateOptions, INavigationTarget, IRoute } from './types';
+import { pathnameEqualsRoute } from './utils/path';
+import type { ILocationState, INavigateFunction, INavigateOptions, IRoute } from './types';
 import { ROUTES } from './constants';
 import type { IPage } from '@/common/types/types';
-import { UserService } from '@/service/user-service/user.service';
 import { routes } from './routes';
 import { appEmitter } from '@/common/utils/emitter';
 import { messages } from '@/common/constants/messages';
@@ -11,6 +10,7 @@ import { extractQuery, matchRouteAndExtractParameters } from './core/route-match
 import { Component } from '@/components/base/component';
 import { AppEvents } from '@/common/enums/enums';
 import { NavigationMode } from './navigation-mode';
+import { normalizePath, resolveSecurity, isQueryValid } from './core/router-handlers';
 
 export class Router {
   private root: Component;
@@ -23,7 +23,7 @@ export class Router {
     this.root = new Component({ attrs: { id: 'app' } });
     document.body.append(this.root.node);
 
-    const route = routes.find((r) => r.path === ROUTES.NOT_FOUND_PAGE);
+    const route = routes.find((route) => route.path === ROUTES.NOT_FOUND_PAGE);
     if (!route) {
       throw new Error(messages.errors.pageNotFound(ROUTES.NOT_FOUND_PAGE));
     }
@@ -36,7 +36,7 @@ export class Router {
 
   public init(): void {
     document.addEventListener('DOMContentLoaded', () => {
-      const route: string = `${this.normalizePath(location.pathname)}${location.search ?? ''}`;
+      const route: string = `${normalizePath(location.pathname)}${location.search ?? ''}`;
       this.handleRoute(route, NavigationMode.PUSH);
     });
 
@@ -44,7 +44,7 @@ export class Router {
       const historyPath: string = isHistoryState(event.state)
         ? event.state.path
         : `${location.pathname}${location.search ?? ''}`;
-      const route: string = this.normalizePath(historyPath);
+      const route: string = normalizePath(historyPath);
 
       this.locationState = event.state?.state ?? null;
 
@@ -89,7 +89,11 @@ export class Router {
   }
 
   private handleRoute(fullPath: string, mode: NavigationMode = NavigationMode.SKIP): void {
-    this.validateQuery(fullPath);
+    if (!isQueryValid(fullPath)) {
+      console.warn(messages.errors.urlQueryCorrupted(fullPath));
+      this.redirectToNotFound();
+      return;
+    }
     const [pathname, search = ''] = fullPath.split('?');
     const routeAndParameters = matchRouteAndExtractParameters(pathname, routes);
 
@@ -100,7 +104,7 @@ export class Router {
 
     const { route, params } = routeAndParameters;
 
-    const redirect = this.resolveSecurity(route);
+    const redirect = resolveSecurity(route);
     if (redirect) {
       this.navigateTo(redirect.to, {}, {}, redirect.options);
       return;
@@ -125,48 +129,12 @@ export class Router {
   }
 
   private render(route: IRoute): void {
-    if (this.currentPage?.destroy) {
-      this.currentPage.destroy();
-    }
+    this.currentPage?.destroy?.();
     this.root.destroyChildren();
 
     const pageInstance: IPage = route.page();
     const pageElement = pageInstance.render();
     this.root.append(pageElement);
     this.currentPage = pageInstance;
-  }
-
-  /**
-   * This method removes baseUrl from path
-   *
-   * @param pathname location.pathname + location.search with base url or history state path
-   * @returns pathname without baseUrl
-   */
-  private normalizePath(pathname: string): string {
-    if (!pathname.startsWith(BASE_URL)) {
-      return pathname;
-    }
-
-    const normalized = pathname.slice(BASE_URL_WITHOUT_LAST_SLASH.length);
-    return normalized || ROOT_URL;
-  }
-
-  private validateQuery(path: string): void {
-    if (path.indexOf('?') != path.lastIndexOf('?')) {
-      console.error(messages.errors.urlQueryCorrupted(path));
-      this.redirectToNotFound();
-    }
-  }
-
-  private resolveSecurity(route: IRoute): INavigationTarget | null {
-    if (route.meta.secured && !UserService.isAuthenticated() && route.path !== ROUTES.AUTH_PAGE) {
-      return { to: ROUTES.AUTH_PAGE, options: { replace: true } };
-    }
-
-    if (UserService.isAuthenticated() && route.path === ROUTES.AUTH_PAGE) {
-      return { to: ROUTES.LEVEL_SELECTION_PAGE, options: { replace: false } };
-    }
-
-    return null;
   }
 }

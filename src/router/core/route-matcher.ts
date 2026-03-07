@@ -1,28 +1,13 @@
-import type { IRoute } from '@/router/types';
+import type { IRoute, IRouteWithParams } from '@/router/types';
 
-export function matchRouteAndExtractParameters(
-  pathname: string,
-  routes: IRoute[]
-): { route: IRoute; params: Record<string, string> } | null {
-  for (const route of routes) {
-    const extractedParameters = extractParameters(route.path, pathname);
-    if (extractedParameters) {
-      return { route, params: extractedParameters };
-    }
-  }
-
-  return null;
+export function matchRouteAndExtractParameters(pathname: string, routes: IRoute[]): IRouteWithParams | null {
+  return (
+    routes
+      .map((route: IRoute) => ({ route, params: extractParameters(route.path, pathname) }))
+      .find((entry: IRouteWithParams): entry is IRouteWithParams => entry.params !== null) ?? null
+  );
 }
 
-/**
- * This method extracts parameters from URL by { :param } key and validate segments
- *
- * @param routePathMatcher IRoute.path as matcher
- * @param locationPathname location.pathname or history state path
- * @returns params or null if page corrupted
- *
- * @example ('/quiz/:id', /quiz/1) => { id: 1 }
- */
 export function extractParameters(routePathMatcher: string, locationPathname: string): Record<string, string> | null {
   const routePathSegments: string[] = routePathMatcher.split('/').filter(Boolean);
   const locationPathnameSegments: string[] = locationPathname.split('/').filter(Boolean);

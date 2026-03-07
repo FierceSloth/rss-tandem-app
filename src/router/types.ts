@@ -24,6 +24,11 @@ export interface IRoute {
   meta: IMetaData;
 }
 
+export interface IRouteWithParams {
+  route: IRoute;
+  params: Record<string, string> | null;
+}
+
 export interface ILocationState<T = unknown> {
   pathname: string;
   search: string;
