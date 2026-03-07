@@ -1,9 +1,5 @@
 @use '@/styles/abstract/mixins' as *;
 
-.landing {
-  overflow: hidden;
-}
-
 .mainContent {
   padding-top: 20px;
   width: 100%;
@@ -11,7 +7,6 @@
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
-  flex: 1;
 
   @include media-laptop {
     @include space-transition;
@@ -24,12 +19,11 @@
   }
 
   @include media-tablet {
-    padding-top: clamp(var(--space-8), 5vw, var(--space-12));
-    padding-inline: clamp(var(--space-6), 5vw, var(--space-8));
+    padding-top: clamp(var(--space-2-5), 1vw, var(--space-4));
   }
 }
 
-.mainDescription {
+.introContent {
   display: flex;
   flex-direction: column;
   width: 100%;

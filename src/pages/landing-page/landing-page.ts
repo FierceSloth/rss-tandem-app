@@ -14,14 +14,14 @@ export class LandingPage implements IPage {
   private readonly header: Header;
   private readonly footer: Footer;
   private readonly mainContent: Component;
-  private readonly mainDescription: Component;
+  private readonly introContent: Component;
   private readonly codeEditor: Component;
 
   constructor() {
     this.header = new Header({});
     this.footer = new Footer({});
     this.mainContent = new Component({ tag: 'section', className: styles.mainContent });
-    this.mainDescription = new Component({ className: styles.mainDescription });
+    this.introContent = new Component({ className: styles.introContent });
     this.codeEditor = new LandingCodeEditor({});
   }
 
@@ -30,8 +30,8 @@ export class LandingPage implements IPage {
     const textContent: LandingTextContent = new LandingTextContent({});
     const buttons: LandingButtons = new LandingButtons({});
     const techList: LandingTechList = new LandingTechList({});
-    this.mainDescription.append(badge, textContent, buttons, techList);
-    this.mainContent.append(this.mainDescription, this.codeEditor);
+    this.introContent.append(badge, textContent, buttons, techList);
+    this.mainContent.append(this.introContent, this.codeEditor);
 
     const root = new PageLayout({
       className: styles.landing,

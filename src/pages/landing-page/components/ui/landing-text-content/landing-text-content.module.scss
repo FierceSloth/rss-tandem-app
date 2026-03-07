@@ -6,6 +6,10 @@
   gap: clamp(var(--space-4), 2vw, var(--space-6));
   max-width: 640px;
 
+  @include media-desktop-small {
+    max-width: 100%;
+  }
+
   & .title {
     white-space: pre-line;
     font-size: clamp(2.5rem, 5vw, var(--font-size-h1-superlarge));
@@ -23,7 +27,6 @@
     font-size: clamp(1.125rem, 2vw, var(--font-size-superlarge));
     line-height: var(--line-height-superlarge);
     color: var(--text-secondary);
-    max-width: 520px;
     margin-bottom: clamp(var(--space-6), 3vw, var(--space-10));
 
     @include media-tablet {

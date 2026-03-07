@@ -5,12 +5,14 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  row-gap: clamp(var(--space-2), 2vw, var(--space-4));
-  column-gap: clamp(var(--space-1), 2vw, var(--space-6));
+  flex-wrap: wrap;
+  max-width: 640px;
+  gap: clamp(var(--space-2), 2vw, var(--space-6));
+
   @include border-subtle-top;
 
-  @include media-laptop {
-    column-gap: clamp(var(--space-1), 1vw, var(--space-4));
+  @include media-desktop-small {
+    max-width: 100%;
   }
 
   @include media-tablet {
