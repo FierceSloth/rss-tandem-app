@@ -14,7 +14,7 @@ import { createSvgComponent } from '@/common/utils/create-svg.util';
 
 const navConfigs = [
   { path: ROUTES.DASHBOARD_PAGE, icon: dashboardIcon },
-  { path: ROUTES.LEVEL_SELECTION_PAGE, icon: roadmapIcon },
+  { path: ROUTES.ROADMAP_PAGE, icon: roadmapIcon },
   { path: ROUTES.USER_PROFILE_PAGE, icon: profileIcon },
 ];
 
