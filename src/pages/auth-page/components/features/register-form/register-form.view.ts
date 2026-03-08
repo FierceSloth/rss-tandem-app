@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button/button.view';
 interface IProps extends IComponentChild {}
 
 export class RegisterForm extends Component {
-  private form: Component;
+  private form: Component<HTMLFormElement>;
   private login: Input;
   private email: Input;
   private password: Input;
@@ -63,5 +63,25 @@ export class RegisterForm extends Component {
     this.form.append(this.login, this.email, this.password, this.confirmPassword, this.authButton);
 
     this.append(this.form);
+  }
+
+  public getLogin(): Input {
+    return this.login;
+  }
+
+  public getEmail(): Input {
+    return this.email;
+  }
+
+  public getPassword(): Input {
+    return this.password;
+  }
+
+  public getConfirmPassword(): Input {
+    return this.confirmPassword;
+  }
+
+  public getAuthButton(): Button {
+    return this.authButton;
   }
 }
