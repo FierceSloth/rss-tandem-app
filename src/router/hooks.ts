@@ -1,4 +1,4 @@
-import { appEmitter } from '@/common/utils/emitter';
+import { appEmitter } from '@/common/utils/emitter.util';
 import { router } from './router-instance';
 import { AppEvents } from '@/common/enums/enums';
 import type { ILocationState, INavigateOptions, TNavigateFunction } from './types';

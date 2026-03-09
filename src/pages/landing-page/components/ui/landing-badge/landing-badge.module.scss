@@ -1,0 +1,9 @@
+@use '@/styles/abstract/mixins' as *;
+
+.landingBadge {
+  margin-bottom: clamp(var(--space-6), 5vw, var(--space-8));
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+  letter-spacing: var(--letter-spacing-0-05);
+  @include animate-pulse-slow;
+}

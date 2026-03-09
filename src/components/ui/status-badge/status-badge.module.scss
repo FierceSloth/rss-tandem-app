@@ -1,20 +1,18 @@
+@use '@/styles/abstract/mixins' as *;
+
 .statusBadge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.8rem;
-  padding: 0.4rem 1.2rem;
 
   border-radius: var(--radius-sm);
   color: var(--badge-color);
 
   font-family: var(--font-mono, monospace);
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
   white-space: nowrap;
 
-  transition: all var(--transition, 0.3s ease);
+  @include transition-colors(300ms);
 
   &.container {
     border: 1px solid var(--badge-border);
@@ -22,12 +20,22 @@
   }
 }
 
+.uppercase {
+  text-transform: uppercase;
+}
+
 .dot {
-  width: 8px;
-  height: 8px;
+  width: var(--badge-dot-size);
+  height: var(--badge-dot-size);
   border-radius: 50%;
 
   background-color: var(--badge-color);
+}
+
+.color-primary {
+  --badge-color: var(--text-primary);
+  --badge-bg: var(--text-primary);
+  --badge-border: var(--text-primary);
 }
 
 .color-gray {
@@ -42,6 +50,12 @@
   --badge-border: rgba(16, 185, 129, 0.3);
 }
 
+.color-green-dark {
+  --badge-color: var(--text-success-dark);
+  --badge-bg: var(--text-success-dark);
+  --badge-border: var(--text-success-dark);
+}
+
 .color-blue {
   --badge-color: var(--accent-blue);
   --badge-bg: rgba(59, 130, 246, 0.1);
@@ -54,18 +68,14 @@
   --badge-border: rgba(246, 59, 59, 0.3);
 }
 
-.animation .dot {
-  animation: pulse-ring 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+.animation-pulse-ring .dot {
+  @include animate-pulse-ring;
 }
 
-@keyframes pulse-ring {
-  0% {
-    box-shadow: 0 0 0 0 var(--badge-color);
-  }
-  70% {
-    box-shadow: 0 0 0 5px transparent;
-  }
-  100% {
-    box-shadow: 0 0 0 0 transparent;
-  }
+.animation-pulse-slow .dot {
+  @include animate-pulse-slow;
+}
+
+.animation-pulse .dot {
+  @include animate-pulse;
 }

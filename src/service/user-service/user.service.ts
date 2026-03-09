@@ -3,12 +3,8 @@ import type { UserDetails } from '@/service/user-service/types';
 
 export class UserService {
   public static getUserDetails(): UserDetails | null {
-    const currentUserAsString: string | null = localStorage.getItem(STORAGE_KEYS.AUTH);
-    if (!currentUserAsString) {
-      return null;
-    }
-    const currentUser: UserDetails = JSON.parse(currentUserAsString);
-    return currentUser;
+    const currentUser: string | null = localStorage.getItem(STORAGE_KEYS.AUTH);
+    return currentUser ? JSON.parse(currentUser) : null;
   }
 
   public static isAuthenticated(): boolean {

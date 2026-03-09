@@ -1,34 +1,52 @@
 import type { IComponentChild } from '@common/types/types';
-import { mergeClassNames } from '@common/utils/class-names';
+import { mergeClassNames } from '@/common/utils/class-names.util';
 import { Component } from '@components/base/component';
 
 import styles from './status-badge.module.scss';
 
-type BadgeColor = 'green' | 'blue' | 'gray' | 'red';
+type BadgeColor = 'primary' | 'green' | 'green-dark' | 'blue' | 'gray' | 'red';
+
+type AnimationVariant = 'none' | 'pulse' | 'pulse-ring' | 'pulse-slow';
 
 interface IProps extends IComponentChild {
   text: string;
+  capitalize?: boolean;
   color?: BadgeColor;
-  animation?: boolean;
+  animation?: AnimationVariant;
   container?: boolean;
   dot?: boolean;
+  dotSize?: string;
 }
 
 export class StatusBadge extends Component {
   private textElement: Component;
 
   constructor(
-    { className = [], text, color = 'green', dot = true, animation = true, container = false }: IProps,
+    {
+      className = [],
+      text,
+      capitalize = true,
+      color = 'green',
+      dot = true,
+      dotSize = '8',
+      animation = 'pulse-ring',
+      container = false,
+    }: IProps,
     ...children: Component[]
   ) {
     const cssClasses = mergeClassNames(
       styles.statusBadge,
       styles[`color-${color}`],
-      animation && styles.animation,
+      animation === 'none' ? undefined : styles[`animation-${animation}` as const],
       container && styles.container,
+      capitalize && styles.uppercase,
       className
     );
     super({ className: cssClasses }, ...children);
+    this.node.style.setProperty(
+      '--badge-dot-size',
+      dotSize.endsWith('px') || dotSize.endsWith('rem') ? `${dotSize}` : `${dotSize}px`
+    );
 
     if (dot) {
       const dotElement = new Component({ tag: 'span', className: styles.dot });
