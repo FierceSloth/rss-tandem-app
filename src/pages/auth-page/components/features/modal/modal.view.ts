@@ -37,9 +37,9 @@ export class Modal extends Component {
       text: 'system access // developer portal',
     });
 
-    const wrapper = new Component({
+    const tabs = new Component({
       tag: 'div',
-      className: styles.wrapper,
+      className: styles.tabs,
     });
 
     const loginButton = new Button({
@@ -66,8 +66,8 @@ export class Modal extends Component {
       className: styles.formContainer,
     });
 
-    wrapper.append(loginButton, registerButton);
-    modal.append(logo, label, wrapper, this.formContainer);
+    tabs.append(loginButton, registerButton);
+    modal.append(logo, label, tabs, this.formContainer);
     this.append(modal);
 
     this.formContainer.append(registerFormView);
