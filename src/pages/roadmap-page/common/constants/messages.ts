@@ -19,6 +19,6 @@ export const messages = {
     locked: 'LOCKED',
   },
   footer: {
-    endOfSequence: 'End of Roadmap',
+    endOfRoadmap: 'End of Roadmap',
   },
 };

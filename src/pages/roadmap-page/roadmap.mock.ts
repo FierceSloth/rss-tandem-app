@@ -1,63 +1,72 @@
-import type { ILevelData } from './common/types/types';
+import type { IRoadmapResponse } from './common/types/types';
 
-const ZERO = 0;
-// const ONE = 1;
-const TWO = 2;
-const THREE = 3;
+const MOCK_JSON = `{
+  "modules": [
+    {
+      "title": "FOUNDATION",
+      "levels": [
+        {
+          "id": "lvl_101",
+          "widgetType": "QUIZ",
+          "title": "Data Structures Basics",
+          "description": "Test your knowledge on basic array and string operations.",
+          "difficulty": "easy",
+          "status": "completed",
+          "stars": 3
+        },
+        {
+          "id": "lvl_102",
+          "widgetType": "TRUE_FALSE",
+          "title": "Async/Await Truths",
+          "description": "Separate fact from fiction in asynchronous JavaScript.",
+          "difficulty": "medium",
+          "status": "active",
+          "stars": 0
+        },
+        {
+          "id": "lvl_103",
+          "widgetType": "TASK_RESOLVER",
+          "title": "Event Loop Implementation",
+          "description": "Write a custom implementation of a microtask queue.",
+          "difficulty": "hard",
+          "status": "locked",
+          "stars": 0
+        }
+      ]
+    },
+    {
+      "title": "ADVANCED CONCEPTS",
+      "levels": [
+        {
+          "id": "lvl_201",
+          "widgetType": "VIDEO_TASK",
+          "title": "System Design Overview",
+          "description": "Watch the architecture breakdown and answer questions.",
+          "difficulty": "medium",
+          "status": "locked",
+          "stars": 0
+        },
+        {
+          "id": "lvl_202",
+          "widgetType": "ERROR_SCANNER",
+          "title": "Memory Leaks",
+          "description": "Find and fix memory leaks in the provided React component.",
+          "difficulty": "hard",
+          "status": "locked",
+          "stars": 0
+        },
+        {
+          "id": "lvl_203",
+          "widgetType": "BOSS_BATTLE",
+          "title": "The Final Interview",
+          "description": "Survive a comprehensive system design mock interview.",
+          "difficulty": "expert",
+          "status": "locked",
+          "stars": 0
+        }
+      ]
+    }
+  ]
+}`;
 
-export const MOCK_ROADMAP_DATA: ILevelData[] = [
-  {
-    id: '1',
-    title: 'Data Structures I',
-    description: 'Arrays, Strings, and Hash Maps optimization techniques.',
-    difficulty: 'easy',
-    status: 'completed',
-    stars: THREE,
-    position: 'left',
-  },
-  {
-    id: '2',
-    title: 'Async & Promises',
-    description: 'Mastering the event loop, callbacks, and microtask queue.',
-    difficulty: 'medium',
-    status: 'completed',
-    stars: TWO,
-    position: 'right',
-  },
-  {
-    id: '3',
-    title: 'Data Structures I',
-    description: 'Arrays, Strings, and Hash Maps optimization techniques.',
-    difficulty: 'easy',
-    status: 'completed',
-    stars: THREE,
-    position: 'center',
-  },
-  {
-    id: '3',
-    title: 'System Design I',
-    description: 'Load balancers, caching strategies, and database sharding.',
-    difficulty: 'hard',
-    status: 'active',
-    stars: ZERO,
-    position: 'left',
-  },
-  {
-    id: '4',
-    title: 'Distributed Systems',
-    description: 'CAP theorem, consistency patterns, and consensus algorithms.',
-    difficulty: 'expert',
-    status: 'locked',
-    stars: ZERO,
-    position: 'right',
-  },
-  {
-    id: '5',
-    title: 'Security & Auth',
-    description: 'OAuth, JWT, hashing strategies, and common vulnerabilities.',
-    difficulty: 'medium',
-    status: 'locked',
-    stars: ZERO,
-    position: 'center',
-  },
-];
+export const MOCK_ROADMAP_DATA: IRoadmapResponse = JSON.parse(MOCK_JSON);

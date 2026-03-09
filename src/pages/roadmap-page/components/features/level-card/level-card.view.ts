@@ -63,7 +63,7 @@ export class LevelCard extends Component {
     const idLength = 2;
     const idBadge = new Component({
       className: [styles.idBadge, styles[this.data.status]],
-      text: `LVL ${String(this.data.id).padStart(idLength, '0')}`,
+      text: `LVL ${String(this.data.displayId).padStart(idLength, '0')}`,
     });
     const statusIcon = new Component({
       className: styles.statusIcon,

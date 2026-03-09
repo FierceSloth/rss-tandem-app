@@ -1,30 +1,38 @@
-import styles from './roadmap-page.module.scss';
 import type { IPage } from '@/common/types/types';
 import { Component } from '@/components/base/component';
 import { PageLayout } from '@/components/layout/page-layout/page-layout.view';
 import { RoadmapHeader } from './components/layout/roadmap-header/roadmap-header.view';
-import { LevelCard } from './components/features/level-card/level-card.view';
-import { MOCK_ROADMAP_DATA } from './roadmap.mock';
+import { RoadmapPageController } from './roadmap-page.controller';
+import { messages } from './common/constants/messages';
+
+import styles from './roadmap-page.module.scss';
 
 export class RoadmapPage implements IPage {
+  public readonly timelineContainer: Component;
+  public readonly circuitLineProgress: Component;
+
+  private controller: RoadmapPageController;
+
+  constructor() {
+    this.timelineContainer = new Component({ className: styles.timelineContainer });
+    this.circuitLineProgress = new Component({ className: styles.circuitlineProgress });
+
+    this.controller = new RoadmapPageController(this);
+  }
+
   public render(): Component {
     const header = new RoadmapHeader({});
 
-    const timelineContainer = new Component({ className: styles.timelineContainer });
+    const circuitLineBg = new Component({ className: styles.circuitlineBg });
+    const timelineEnd = new Component({ className: styles.timelineEnd, text: messages.footer.endOfRoadmap });
 
-    const circuitLineBg = new Component({ className: styles.circuitLineBg });
-    const circuitLineProgress = new Component({ className: styles.circuitLineProgress });
+    this.timelineContainer.append(circuitLineBg, this.circuitLineProgress, timelineEnd);
 
-    timelineContainer.append(circuitLineBg, circuitLineProgress);
-
-    MOCK_ROADMAP_DATA.forEach((levelData) => {
-      const card = new LevelCard({ data: levelData });
-      timelineContainer.append(card);
-    });
-
-    const root = new PageLayout({ className: styles.roadmap, withSidebar: true, header }, timelineContainer);
+    const root = new PageLayout({ className: styles.roadmap, withSidebar: true, header }, this.timelineContainer);
     return root;
   }
 
-  public destroy(): void {}
+  public destroy(): void {
+    this.controller?.destroy();
+  }
 }
