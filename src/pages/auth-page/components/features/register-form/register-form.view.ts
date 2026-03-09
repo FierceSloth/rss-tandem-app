@@ -1,4 +1,4 @@
-import type { IComponentChild } from '@common/types/types';
+import type { IComponentChild, IValidateResult } from '@common/types/types';
 import { mergeClassNames } from '@common/utils/class-names';
 import { Component } from '@components/base/component';
 
@@ -6,7 +6,9 @@ import styles from './register-form.module.scss';
 import { Input } from '@/components/ui/input/input.view';
 import { Button } from '@/components/ui/button/button.view';
 
-interface IProps extends IComponentChild {}
+interface IProps extends IComponentChild {
+  onSubmit: () => void;
+}
 
 export class RegisterForm extends Component {
   private form: Component<HTMLFormElement>;
@@ -14,9 +16,9 @@ export class RegisterForm extends Component {
   private email: Input;
   private password: Input;
   private confirmPassword: Input;
-  private authButton: Button;
+  private registerButton: Button;
 
-  constructor({ className = [] }: IProps, ...children: Component[]) {
+  constructor({ className = [], onSubmit }: IProps, ...children: Component[]) {
     const cssClasses = mergeClassNames(styles.registerForm, className);
 
     super({ className: cssClasses }, ...children);
@@ -53,35 +55,53 @@ export class RegisterForm extends Component {
       placeholder: 'Enter your password',
     });
 
-    this.authButton = new Button({
+    this.registerButton = new Button({
       className: styles.button,
       text: 'Register',
       type: 'submit',
       variant: 'primary',
+      onClick: (event): void => {
+        event.preventDefault();
+        onSubmit();
+      },
     });
 
-    this.form.append(this.login, this.email, this.password, this.confirmPassword, this.authButton);
+    this.form.append(this.login, this.email, this.password, this.confirmPassword, this.registerButton);
 
     this.append(this.form);
   }
 
-  public getLogin(): Input {
-    return this.login;
+  public getFormData(): {
+    login: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+  } {
+    return {
+      login: this.login.getValue(),
+      email: this.email.getValue(),
+      password: this.password.getValue(),
+      confirmPassword: this.confirmPassword.getValue(),
+    };
   }
 
-  public getEmail(): Input {
-    return this.email;
+  public validateLogin(validator: (value: string) => IValidateResult): boolean {
+    return this.login.validate(validator);
   }
 
-  public getPassword(): Input {
-    return this.password;
+  public validateEmail(validator: (value: string) => IValidateResult): boolean {
+    return this.email.validate(validator);
   }
 
-  public getConfirmPassword(): Input {
-    return this.confirmPassword;
+  public validatePassword(validator: (value: string) => IValidateResult): boolean {
+    return this.password.validate(validator);
   }
 
-  public getAuthButton(): Button {
-    return this.authButton;
+  public validateConfirmPassword(validator: (value: string) => IValidateResult): boolean {
+    return this.confirmPassword.validate(validator);
+  }
+
+  public clearLoginError(): void {
+    this.login.clearError();
   }
 }
