@@ -10,14 +10,19 @@ export class RoadmapPage implements IPage {
   public render(): Component {
     const header = new RoadmapHeader({});
 
-    const cardsContainer = new Component({ className: styles.timelineContainer });
+    const timelineContainer = new Component({ className: styles.timelineContainer });
+
+    const circuitLineBg = new Component({ className: styles.circuitLineBg });
+    const circuitLineProgress = new Component({ className: styles.circuitLineProgress });
+
+    timelineContainer.append(circuitLineBg, circuitLineProgress);
 
     MOCK_ROADMAP_DATA.forEach((levelData) => {
       const card = new LevelCard({ data: levelData });
-      cardsContainer.append(card);
+      timelineContainer.append(card);
     });
 
-    const root = new PageLayout({ className: styles.roadmap, withSidebar: true, header }, cardsContainer);
+    const root = new PageLayout({ className: styles.roadmap, withSidebar: true, header }, timelineContainer);
     return root;
   }
 

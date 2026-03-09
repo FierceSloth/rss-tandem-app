@@ -10,6 +10,7 @@ import playIcon from '@assets/svg/roadmap-icons/play.svg?raw';
 import lockIcon from '@assets/svg/roadmap-icons/lock.svg?raw';
 import starIcon from '@assets/svg/roadmap-icons/star.svg?raw';
 import styles from './level-card.module.scss';
+import { messages } from '@/pages/roadmap-page/common/constants/messages';
 
 interface IProps extends IComponentChild {
   data: ILevelData;
@@ -52,6 +53,9 @@ export class LevelCard extends Component {
       cardBody,
       cardFooter
     );
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+
     return card;
   }
 
@@ -102,15 +106,15 @@ export class LevelCard extends Component {
       actionElement = this.buildStars();
     } else if (this.data.status === 'active') {
       actionElement = new Component({
-        tag: 'button',
+        tag: 'span',
         className: styles.resumeBtn,
-        text: 'RESUME',
+        text: messages.actions.resume,
       });
     } else {
       actionElement = new Component({
         tag: 'span',
         className: styles.lockedText,
-        text: 'LOCKED',
+        text: messages.actions.locked,
       });
     }
     return new Component({ tag: 'footer', className: styles.cardFooter }, difficultyBadge, actionElement);

@@ -26,12 +26,21 @@ export const MOCK_ROADMAP_DATA: ILevelData[] = [
   },
   {
     id: '3',
+    title: 'Data Structures I',
+    description: 'Arrays, Strings, and Hash Maps optimization techniques.',
+    difficulty: 'easy',
+    status: 'completed',
+    stars: THREE,
+    position: 'center',
+  },
+  {
+    id: '3',
     title: 'System Design I',
     description: 'Load balancers, caching strategies, and database sharding.',
     difficulty: 'hard',
     status: 'active',
     stars: ZERO,
-    position: 'center',
+    position: 'left',
   },
   {
     id: '4',
@@ -40,7 +49,7 @@ export const MOCK_ROADMAP_DATA: ILevelData[] = [
     difficulty: 'expert',
     status: 'locked',
     stars: ZERO,
-    position: 'left',
+    position: 'right',
   },
   {
     id: '5',
@@ -49,6 +58,6 @@ export const MOCK_ROADMAP_DATA: ILevelData[] = [
     difficulty: 'medium',
     status: 'locked',
     stars: ZERO,
-    position: 'right',
+    position: 'center',
   },
 ];
