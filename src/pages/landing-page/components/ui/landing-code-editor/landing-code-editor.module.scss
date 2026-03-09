@@ -15,6 +15,10 @@
   }
 
   @include media-desktop-small {
+    max-width: 100%;
+  }
+
+  @include media-tablet {
     display: none;
   }
 
