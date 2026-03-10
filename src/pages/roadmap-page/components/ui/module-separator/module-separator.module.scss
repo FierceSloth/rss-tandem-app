@@ -12,7 +12,7 @@
 
   @include media-mobile {
     gap: 1.2rem;
-    margin: 2.4rem 0;
+    margin: 3rem 0;
   }
 }
 
@@ -27,12 +27,12 @@
   font-size: var(--font-size-small);
   color: var(--text-tertiary);
   background-color: var(--bg-body);
-  padding: 4px 12px;
+  padding: 5px 13px;
   border: 1px solid var(--border-subtle);
   border-radius: 20px;
   white-space: nowrap;
 
   @include media-mobile {
-    font-size: var(--font-size-default);
+    font-size: 1.1rem;
   }
 }

@@ -30,12 +30,12 @@
   width: 2px;
   background: linear-gradient(
     180deg,
-    color-mix(in srgb, var(--accent-green) 48%, transparent) 90%,
+    color-mix(in srgb, var(--accent-green) 80%, transparent) 95%,
     var(--accent-blue) 100%
   );
   transform: translateX(-50%);
   z-index: 0;
-  box-shadow: 0 0 10px color-mix(in srgb, color-mix(in srgb, var(--accent-green) 60%, transparent) 30%, transparent);
+  box-shadow: 0 0 10px color-mix(in srgb, color-mix(in srgb, var(--accent-green) 60%, transparent) 80%, transparent);
 }
 
 .timelineEnd {
