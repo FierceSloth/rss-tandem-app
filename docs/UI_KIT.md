@@ -6,6 +6,7 @@
 - [Input](#input)
 - [Card](#card)
 - [StatusBadge](#statusbadge)
+- [Spinner](#spinner)
 - [UI Components in Notion](#ui-components-in-notion)
 
 ---
@@ -250,6 +251,44 @@ const serviceStatus = new StatusBadge({
 });
 
 this.append(onlineStatus, offlineStatus, versionTag, serviceStatus);
+```
+
+## Spinner
+
+Анимированный индикатор загрузки (Loader) со сложной многослойной структурой (внешнее кольцо, внутреннее прерывистое кольцо и пульсирующее ядро). Поддерживает различные размеры и цветовые темы на основе CSS-переменных.
+
+![alt text](./assets/spinner-preview.gif)
+
+### Свойства (Props)
+
+| Свойство  | Тип                                      | Default  | Описание                              |
+| --------- | ---------------------------------------- | -------- | ------------------------------------- |
+| `size`    | `'sm' \| 'md' \| 'lg'`                   | `'md'`   | Размер спиннера                       |
+| `variant` | `'blue' \| 'green' \| 'red' \| 'orange'` | `'blue'` | Цветовая тема (меняет акцентный цвет) |
+
+### Размеры
+
+| Размер | Описание                                         |
+| ------ | ------------------------------------------------ |
+| `sm`   | 16x16px, идеально подходит для кнопок и инпутов  |
+| `md`   | 32x32px, стандартный размер для локальных блоков |
+| `lg`   | 64x64px, для полноэкранных загрузок              |
+
+### Пример использования
+
+```typescript
+import { Spinner } from '@/components/ui/spinner/spinner.view';
+
+// 1. Стандартный синий спиннер среднего размера
+const defaultSpinner = new Spinner();
+
+// 2. Маленький зеленый спиннер (например, внутрь кнопки)
+const btnSpinner = new Spinner({ size: 'sm', variant: 'green' });
+
+// 3. Большой красный спиннер
+const errorSpinner = new Spinner({ size: 'lg', variant: 'red' });
+
+this.append(defaultSpinner, btnSpinner, errorSpinner);
 ```
 
 ## UI Components in Notion
