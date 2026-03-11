@@ -1,0 +1,271 @@
+@use '@/styles/abstract/mixins' as *;
+
+.toastContainer {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  bottom: 32px;
+  right: 32px;
+  align-items: flex-end;
+
+  @media (max-width: 768px) {
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    left: 16px;
+    right: 16px;
+    align-items: stretch;
+  }
+}
+
+.toast {
+  --toast-accent: var(--accent-blue);
+  --toast-accent-glow: rgba(59, 130, 246, 0.3);
+  --toast-bg: rgba(10, 10, 12, 0.85);
+  --toast-label: 'SYS.LOG';
+  --icon-url: none;
+
+  position: relative;
+  overflow: hidden;
+  pointer-events: auto;
+  width: 380px;
+  padding: 52px 24px 24px 52px;
+
+  background-color: var(--toast-bg);
+  background-image:
+    var(--icon-url),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.015) 2px,
+      rgba(255, 255, 255, 0.015) 4px
+    ),
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.03) 0%, transparent 60%);
+
+  background-position:
+    18px 52px,
+    0 0,
+    0 0;
+  background-size:
+    20px,
+    100% 100%,
+    100% 100%;
+  background-repeat: no-repeat, repeat, no-repeat;
+
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--toast-accent);
+  border-radius: var(--radius-sm);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-primary);
+  line-height: 1.6;
+  cursor: pointer;
+
+  animation: cyber-boot-desktop 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 50px 16px 16px 50px;
+    background-position:
+      14px 44px,
+      0 0,
+      0 0;
+    animation: cyber-boot-mobile 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  &::before {
+    content: var(--toast-label);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 32px;
+    background-color: rgba(5, 5, 5, 0.6);
+    border-bottom: 1px solid var(--border-subtle);
+
+    background-image:
+      radial-gradient(circle, #e93535 50%, transparent 55%), radial-gradient(circle, #f59e0b 50%, transparent 55%),
+      radial-gradient(circle, #10b981 50%, transparent 55%);
+    background-size: 8px 8px;
+    background-position:
+      calc(100% - 40px) center,
+      calc(100% - 26px) center,
+      calc(100% - 12px) center;
+    background-repeat: no-repeat;
+
+    color: var(--text-tertiary);
+    font-size: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    letter-spacing: 1.5px;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, var(--toast-accent) 80%, #fff 100%);
+    box-shadow: 0 0 10px var(--toast-accent);
+    animation: laser-shrink var(--toast-duration) linear forwards;
+  }
+
+  &:hover {
+    transform: translateY(-2px) scale(1.01);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  &:hover::after {
+    animation-play-state: paused;
+  }
+
+  &.info {
+    --toast-accent: var(--accent-blue);
+    --toast-accent-glow: rgba(59, 130, 246, 0.2);
+    --toast-label: 'EXECUTION // JS_CORE';
+    --icon-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233B82F6' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'/%3E%3C/svg%3E");
+  }
+
+  &.success {
+    --toast-accent: var(--accent-green);
+    --toast-accent-glow: rgba(16, 185, 129, 0.2);
+    --toast-label: 'VERIFIED // TEST_PASS';
+    --icon-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2310B981' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+    background-color: rgba(16, 185, 129, 0.03);
+  }
+
+  &.error {
+    --toast-accent: var(--accent-red);
+    --toast-accent-glow: rgba(233, 53, 53, 0.05);
+    --toast-label: 'CRITICAL // EXCEPTION';
+    --icon-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E93535' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E");
+    background-color: rgba(233, 53, 53, 0.04);
+
+    animation:
+      cyber-boot-desktop 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+      error-pulse 2s infinite alternate;
+
+    @media (max-width: 768px) {
+      animation:
+        cyber-boot-mobile 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+        error-pulse 2s infinite alternate;
+    }
+  }
+
+  &.hiding {
+    animation: terminal-shutdown-desktop 0.3s cubic-bezier(0.5, 0, 0.2, 1) forwards;
+
+    @media (max-width: 768px) {
+      animation: terminal-shutdown-mobile 0.3s cubic-bezier(0.5, 0, 0.2, 1) forwards;
+    }
+  }
+}
+
+@keyframes cyber-boot-desktop {
+  0% {
+    opacity: 0;
+    transform: translateX(30px) scaleY(0.9);
+  }
+  40% {
+    opacity: 0.8;
+    transform: translateX(-5px) scaleY(1.02);
+  }
+  60% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scaleY(1);
+  }
+}
+
+@keyframes cyber-boot-mobile {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scaleY(0.9);
+  }
+  40% {
+    opacity: 0.8;
+    transform: translateY(-5px) scaleY(1.02);
+  }
+  60% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+}
+
+@keyframes terminal-shutdown-desktop {
+  0% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scaleY(0.05);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(0);
+    height: 0;
+    margin-bottom: 0;
+    padding: 0;
+    border: none;
+  }
+}
+
+@keyframes terminal-shutdown-mobile {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(10px) scaleY(0.05);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(20px) scaleY(0);
+    height: 0;
+    margin-bottom: 0;
+    padding: 0;
+    border: none;
+  }
+}
+
+@keyframes laser-shrink {
+  0% {
+    width: 100%;
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    width: 0%;
+    opacity: 0;
+  }
+}
+
+@keyframes error-pulse {
+  0% {
+    border-left-color: var(--accent-red);
+  }
+  100% {
+    border-left-color: #ff5555;
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.6),
+      0 0 25px rgba(233, 53, 53, 0.4);
+  }
+}
