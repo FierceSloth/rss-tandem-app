@@ -11,7 +11,7 @@
   right: 32px;
   align-items: flex-end;
 
-  @media (max-width: 768px) {
+  @include media-tablet {
     bottom: calc(16px + env(safe-area-inset-bottom));
     left: 16px;
     right: 16px;
@@ -69,7 +69,7 @@
 
   animation: cyber-boot-desktop 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 
-  @media (max-width: 768px) {
+  @include media-tablet {
     width: 100%;
     padding: 50px 16px 16px 50px;
     background-position:
@@ -116,7 +116,7 @@
     height: 2px;
     background: linear-gradient(90deg, transparent 0%, var(--toast-accent) 80%, #fff 100%);
     box-shadow: 0 0 10px var(--toast-accent);
-    animation: laser-shrink var(--toast-duration) linear forwards;
+    animation: laser-shrink var(--toast-duration, 3s) linear forwards;
   }
 
   &:hover {
@@ -154,7 +154,7 @@
       cyber-boot-desktop 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards,
       error-pulse 2s infinite alternate;
 
-    @media (max-width: 768px) {
+    @include media-tablet {
       animation:
         cyber-boot-mobile 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards,
         error-pulse 2s infinite alternate;
@@ -164,7 +164,7 @@
   &.hiding {
     animation: terminal-shutdown-desktop 0.3s cubic-bezier(0.5, 0, 0.2, 1) forwards;
 
-    @media (max-width: 768px) {
+    @include media-tablet {
       animation: terminal-shutdown-mobile 0.3s cubic-bezier(0.5, 0, 0.2, 1) forwards;
     }
   }
