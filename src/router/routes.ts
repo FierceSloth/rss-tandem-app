@@ -8,7 +8,7 @@ import { LevelSelectionPage } from '@/pages/level-selection-page/level-selection
 import { NotFoundPage } from '@/pages/not-found-page/not-found-page';
 import { OutputPredictorPage } from '@/pages/output-predictor-page/output-predictor-page';
 import { QuizPage } from '@/pages/quiz-page/quiz-page';
-import { TaskResolverPage } from '@/pages/task-resolver-page/task-resolver-page';
+import { CodeArenaPage } from '@/pages/code-arena-page/code-arena-page';
 import { TrueFalsePage } from '@/pages/true-false-page/true-false-page';
 import { UserProfilePage } from '@/pages/user-profile-page/user-profile-page';
 import { VideoTaskResolverPage } from '@/pages/video-task-resolver-page/video-task-resolver-page';
@@ -27,7 +27,7 @@ export const routes: IRoute[] = [
   { path: ROUTES.LEVEL_SELECTION_PAGE, page: () => new LevelSelectionPage(), meta: { secured: true } },
   { path: ROUTES.QUIZ_PAGE, page: () => new QuizPage(), meta: { secured: true } },
   { path: ROUTES.TRUE_FALSE_PAGE, page: () => new TrueFalsePage(), meta: { secured: true } },
-  { path: ROUTES.TASK_RESOLVER_PAGE, page: () => new TaskResolverPage(), meta: { secured: true } },
+  { path: ROUTES.CODE_ARENA_PAGE, page: () => new CodeArenaPage(), meta: { secured: true } },
   { path: ROUTES.VIDEO_TASK_PAGE, page: () => new VideoTaskResolverPage(), meta: { secured: true } },
   { path: ROUTES.OUTPUT_PREDICATOR_PAGE, page: () => new OutputPredictorPage(), meta: { secured: true } },
   { path: ROUTES.BOSS_BATTLE_PAGE, page: () => new BossBattlePage(), meta: { secured: true } },
