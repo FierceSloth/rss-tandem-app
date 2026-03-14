@@ -30,7 +30,8 @@
   width: 2px;
   background: linear-gradient(
     180deg,
-    color-mix(in srgb, var(--accent-green) 80%, transparent) 95%,
+    color-mix(in srgb, var(--accent-green) 80%, transparent) 0%,
+    color-mix(in srgb, var(--accent-green) 80%, transparent) calc(100% - 150px),
     var(--accent-blue) 100%
   );
   transform: translateX(-50%);

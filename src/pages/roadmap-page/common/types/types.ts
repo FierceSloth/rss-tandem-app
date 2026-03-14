@@ -10,26 +10,27 @@ export type WidgetType =
   | 'ERROR_SCANNER';
 
 /* ========================================================================== */
-/*                                   Server                                   */
+/*                                  Supabase                                  */
 /* ========================================================================== */
 
-export interface IServerLevelData {
-  id: string;
-  title: string;
-  description: string;
-  widgetType: WidgetType;
-  difficulty: LevelDifficulty;
+export interface ISupabaseLevelProgress {
   status: LevelStatus;
   stars: number;
 }
 
-export interface IServerModuleData {
+export interface ISupabaseLevel {
+  id: string;
   title: string;
-  levels: IServerLevelData[];
+  description: string;
+  widget_type: WidgetType;
+  difficulty: LevelDifficulty;
+  user_level_progress: ISupabaseLevelProgress[];
 }
 
-export interface IRoadmapResponse {
-  modules: IServerModuleData[];
+export interface ISupabaseModule {
+  id: number;
+  title: string;
+  levels: ISupabaseLevel[];
 }
 
 /* ========================================================================== */
@@ -38,7 +39,14 @@ export interface IRoadmapResponse {
 
 export type NodePosition = 'left' | 'right' | 'center';
 
-export interface ILevelData extends IServerLevelData {
+export interface ILevelData {
+  id: string;
+  title: string;
+  description: string;
+  widgetType: WidgetType;
+  difficulty: LevelDifficulty;
+  status: LevelStatus;
+  stars: number;
   displayId: number;
   position: NodePosition;
 }
