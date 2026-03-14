@@ -19,13 +19,16 @@
 
   @include media-desktop-small {
     padding-bottom: 20px;
-    align-items: center;
+    align-items: start;
+    width: 100%;
+    flex-direction: column-reverse;
   }
 }
 
 .introContent {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 100%;
   flex: 1;
 }
