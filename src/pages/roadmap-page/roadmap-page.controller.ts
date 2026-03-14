@@ -4,6 +4,8 @@ import type { RoadmapPage } from './roadmap-page';
 import { LevelCard } from './components/features/level-card/level-card.view';
 import { ModuleSeparator } from './components/ui/module-separator/module-separator.view';
 import { supabase } from '@/api/supabase/supabase-client';
+import { Toast } from '@/components/ui/toast/toast.view';
+import { messages } from '@/common/constants/messages';
 
 const POSITIONS = ['left', 'right', 'center'] as const;
 
@@ -28,6 +30,8 @@ export class RoadmapPageController {
   }
 
   private async loadRoadmap(): Promise<void> {
+    this.view.showLoading();
+
     try {
       const { data, error } = await supabase.from('modules').select(`
         id,
@@ -49,12 +53,22 @@ export class RoadmapPageController {
         throw error;
       }
 
+      this.view.hideLoading();
+
       if (data) {
+        this.view.showTimelineSkeleton();
         this.buildTimeline(data);
         this.updateProgressHeight();
+
+        this.view.setReady();
       }
     } catch (error) {
-      console.error(error);
+      console.error('Failed to load roadmap:', error);
+
+      new Toast({
+        message: messages.errors.failedLoadRoadmap,
+        type: 'error',
+      });
     }
   }
 
