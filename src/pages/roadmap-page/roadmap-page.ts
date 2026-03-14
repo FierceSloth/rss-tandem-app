@@ -12,18 +12,18 @@ export class RoadmapPage implements IPage {
   public readonly timelineContainer: Component;
   public readonly circuitLineProgress: Component;
 
-  private controller: RoadmapPageController;
+  private controller: RoadmapPageController | null = null;
   private spinnerWrapper: Component | null = null;
 
   constructor() {
     this.timelineContainer = new Component({ className: styles.timelineContainer });
     this.circuitLineProgress = new Component({ className: styles.circuitlineProgress });
-
-    this.controller = new RoadmapPageController(this);
   }
 
   public render(): Component {
     const header = new RoadmapHeader({});
+
+    this.controller = new RoadmapPageController(this);
 
     const root = new PageLayout({ className: styles.roadmap, withSidebar: true, header }, this.timelineContainer);
     return root;

@@ -6,11 +6,14 @@ import { ModuleSeparator } from './components/ui/module-separator/module-separat
 import { supabase } from '@/api/supabase/supabase-client';
 import { Toast } from '@/components/ui/toast/toast.view';
 import { messages } from '@/common/constants/messages';
+import { useNavigate } from '@/router/hooks';
+import { WIDGET_ROUTE_MAP } from './common/constants/widget-routes';
 
 const POSITIONS = ['left', 'right', 'center'] as const;
 
 export class RoadmapPageController {
   private view: RoadmapPage;
+  private navigate = useNavigate();
 
   private activeCard: Component | null = null;
   private resizeObserver: ResizeObserver | null = null;
@@ -105,6 +108,8 @@ export class RoadmapPageController {
         };
 
         const card = new LevelCard({ data: cardData });
+        card.addListener('click', () => this.handleNavigation(cardData));
+
         this.view.timelineContainer.append(card);
 
         if (cardData.status === 'active') {
@@ -144,4 +149,11 @@ export class RoadmapPageController {
       }
     });
   }
+
+  private handleNavigation = (data: ILevelData): void => {
+    if (data.status === 'locked') return;
+
+    const pageRoute = WIDGET_ROUTE_MAP[data.widgetType];
+    this.navigate(pageRoute, { id: data.id });
+  };
 }
