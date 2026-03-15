@@ -1,13 +1,13 @@
-import type { ILevelData, ISupabaseModule } from './common/types/types';
+import type { ILevelData, IModuleEntity } from './common/types/types';
 import type { Component } from '@/components/base/component';
 import type { RoadmapPage } from './roadmap-page';
 import { LevelCard } from './components/features/level-card/level-card.view';
 import { ModuleSeparator } from './components/ui/module-separator/module-separator.view';
-import { supabase } from '@/api/supabase/supabase-client';
 import { Toast } from '@/components/ui/toast/toast.view';
 import { messages } from '@/common/constants/messages';
 import { useNavigate } from '@/router/hooks';
 import { WIDGET_ROUTE_MAP } from './common/constants/widget-routes';
+import { roadmapRepository } from './repositories/roadmap.repository';
 
 const POSITIONS = ['left', 'right', 'center'] as const;
 
@@ -36,31 +36,13 @@ export class RoadmapPageController {
     this.view.showLoading();
 
     try {
-      const { data, error } = await supabase.from('modules').select(`
-        id,
-        title,
-        levels (
-          id,
-          title,
-          description,
-          widget_type,
-          difficulty,
-          user_level_progress (
-            status,
-            stars
-          )
-        )
-      `);
-
-      if (error) {
-        throw error;
-      }
+      const entities = await roadmapRepository.fetchModules();
 
       this.view.hideLoading();
 
-      if (data) {
+      if (entities && entities.length > 0) {
         this.view.showTimelineSkeleton();
-        this.buildTimeline(data);
+        this.buildTimeline(entities);
         this.updateProgressHeight();
 
         this.view.setReady();
@@ -75,7 +57,7 @@ export class RoadmapPageController {
     }
   }
 
-  private buildTimeline(modules: ISupabaseModule[]): void {
+  private buildTimeline(modules: IModuleEntity[]): void {
     let levelCounter = 1;
     let moduleCounter = 1;
 
@@ -86,7 +68,7 @@ export class RoadmapPageController {
       moduleData.levels.forEach((level) => {
         const currentPosition = POSITIONS[(levelCounter - 1) % POSITIONS.length];
 
-        const progress = level.user_level_progress?.[0];
+        const progress = level.userLevelProgress?.[0];
         let status = progress?.status ?? 'locked';
         const stars = progress?.stars ?? 0;
 
@@ -98,7 +80,7 @@ export class RoadmapPageController {
         const cardData: ILevelData = {
           id: level.id,
           displayId: levelCounter,
-          widgetType: level.widget_type,
+          widgetType: level.widgetType,
           title: level.title,
           description: level.description,
           difficulty: level.difficulty,
@@ -108,7 +90,7 @@ export class RoadmapPageController {
         };
 
         const card = new LevelCard({ data: cardData });
-        card.addListener('click', () => this.handleNavigation(cardData));
+        card.cardEl.addListener('click', () => this.handleNavigation(cardData));
 
         this.view.timelineContainer.append(card);
 

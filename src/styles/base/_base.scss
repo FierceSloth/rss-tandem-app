@@ -83,6 +83,13 @@ body {
   align-items: center;
 }
 
+.globalSpinnerWrapper {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 /* Headings (Desktop) */
 h1 {
   font-size: var(--font-h1-size);

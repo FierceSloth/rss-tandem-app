@@ -4,13 +4,15 @@ import { mergeClassNames } from '@common/utils/class-names.util';
 import { Component } from '@components/base/component';
 import { createSvgComponent } from '@/common/utils/create-svg.util';
 import { Card } from '@/components/layout/card/card.view';
+import { messages } from '@/pages/roadmap-page/common/constants/messages';
+import { ID_LENGTH } from '@/pages/roadmap-page/common/constants/constants';
+import { addHoverAnimation } from '@/common/utils/hover-animation.util';
 
 import checkIcon from '@assets/svg/roadmap-icons/check-mark.svg?raw';
 import playIcon from '@assets/svg/roadmap-icons/play.svg?raw';
 import lockIcon from '@assets/svg/roadmap-icons/lock.svg?raw';
 import starIcon from '@assets/svg/roadmap-icons/star.svg?raw';
 import styles from './level-card.module.scss';
-import { messages } from '@/pages/roadmap-page/common/constants/messages';
 
 interface IProps extends IComponentChild {
   data: ILevelData;
@@ -22,10 +24,8 @@ const rawIcon = {
   locked: lockIcon,
 };
 
-const MAX_ROTATION = 10;
-const HALF = 2;
-
 export class LevelCard extends Component {
+  public readonly cardEl: Component;
   private data: ILevelData;
 
   constructor({ className = [], data }: IProps, ...children: Component[]) {
@@ -40,9 +40,9 @@ export class LevelCard extends Component {
     const connectorClasses = mergeClassNames(styles.connector, styles[`${data.status}`]);
     const connector = new Component({ className: connectorClasses });
 
-    const card = this.buildCardContent();
+    this.cardEl = this.buildCardContent();
 
-    this.append(horizontalLine, connector, card);
+    this.append(horizontalLine, connector, this.cardEl);
   }
 
   private buildCardContent(): Component {
@@ -56,21 +56,20 @@ export class LevelCard extends Component {
       cardBody,
       cardFooter
     );
-    this.setAttribute('role', 'button');
-    this.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
 
     if (this.data.status !== 'locked') {
-      this.addHoverAnimation(card);
+      addHoverAnimation(card);
     }
 
     return card;
   }
 
   private buildCardHeader(): Component {
-    const idLength = 2;
     const idBadge = new Component({
       className: [styles.idBadge, styles[this.data.status]],
-      text: `LVL ${String(this.data.displayId).padStart(idLength, '0')}`,
+      text: `LVL ${String(this.data.displayId).padStart(ID_LENGTH, '0')}`,
     });
     const statusIcon = new Component({
       className: styles.statusIcon,
@@ -142,47 +141,5 @@ export class LevelCard extends Component {
     }
 
     return starRating;
-  }
-
-  private addHoverAnimation(card: Component): void {
-    const node = card.node;
-    let animationFrameId: number | null = null;
-
-    node.addEventListener('mousemove', (event) => {
-      if (animationFrameId !== null) {
-        cancelAnimationFrame(animationFrameId);
-      }
-
-      animationFrameId = requestAnimationFrame(() => {
-        const rect = node.getBoundingClientRect();
-
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
-
-        const centerX = rect.width / HALF;
-        const centerY = rect.height / HALF;
-
-        const percentX = (x - centerX) / centerX;
-        const percentY = (y - centerY) / centerY;
-
-        const rotateX = -(percentY * MAX_ROTATION);
-        const rotateY = percentX * MAX_ROTATION;
-
-        node.style.transition = 'transform 0.1s ease-out';
-        node.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-
-        animationFrameId = null;
-      });
-    });
-
-    node.addEventListener('mouseleave', () => {
-      if (animationFrameId !== null) {
-        cancelAnimationFrame(animationFrameId);
-        animationFrameId = null;
-      }
-
-      node.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-      node.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1)';
-    });
   }
 }

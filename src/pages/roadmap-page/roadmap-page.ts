@@ -3,21 +3,23 @@ import { Component } from '@/components/base/component';
 import { PageLayout } from '@/components/layout/page-layout/page-layout.view';
 import { RoadmapHeader } from './components/layout/roadmap-header/roadmap-header.view';
 import { RoadmapPageController } from './roadmap-page.controller';
+import { LoaderManager } from '@/common/utils/loader-manager.util';
 import { messages } from './common/constants/messages';
 
 import styles from './roadmap-page.module.scss';
-import { Spinner } from '@/components/ui/spinner/spinner.view';
 
 export class RoadmapPage implements IPage {
   public readonly timelineContainer: Component;
   public readonly circuitLineProgress: Component;
 
   private controller: RoadmapPageController | null = null;
-  private spinnerWrapper: Component | null = null;
+  private loader: LoaderManager;
 
   constructor() {
     this.timelineContainer = new Component({ className: styles.timelineContainer });
     this.circuitLineProgress = new Component({ className: styles.circuitlineProgress });
+
+    this.loader = new LoaderManager();
   }
 
   public render(): Component {
@@ -30,16 +32,11 @@ export class RoadmapPage implements IPage {
   }
 
   public showLoading(): void {
-    const spinner = new Spinner({ size: 'lg', variant: 'green' });
-    this.spinnerWrapper = new Component({ className: styles.spinnerWrapper }, spinner);
-    this.timelineContainer.append(this.spinnerWrapper);
+    this.loader.show('lg', 'green');
   }
 
   public hideLoading(): void {
-    if (this.spinnerWrapper) {
-      this.spinnerWrapper.destroy();
-      this.spinnerWrapper = null;
-    }
+    this.loader.hide();
   }
 
   public showTimelineSkeleton(): void {

@@ -131,6 +131,7 @@
   overflow: hidden;
   transform-style: preserve-3d;
   will-change: transform;
+  outline: none;
 
   transition:
     box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),

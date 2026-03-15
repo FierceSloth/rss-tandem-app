@@ -60,14 +60,6 @@
   text-transform: uppercase;
 }
 
-.spinnerWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  min-height: 50vh;
-}
-
 .timelineContainer {
   &.ready > * {
     animation: contentFadeIn 0.8s ease-out forwards;

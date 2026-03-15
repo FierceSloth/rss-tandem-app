@@ -10,27 +10,51 @@ export type WidgetType =
   | 'ERROR_SCANNER';
 
 /* ========================================================================== */
-/*                                  Supabase                                  */
+/*                         DTO (Data Transfer Objects)                        */
 /* ========================================================================== */
 
-export interface ISupabaseLevelProgress {
+export interface ILevelProgressDto {
   status: LevelStatus;
   stars: number;
 }
 
-export interface ISupabaseLevel {
+export interface ILevelDto {
   id: string;
   title: string;
   description: string;
   widget_type: WidgetType;
   difficulty: LevelDifficulty;
-  user_level_progress: ISupabaseLevelProgress[];
+  user_level_progress: ILevelProgressDto[];
 }
 
-export interface ISupabaseModule {
+export interface IModuleDto {
   id: number;
   title: string;
-  levels: ISupabaseLevel[];
+  levels: ILevelDto[];
+}
+
+/* ========================================================================== */
+/*                          Entities (Domain Models)                          */
+/* ========================================================================== */
+
+export interface ILevelProgressEntity {
+  status: LevelStatus;
+  stars: number;
+}
+
+export interface ILevelEntity {
+  id: string;
+  title: string;
+  description: string;
+  widgetType: WidgetType;
+  difficulty: LevelDifficulty;
+  userLevelProgress: ILevelProgressEntity[];
+}
+
+export interface IModuleEntity {
+  id: number;
+  title: string;
+  levels: ILevelEntity[];
 }
 
 /* ========================================================================== */
