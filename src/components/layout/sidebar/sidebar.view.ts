@@ -14,7 +14,7 @@ import { createSvgComponent } from '@/common/utils/create-svg.util';
 
 const navConfigs = [
   { path: ROUTES.DASHBOARD_PAGE, icon: dashboardIcon },
-  { path: ROUTES.LEVEL_SELECTION_PAGE, icon: roadmapIcon },
+  { path: ROUTES.ROADMAP_PAGE, icon: roadmapIcon },
   { path: ROUTES.USER_PROFILE_PAGE, icon: profileIcon },
 ];
 
@@ -24,6 +24,7 @@ interface IProps extends IComponentChild {
 
 export class Sidebar extends Component {
   public navButtons: Record<string, Component<HTMLButtonElement>> = {};
+  private controller: SidebarController | null = null;
 
   constructor({ className = [], withController = true }: IProps, ...children: Component[]) {
     const cssClasses = mergeClassNames(styles.sidebar, className);
@@ -32,13 +33,17 @@ export class Sidebar extends Component {
     this.renderItems();
 
     if (withController) {
-      new SidebarController(this);
+      this.controller = new SidebarController(this);
     }
+  }
+
+  public destroy(): void {
+    this.controller?.destroy();
   }
 
   public setActive(activePath: string): void {
     Object.entries(this.navButtons).forEach(([path, button]) => {
-      button.toggleClass(styles.active, activePath === path);
+      button.toggleClass(styles.active, activePath.startsWith(path));
     });
   }
 

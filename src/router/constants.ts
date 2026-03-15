@@ -5,7 +5,7 @@ export const ROUTES = {
 
   DASHBOARD_PAGE: '/dashboard',
   USER_PROFILE_PAGE: '/profile',
-  LEVEL_SELECTION_PAGE: '/levels',
+  ROADMAP_PAGE: '/roadmap',
 
   QUIZ_PAGE: '/quiz/:id',
   TRUE_FALSE_PAGE: '/true-false/:id',
