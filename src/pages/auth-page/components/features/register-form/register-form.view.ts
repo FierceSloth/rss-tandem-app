@@ -1,24 +1,23 @@
-import type { IComponentChild, IValidateResult } from '@common/types/types';
+import type { IComponentChild } from '@common/types/types';
 import { mergeClassNames } from '@common/utils/class-names';
 import { Component } from '@components/base/component';
 
 import styles from './register-form.module.scss';
 import { Input } from '@/components/ui/input/input.view';
 import { Button } from '@/components/ui/button/button.view';
+import { messages } from '../../common/constants/messages';
 
-interface IProps extends IComponentChild {
-  onSubmit: () => void;
-}
+interface IProps extends IComponentChild {}
 
 export class RegisterForm extends Component {
-  private form: Component<HTMLFormElement>;
-  private login: Input;
-  private email: Input;
-  private password: Input;
-  private confirmPassword: Input;
-  private registerButton: Button;
+  public readonly form: Component<HTMLFormElement>;
+  public readonly login: Input;
+  public readonly email: Input;
+  public readonly password: Input;
+  public readonly confirmPassword: Input;
+  public readonly registerButton: Component<HTMLButtonElement>;
 
-  constructor({ className = [], onSubmit }: IProps, ...children: Component[]) {
+  constructor({ className = [] }: IProps, ...children: Component[]) {
     const cssClasses = mergeClassNames(styles.registerForm, className);
 
     super({ className: cssClasses }, ...children);
@@ -33,75 +32,37 @@ export class RegisterForm extends Component {
 
     this.login = new Input({
       className: styles.input,
-      labelText: 'Login',
-      placeholder: 'Enter your login',
+      labelText: messages.authLogin.labelText,
+      placeholder: messages.authLogin.placeholder,
     });
 
     this.email = new Input({
       className: styles.input,
-      labelText: 'Email',
-      placeholder: 'Enter your email',
+      labelText: messages.authEmail.labelText,
+      placeholder: messages.authEmail.placeholder,
     });
 
     this.password = new Input({
       className: styles.input,
-      labelText: 'Password',
-      placeholder: 'Enter your password',
+      labelText: messages.password.labelText,
+      placeholder: messages.password.placeholder,
     });
 
     this.confirmPassword = new Input({
       className: styles.input,
-      labelText: 'Confirm password',
-      placeholder: 'Enter your password',
+      labelText: messages.confirmPassword.labelText,
+      placeholder: messages.confirmPassword.placeholder,
     });
 
     this.registerButton = new Button({
       className: styles.button,
-      text: 'Register',
       type: 'submit',
+      text: messages.registerButton.text,
       variant: 'primary',
-      onClick: (event): void => {
-        event.preventDefault();
-        onSubmit();
-      },
     });
 
     this.form.append(this.login, this.email, this.password, this.confirmPassword, this.registerButton);
 
     this.append(this.form);
-  }
-
-  public getFormData(): {
-    login: string;
-    email: string;
-    password: string;
-    confirmPassword: string;
-  } {
-    return {
-      login: this.login.getValue(),
-      email: this.email.getValue(),
-      password: this.password.getValue(),
-      confirmPassword: this.confirmPassword.getValue(),
-    };
-  }
-
-  public validateLogin(validator: (value: string) => IValidateResult): boolean {
-    return this.login.validate(validator);
-  }
-
-  public validateEmail(validator: (value: string) => IValidateResult): boolean {
-    return this.email.validate(validator);
-  }
-
-  public validatePassword(validator: (value: string) => IValidateResult): boolean {
-    return this.password.validate(validator);
-  }
-
-  public validateConfirmPassword(validator: (value: string) => IValidateResult): boolean {
-    return this.confirmPassword.validate(validator);
-  }
-
-  public clearLoginError(): void {
-    this.login.clearError();
   }
 }

@@ -1,140 +1,82 @@
-import { RegisterForm } from './register-form.view';
+import type { RegisterForm } from './register-form.view';
+import { loginValidator, registerPasswordValidator } from '../../common/utils/validator';
 
-const LOGIN_REGEX = /^[a-zA-Z]{1,10}$/;
-const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-const PASSWORD_ALLOWED_REGEX = /^[A-Za-z0-9]+$/;
-const PASSWORD_UPPERCASE_REGEX = /[A-Z]/;
-const PASSWORD_DIGIT_REGEX = /\d/;
-const PASSWORD_MIN_LENGTH = 6;
+import { messages } from '../../common/constants/messages';
 
 export class RegisterFormController {
-  private form: RegisterForm;
+  private view: RegisterForm;
 
-  constructor() {
-    this.form = new RegisterForm({
-      onSubmit: (): void => {
-        this.handleSubmit();
-      },
+  private validationState = {
+    login: false,
+    email: false,
+    password: false,
+    confirmPassword: false,
+  };
+
+  constructor(view: RegisterForm) {
+    this.view = view;
+    this.initListeners();
+    this.handleButton();
+  }
+
+  private initListeners(): void {
+    this.view.login.addListener('input', () => {
+      this.validationState.login = this.view.login.validate(loginValidator);
+      this.handleButton();
+    });
+
+    this.view.password.addListener('input', () => {
+      this.validationState.password = this.view.password.validate(registerPasswordValidator);
+      this.validationState.confirmPassword = this.validateConfirmPassword();
+      this.handleButton();
+    });
+
+    this.view.confirmPassword.addListener('input', () => {
+      this.validationState.confirmPassword = this.validateConfirmPassword();
+      this.handleButton();
+    });
+
+    this.view.form.addListener('submit', (event) => {
+      event.preventDefault();
+      this.handleSubmit();
     });
   }
 
-  public getView(): RegisterForm {
-    return this.form;
+  private validateConfirmPassword(): boolean {
+    const password = this.view.password.getValue();
+    const confirm = this.view.confirmPassword.getValue();
+
+    if (confirm.length === 0) {
+      this.view.confirmPassword.setError(messages.confirmPassword.errors.required);
+      return false;
+    }
+
+    if (password !== confirm) {
+      this.view.confirmPassword.setError(messages.confirmPassword.errors.mismatch);
+      return false;
+    }
+
+    this.view.confirmPassword.clearError();
+    return true;
+  }
+
+  private handleButton(): void {
+    const allValid = Object.values(this.validationState).every(Boolean);
+    this.view.registerButton.setDisabled(!allValid);
   }
 
   private handleSubmit(): void {
-    const isLoginValid = this.validateLogin();
-    const isEmailValid = this.validateEmail();
-    const isPasswordValid = this.validatePassword();
+    const isLoginValid = this.view.login.validate(loginValidator);
+    const isPasswordValid = this.view.password.validate(registerPasswordValidator);
+    const isConfirmValid = this.validateConfirmPassword();
 
-    const data = this.form.getFormData();
-    const isConfirmValid = this.validateConfirmPassword(data.password);
+    if (isLoginValid && isPasswordValid && isConfirmValid) {
+      const data = {
+        login: this.view.login.getValue(),
+        password: this.view.password.getValue(),
+      };
 
-    if (!isLoginValid || !isEmailValid || !isPasswordValid || !isConfirmValid) {
-      return;
+      console.log('Register data:', data);
     }
-
-    console.log('register data:', data);
-  }
-
-  private validateLogin(): boolean {
-    return this.form.validateLogin((value) => {
-      if (!value) {
-        return {
-          isValid: false,
-          errorMessage: 'Login is required',
-        };
-      }
-
-      if (!LOGIN_REGEX.test(value)) {
-        return {
-          isValid: false,
-          errorMessage: 'Login must be 1–10 latin letters only',
-        };
-      }
-
-      return { isValid: true };
-    });
-  }
-
-  private validateEmail(): boolean {
-    return this.form.validateEmail((value) => {
-      if (!value) {
-        return {
-          isValid: false,
-          errorMessage: 'Email is required',
-        };
-      }
-
-      if (!EMAIL_REGEX.test(value)) {
-        return {
-          isValid: false,
-          errorMessage: 'Email is invalid',
-        };
-      }
-
-      return { isValid: true };
-    });
-  }
-
-  private validatePassword(): boolean {
-    return this.form.validatePassword((value) => {
-      if (!value) {
-        return {
-          isValid: false,
-          errorMessage: 'Password is required',
-        };
-      }
-
-      if (value.length < PASSWORD_MIN_LENGTH) {
-        return {
-          isValid: false,
-          errorMessage: `Password must be at least ${PASSWORD_MIN_LENGTH} characters`,
-        };
-      }
-
-      if (!PASSWORD_ALLOWED_REGEX.test(value)) {
-        return {
-          isValid: false,
-          errorMessage: 'Password must contain only latin letters and digits',
-        };
-      }
-
-      if (!PASSWORD_UPPERCASE_REGEX.test(value)) {
-        return {
-          isValid: false,
-          errorMessage: 'Password must contain at least one uppercase letter',
-        };
-      }
-
-      if (!PASSWORD_DIGIT_REGEX.test(value)) {
-        return {
-          isValid: false,
-          errorMessage: 'Password must contain at least one digit',
-        };
-      }
-
-      return { isValid: true };
-    });
-  }
-
-  private validateConfirmPassword(password: string): boolean {
-    return this.form.validateConfirmPassword((value) => {
-      if (!value) {
-        return {
-          isValid: false,
-          errorMessage: 'Please confirm your password',
-        };
-      }
-
-      if (value !== password) {
-        return {
-          isValid: false,
-          errorMessage: 'Passwords do not match',
-        };
-      }
-
-      return { isValid: true };
-    });
   }
 }
