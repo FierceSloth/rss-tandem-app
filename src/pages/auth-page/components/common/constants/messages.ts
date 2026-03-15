@@ -7,11 +7,16 @@ export const messages = {
       tooShort: 'Login must be at least 2 characters',
       tooLong: 'Login must be no more than 16 characters',
       latinOnly: 'Login must contain only Latin letters',
+      alreadyTaken: 'This login is already taken',
     },
   },
   authEmail: {
     labelText: 'Email',
     placeholder: 'Enter your email',
+    errors: {
+      required: 'Email is required',
+      invalid: 'Enter a valid email address',
+    },
   },
   password: {
     labelText: 'Password',
@@ -25,7 +30,7 @@ export const messages = {
   },
   confirmPassword: {
     labelText: 'Confirm your password',
-    placeholder: 'Enter your password',
+    placeholder: 'Confirm your password',
     errors: {
       required: 'Please confirm your password',
       mismatch: 'Passwords do not match',
@@ -33,5 +38,30 @@ export const messages = {
   },
   registerButton: {
     text: 'Register',
+  },
+  loginForm: {
+    loginOrEmail: {
+      labelText: 'Login / Email',
+      placeholder: 'Enter your login or email',
+      errors: {
+        notFound: 'User not found',
+      },
+    },
+    password: {
+      errors: {
+        incorrect: 'Incorrect password',
+      },
+    },
+    button: {
+      text: 'Login',
+    },
+  },
+  modal: {
+    logo: 'TANDEM',
+    label: 'system access // developer portal',
+    tabs: {
+      login: 'Login',
+      register: 'Register',
+    },
   },
 };

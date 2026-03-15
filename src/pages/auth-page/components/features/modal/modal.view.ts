@@ -1,17 +1,18 @@
 import type { IComponentChild } from '@common/types/types';
-import { mergeClassNames } from '@common/utils/class-names';
+import { mergeClassNames } from '@/common/utils/class-names.util';
 import { Component } from '@components/base/component';
 
 import styles from './modal.module.scss';
 import { Card } from '@/components/layout/card/card.view';
 import { Button } from '@/components/ui/button/button.view';
-import { RegisterFormController } from '../register-form/register-form.controller';
+import { messages } from '../../common/constants/messages';
 
 interface IProps extends IComponentChild {}
 
 export class Modal extends Component {
-  private formContainer: Component;
-  private registerFormController: RegisterFormController;
+  public readonly formContainer: Component;
+  public readonly loginTab: Button;
+  public readonly registerTab: Button;
 
   constructor({ className = [] }: IProps, ...children: Component[]) {
     const cssClasses = mergeClassNames(styles.modal, className);
@@ -28,13 +29,13 @@ export class Modal extends Component {
     const logo = new Component({
       tag: 'h1',
       className: styles.logo,
-      text: 'TANDEM',
+      text: messages.modal.logo,
     });
 
     const label = new Component({
       tag: 'p',
       className: styles.label,
-      text: 'system access // developer portal',
+      text: messages.modal.label,
     });
 
     const tabs = new Component({
@@ -42,34 +43,24 @@ export class Modal extends Component {
       className: styles.tabs,
     });
 
-    const loginButton = new Button({
-      type: 'submit',
-      className: 'btn',
-      text: 'Login',
-      onClick: (): void => {},
+    this.loginTab = new Button({
+      type: 'button',
+      className: styles.tab,
+      text: messages.modal.tabs.login,
     });
 
-    this.registerFormController = new RegisterFormController();
-    const registerFormView = this.registerFormController.getView();
-
-    const registerButton = new Button({
-      type: 'submit',
-      className: 'btn',
-      text: 'Register',
-      onClick: (): void => {
-        this.formContainer.destroyChildren();
-        this.formContainer.append(registerFormView);
-      },
+    this.registerTab = new Button({
+      type: 'button',
+      className: styles.tab,
+      text: messages.modal.tabs.register,
     });
 
     this.formContainer = new Component({
       className: styles.formContainer,
     });
 
-    tabs.append(loginButton, registerButton);
+    tabs.append(this.loginTab, this.registerTab);
     modal.append(logo, label, tabs, this.formContainer);
     this.append(modal);
-
-    this.formContainer.append(registerFormView);
   }
 }

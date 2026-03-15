@@ -1,5 +1,5 @@
 import type { IComponentChild, IValidateResult } from '@common/types/types';
-import { mergeClassNames } from '@common/utils/class-names';
+import { mergeClassNames } from '@/common/utils/class-names.util';
 import { Component } from '@components/base/component';
 
 import styles from './input.module.scss';

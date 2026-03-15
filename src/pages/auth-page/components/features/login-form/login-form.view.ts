@@ -1,21 +1,22 @@
 import type { IComponentChild } from '@common/types/types';
-import { mergeClassNames } from '@common/utils/class-names';
+import { mergeClassNames } from '@/common/utils/class-names.util';
 import { Component } from '@components/base/component';
 
-import styles from './register-form.module.scss';
+import styles from './login-form.module.scss';
 import { Input } from '@/components/ui/input/input.view';
 import { Button } from '@/components/ui/button/button.view';
+import { messages } from '../../common/constants/messages';
 
 interface IProps extends IComponentChild {}
 
 export class LoginForm extends Component {
-  private form: Component;
-  private login: Input;
-  private password: Input;
-  private button: Button;
+  public readonly form: Component<HTMLFormElement>;
+  public readonly loginOrEmail: Input;
+  public readonly password: Input;
+  public readonly loginButton: Button;
 
   constructor({ className = [] }: IProps, ...children: Component[]) {
-    const cssClasses = mergeClassNames(styles.registerForm, className);
+    const cssClasses = mergeClassNames(styles.loginForm, className);
 
     super({ className: cssClasses }, ...children);
 
@@ -27,27 +28,28 @@ export class LoginForm extends Component {
       },
     });
 
-    this.login = new Input({
+    this.loginOrEmail = new Input({
       className: styles.input,
-      labelText: 'Login/email',
-      placeholder: 'Enter your login or email',
+      labelText: messages.loginForm.loginOrEmail.labelText,
+      placeholder: messages.loginForm.loginOrEmail.placeholder,
     });
 
     this.password = new Input({
       className: styles.input,
-      labelText: 'Password',
-      placeholder: 'Enter your password',
+      labelText: messages.password.labelText,
+      placeholder: messages.password.placeholder,
     });
 
-    this.button = new Button({
+    this.loginButton = new Button({
       className: styles.button,
-      text: 'Login',
+      text: messages.loginForm.button.text,
       type: 'submit',
       variant: 'primary',
     });
 
-    this.form.append(this.login, this.password, this.button);
+    this.loginButton.setDisabled(true);
 
+    this.form.append(this.loginOrEmail, this.password, this.loginButton);
     this.append(this.form);
   }
 }

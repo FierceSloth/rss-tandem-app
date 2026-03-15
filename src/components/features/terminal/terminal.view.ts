@@ -1,6 +1,6 @@
 import type { IComponentChild } from '@common/types/types';
 import { TerminalLogType } from '@common/enums/enums';
-import { mergeClassNames } from '@common/utils/class-names';
+import { mergeClassNames } from '@/common/utils/class-names.util';
 import { Component } from '@components/base/component';
 
 import styles from './terminal.module.scss';

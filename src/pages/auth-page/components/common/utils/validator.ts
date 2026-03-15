@@ -6,6 +6,7 @@ import {
   PASSWORD_ALLOWED_REGEX,
   PASSWORD_DIGIT_REGEX,
   PASSWORD_MIN_LENGTH,
+  EMAIL_REGEX,
 } from '../constants/constants';
 import type { IValidateResult } from '@/common/types/types';
 
@@ -55,6 +56,27 @@ export function registerPasswordValidator(value: string): IValidateResult {
     {
       condition: (inputValue: string): boolean => !PASSWORD_DIGIT_REGEX.test(inputValue),
       errorMessage: messages.password.errors.noDigit,
+    },
+  ];
+
+  const brokenRule = rules.find((rule) => rule.condition(value));
+
+  if (brokenRule) {
+    return { isValid: false, errorMessage: brokenRule.errorMessage };
+  }
+
+  return { isValid: true };
+}
+
+export function emailValidator(value: string): IValidateResult {
+  const rules = [
+    {
+      condition: (inputValue: string): boolean => inputValue.length === 0,
+      errorMessage: messages.authEmail.errors.required,
+    },
+    {
+      condition: (inputValue: string): boolean => !EMAIL_REGEX.test(inputValue),
+      errorMessage: messages.authEmail.errors.invalid,
     },
   ];
 

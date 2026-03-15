@@ -10,12 +10,19 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    gap: 20px;
+    background: inherit;
     margin-top: 24px;
     border-bottom: 1px solid #888888;
+    margin-bottom: 20px;
 
-    .btn {
+    .tab {
       width: 50%;
+      background: inherit;
+      border-radius: 0;
+      color: #868383;
+      border-bottom: 2px solid #888888;
+    }
+    .tabActive {
       color: #fff;
       border-bottom: 2px solid #3b82f6;
     }

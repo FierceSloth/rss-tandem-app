@@ -3,6 +3,9 @@
 [![Trello Board](https://img.shields.io/badge/Trello-Board-blue?style=for-the-badge&logo=trello)](https://trello.com/b/uoKHXftD/tandem-3103-6-%D0%BD%D0%B5%D0%B4%D0%B5%D0%BB%D1%8C)
 [![Figma Design](https://img.shields.io/badge/Figma-Design-red?style=for-the-badge&logo=figma)](https://www.figma.com/design/g6Zb6zh7WaxWGElPEHlSy8/Tandem?node-id=0-1&p=f&t=MfehSkjzqKJb7FWs-0)
 
+[![CI/CD Status](https://github.com/fiercesloth/rss-tandem-app/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/fiercesloth/rss-tandem-app/actions/workflows/ci-cd.yml)\
+[RSS Tandem App Deploy](https://fiercesloth.github.io/rss-tandem-app)
+
 ## 📖 О проекте
 
 **RS Tandem App** — это интерактивная платформа для подготовки к техническим собеседованиям. Проект разрабатывается в рамках финального задания курса RS School.

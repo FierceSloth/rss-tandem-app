@@ -28,3 +28,11 @@ export interface IValidateResult {
   isValid: boolean;
   errorMessage?: string;
 }
+
+/* ========================================================================== */
+/*                              System Intefaces                              */
+/* ========================================================================== */
+export interface SystemInfo {
+  browser: string;
+  os: string;
+}
