@@ -6,6 +6,7 @@ import styles from './modal.module.scss';
 import { Card } from '@/components/layout/card/card.view';
 import { Button } from '@/components/ui/button/button.view';
 import { messages } from '../../common/constants/messages';
+import { StatusBadge } from '@/components/ui/status-badge/status-badge.view';
 
 interface IProps extends IComponentChild {}
 
@@ -19,10 +20,14 @@ export class Modal extends Component {
 
     super({ className: cssClasses }, ...children);
 
+    const overlay = new Component({
+      className: styles.overlay,
+    });
+
     const modal = new Card({
       tag: 'section',
       className: styles.modal,
-      glass: true,
+      glass: false,
       padding: 'hg',
     });
 
@@ -32,10 +37,12 @@ export class Modal extends Component {
       text: messages.modal.logo,
     });
 
-    const label = new Component({
-      tag: 'p',
-      className: styles.label,
+    const label = new StatusBadge({
       text: messages.modal.label,
+      color: 'gray',
+      dot: false,
+      animation: 'none',
+      capitalize: false,
     });
 
     const tabs = new Component({
@@ -61,6 +68,7 @@ export class Modal extends Component {
 
     tabs.append(this.loginTab, this.registerTab);
     modal.append(logo, label, tabs, this.formContainer);
-    this.append(modal);
+    overlay.append(modal);
+    this.append(overlay);
   }
 }

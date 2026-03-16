@@ -1,30 +1,50 @@
-.modal {
+.overlay {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  max-width: 480px;
   width: 100%;
-  margin-inline: auto;
+  height: 100dvh;
+  flex-grow: 1;
 
-  .tabs {
-    width: 100%;
+  .modal {
     display: flex;
-    justify-content: center;
-    background: inherit;
-    margin-top: 24px;
-    border-bottom: 1px solid #888888;
-    margin-bottom: 20px;
+    flex-direction: column;
+    align-items: center;
+    max-width: 480px;
+    background: #1f1f1f;
 
-    .tab {
-      width: 50%;
-      background: inherit;
-      border-radius: 0;
-      color: #868383;
-      border-bottom: 2px solid #888888;
+    .logo {
+      color: #ffffff;
+      font-size: 24px;
+      font-weight: bold;
+
+      &::before {
+        content: '•';
+        margin-right: 0.5rem;
+        color: #ffffff;
+      }
     }
-    .tabActive {
-      color: #fff;
-      border-bottom: 2px solid #3b82f6;
+
+    .tabs {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      background: inherit;
+      margin-top: 24px;
+      margin-bottom: 20px;
+
+      .tab {
+        width: 50%;
+        background: inherit;
+        border-radius: 0;
+        color: #888888;
+        border-bottom: 2px solid #888888;
+        cursor: pointer;
+      }
+      .tabActive {
+        color: #fff;
+        border-bottom: 2px solid #3b82f6;
+      }
     }
   }
 }
