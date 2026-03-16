@@ -113,7 +113,7 @@ export class RegisterFormController {
 
     if (result.success) {
       await authService.getSession();
-      this.navigate(ROUTES.LEVEL_SELECTION_PAGE);
+      this.navigate(ROUTES.ROADMAP_PAGE);
     } else {
       this.view.email.setError(result.error ?? 'Registration failed');
       this.view.registerButton.setDisabled(false);

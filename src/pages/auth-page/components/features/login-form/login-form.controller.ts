@@ -66,7 +66,7 @@ export class LoginFormController {
 
     if (result.success) {
       await authService.getSession();
-      this.navigate(ROUTES.LEVEL_SELECTION_PAGE);
+      this.navigate(ROUTES.ROADMAP_PAGE);
     } else {
       if (result.error === 'User not found') {
         this.view.loginOrEmail.setError(messages.loginForm.loginOrEmail.errors.notFound);
