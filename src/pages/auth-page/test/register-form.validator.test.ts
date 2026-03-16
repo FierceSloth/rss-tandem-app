@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { loginValidator, emailValidator, registerPasswordValidator } from '../common/utils/validator';
+import { loginValidator, emailValidator, registerPasswordValidator } from '../components/common/utils/validator';
 
 describe('loginValidator', () => {
   it('returns error if field is empty', () => {

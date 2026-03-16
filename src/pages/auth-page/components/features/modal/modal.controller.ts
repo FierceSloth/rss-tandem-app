@@ -7,7 +7,7 @@ import styles from './modal.module.scss';
 
 export class ModalController {
   private view: Modal;
-  private activeController: RegisterFormController | LoginFormController | null = null;
+  declare private activeController: RegisterFormController | LoginFormController | null;
 
   constructor(view: Modal) {
     this.view = view;
