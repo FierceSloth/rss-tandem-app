@@ -2,9 +2,12 @@ import { loginValidator, registerPasswordValidator, emailValidator } from '../..
 import { messages } from '../../common/constants/messages';
 import { authService } from '@/service/auth/auth.service';
 import type { RegisterForm } from './register-form.view';
+import { useNavigate } from '@/router/hooks';
+import { ROUTES } from '@/router/constants';
 
 export class RegisterFormController {
   private view: RegisterForm;
+  private navigate = useNavigate();
 
   private validationState = {
     login: false,
@@ -109,7 +112,8 @@ export class RegisterFormController {
     );
 
     if (result.success) {
-      console.log('Registration successful');
+      await authService.getSession();
+      this.navigate(ROUTES.LEVEL_SELECTION_PAGE);
     } else {
       this.view.email.setError(result.error ?? 'Registration failed');
       this.view.registerButton.setDisabled(false);

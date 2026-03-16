@@ -1,5 +1,6 @@
 import { supabase } from '@/api/supabase/supabase-client';
 import type { Session } from '@supabase/supabase-js';
+import { STORAGE_KEYS } from '@/common/constants/constants';
 
 export interface IAuthResult {
   success: boolean;
@@ -22,6 +23,11 @@ export const authService = {
 
     if (profileError) {
       return { success: false, error: profileError.message };
+    }
+
+    const { data: sessionData } = await supabase.auth.getSession();
+    if (sessionData.session) {
+      localStorage.setItem(STORAGE_KEYS.AUTH, JSON.stringify(sessionData.session.user));
     }
 
     return { success: true };
@@ -56,11 +62,17 @@ export const authService = {
       return { success: false, error: error.message };
     }
 
+    const { data: sessionData } = await supabase.auth.getSession();
+    if (sessionData.session) {
+      localStorage.setItem(STORAGE_KEYS.AUTH, JSON.stringify(sessionData.session.user));
+    }
+
     return { success: true };
   },
 
   async logout(): Promise<void> {
     await supabase.auth.signOut();
+    localStorage.removeItem(STORAGE_KEYS.AUTH);
   },
 
   async getSession(): Promise<Session | null> {
