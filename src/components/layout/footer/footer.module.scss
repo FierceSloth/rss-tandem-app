@@ -1,0 +1,65 @@
+@use '@/styles/abstract/mixins' as *;
+
+.footer {
+  position: relative;
+  z-index: 50;
+  width: 100%;
+  background-color: var(--bg-body);
+  @include border-subtle-top;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: var(--desktop-max);
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 clamp(var(--space-2-5), 3vw, var(--space-5));
+  min-height: clamp(3rem, 5vw, 4rem);
+
+  font-size: clamp(var(--font-size-default), 1vw, var(--font-size-semismall));
+  line-height: var(--line-height-semismall);
+
+  @include media-tablet {
+    padding: 10px 12px;
+    height: auto;
+  }
+
+  @include media-mobile {
+    margin-top: 15px;
+    flex-direction: column;
+  }
+}
+
+.systemInfo {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  gap: clamp(var(--space-1), 1.5vw, var(--space-2));
+  font-family: var(--font-mono);
+  overflow: hidden;
+
+  .browser,
+  .os,
+  .ip {
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+  }
+
+  .ip,
+  .os {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.systemStatus {
+  display: flex;
+  gap: clamp(var(--space-1), 1.5vw, var(--space-2));
+  align-items: center;
+  font-family: var(--font-mono);
+  padding: 0;
+}

@@ -1,5 +1,6 @@
 import { EMPTY } from '@/common/constants/constants';
 import { fullPathWithBaseUrl } from './path';
+import { NavigationMode } from '@/router/navigation-mode';
 
 export function isHistoryState(value: unknown): boolean {
   return (
@@ -10,6 +11,15 @@ export function isHistoryState(value: unknown): boolean {
   );
 }
 
-export function pushState(path: string): void {
-  history.pushState({ path: fullPathWithBaseUrl(path) }, EMPTY, fullPathWithBaseUrl(path));
+export function updateHistory(path: string, locationState: unknown, mode: NavigationMode): void {
+  const fullPath = fullPathWithBaseUrl(path);
+  const stateWrapper = { path: fullPath, state: locationState };
+
+  if (mode === NavigationMode.PUSH) {
+    history.pushState(stateWrapper, EMPTY, fullPath);
+  }
+
+  if (mode === NavigationMode.REPLACE) {
+    history.replaceState(stateWrapper, EMPTY, fullPath);
+  }
 }

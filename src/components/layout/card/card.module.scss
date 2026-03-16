@@ -2,8 +2,6 @@
   position: relative;
 
   background: var(--card-bg, rgba(255, 255, 255, 0.03));
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 
   border: 1px solid var(--card-border, var(--border-subtle));
   border-radius: var(--radius-md);
@@ -13,22 +11,22 @@
 }
 
 .color-gray {
-  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-bg: var(--bg-surface);
   --card-border: rgba(255, 255, 255, 0.1);
 }
 
 .color-green {
-  --card-bg: rgba(16, 185, 129, 0.1);
+  --card-bg: #061711;
   --card-border: rgba(16, 185, 129, 0.3);
 }
 
 .color-blue {
-  --card-bg: rgba(59, 130, 246, 0.1);
+  --card-bg: #0a111d;
   --card-border: rgba(59, 130, 246, 0.3);
 }
 
 .color-red {
-  --card-bg: rgba(246, 59, 59, 0.1);
+  --card-bg: #1d0a0a;
   --card-border: rgba(246, 59, 59, 0.3);
 }
 
@@ -49,6 +47,19 @@
 }
 
 .glass {
-  backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(0px);
+  &.color-gray {
+    --card-bg: rgba(255, 255, 255, 0.05);
+  }
+
+  &.color-green {
+    --card-bg: rgba(16, 185, 129, 0.1);
+  }
+
+  &.color-blue {
+    --card-bg: rgba(59, 130, 246, 0.1);
+  }
+
+  &.color-red {
+    --card-bg: rgba(246, 59, 59, 0.1);
+  }
 }

@@ -1,0 +1,6 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="0.5" y="0.5" width="31" height="31" rx="3.5" fill="#1F1F1F"/>
+<rect class="tagIconBorder" x="0.5" y="0.5" width="31" height="31" rx="3.5"/>
+<path d="M18.6666 20L22.6666 16L18.6666 12" stroke="#E93535" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M13.3334 12L9.33337 16L13.3334 20" stroke="#E93535" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

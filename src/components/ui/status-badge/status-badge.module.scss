@@ -1,0 +1,93 @@
+@use '@/styles/abstract/mixins' as *;
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+
+  border-radius: var(--radius-sm);
+  color: var(--badge-color);
+
+  font-family: var(--font-mono, monospace);
+  white-space: nowrap;
+
+  @include transition-colors(300ms);
+
+  &.container {
+    border: 1px solid var(--badge-border);
+    background-color: var(--badge-bg);
+  }
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.dot {
+  width: var(--badge-dot-size);
+  height: var(--badge-dot-size);
+  border-radius: 50%;
+
+  background-color: var(--badge-color);
+}
+
+.color-primary {
+  --badge-color: var(--text-primary);
+  --badge-bg: var(--text-primary);
+  --badge-border: var(--text-primary);
+}
+
+.color-gray {
+  --badge-color: var(--text-secondary);
+  --badge-bg: rgba(255, 255, 255, 0.05);
+  --badge-border: rgba(255, 255, 255, 0.1);
+}
+
+.color-green {
+  --badge-color: var(--accent-green);
+  --badge-bg: rgba(16, 185, 129, 0.1);
+  --badge-border: rgba(16, 185, 129, 0.3);
+}
+
+.color-green-dark {
+  --badge-color: var(--text-success-dark);
+  --badge-bg: var(--text-success-dark);
+  --badge-border: var(--text-success-dark);
+}
+
+.color-blue {
+  --badge-color: var(--accent-blue);
+  --badge-bg: rgba(59, 130, 246, 0.1);
+  --badge-border: rgba(59, 130, 246, 0.3);
+}
+
+.color-red {
+  --badge-color: var(--accent-red);
+  --badge-bg: rgba(246, 59, 59, 0.1);
+  --badge-border: rgba(246, 59, 59, 0.3);
+}
+
+.statusBadge {
+  &.animation-pulse-ring {
+    .dot {
+      @include animate-pulse-ring;
+    }
+  }
+
+  &.animation-pulse-slow {
+    @include animate-pulse-slow;
+
+    .dot {
+      @include animate-pulse-slow;
+    }
+  }
+
+  &.animation-pulse {
+    @include animate-pulse;
+
+    .dot {
+      @include animate-pulse;
+    }
+  }
+}

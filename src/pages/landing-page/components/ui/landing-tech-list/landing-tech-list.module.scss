@@ -1,0 +1,27 @@
+@use '@/styles/abstract/mixins' as *;
+
+.landingTechList {
+  padding-block: clamp(var(--space-2), 3vw, var(--space-4)) clamp(var(--space-1), 2vw, var(--space-2));
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  max-width: 640px;
+  gap: clamp(var(--space-2), 2vw, var(--space-6));
+
+  @include border-subtle-top;
+
+  @include media-desktop-small {
+    max-width: 100%;
+    border: none;
+  }
+
+  @include media-tablet {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    column-gap: 1vw;
+
+    padding-block: clamp(var(--space-4), 3vw, var(--space-6)) clamp(var(--space-4), 3vw, var(--space-8));
+  }
+}

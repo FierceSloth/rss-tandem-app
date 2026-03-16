@@ -1,0 +1,45 @@
+@use '@/styles/abstract/mixins' as *;
+
+.landingButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(var(--space-3), 1.5vw, var(--space-4));
+  margin-bottom: clamp(var(--space-4), 3.5vw, var(--space-16));
+
+  @include media-laptop {
+    margin-bottom: clamp(var(--space-3), 3vw, var(--space-16));
+  }
+
+  @include media-tablet {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .startPracticingButton,
+  .aboutProjectButton {
+    cursor: pointer;
+    line-height: var(--line-height-semilarge);
+    padding-inline: clamp(var(--space-6), 2vw, var(--space-8));
+    height: clamp(44px, 5vw, 52px);
+    user-select: none;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .startPracticingButton {
+    font-weight: 600;
+    gap: var(--space-2);
+
+    &:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+  }
+
+  .aboutProjectButton {
+    font-weight: 500;
+  }
+}

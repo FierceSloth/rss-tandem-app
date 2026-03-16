@@ -4,6 +4,9 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: var(--border-light);
 }
 
 body,
@@ -18,13 +21,32 @@ p {
 
 html {
   font-size: var(--font-size-default);
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 13px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--bg-body-09);
+    border-left: 1px solid var(--border-subtle);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--border-subtle);
+    border-radius: 10px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: var(--text-tertiary);
+  }
 }
 
 body {
   color: var(--text-primary);
   font-family: var(--font-primary);
-  font-size: var(--font-size-large);
-  line-height: var(--line-height-large);
   font-weight: 400;
   position: relative;
   min-height: 100vh;
@@ -50,31 +72,22 @@ body {
 }
 
 #app {
-  max-width: 1470px;
   width: 100%;
   min-height: 100dvh;
 
-  margin: 0 auto;
-  padding: 5svh 20px;
+  margin: 0;
+  padding: 0;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  @include media-tablet {
-    padding: 5svh 10px;
-  }
 }
 
-.pageContainer {
-  width: 100%;
-
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-
-  animation: fadeIn 1s ease-out forwards;
-  will-change: opacity;
+.globalSpinnerWrapper {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* Headings (Desktop) */
@@ -106,13 +119,4 @@ h5 {
   font-size: var(--font-h5-size);
   line-height: var(--line-h5-height);
   font-weight: 500;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }

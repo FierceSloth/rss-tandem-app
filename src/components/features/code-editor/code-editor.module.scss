@@ -1,0 +1,53 @@
+@use '@/styles/abstract/mixins' as *;
+
+.codeEditor {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(1.3rem, 0.5vw + 1.1rem, 1.4rem);
+  line-height: 1.5;
+
+  height: 100%;
+  width: 100%;
+
+  background-color: var(--bg-surface);
+
+  :global(.cm-editor) {
+    height: 100%;
+    width: 100%;
+  }
+
+  :global(.cm-scroller) {
+    font-family: inherit;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--border-focus, #333333);
+      border-radius: 4px;
+
+      &:hover {
+        background-color: var(--text-tertiary, #444444);
+      }
+    }
+
+    :global(.cm-content) {
+      width: 1px;
+    }
+  }
+
+  &.hideLines {
+    :global(.cm-gutters) {
+      display: none;
+    }
+    :global(.cm-content) {
+      padding-left: 4px;
+    }
+  }
+}
