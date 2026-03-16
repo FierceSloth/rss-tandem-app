@@ -19,7 +19,7 @@ export class LandingButtonsController {
   }
 
   private onStart = (): void => {
-    this.navigate(ROUTES.LEVEL_SELECTION_PAGE);
+    this.navigate(ROUTES.ROADMAP_PAGE);
   };
 
   private onAbout = (): void => {
