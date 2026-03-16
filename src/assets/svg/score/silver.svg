@@ -1,0 +1,14 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="32" cy="32" r="30" fill="#C0C0C0" stroke="#9CA3AF" stroke-width="2"/>
+
+  <!-- trophy cup -->
+  <path d="M22 16h20v14c0 6-4 10-10 10s-10-4-10-10V16z" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="1.5"/>
+
+  <!-- handles -->
+  <path d="M22 18h-6c0 6 3 10 6 10" fill="none" stroke="#9CA3AF" stroke-width="2"/>
+  <path d="M42 18h6c0 6-3 10-6 10" fill="none" stroke="#9CA3AF" stroke-width="2"/>
+
+  <!-- base -->
+  <rect x="26" y="40" width="12" height="4" fill="#9CA3AF"/>
+  <rect x="24" y="44" width="16" height="6" fill="#6B7280"/>
+</svg>

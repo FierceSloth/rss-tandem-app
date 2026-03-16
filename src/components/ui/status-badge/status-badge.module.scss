@@ -32,6 +32,34 @@
   background-color: var(--badge-color);
 }
 
+.text {
+  color: var(--badge-text-color);
+}
+
+.text-color-primary {
+  --badge-text-color: var(--text-primary);
+}
+
+.text-color-gray {
+  --badge-text-color: var(--text-secondary);
+}
+
+.text-color-green {
+  --badge-text-color: var(--accent-green);
+}
+
+.text-color-green-dark {
+  --badge-text-color: var(--text-success-dark);
+}
+
+.text-color-blue {
+  --badge-text-color: var(--accent-blue);
+}
+
+.text-color-red {
+  --badge-text-color: var(--accent-red);
+}
+
 .color-primary {
   --badge-color: var(--text-primary);
   --badge-bg: var(--text-primary);

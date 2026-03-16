@@ -1,0 +1,116 @@
+.answerCard {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+
+  &:hover:not(.selected):not(.correct):not(.incorrect) {
+    border-color: var(--border-focus);
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-1px);
+  }
+
+  &.incorrect::before,
+  &.correct::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    border-top-left-radius: var(--radius-md);
+    border-bottom-left-radius: var(--radius-md);
+  }
+
+  &.correct::before {
+    background: var(--accent-green);
+  }
+
+  &.incorrect::before {
+    background: var(--accent-red);
+  }
+
+  &.correct {
+    border-color: var(--accent-green);
+    background: rgba(16, 185, 129, 0.08);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+  }
+
+  &.incorrect {
+    border-color: var(--accent-red);
+    background: rgba(246, 59, 59, 0.1);
+    box-shadow: rgba(246, 59, 59, 0.3);
+  }
+}
+
+.answerContent {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.answerCard.correct .keyHint {
+  border-color: rgba(16, 185, 129, 0.4);
+  color: var(--accent-green);
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.answerCard.incorrect .keyHint {
+  border-color: rgba(246, 59, 59, 0.3);
+  color: var(--accent-red);
+  background: rgba(246, 59, 59, 0.1);
+}
+
+.keyHint {
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--border-focus);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.keyHint,
+.answerText,
+.checkbox {
+  transition: all 0.2s ease;
+}
+
+.checkbox {
+  opacity: 0;
+  transform: scale(0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.correct .checkbox {
+  color: var(--accent-green);
+}
+
+.incorrect .checkbox {
+  color: var(--accent-red);
+}
+
+.answerCard.selected .answerText {
+  color: var(--text-primary);
+}
+
+.answerText {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}

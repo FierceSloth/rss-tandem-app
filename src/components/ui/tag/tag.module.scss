@@ -1,0 +1,72 @@
+@use '@/styles/abstract/mixins' as *;
+
+.tag {
+  border-radius: var(--radius-sm);
+  color: var(--tag-color);
+  background-color: var(--tag-bg);
+  border: 1px solid var(--tag-border);
+  font-family: var(--font-mono, monospace);
+  font-size: var(--font-size-semismall);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.color-primary {
+  --tag-color: var(--text-primary);
+  --tag-bg: var(--text-primary);
+  --tag-border: var(--text-primary);
+}
+
+.color-gray {
+  --tag-color: var(--text-secondary);
+  --tag-bg: rgba(255, 255, 255, 0.05);
+  --tag-border: rgba(255, 255, 255, 0.1);
+}
+
+.color-green {
+  --tag-color: var(--accent-green);
+  --tag-bg: rgba(16, 185, 129, 0.1);
+  --tag-border: rgba(16, 185, 129, 0.3);
+}
+
+.color-green-dark {
+  --tag-color: var(--text-success-dark);
+  --tag-bg: var(--text-success-dark);
+  --tag-border: var(--text-success-dark);
+}
+
+.color-blue {
+  --tag-color: var(--accent-blue);
+  --tag-bg: rgba(59, 130, 246, 0.1);
+  --tag-border: rgba(59, 130, 246, 0.3);
+}
+
+.color-red {
+  --tag-color: var(--accent-red);
+  --tag-bg: rgba(246, 59, 59, 0.1);
+  --tag-border: rgba(246, 59, 59, 0.3);
+}
+
+.padding-none {
+  padding: 0;
+}
+
+.padding-sm {
+  padding: 0.4rem 0.8rem;
+}
+
+.padding-md {
+  padding: 0.6rem 1rem;
+}
+
+.padding-lg {
+  padding: 0.8rem 1.2rem;
+}
+
+.padding-hg {
+  padding: 1rem 1.4rem;
+}

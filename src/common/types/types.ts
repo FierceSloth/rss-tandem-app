@@ -1,4 +1,5 @@
 import type { Component } from '@/components/base/component';
+import type { UUID } from 'node:crypto';
 
 /* ========================================================================== */
 /*                              Global Interfaces                             */
@@ -35,4 +36,32 @@ export interface IValidateResult {
 export interface SystemInfo {
   browser: string;
   os: string;
+}
+
+/* ========================================================================== */
+/*                                  Entities                                  */
+/* ========================================================================== */
+export interface IQuiz {
+  id: UUID | number;
+  levelId: UUID | number;
+  question: string;
+  codeSnippet: string;
+  options: IQuizOption[];
+  language?: string;
+  tags: string[];
+}
+
+export interface IQuizOption {
+  text: string;
+  isCorrect: boolean;
+}
+
+export interface IQuizMetadata {
+  index: number;
+  isCorrect: boolean;
+}
+
+export interface IScore {
+  correct: number;
+  total: number;
 }
