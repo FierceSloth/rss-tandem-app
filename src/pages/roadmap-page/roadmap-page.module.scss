@@ -1,0 +1,76 @@
+@use '@/styles/abstract/mixins' as *;
+
+.timelineContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: var(--desktop-max);
+  margin: 0 auto;
+  padding: 50px 5px 150px;
+}
+
+.circuitlineBg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background-color: var(--border-subtle);
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.circuitlineProgress {
+  position: absolute;
+  top: 0;
+  height: 0;
+  left: 50%;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--accent-green) 80%, transparent) 0%,
+    color-mix(in srgb, var(--accent-green) 80%, transparent) calc(100% - 150px),
+    var(--accent-blue) 100%
+  );
+  transform: translateX(-50%);
+  z-index: 0;
+  box-shadow: 0 0 10px color-mix(in srgb, color-mix(in srgb, var(--accent-green) 60%, transparent) 80%, transparent);
+}
+
+.timelineEnd {
+  color: var(--text-tertiary);
+  z-index: 5;
+
+  background-color: var(--bg-body);
+  padding: 4px 16px;
+  border: 1px dashed var(--border-subtle);
+  border-radius: 20px;
+  white-space: nowrap;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  bottom: 50px;
+
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.timelineContainer {
+  &.ready > * {
+    animation: contentFadeIn 0.8s ease-out forwards;
+  }
+}
+
+@keyframes contentFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

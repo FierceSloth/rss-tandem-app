@@ -48,7 +48,7 @@
   justify-content: center;
 
   color: var(--text-tertiary);
-  transition: all 0.2s ease;
+  transition: all 0.3s;
   cursor: pointer;
   border: 1px solid transparent;
   background-color: transparent;
@@ -57,7 +57,7 @@
     width: 20px;
     height: 20px;
     stroke-width: 1.5;
-    transition: all 0.2s ease;
+    transition: all 0.2s;
   }
 
   &:hover,
@@ -69,7 +69,7 @@
   }
 
   @include media-tablet {
-    width: 100%;
+    flex: 1;
     height: 100%;
     border-radius: 0;
     border: none;
@@ -78,7 +78,6 @@
     &.active {
       box-shadow: none;
       background-color: transparent;
-      border-bottom: 2px solid var(--border-focus);
     }
   }
 }

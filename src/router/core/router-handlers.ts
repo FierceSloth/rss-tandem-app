@@ -22,7 +22,7 @@ export function resolveSecurity(route: IRoute): INavigationTarget | null {
   }
 
   if (UserService.isAuthenticated() && route.path === ROUTES.AUTH_PAGE) {
-    return { to: ROUTES.LEVEL_SELECTION_PAGE, options: { replace: false } };
+    return { to: ROUTES.ROADMAP_PAGE, options: { replace: false } };
   }
 
   return null;
