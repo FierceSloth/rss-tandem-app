@@ -1,5 +1,6 @@
 export enum AppEvents {
   ROUTER_NAVIGATE = 'router:navigate',
+  ROUTE_CHANGED = 'router:route-changed',
 }
 
 export enum WorkerMessageType {

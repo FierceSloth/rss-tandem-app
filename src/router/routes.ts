@@ -4,7 +4,7 @@ import { BossBattlePage } from '@/pages/boss-battle-page/boss-battle-page';
 import { DashboardPage } from '@/pages/dashboard-page/dashboard-page';
 import { ErrorScannerPage } from '@/pages/error-scanner-page/error-scanner-page';
 import { LandingPage } from '@/pages/landing-page/landing-page';
-import { LevelSelectionPage } from '@/pages/level-selection-page/level-selection-page';
+import { RoadmapPage } from '@/pages/roadmap-page/roadmap-page';
 import { NotFoundPage } from '@/pages/not-found-page/not-found-page';
 import { OutputPredictorPage } from '@/pages/output-predictor-page/output-predictor-page';
 import { QuizPage } from '@/pages/quiz-page/quiz-page';
@@ -24,7 +24,7 @@ export const routes: IRoute[] = [
   /* Secured */
   { path: ROUTES.DASHBOARD_PAGE, page: () => new DashboardPage(), meta: { secured: true } },
   { path: ROUTES.USER_PROFILE_PAGE, page: () => new UserProfilePage(), meta: { secured: true } },
-  { path: ROUTES.LEVEL_SELECTION_PAGE, page: () => new LevelSelectionPage(), meta: { secured: true } },
+  { path: ROUTES.ROADMAP_PAGE, page: () => new RoadmapPage(), meta: { secured: true } },
   { path: ROUTES.QUIZ_PAGE, page: () => new QuizPage(), meta: { secured: true } },
   { path: ROUTES.TRUE_FALSE_PAGE, page: () => new TrueFalsePage(), meta: { secured: true } },
   { path: ROUTES.CODE_ARENA_PAGE, page: () => new CodeArenaPage(), meta: { secured: true } },
