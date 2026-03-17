@@ -1,2 +1,106 @@
+@use '@/styles/abstract/mixins' as *;
+
 .codeArena {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+
+  @include media-tablet {
+    height: auto;
+    min-height: 100dvh;
+  }
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: 320px 1fr 380px;
+  flex: 1;
+
+  gap: 1px;
+  background-color: var(--border-subtle);
+
+  @include media-laptop {
+    grid-template-columns: 1fr 1.5fr 1fr;
+  }
+
+  @include media-tablet {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel {
+  background-color: var(--bg-body);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  @include media-tablet {
+    height: 40vh;
+  }
+}
+
+.descriptionPanel {
+  padding: 20px;
+  overflow-y: auto;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+
+  @include media-tablet {
+    padding: 15px;
+
+    height: auto;
+    min-height: 20vh;
+    max-height: 60vh;
+  }
+}
+
+.editorPanel {
+  position: relative;
+  :global(.cm-editor) {
+    height: 100%;
+  }
+
+  @include media-tablet {
+    height: 45vh;
+  }
+}
+
+.consolePanel {
+  display: flex;
+  flex-direction: column;
+
+  @include media-tablet {
+    padding: 15px;
+
+    height: auto;
+  }
+}
+
+.terminalWrapper {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+
+  @include media-tablet {
+    padding: 15px;
+
+    height: auto;
+    min-height: 30vh;
+    max-height: 40vh;
+  }
+}
+
+.actionsContainer {
+  padding: 20px;
+  border-top: 1px solid var(--border-subtle);
+  background-color: var(--bg-body);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  @include media-tablet {
+    padding: 15px;
+  }
 }
