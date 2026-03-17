@@ -40,40 +40,70 @@
   }
 }
 
-.descriptionPanel {
-  padding: 20px;
-  overflow-y: auto;
+.panelHeader {
+  /* 1. Воздух и границы */
+  padding: 10px 16px; /* Чуть увеличили padding для лучшего визуального баланса */
+  background-color: var(--bg-surface); /* Этот цвет должен быть светлее основного фона */
+  border-bottom: 1px solid var(--border-subtle);
+
+  /* 2. Идеальная типографика */
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600; /* Делаем текст чуть плотнее, чтобы он не терялся */
   color: var(--text-secondary);
-  font-size: 14px;
-  line-height: 1.6;
+  text-transform: uppercase;
+  letter-spacing: 0.05em; /* Растягиваем буквы для технического стиля */
+  line-height: 1.2;
 
+  /* 3. Микро-UX */
+  -webkit-font-smoothing: antialiased; /* Сглаживание делает моноширинный шрифт четче */
+  user-select: none; /* Текст не будет случайно выделяться при кликах */
+  flex-shrink: 0;
+}
+
+.panelContent {
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.descriptionPanel {
   @include media-tablet {
-    padding: 15px;
-
     height: auto;
     min-height: 20vh;
     max-height: 60vh;
+  }
+
+  .panelContent {
+    padding: 20px;
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+
+    @include media-tablet {
+      padding: 15px;
+    }
   }
 }
 
 .editorPanel {
   position: relative;
-  :global(.cm-editor) {
-    height: 100%;
-  }
 
   @include media-tablet {
     height: 45vh;
   }
+
+  .panelContent {
+    :global(.cm-editor) {
+      height: 100%;
+    }
+  }
 }
 
 .consolePanel {
-  display: flex;
-  flex-direction: column;
-
   @include media-tablet {
-    padding: 15px;
-
     height: auto;
   }
 }
@@ -81,11 +111,16 @@
 .terminalWrapper {
   flex: 1;
   overflow-y: auto;
-  padding: 20px;
+
+  &:first-child {
+    padding: 20px;
+
+    @include media-tablet {
+      padding: 15px;
+    }
+  }
 
   @include media-tablet {
-    padding: 15px;
-
     height: auto;
     min-height: 30vh;
     max-height: 40vh;
@@ -95,10 +130,11 @@
 .actionsContainer {
   padding: 20px;
   border-top: 1px solid var(--border-subtle);
-  background-color: var(--bg-body);
+  background-color: var(--bg-surface);
   display: flex;
   flex-direction: column;
   gap: 12px;
+  flex-shrink: 0;
 
   @include media-tablet {
     padding: 15px;

@@ -5,7 +5,7 @@ import { Terminal } from '@/components/features/terminal/terminal.view';
 import { Button } from '@/components/ui/button/button.view';
 import { CodeArenaHeader } from './components/layout/code-arena-header/code-arena-header.view';
 import { CodeArenaFooter } from './components/layout/code-arena-footer/code-arena-footer.view';
-// import { CodeArenaController } from './code-arena.controller';
+import { CodeArenaController } from './code-arena-page.controller';
 import { messages } from './common/constants/messages';
 
 import styles from './code-arena-page.module.scss';
@@ -31,42 +31,56 @@ export class CodeArenaPage implements IPage {
     variant: 'primary',
   });
 
-  // private controller: CodeArenaController | null = null;
+  private controller: CodeArenaController | null = null;
 
   public render(): Component {
     const root = new Component({ className: styles.codeArena });
 
     const header = new CodeArenaHeader({ titleText: MOCK_TEXT.title });
     const footer = new CodeArenaFooter({});
-    const workspace = this.createWorkspace();
+    const workspace = this.buildWorkspace();
 
     root.append(header, workspace, footer);
 
-    // this.controller = new CodeArenaController(this);
+    this.controller = new CodeArenaController(this);
 
     return root;
   }
 
   public destroy(): void {
-    // this.controller?.destroy();
+    this.controller?.destroy();
   }
 
-  private createWorkspace(): Component {
+  private buildWorkspace(): Component {
     const workspace = new Component({ className: styles.workspace });
 
-    const descriptionPanel = new Component({ className: [styles.panel, styles.descriptionPanel] });
+    const descriptionInner = new Component({ className: styles.panelContent });
     const descText = new Component({ tag: 'p', text: MOCK_TEXT.descritpion });
-    descriptionPanel.append(descText);
+    descriptionInner.append(descText);
 
-    const editorPanel = new Component({ className: [styles.panel, styles.editorPanel] }, this.editor);
+    const descriptionPanel = this.buildPanel(styles.descriptionPanel, messages.headers.description, descriptionInner);
 
-    const consolePanel = new Component({ className: [styles.panel, styles.consolePanel] });
+    const editorInner = new Component({ className: styles.panelContent }, this.editor);
+
+    const editorPanel = this.buildPanel(styles.editorPanel, messages.headers.soultion, editorInner);
+
+    const consoleInner = new Component({ className: styles.panelContent });
     const terminalWrapper = new Component({ className: styles.terminalWrapper }, this.terminal);
     const actionsContainer = new Component({ className: styles.actionsContainer }, this.runButton, this.submitButton);
+    consoleInner.append(terminalWrapper, actionsContainer);
 
-    consolePanel.append(terminalWrapper, actionsContainer);
+    const consolePanel = this.buildPanel(styles.consolePanel, messages.headers.output, consoleInner);
 
     workspace.append(descriptionPanel, editorPanel, consolePanel);
     return workspace;
+  }
+
+  private buildPanel(className: string, headerText: string, inner: Component): Component {
+    const panel = new Component({ tag: 'section', className: [styles.panel, className] });
+    const header = new Component({ tag: 'header', className: styles.panelHeader, text: headerText });
+
+    panel.append(header, inner);
+
+    return panel;
   }
 }

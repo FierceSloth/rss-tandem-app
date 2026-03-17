@@ -38,7 +38,7 @@
 }
 
 .ghost {
-  background: transparent;
+  background: var(--bg-body);
   color: var(--text-secondary);
   border: 1px solid var(--border-focus);
 
