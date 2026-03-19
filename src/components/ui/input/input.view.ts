@@ -12,6 +12,8 @@ interface IProps extends IComponentChild {
   type?: string;
   labelText?: string;
   placeholder?: string;
+  id?: string;
+  autofocus?: boolean;
 }
 
 type Validator = (value: string) => IValidateResult;
@@ -25,17 +27,25 @@ export class Input extends Component {
   private error: Component;
   private valid = false;
 
-  constructor({ className = [], type = 'text', labelText = '', placeholder = '' }: IProps) {
+  constructor({ className = [], type = 'text', labelText = '', placeholder = '', id = '', autofocus = false }: IProps) {
     const cssClasses = mergeClassNames(styles.container, className);
     super({ className: cssClasses });
 
-    const inputAttributes = {
+    const inputAttributes: Record<string, string> = {
       type,
       placeholder,
     };
 
+    if (id) inputAttributes.id = id;
+    if (autofocus) inputAttributes.autofocus = '';
+
     if (labelText) {
-      const label = new Component<HTMLLabelElement>({ tag: 'label', className: styles.label, text: labelText });
+      const label = new Component<HTMLLabelElement>({
+        tag: 'label',
+        className: styles.label,
+        text: labelText,
+        attrs: id ? { for: id } : {},
+      });
       this.append(label);
     }
 

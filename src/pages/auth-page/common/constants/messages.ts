@@ -2,6 +2,7 @@ export const messages = {
   authLogin: {
     labelText: 'Login',
     placeholder: 'Enter your login',
+    id: 'login',
     errors: {
       required: 'Login is required',
       tooShort: 'Login must be at least 2 characters',
@@ -13,6 +14,7 @@ export const messages = {
   authEmail: {
     labelText: 'Email',
     placeholder: 'Enter your email',
+    id: 'email',
     errors: {
       required: 'Email is required',
       invalid: 'Enter a valid email address',
@@ -22,6 +24,7 @@ export const messages = {
   password: {
     labelText: 'Password',
     placeholder: 'Enter your password',
+    id: 'password',
     errors: {
       required: 'Password is required',
       tooShort: 'Password must be at least 6 characters',
@@ -32,6 +35,7 @@ export const messages = {
   confirmPassword: {
     labelText: 'Confirm your password',
     placeholder: 'Confirm your password',
+    id: 'confirm-password',
     errors: {
       required: 'Please confirm your password',
       mismatch: 'Passwords do not match',
@@ -44,11 +48,13 @@ export const messages = {
     loginOrEmail: {
       labelText: 'Login / Email',
       placeholder: 'Enter your login or email',
+      id: 'login',
       errors: {
         notFound: 'User not found',
       },
     },
     password: {
+      id: 'password',
       errors: {
         incorrect: 'Incorrect password',
       },

@@ -34,6 +34,8 @@ export class RegisterForm extends Component {
       className: styles.input,
       labelText: messages.authLogin.labelText,
       placeholder: messages.authLogin.placeholder,
+      id: messages.authLogin.id,
+      autofocus: true,
     });
 
     this.email = new Input({
@@ -41,6 +43,7 @@ export class RegisterForm extends Component {
       type: 'email',
       labelText: messages.authEmail.labelText,
       placeholder: messages.authEmail.placeholder,
+      id: messages.authEmail.id,
     });
 
     this.password = new Input({
@@ -48,6 +51,7 @@ export class RegisterForm extends Component {
       type: 'password',
       labelText: messages.password.labelText,
       placeholder: messages.password.placeholder,
+      id: messages.password.id,
     });
 
     this.confirmPassword = new Input({
@@ -55,6 +59,7 @@ export class RegisterForm extends Component {
       type: 'password',
       labelText: messages.confirmPassword.labelText,
       placeholder: messages.confirmPassword.placeholder,
+      id: messages.confirmPassword.id,
     });
 
     this.registerButton = new Button({

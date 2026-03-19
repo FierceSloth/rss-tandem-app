@@ -32,6 +32,8 @@ export class LoginForm extends Component {
       className: styles.input,
       labelText: messages.loginForm.loginOrEmail.labelText,
       placeholder: messages.loginForm.loginOrEmail.placeholder,
+      id: messages.loginForm.loginOrEmail.id,
+      autofocus: true,
     });
 
     this.password = new Input({
@@ -39,6 +41,7 @@ export class LoginForm extends Component {
       type: 'password',
       labelText: messages.password.labelText,
       placeholder: messages.password.placeholder,
+      id: messages.loginForm.password.id,
     });
 
     this.loginButton = new Button({
