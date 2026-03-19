@@ -55,6 +55,56 @@
   &::placeholder {
     color: var(--text-tertiary);
   }
+
+  &[type='password'],
+  &[type='text'] {
+    padding-right: 42px;
+  }
+}
+
+.toggleBtn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--text-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--border-focus);
+    border-radius: var(--radius-sm);
+  }
+}
+
+.toggleBtn.visible {
+  .eyeOpen {
+    display: flex;
+  }
+  .eyeClosed {
+    display: none;
+  }
+}
+
+.eyeOpen {
+  display: none;
+  align-items: center;
+  pointer-events: none;
+}
+
+.eyeClosed {
+  display: flex;
+  align-items: center;
+  pointer-events: none;
 }
 
 .errorText {

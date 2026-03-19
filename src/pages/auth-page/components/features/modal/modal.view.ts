@@ -5,7 +5,7 @@ import { Component } from '@components/base/component';
 import styles from './modal.module.scss';
 import { Card } from '@/components/layout/card/card.view';
 import { Button } from '@/components/ui/button/button.view';
-import { messages } from '../../common/constants/messages';
+import { messages } from '../../../common/constants/messages';
 import { StatusBadge } from '@/components/ui/status-badge/status-badge.view';
 
 interface IProps extends IComponentChild {}

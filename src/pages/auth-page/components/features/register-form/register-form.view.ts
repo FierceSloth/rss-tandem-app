@@ -5,7 +5,7 @@ import { Component } from '@components/base/component';
 import styles from './register-form.module.scss';
 import { Input } from '@/components/ui/input/input.view';
 import { Button } from '@/components/ui/button/button.view';
-import { messages } from '../../common/constants/messages';
+import { messages } from '../../../common/constants/messages';
 
 interface IProps extends IComponentChild {}
 
@@ -38,18 +38,21 @@ export class RegisterForm extends Component {
 
     this.email = new Input({
       className: styles.input,
+      type: 'email',
       labelText: messages.authEmail.labelText,
       placeholder: messages.authEmail.placeholder,
     });
 
     this.password = new Input({
       className: styles.input,
+      type: 'password',
       labelText: messages.password.labelText,
       placeholder: messages.password.placeholder,
     });
 
     this.confirmPassword = new Input({
       className: styles.input,
+      type: 'password',
       labelText: messages.confirmPassword.labelText,
       placeholder: messages.confirmPassword.placeholder,
     });
