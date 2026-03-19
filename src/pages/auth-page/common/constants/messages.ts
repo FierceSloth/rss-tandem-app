@@ -16,6 +16,7 @@ export const messages = {
     errors: {
       required: 'Email is required',
       invalid: 'Enter a valid email address',
+      failed: 'Registration failed',
     },
   },
   password: {

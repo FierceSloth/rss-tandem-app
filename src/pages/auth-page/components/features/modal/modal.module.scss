@@ -21,7 +21,6 @@
       &::before {
         content: '•';
         margin-right: 0.5rem;
-        color: #ffffff;
       }
     }
 
@@ -30,8 +29,7 @@
       display: flex;
       justify-content: center;
       background: inherit;
-      margin-top: 24px;
-      margin-bottom: 20px;
+      margin: 24px 0 20px;
 
       .tab {
         width: 50%;
