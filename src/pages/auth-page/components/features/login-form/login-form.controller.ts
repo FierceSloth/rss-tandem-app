@@ -1,5 +1,5 @@
-import { messages } from '../../../common/constants/messages';
-import { loginValidator, registerPasswordValidator, emailValidator } from '../../../common/utils/validator';
+import { messages } from '@/pages/auth-page/common/constants/messages';
+import { loginValidator, registerPasswordValidator, emailValidator } from '@/pages/auth-page/common/utils/validator';
 import type { LoginForm } from './login-form.view';
 import { authService } from '@/service/auth/auth.service';
 import { useNavigate } from '@/router/hooks';

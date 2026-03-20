@@ -1,8 +1,8 @@
 import type { Modal } from './modal.view';
 import { RegisterForm } from '../register-form/register-form.view';
-import { RegisterFormController } from '../register-form/register-form.controller';
-import { LoginForm } from '../login-form/login-form.view';
-import { LoginFormController } from '../login-form/login-form.controller';
+import { RegisterFormController } from '@/pages/auth-page/components/features/register-form/register-form.controller';
+import { LoginForm } from '@/pages/auth-page/components/features/login-form/login-form.view';
+import { LoginFormController } from '@/pages/auth-page/components/features/login-form/login-form.controller';
 import styles from './modal.module.scss';
 
 export class ModalController {

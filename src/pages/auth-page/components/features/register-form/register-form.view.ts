@@ -5,7 +5,7 @@ import { Component } from '@components/base/component';
 import styles from './register-form.module.scss';
 import { Input } from '@/components/ui/input/input.view';
 import { Button } from '@/components/ui/button/button.view';
-import { messages } from '../../../common/constants/messages';
+import { messages } from '@/pages/auth-page/common/constants/messages';
 
 interface IProps extends IComponentChild {}
 
