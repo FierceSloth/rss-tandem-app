@@ -9,24 +9,18 @@ import { messages } from '@/pages/auth-page/common/constants/messages';
 
 interface IProps extends IComponentChild {}
 
-export class LoginForm extends Component {
+export class LoginForm extends Component<HTMLFormElement> {
   public readonly form: Component<HTMLFormElement>;
   public readonly loginOrEmail: Input;
   public readonly password: Input;
   public readonly loginButton: Button;
 
   constructor({ className = [] }: IProps, ...children: Component[]) {
-    const cssClasses = mergeClassNames(styles.loginForm, className);
+    const cssClasses = mergeClassNames(styles.form, className);
 
-    super({ className: cssClasses }, ...children);
+    super({ tag: 'form', className: cssClasses, attrs: { method: 'post' } }, ...children);
 
-    this.form = new Component<HTMLFormElement>({
-      tag: 'form',
-      className: styles.form,
-      attrs: {
-        method: 'post',
-      },
-    });
+    this.form = this;
 
     this.loginOrEmail = new Input({
       className: styles.input,
@@ -53,7 +47,6 @@ export class LoginForm extends Component {
 
     this.loginButton.setDisabled(true);
 
-    this.form.append(this.loginOrEmail, this.password, this.loginButton);
-    this.append(this.form);
+    this.append(this.loginOrEmail, this.password, this.loginButton);
   }
 }
