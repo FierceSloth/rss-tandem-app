@@ -1,6 +1,6 @@
 import { supabase } from '@/api/supabase/supabase-client';
 import type { Session } from '@supabase/supabase-js';
-import { STORAGE_KEYS } from '@/common/constants/constants';
+import { messages } from '@/common/constants/messages';
 
 export interface IAuthResult {
   success: boolean;
@@ -12,22 +12,17 @@ export const authService = {
     const { data, error } = await supabase.auth.signUp({ email, password });
 
     if (error || !data.user) {
-      return { success: false, error: error?.message ?? 'Registration failed' };
+      return { success: false, error: messages.auth.errors.registrationFailed };
     }
 
     if (data.user.identities?.length === 0) {
-      return { success: false, error: 'User with this email already exists' };
+      return { success: false, error: messages.auth.errors.emailAlreadyExists };
     }
 
     const { error: profileError } = await supabase.from('profiles').upsert({ id: data.user.id, username, email });
 
     if (profileError) {
-      return { success: false, error: profileError.message };
-    }
-
-    const { data: sessionData } = await supabase.auth.getSession();
-    if (sessionData.session) {
-      localStorage.setItem(STORAGE_KEYS.AUTH, JSON.stringify(sessionData.session.user));
+      return { success: false, error: messages.auth.errors.profileSaveError };
     }
 
     return { success: true };
@@ -50,7 +45,7 @@ export const authService = {
       const { data, error } = await supabase.from('profiles').select('email').eq('username', loginOrEmail).single();
 
       if (error || !data) {
-        return { success: false, error: 'User not found' };
+        return { success: false, error: messages.auth.errors.userNotFound };
       }
 
       email = data.email as string;
@@ -62,17 +57,11 @@ export const authService = {
       return { success: false, error: error.message };
     }
 
-    const { data: sessionData } = await supabase.auth.getSession();
-    if (sessionData.session) {
-      localStorage.setItem(STORAGE_KEYS.AUTH, JSON.stringify(sessionData.session.user));
-    }
-
     return { success: true };
   },
 
   async logout(): Promise<void> {
     await supabase.auth.signOut();
-    localStorage.removeItem(STORAGE_KEYS.AUTH);
   },
 
   async getSession(): Promise<Session | null> {

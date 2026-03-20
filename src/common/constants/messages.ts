@@ -35,4 +35,12 @@ export const messages = {
     testsStart: '--- Running Test Suite ---',
     timeout: 'TimeoutError: Code execution exceeded the maximum allowed time.',
   },
+  auth: {
+    errors: {
+      registrationFailed: 'Registration failed',
+      emailAlreadyExists: 'User with this email already exists',
+      userNotFound: 'User not found',
+      profileSaveError: 'Failed to save user profile',
+    },
+  },
 };
