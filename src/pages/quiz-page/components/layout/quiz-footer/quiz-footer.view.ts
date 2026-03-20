@@ -14,6 +14,7 @@ interface IProps extends IComponentChild {
 export class QuizFooter extends Component {
   public readonly primaryButton: Button;
   public readonly ghostButton: Button;
+  private controller?: QuizFooterController;
 
   constructor({ className = [], withController = true }: IProps, ...children: Component[]) {
     const cssClasses = mergeClassNames(styles.quizFooter, className);
@@ -36,7 +37,12 @@ export class QuizFooter extends Component {
     this.append(this.ghostButton, this.primaryButton);
 
     if (withController) {
-      new QuizFooterController(this);
+      this.controller = new QuizFooterController(this);
     }
+  }
+
+  public destroy(): void {
+    this.controller?.destroy();
+    super.destroy();
   }
 }

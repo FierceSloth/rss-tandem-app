@@ -1,10 +1,10 @@
-import { TOTAL_PROGRESS } from '@/pages/quiz-page/common/constants/constants';
 import gold from '@/assets/svg/score/gold.svg?raw';
 import silver from '@/assets/svg/score/silver.svg?raw';
 import bronze from '@/assets/svg/score/bronze.svg?raw';
 import { createSvgComponent } from '@/common/utils/create-svg.util';
 import { messages } from './common/constants/messages';
 import type { Score } from './score.view';
+import { TOTAL_PROGRESS } from '@/common/constants/constants';
 
 const GOLD_SCORE = 80;
 const SILVER_SCORE = 50;
@@ -19,13 +19,13 @@ export class ScoreController {
     const percent = this.view.total === 0 ? 0 : Math.round((this.view.correct / this.view.total) * TOTAL_PROGRESS);
 
     this.setIcon(percent);
-    this.setScore();
+    this.setResultScore();
     this.setPercentageProgress(percent);
     this.setMessage(percent);
   }
 
   private setIcon(percent: number): void {
-    let medalSvg;
+    let medalSvg: string | null = null;
     if (percent >= GOLD_SCORE) {
       medalSvg = gold;
     } else if (percent >= SILVER_SCORE) {
@@ -43,8 +43,8 @@ export class ScoreController {
     }
   }
 
-  private setScore(): void {
-    this.view.score.setText(messages.titles.score(this.view.correct, this.view.total));
+  private setResultScore(): void {
+    this.view.resultScore.setText(messages.titles.score(this.view.correct, this.view.total));
   }
 
   private setPercentageProgress(percent: number): void {

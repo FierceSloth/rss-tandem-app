@@ -15,6 +15,7 @@ interface IProps extends IComponentChild {
   padding?: Padding;
   time?: number;
   dangerTimeFrom?: number;
+  countdown?: boolean;
 }
 
 const LAST_10_MINUTES = 600;
@@ -29,6 +30,7 @@ export class Timer extends Component {
   private isDanger = false;
   private engine: TimerEngine;
   private dangerTimeFrom: number;
+  private countdown: boolean;
 
   constructor(
     {
@@ -38,6 +40,7 @@ export class Timer extends Component {
       padding = 'none',
       time = SIXTY_SECONDS,
       dangerTimeFrom = LAST_10_MINUTES,
+      countdown = true,
     }: IProps,
     ...children: Component[]
   ) {
@@ -50,8 +53,9 @@ export class Timer extends Component {
     super({ className: cssClasses }, ...children);
     this.color = color;
     this.dangerTimeFrom = dangerTimeFrom;
+    this.countdown = countdown;
 
-    this.engine = new TimerEngine(time);
+    this.engine = new TimerEngine(time, countdown);
 
     if (icon) {
       this.node.append(icon);
@@ -70,7 +74,7 @@ export class Timer extends Component {
 
   private init(): void {
     this.engine.onTick((timeLeft) => {
-      if (timeLeft <= this.dangerTimeFrom && !this.isDanger) {
+      if (this.countdown && timeLeft <= this.dangerTimeFrom && !this.isDanger) {
         this.removeClass(styles[`color-${this.color}`]);
         this.addClass(styles['color-red']);
         this.isDanger = true;

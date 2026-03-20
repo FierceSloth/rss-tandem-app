@@ -1,5 +1,5 @@
 import styles from './score.module.scss';
-import type { IScore } from '@/common/types/types';
+import type { IScore } from '@/components/features/score/types/types';
 import { Component } from '@/components/base/component';
 import { messages } from './common/constants/messages';
 import type { IComponentChild } from '@common/types/types';
@@ -16,7 +16,7 @@ export class Score extends Component {
   public total: number;
   public frameId?: number;
   public icon: Component;
-  public score: Component;
+  public resultScore: Component;
   public percentText: Component;
   public progress: Component;
   public message: Component;
@@ -31,15 +31,15 @@ export class Score extends Component {
     const title = new Component({
       tag: 'h2',
       className: styles.title,
-      text: messages.titles.quizCompleted,
+      text: messages.titles.taskCompleted,
     });
 
     this.icon = new Component({
       className: styles.scoreIcon,
     });
 
-    this.score = new Component({
-      className: styles.score,
+    this.resultScore = new Component({
+      className: styles.scoreValue,
     });
 
     this.percentText = new Component({
@@ -58,7 +58,7 @@ export class Score extends Component {
 
     this.node.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-    this.append(this.icon, title, this.percentText, this.score, bar, this.message);
+    this.append(this.icon, title, this.percentText, this.resultScore, bar, this.message);
 
     if (withController) {
       new ScoreController(this);

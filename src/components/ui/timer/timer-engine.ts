@@ -7,20 +7,26 @@ export class TimerEngine {
   private timeLeft: number;
   private startTime = 0;
   private endTime = 0;
-
+  private countdown: boolean;
   private timerId: number | null = null;
+  private lastEmittedTime: number | null = null;
 
   private tickListeners: TimerListener[] = [];
   private endListeners: (() => void)[] = [];
 
-  constructor(duration: number) {
+  constructor(duration: number, countdown: boolean = true) {
     this.duration = duration;
-    this.timeLeft = duration;
+    this.timeLeft = countdown ? duration : 0;
+    this.countdown = countdown;
   }
 
   public start(): void {
+    this.lastEmittedTime = null;
     this.startTime = Date.now();
-    this.endTime = this.startTime + this.timeLeft * MILLISECONDS_PER_SECOND;
+
+    this.endTime = this.countdown
+      ? this.startTime + this.timeLeft * MILLISECONDS_PER_SECOND
+      : this.startTime + this.duration * MILLISECONDS_PER_SECOND;
 
     this.loop();
   }
@@ -39,6 +45,7 @@ export class TimerEngine {
   }
 
   public reset(): void {
+    this.lastEmittedTime = null;
     this.stop();
     this.timeLeft = this.duration;
   }
@@ -60,13 +67,22 @@ export class TimerEngine {
 
   private loop = (): void => {
     const now = Date.now();
-    const diff = this.endTime - now;
+    if (this.countdown) {
+      const diff = this.endTime - now;
+      this.timeLeft = Math.max(0, Math.ceil(diff / MILLISECONDS_PER_SECOND));
+    } else {
+      const diff = now - this.startTime;
+      this.timeLeft = Math.min(this.duration, Math.floor(diff / MILLISECONDS_PER_SECOND));
+    }
 
-    this.timeLeft = Math.max(0, Math.ceil(diff / MILLISECONDS_PER_SECOND));
+    if (this.lastEmittedTime !== this.timeLeft) {
+      this.tickListeners.forEach((listener) => listener(this.timeLeft));
+      this.lastEmittedTime = this.timeLeft;
+    }
 
-    this.tickListeners.forEach((listener) => listener(this.timeLeft));
+    const isFinished = this.countdown ? this.timeLeft <= 0 : this.timeLeft >= this.duration;
 
-    if (this.timeLeft <= 0) {
+    if (isFinished) {
       this.endListeners.forEach((listener) => listener());
       this.stop();
       return;

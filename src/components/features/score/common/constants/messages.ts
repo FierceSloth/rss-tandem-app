@@ -1,6 +1,6 @@
 export const messages = {
   titles: {
-    quizCompleted: 'Quiz Completed 🎉',
+    taskCompleted: 'Task Completed 🎉',
     score: (correct: number, total: number): string => `Score: ${correct} / ${total}`,
   },
   messages: {

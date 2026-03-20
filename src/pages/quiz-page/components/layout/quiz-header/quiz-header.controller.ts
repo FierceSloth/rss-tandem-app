@@ -9,6 +9,9 @@ export class QuizHeaderController {
   constructor(view: QuizHeader) {
     this.view = view;
     this.view.timer.getEngine().onEnd(() => {
+      if (quizStore.getState().status === QuizViewState.ERROR) {
+        return;
+      }
       quizStore.setState({
         status: QuizViewState.RESULT,
       });
@@ -16,6 +19,12 @@ export class QuizHeaderController {
     });
 
     this.initListeners();
+  }
+
+  public destroy(): void {
+    quizEmitter.off(QuizEvents.PROGRESS, this.onProgress);
+    quizEmitter.off(QuizEvents.RETRY, this.onQuizRetry);
+    quizEmitter.off(QuizEvents.RESULT, this.onQuizFinished);
   }
 
   private initListeners(): void {

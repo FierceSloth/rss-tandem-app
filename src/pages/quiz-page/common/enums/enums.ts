@@ -14,4 +14,5 @@ export enum QuizViewState {
   LOADING = 'loading',
   QUIZ = 'quiz',
   RESULT = 'result',
+  ERROR = 'error',
 }

@@ -1,6 +1,6 @@
 import { supabase } from '@/api/supabase/supabase-client';
-import type { IQuiz } from '@/common/types/types';
-import { mapDtoToQuiz } from '@/common/mapper/quiz.mapper';
+import type { IQuiz } from '@/pages/quiz-page/common/types/types';
+import { quizMapper } from '@pages/quiz-page/common/utils/quiz-mapper.util';
 
 export class QuizRepository {
   public async fetchQuestions(levelId: string): Promise<IQuiz[]> {
@@ -20,9 +20,7 @@ export class QuizRepository {
       .eq('level_id', levelId)
       .order('id', { ascending: true });
 
-    console.log(levelId, data);
-
     if (error) throw error;
-    return mapDtoToQuiz(data);
+    return quizMapper.mapDtoToQuiz(data);
   }
 }

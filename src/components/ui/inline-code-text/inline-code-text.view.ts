@@ -1,9 +1,8 @@
 import type { IComponentChild } from '@common/types/types';
 import { mergeClassNames } from '@common/utils/class-names.util';
 import { Component } from '@components/base/component';
-
 import styles from './inline-code-text.module.scss';
-import { EVEN } from '@/pages/quiz-page/common/constants/constants';
+import { EVEN } from '@/common/constants/constants';
 
 interface IProps extends IComponentChild {
   tag?: keyof HTMLElementTagNameMap | undefined;

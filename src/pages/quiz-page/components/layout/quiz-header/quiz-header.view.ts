@@ -19,6 +19,7 @@ export class QuizHeader extends Component {
   public readonly timer: Timer;
   private readonly level: StatusBadge;
   private readonly progressBar: ProgressBar;
+  private controller?: QuizHeaderController;
 
   constructor({ className = [], withController = true }: IProps, ...children: Component[]) {
     const cssClasses = mergeClassNames(styles.quizHeader, className);
@@ -51,5 +52,10 @@ export class QuizHeader extends Component {
 
   public setLevel(currentTaskNumber: number, totalNumberOfTasks: number): void {
     this.level.setText(messages.titles.level(currentTaskNumber, totalNumberOfTasks));
+  }
+
+  public destroy(): void {
+    this.controller?.destroy();
+    super.destroy();
   }
 }

@@ -23,6 +23,7 @@ export class QuizPage implements IPage {
   private loader: LoaderManager;
   private unsubscribe?: () => void;
   private resultView?: Score;
+  private controller: QuizPageController;
 
   constructor() {
     this.quizHeader = new QuizHeader({});
@@ -34,7 +35,7 @@ export class QuizPage implements IPage {
       this.renderState(state);
     });
 
-    new QuizPageController(this);
+    this.controller = new QuizPageController(this);
   }
 
   public render(): Component {
@@ -69,6 +70,10 @@ export class QuizPage implements IPage {
         this.showLoading();
         break;
       }
+      case QuizViewState.ERROR: {
+        this.hideLoading();
+        break;
+      }
       case QuizViewState.QUIZ: {
         this.hideLoading();
         this.hideResult();
@@ -93,6 +98,7 @@ export class QuizPage implements IPage {
 
   public destroy(): void {
     this.unsubscribe?.();
+    this.controller.destroy();
   }
 
   private hideResult(): void {

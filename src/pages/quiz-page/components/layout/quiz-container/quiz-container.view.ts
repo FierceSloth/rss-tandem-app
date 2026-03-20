@@ -1,5 +1,5 @@
 import styles from './quiz-container.module.scss';
-import type { IComponentChild, IQuiz, IQuizOption } from '@common/types/types';
+import type { IQuiz, IQuizOption } from '@/pages/quiz-page/common/types/types';
 import { mergeClassNames } from '@/common/utils/class-names.util';
 import { Component } from '@components/base/component';
 import { CodeEditor } from '@/components/features/code-editor/code-editor.view';
@@ -8,10 +8,9 @@ import { TagList } from '@/pages/quiz-page/components/ui/tag-list/tag-list';
 import { AnswerCard } from '@/pages/quiz-page/components/ui/answer-card/answer-card.view';
 import { EMPTY } from '@/common/constants/constants';
 import { ASCII_A } from '@/pages/quiz-page/common/constants/constants';
+import type { IComponentChild } from '@/common/types/types';
 
-interface IProps extends IComponentChild {
-  withController?: boolean;
-}
+interface IProps extends IComponentChild {}
 
 export class QuizContainer extends Component {
   public tags: TagList;
@@ -20,8 +19,9 @@ export class QuizContainer extends Component {
   public language: Component;
   private answerListElement: Component;
   private answers: AnswerCard[] = [];
+  private codeContainer: Component;
 
-  constructor({ className = [], withController = true }: IProps, ...children: Component[]) {
+  constructor({ className = [] }: IProps, ...children: Component[]) {
     const cssClasses = mergeClassNames(styles.quizContainer, className);
     super({ className: cssClasses }, ...children);
 
@@ -33,28 +33,28 @@ export class QuizContainer extends Component {
       className: styles.codeSnippet,
       readOnly: true,
     });
-    const codeContainer = new Component({ className: styles.codeContainer }, this.codeSnippet);
+    this.codeContainer = new Component({ className: [styles.codeContainer, styles.hidden] }, this.codeSnippet);
 
     this.language = new Component({ className: styles.language });
 
     this.answerListElement = new Component({ className: styles.answerList });
 
     heading.append(this.tags, this.questionText);
-    codeContainer.append(this.language);
-    this.append(heading, codeContainer, this.answerListElement);
-
-    if (withController) {
-      //new QuizContainerController(this);
-    }
+    this.codeContainer.append(this.language);
+    this.append(heading, this.codeContainer, this.answerListElement);
   }
 
   public setTask(task: IQuiz): void {
-    //this.answers.forEach((answer) => answer.reset());
-
     this.tags.setTags(task.tags ?? []);
     this.questionText.setInlineCodeText(task.question ?? EMPTY);
     this.language.setText(task.language ?? EMPTY);
-    this.codeSnippet.setValue(task.codeSnippet ?? EMPTY);
+    if (task.codeSnippet) {
+      this.codeContainer.removeClass(styles.hidden);
+      this.codeSnippet.setValue(task.codeSnippet);
+    } else {
+      this.codeContainer.addClass(styles.hidden);
+      this.codeSnippet.setValue(EMPTY);
+    }
 
     this.renderAnswers(task.options);
   }

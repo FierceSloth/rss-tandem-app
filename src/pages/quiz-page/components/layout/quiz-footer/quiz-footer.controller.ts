@@ -1,9 +1,10 @@
 import { quizEmitter } from '@/pages/quiz-page/common/utils/quiz-emmiter.util';
 import type { QuizFooter } from './quiz-footer.view';
-import { QuizEvents } from '@/pages/quiz-page/common/enums/enums';
+import { QuizEvents, QuizViewState } from '@/pages/quiz-page/common/enums/enums';
 import { messages } from '@/pages/quiz-page/common/constants/messages';
 import { ROUTES } from '@/router/constants';
 import { useNavigate } from '@/router/hooks';
+import { quizStore } from '@/pages/quiz-page/store/quiz.store';
 
 export class QuizFooterController {
   private view: QuizFooter;
@@ -15,8 +16,13 @@ export class QuizFooterController {
 
     this.setDefaultButtons();
 
-    quizEmitter.on(QuizEvents.RETRY, () => this.setDefaultButtons());
-    quizEmitter.on(QuizEvents.RESULT, () => this.setResultFooterButtons());
+    quizEmitter.on(QuizEvents.RETRY, this.setDefaultButtons);
+    quizEmitter.on(QuizEvents.RESULT, this.setResultFooterButtons);
+  }
+
+  public destroy(): void {
+    quizEmitter.off(QuizEvents.RETRY, this.setDefaultButtons);
+    quizEmitter.off(QuizEvents.RESULT, this.setResultFooterButtons);
   }
 
   private setDefaultButtons = (): void => {
@@ -42,18 +48,30 @@ export class QuizFooterController {
   };
 
   private onContinue = (): void => {
+    if (quizStore.getState().status === QuizViewState.ERROR) {
+      return;
+    }
     quizEmitter.emit(QuizEvents.NEXT, null);
   };
 
   private onSkip = (): void => {
+    if (quizStore.getState().status === QuizViewState.ERROR) {
+      return;
+    }
     quizEmitter.emit(QuizEvents.SKIP, null);
   };
 
   private onRetry = (): void => {
+    if (quizStore.getState().status === QuizViewState.ERROR) {
+      return;
+    }
     quizEmitter.emit(QuizEvents.RETRY, null);
   };
 
   private onBackToRoadmap = (): void => {
-    this.navigate(ROUTES.LEVEL_SELECTION_PAGE);
+    if (quizStore.getState().status === QuizViewState.ERROR) {
+      return;
+    }
+    this.navigate(ROUTES.ROADMAP_PAGE);
   };
 }

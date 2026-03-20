@@ -9,7 +9,9 @@ export const messages = {
     backToRoadmapButton: 'BACK TO ROADMAP',
   },
   errors: {
-    taskNumberConnotBeNegative: 'Task number cannot be negative',
+    taskNumberCannotBeNegative: 'Task number cannot be negative',
+    failedLoadQuizPleaseTryLater: 'Failed to load quiz data. Please try again later.',
+    failedLoadQuiz: 'Failed to load quiz',
   },
   messages: {},
 };
