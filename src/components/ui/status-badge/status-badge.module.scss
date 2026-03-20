@@ -96,14 +96,26 @@
   --badge-border: rgba(246, 59, 59, 0.3);
 }
 
-.animation-pulse-ring .dot {
-  @include animate-pulse-ring;
-}
+.statusBadge {
+  &.animation-pulse-ring {
+    .dot {
+      @include animate-pulse-ring;
+    }
+  }
 
-.animation-pulse-slow .dot {
-  @include animate-pulse-slow;
-}
+  &.animation-pulse-slow {
+    @include animate-pulse-slow;
 
-.animation-pulse .dot {
-  @include animate-pulse;
+    .dot {
+      @include animate-pulse-slow;
+    }
+  }
+
+  &.animation-pulse {
+    @include animate-pulse;
+
+    .dot {
+      @include animate-pulse;
+    }
+  }
 }

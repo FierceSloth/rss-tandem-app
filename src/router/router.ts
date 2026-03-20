@@ -118,6 +118,7 @@ export class Router {
     }
 
     this.render(route);
+    appEmitter.emit(AppEvents.ROUTE_CHANGED, pathname);
   }
 
   private redirectToNotFound(): void {

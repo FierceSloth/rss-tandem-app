@@ -1,0 +1,393 @@
+@use '@/styles/abstract/mixins' as *;
+
+/* ========================================================================== */
+/*                            Wrapper and Position                            */
+/* ========================================================================== */
+
+.cardWrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  margin-bottom: 8rem;
+  z-index: 1;
+
+  &.left {
+    justify-content: flex-end;
+    padding-right: calc(50% + 40px);
+
+    .hLine {
+      right: 50%;
+      width: 40px;
+    }
+
+    .connector {
+      right: calc(50% - 6px);
+    }
+
+    @include media-desktop-small {
+      padding-right: calc(40% + 40px);
+    }
+
+    @include media-tablet {
+      justify-content: flex-start;
+      padding-right: 0;
+    }
+  }
+
+  &.right {
+    justify-content: flex-start;
+    padding-left: calc(50% + 40px);
+
+    .hLine {
+      left: 50%;
+      width: 40px;
+    }
+
+    .connector {
+      left: calc(50% - 6px);
+    }
+
+    @include media-desktop-small {
+      padding-left: calc(40% + 40px);
+    }
+
+    @include media-tablet {
+      justify-content: flex-end;
+      padding-left: 0;
+    }
+  }
+
+  &.center {
+    justify-content: center;
+
+    .hLine {
+      display: none;
+    }
+    .connector {
+      display: none;
+    }
+  }
+
+  @include media-mobile {
+    margin-bottom: 6rem;
+  }
+}
+
+.hLine {
+  position: absolute;
+  top: 50%;
+  height: 2px;
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+.hLine.completed {
+  background-color: color-mix(in srgb, var(--accent-green) 80%, transparent);
+  box-shadow: 0 0 10px color-mix(in srgb, color-mix(in srgb, var(--accent-green) 60%, transparent) 80%, transparent);
+}
+.hLine.active {
+  background-color: var(--accent-blue);
+  box-shadow: 0 0 10px color-mix(in srgb, color-mix(in srgb, var(--accent-blue) 60%, transparent) 80%, transparent);
+}
+.hLine.locked {
+  background-color: var(--border-subtle);
+}
+
+.connector {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  background-color: var(--bg-body);
+  border: 2px solid var(--border-focus);
+  z-index: 2;
+  transition: var(--transition);
+}
+
+.connector.completed {
+  border-color: color-mix(in srgb, var(--accent-green) 80%, transparent);
+  box-shadow: 0 0 10px color-mix(in srgb, color-mix(in srgb, var(--accent-green) 80%, transparent) 40%, transparent);
+}
+.connector.active {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 15px color-mix(in srgb, var(--accent-blue) 50%, transparent);
+}
+.connector.locked {
+  border-color: var(--border-subtle);
+}
+
+/* ========================================================================== */
+/*                                    Card                                    */
+/* ========================================================================== */
+
+.card {
+  width: 100%;
+  max-width: 360px;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+  outline: none;
+
+  transition:
+    box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+    border-color 0.3s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.04), transparent);
+    transform: skewX(-25deg);
+    transition: left 0.6s ease-in-out;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  &:hover {
+    &::before {
+      left: 200%;
+    }
+  }
+}
+
+.completed .card {
+  border-color: color-mix(in srgb, var(--accent-green) 80%, transparent);
+
+  &:hover {
+    border-color: var(--accent-green);
+    box-shadow:
+      0 12px 48px color-mix(in srgb, var(--accent-green) 15%, transparent),
+      0 2px 8px color-mix(in srgb, var(--accent-green) 25%, transparent);
+  }
+}
+
+.active .card {
+  background-color: var(--bg-panel);
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 15px color-mix(in srgb, var(--accent-blue) 10%, transparent);
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--accent-blue) 100%, white);
+    box-shadow:
+      0 16px 48px color-mix(in srgb, var(--accent-blue) 25%, transparent),
+      0 4px 12px color-mix(in srgb, var(--accent-blue) 40%, transparent);
+  }
+}
+
+.locked .card {
+  background-color: #070707;
+  border-style: dashed;
+  border-color: var(--border-subtle);
+  cursor: not-allowed;
+
+  > * {
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--border-subtle) 90%, white);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+    > * {
+      opacity: 0.7;
+    }
+
+    &::before {
+      display: none;
+    }
+  }
+}
+
+/* ========================================================================== */
+/*                                 Card Inner                                 */
+/* ========================================================================== */
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-4);
+}
+
+.idBadge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-tertiary);
+  border: 1px solid var(--border-subtle);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+}
+
+.active .idBadge {
+  color: var(--accent-blue);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.statusIcon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-tertiary);
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.completed .statusIcon {
+  color: color-mix(in srgb, var(--accent-green) 80%, transparent);
+}
+.active .statusIcon {
+  color: var(--accent-blue);
+  animation: pulse-icon 2s infinite;
+}
+.locked .statusIcon {
+  color: var(--text-tertiary);
+}
+
+@keyframes pulse-icon {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 1.6rem;
+}
+
+.cardTitle {
+  font-size: var(--font-size-superlarge);
+  font-weight: 500;
+  color: var(--text-primary);
+
+  @include media-mobile {
+    font-size: var(--font-size-large);
+  }
+}
+
+.cardDescription {
+  font-size: var(--font-size-semibase);
+  color: var(--text-secondary);
+  line-height: var(--line-height-semibase);
+
+  @include media-mobile {
+    font-size: var(--font-size-small);
+    line-height: var(--line-height-small);
+  }
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1.6rem;
+  margin-top: auto;
+}
+
+.difficultyBadge {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-default);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-0-05);
+  border-radius: var(--radius-sm);
+  padding: 4px 8px;
+}
+
+.diff-easy {
+  color: var(--accent-green);
+  background-color: color-mix(in srgb, var(--accent-green) 10%, transparent);
+}
+.diff-medium {
+  color: var(--accent-yellow);
+  background-color: color-mix(in srgb, var(--accent-yellow) 10%, transparent);
+}
+.diff-hard {
+  color: var(--accent-red);
+  background-color: color-mix(in srgb, var(--accent-red) 10%, transparent);
+}
+.diff-expert {
+  color: var(--accent-purple);
+  background-color: color-mix(in srgb, var(--accent-purple) 10%, transparent);
+}
+
+.lockedText {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-semismall);
+  color: var(--text-tertiary);
+  letter-spacing: var(--letter-spacing-0-05);
+}
+
+.resumeBtn {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-semismall);
+  padding: 6px 12px;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  cursor: pointer;
+  transition: var(--transition);
+
+  &:hover {
+    border-color: var(--text-tertiary);
+    color: var(--text-primary);
+  }
+}
+
+.active .resumeBtn {
+  background-color: var(--accent-blue);
+  color: var(--text-primary);
+  border-color: var(--accent-blue);
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--accent-blue) 80%, black);
+  }
+}
+
+.starRating {
+  display: flex;
+  gap: 2px;
+}
+
+.star {
+  width: 14px;
+  height: 14px;
+  display: flex;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    transition: var(--transition);
+  }
+
+  &.active svg {
+    fill: var(--accent-orange);
+    color: var(--accent-orange);
+  }
+
+  &.inActive svg {
+    fill: var(--border-focus);
+    color: var(--border-focus);
+  }
+}
