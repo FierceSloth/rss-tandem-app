@@ -9,7 +9,7 @@ import { messages } from '../../../common/constants/messages';
 
 interface IProps extends IComponentChild {}
 
-export class RegisterForm extends Component {
+export class RegisterForm extends Component<HTMLFormElement> {
   public readonly form: Component<HTMLFormElement>;
   public readonly login: Input;
   public readonly email: Input;
@@ -18,17 +18,11 @@ export class RegisterForm extends Component {
   public readonly registerButton: Component<HTMLButtonElement>;
 
   constructor({ className = [] }: IProps, ...children: Component[]) {
-    const cssClasses = mergeClassNames(styles.registerForm, className);
+    const cssClasses = mergeClassNames(styles.form, className);
 
-    super({ className: cssClasses }, ...children);
+    super({ tag: 'form', className: cssClasses, attrs: { method: 'post' } }, ...children);
 
-    this.form = new Component<HTMLFormElement>({
-      tag: 'form',
-      className: styles.form,
-      attrs: {
-        method: 'post',
-      },
-    });
+    this.form = this;
 
     this.login = new Input({
       className: styles.input,
@@ -69,8 +63,6 @@ export class RegisterForm extends Component {
       variant: 'primary',
     });
 
-    this.form.append(this.login, this.email, this.password, this.confirmPassword, this.registerButton);
-
-    this.append(this.form);
+    this.append(this.login, this.email, this.password, this.confirmPassword, this.registerButton);
   }
 }
