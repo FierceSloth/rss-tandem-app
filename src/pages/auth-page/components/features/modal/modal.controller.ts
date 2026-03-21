@@ -4,7 +4,7 @@ import { RegisterFormController } from '../register-form/register-form.controlle
 import { LoginForm } from '../login-form/login-form.view';
 import { LoginFormController } from '../login-form/login-form.controller';
 import { ROUTES } from '@/router/constants';
-import { useNavigate, useLocation } from '@/router/hooks';
+import { useNavigate, useParams } from '@/router/hooks';
 import styles from './modal.module.scss';
 
 export class ModalController {
@@ -26,9 +26,7 @@ export class ModalController {
   }
 
   private initFromUrl(): void {
-    const location = useLocation();
-    const params = new URLSearchParams(location.search);
-    const view = params.get('view');
+    const view: string = useParams()['view'];
 
     if (view === 'register') {
       this.showRegisterForm();

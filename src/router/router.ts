@@ -1,5 +1,5 @@
 import { isHistoryState, updateHistory } from './utils/history';
-import { pathnameEqualsRoute } from './utils/path';
+import { pathnameEqualsRoute, pathnameWithParamsEqualsFullPath } from './utils/path';
 import type { ILocationState, INavigateFunction, INavigateOptions, IRoute } from './types';
 import { ROUTES } from './constants';
 import type { IPage } from '@/common/types/types';
@@ -15,6 +15,7 @@ import { normalizePath, resolveSecurity, isQueryValid } from './core/router-hand
 export class Router {
   private root: Component;
   private params: Record<string, string> = {};
+  private currentRoutePath: IRoute | null = null;
   private currentPage: IPage | null = null;
   private locationState: unknown = null;
   private readonly notFoundRoute: IRoute;
@@ -113,11 +114,13 @@ export class Router {
     const queryParameters = extractQuery(search);
     this.params = { ...params, ...queryParameters };
 
-    if (!pathnameEqualsRoute(route.path) && mode !== NavigationMode.SKIP) {
+    if (!pathnameWithParamsEqualsFullPath(fullPath) && mode !== NavigationMode.SKIP) {
       updateHistory(fullPath, this.locationState, mode);
     }
 
-    this.render(route);
+    if (this.currentRoutePath?.path !== route.path) {
+      this.render(route);
+    }
     appEmitter.emit(AppEvents.ROUTE_CHANGED, pathname);
   }
 
@@ -136,6 +139,7 @@ export class Router {
     const pageInstance: IPage = route.page();
     const pageElement = pageInstance.render();
     this.root.append(pageElement);
+    this.currentRoutePath = route;
     this.currentPage = pageInstance;
   }
 }
