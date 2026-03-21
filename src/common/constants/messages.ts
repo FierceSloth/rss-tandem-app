@@ -21,6 +21,10 @@ export const messages = {
     svgNotFound: 'Could not find SVG element in the string passed',
     errorFetchingIp: (error: string): string => `Failed to fetch IP: ${error}`,
     failedLoadRoadmap: 'Failed to load roadmap data. Please try again later.',
+    registrationFailed: 'Registration failed',
+    emailAlreadyExists: 'User with this email already exists',
+    userNotFound: 'User not found',
+    profileSaveError: 'Failed to save user profile',
   },
   terminal: {
     ready: 'System ready. Awaiting execution...',
@@ -34,13 +38,5 @@ export const messages = {
     outputStart: '--- Console Output ---',
     testsStart: '--- Running Test Suite ---',
     timeout: 'TimeoutError: Code execution exceeded the maximum allowed time.',
-  },
-  auth: {
-    errors: {
-      registrationFailed: 'Registration failed',
-      emailAlreadyExists: 'User with this email already exists',
-      userNotFound: 'User not found',
-      profileSaveError: 'Failed to save user profile',
-    },
   },
 };

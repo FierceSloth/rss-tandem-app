@@ -7,6 +7,7 @@ import eyeClosedSvg from '@/assets/svg/password-icons/eye-off.svg?raw';
 
 import styles from './input.module.scss';
 import { InputController } from './input.controller';
+import { createSvgComponent } from '@/common/utils/create-svg.util';
 
 interface IProps extends IComponentChild {
   type?: string;
@@ -60,11 +61,13 @@ export class Input extends Component {
         attrs: { type: 'button', 'aria-label': 'Show password' },
       });
 
+      const eyeOpenSvgElement = createSvgComponent(eyeOpenSvg);
       this.eyeOpen = new Component({ className: styles.eyeOpen });
-      this.eyeOpen.node.innerHTML = eyeOpenSvg;
+      this.eyeOpen.node.append(eyeOpenSvgElement);
 
+      const eyeClosedSvgElement = createSvgComponent(eyeClosedSvg);
       this.eyeClosed = new Component({ className: styles.eyeClosed });
-      this.eyeClosed.node.innerHTML = eyeClosedSvg;
+      this.eyeClosed.node.append(eyeClosedSvgElement);
 
       this.toggleBtn.append(this.eyeOpen, this.eyeClosed);
       this.append(this.input, this.toggleBtn, this.error);

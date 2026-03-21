@@ -20,17 +20,17 @@ class AuthService implements IAuthService {
     const { data, error } = await supabase.auth.signUp({ email, password });
 
     if (error || !data.user) {
-      return { success: false, error: messages.auth.errors.registrationFailed };
+      return { success: false, error: messages.errors.registrationFailed };
     }
 
     if (data.user.identities?.length === 0) {
-      return { success: false, error: messages.auth.errors.emailAlreadyExists };
+      return { success: false, error: messages.errors.emailAlreadyExists };
     }
 
     const saved = await this.createProfile(data.user.id, username, email);
 
     if (!saved) {
-      return { success: false, error: messages.auth.errors.profileSaveError };
+      return { success: false, error: messages.errors.profileSaveError };
     }
 
     return { success: true };
@@ -48,7 +48,7 @@ class AuthService implements IAuthService {
     const email = await this.resolveEmail(loginOrEmail);
 
     if (!email) {
-      return { success: false, error: messages.auth.errors.userNotFound };
+      return { success: false, error: messages.errors.userNotFound };
     }
 
     const { error } = await supabase.auth.signInWithPassword({ email, password });
