@@ -1,5 +1,5 @@
-import { loginValidator, registerPasswordValidator, emailValidator } from '../../common/utils/validator';
-import { messages } from '../../common/constants/messages';
+import { loginValidator, registerPasswordValidator, emailValidator } from '@/pages/auth-page/common/utils/validator';
+import { messages } from '@/pages/auth-page/common/constants/messages';
 import { authService } from '@/service/auth/auth.service';
 import type { RegisterForm } from './register-form.view';
 import { useNavigate } from '@/router/hooks';
@@ -21,6 +21,8 @@ export class RegisterFormController {
     this.initListeners();
     this.handleButton();
   }
+
+  public destroy(): void {}
 
   private initListeners(): void {
     this.view.login.addListener('input', () => {
@@ -64,7 +66,7 @@ export class RegisterFormController {
     const isTaken = await authService.isUsernameTaken(this.view.login.getValue());
 
     if (isTaken) {
-      this.view.login.setError(messages.authLogin.errors.alreadyTaken);
+      this.view.login.setError(messages.errors.loginAlreadyTaken);
       this.validationState.login = false;
       this.handleButton();
     }
@@ -75,12 +77,12 @@ export class RegisterFormController {
     const confirm = this.view.confirmPassword.getValue();
 
     if (confirm.length === 0) {
-      this.view.confirmPassword.setError(messages.confirmPassword.errors.required);
+      this.view.confirmPassword.setError(messages.errors.confirmPasswordRequired);
       return false;
     }
 
     if (password !== confirm) {
-      this.view.confirmPassword.setError(messages.confirmPassword.errors.mismatch);
+      this.view.confirmPassword.setError(messages.errors.confirmPasswordMismatch);
       return false;
     }
 
@@ -115,7 +117,7 @@ export class RegisterFormController {
       await authService.getSession();
       this.navigate(ROUTES.ROADMAP_PAGE);
     } else {
-      this.view.email.setError(result.error ?? 'Registration failed');
+      this.view.email.setError(result.error ?? messages.errors.registrationFailed);
       this.view.registerButton.setDisabled(false);
     }
   }
