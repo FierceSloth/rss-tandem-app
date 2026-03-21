@@ -68,10 +68,10 @@ export class LoginFormController {
       await authService.getSession();
       this.navigate(ROUTES.ROADMAP_PAGE);
     } else {
-      if (result.error === messages.loginForm.loginOrEmail.errors.notFound) {
-        this.view.loginOrEmail.setError(messages.loginForm.loginOrEmail.errors.notFound);
+      if (result.error === messages.errors.loginRequired) {
+        this.view.loginOrEmail.setError(messages.errors.loginNotFound);
       } else {
-        this.view.password.setError(messages.loginForm.password.errors.incorrect);
+        this.view.password.setError(messages.errors.passwordIncorrect);
         this.view.password.setValue('');
       }
 

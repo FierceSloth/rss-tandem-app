@@ -24,23 +24,23 @@ export class LoginForm extends Component<HTMLFormElement> {
 
     this.loginOrEmail = new Input({
       className: styles.input,
-      labelText: messages.loginForm.loginOrEmail.labelText,
-      placeholder: messages.loginForm.loginOrEmail.placeholder,
-      id: messages.loginForm.loginOrEmail.id,
+      labelText: messages.labels.loginOrEmail,
+      placeholder: messages.placeholders.loginOrEmail,
+      id: messages.id.login,
       autofocus: true,
     });
 
     this.password = new Input({
       className: styles.input,
       type: 'password',
-      labelText: messages.password.labelText,
-      placeholder: messages.password.placeholder,
-      id: messages.loginForm.password.id,
+      labelText: messages.labels.password,
+      placeholder: messages.placeholders.password,
+      id: messages.id.password,
     });
 
     this.loginButton = new Button({
       className: styles.button,
-      text: messages.loginForm.button.text,
+      text: messages.buttons.login,
       type: 'submit',
       variant: 'primary',
     });

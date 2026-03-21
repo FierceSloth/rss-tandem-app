@@ -1,5 +1,6 @@
 import type { Input } from './input.view';
 import styles from './input.module.scss';
+import { messages } from '@/common/constants/messages';
 
 export class InputController {
   private view: Input;
@@ -17,7 +18,13 @@ export class InputController {
     this.isPasswordVisible = !this.isPasswordVisible;
 
     this.view.setType(this.isPasswordVisible ? 'text' : 'password');
-    this.view.toggleBtn?.node.setAttribute('aria-label', this.isPasswordVisible ? 'Hide password' : 'Show password');
+
+    if (this.view.toggleBtn) {
+      this.view.toggleBtn.node.setAttribute(
+        'aria-label',
+        this.isPasswordVisible ? messages.buttons.hidePassword : messages.buttons.showPassword
+      );
+    }
 
     if (this.isPasswordVisible) {
       this.view.toggleBtn?.addClass(styles.visible);

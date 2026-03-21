@@ -1,74 +1,54 @@
 export const messages = {
-  authLogin: {
-    labelText: 'Login',
-    placeholder: 'Enter your login',
-    id: 'login',
-    errors: {
-      required: 'Login is required',
-      tooShort: 'Login must be at least 2 characters',
-      tooLong: 'Login must be no more than 16 characters',
-      latinOnly: 'Login must contain only Latin letters',
-      alreadyTaken: 'This login is already taken',
-    },
+  labels: {
+    login: 'Login',
+    email: 'Email',
+    password: 'Password',
+    confirmPassword: 'Confirm your password',
+    loginOrEmail: 'Login / Email',
   },
-  authEmail: {
-    labelText: 'Email',
-    placeholder: 'Enter your email',
-    id: 'email',
-    errors: {
-      required: 'Email is required',
-      invalid: 'Enter a valid email address',
-      failed: 'Registration failed',
-    },
+  placeholders: {
+    login: 'Enter your login',
+    email: 'Enter your email',
+    password: 'Enter your password',
+    confirmPassword: 'Confirm your password',
+    loginOrEmail: 'Enter your login or email',
   },
-  password: {
-    labelText: 'Password',
-    placeholder: 'Enter your password',
-    id: 'password',
-    errors: {
-      required: 'Password is required',
-      tooShort: 'Password must be at least 6 characters',
-      latinOnly: 'Password must contain only Latin letters and digits',
-      noDigit: 'Password must contain at least one digit',
-    },
+  id: {
+    login: 'login',
+    email: 'email',
+    password: 'password',
+    confirmPassword: 'confirm-password',
   },
-  confirmPassword: {
-    labelText: 'Confirm your password',
-    placeholder: 'Confirm your password',
-    id: 'confirm-password',
-    errors: {
-      required: 'Please confirm your password',
-      mismatch: 'Passwords do not match',
-    },
-  },
-  registerButton: {
-    text: 'Register',
-  },
-  loginForm: {
-    loginOrEmail: {
-      labelText: 'Login / Email',
-      placeholder: 'Enter your login or email',
-      id: 'login',
-      errors: {
-        notFound: 'User not found',
-      },
-    },
-    password: {
-      id: 'password',
-      errors: {
-        incorrect: 'Incorrect password',
-      },
-    },
-    button: {
-      text: 'Login',
-    },
+  buttons: {
+    register: 'Register',
+    login: 'Login',
   },
   modal: {
     logo: 'TANDEM',
     label: 'system access // developer portal',
-    tabs: {
-      login: 'Login',
-      register: 'Register',
-    },
+    tabLogin: 'Login',
+    tabRegister: 'Register',
+  },
+  errors: {
+    loginRequired: 'Login is required',
+    loginTooShort: 'Login must be at least 2 characters',
+    loginTooLong: 'Login must be no more than 16 characters',
+    loginLatinOnly: 'Login must contain only Latin letters',
+    loginAlreadyTaken: 'This login is already taken',
+    loginNotFound: 'User not found',
+
+    emailRequired: 'Email is required',
+    emailInvalid: 'Enter a valid email address',
+
+    passwordRequired: 'Password is required',
+    passwordTooShort: 'Password must be at least 6 characters',
+    passwordLatinOnly: 'Password must contain only Latin letters and digits',
+    passwordNoDigit: 'Password must contain at least one digit',
+    passwordIncorrect: 'Incorrect password',
+
+    confirmPasswordRequired: 'Please confirm your password',
+    confirmPasswordMismatch: 'Passwords do not match',
+
+    registrationFailed: 'Registration failed',
   },
 };

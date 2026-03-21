@@ -13,6 +13,8 @@ export const messages = {
     about: 'About',
     logIn: 'Log in',
     signInAndRegister: 'Register',
+    showPassword: 'Show password',
+    hidePassword: 'Hide password',
   },
   errors: {
     urlQueryCorrupted: (url: string): string => `URL ${url} has more than 1 ?query sign`,

@@ -26,40 +26,40 @@ export class RegisterForm extends Component<HTMLFormElement> {
 
     this.login = new Input({
       className: styles.input,
-      labelText: messages.authLogin.labelText,
-      placeholder: messages.authLogin.placeholder,
-      id: messages.authLogin.id,
+      labelText: messages.labels.login,
+      placeholder: messages.placeholders.login,
+      id: messages.id.login,
       autofocus: true,
     });
 
     this.email = new Input({
       className: styles.input,
       type: 'email',
-      labelText: messages.authEmail.labelText,
-      placeholder: messages.authEmail.placeholder,
-      id: messages.authEmail.id,
+      labelText: messages.labels.email,
+      placeholder: messages.placeholders.email,
+      id: messages.id.email,
     });
 
     this.password = new Input({
       className: styles.input,
       type: 'password',
-      labelText: messages.password.labelText,
-      placeholder: messages.password.placeholder,
-      id: messages.password.id,
+      labelText: messages.labels.password,
+      placeholder: messages.placeholders.password,
+      id: messages.id.password,
     });
 
     this.confirmPassword = new Input({
       className: styles.input,
       type: 'password',
-      labelText: messages.confirmPassword.labelText,
-      placeholder: messages.confirmPassword.placeholder,
-      id: messages.confirmPassword.id,
+      labelText: messages.labels.confirmPassword,
+      placeholder: messages.placeholders.confirmPassword,
+      id: messages.id.confirmPassword,
     });
 
     this.registerButton = new Button({
       className: styles.button,
       type: 'submit',
-      text: messages.registerButton.text,
+      text: messages.buttons.register,
       variant: 'primary',
     });
 

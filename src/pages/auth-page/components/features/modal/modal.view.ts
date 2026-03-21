@@ -43,13 +43,13 @@ export class Modal extends Card {
     this.loginTab = new Button({
       type: 'button',
       className: styles.tab,
-      text: messages.modal.tabs.login,
+      text: messages.modal.tabLogin,
     });
 
     this.registerTab = new Button({
       type: 'button',
       className: styles.tab,
-      text: messages.modal.tabs.register,
+      text: messages.modal.tabRegister,
     });
 
     this.formContainer = new Component({
