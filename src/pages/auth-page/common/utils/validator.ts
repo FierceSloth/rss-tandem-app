@@ -14,19 +14,19 @@ export function loginValidator(value: string): IValidateResult {
   const rules = [
     {
       condition: (inputValue: string): boolean => inputValue.length === 0,
-      errorMessage: messages.authLogin.errors.required,
+      errorMessage: messages.errors.loginRequired,
     },
     {
       condition: (inputValue: string): boolean => inputValue.length < LOGIN_MIN_LENGTH,
-      errorMessage: messages.authLogin.errors.tooShort,
+      errorMessage: messages.errors.loginTooShort,
     },
     {
       condition: (inputValue: string): boolean => inputValue.length > LOGIN_MAX_LENGTH,
-      errorMessage: messages.authLogin.errors.tooLong,
+      errorMessage: messages.errors.loginTooLong,
     },
     {
       condition: (inputValue: string): boolean => !LOGIN_REGEX.test(inputValue),
-      errorMessage: messages.authLogin.errors.latinOnly,
+      errorMessage: messages.errors.loginLatinOnly,
     },
   ];
 
@@ -43,19 +43,19 @@ export function registerPasswordValidator(value: string): IValidateResult {
   const rules = [
     {
       condition: (inputValue: string): boolean => inputValue.length === 0,
-      errorMessage: messages.password.errors.required,
+      errorMessage: messages.errors.passwordRequired,
     },
     {
       condition: (inputValue: string): boolean => inputValue.length < PASSWORD_MIN_LENGTH,
-      errorMessage: messages.password.errors.tooShort,
+      errorMessage: messages.errors.passwordTooShort,
     },
     {
       condition: (inputValue: string): boolean => !PASSWORD_ALLOWED_REGEX.test(inputValue),
-      errorMessage: messages.password.errors.latinOnly,
+      errorMessage: messages.errors.passwordLatinOnly,
     },
     {
       condition: (inputValue: string): boolean => !PASSWORD_DIGIT_REGEX.test(inputValue),
-      errorMessage: messages.password.errors.noDigit,
+      errorMessage: messages.errors.passwordNoDigit,
     },
   ];
 
@@ -72,11 +72,11 @@ export function emailValidator(value: string): IValidateResult {
   const rules = [
     {
       condition: (inputValue: string): boolean => inputValue.length === 0,
-      errorMessage: messages.authEmail.errors.required,
+      errorMessage: messages.errors.emailRequired,
     },
     {
       condition: (inputValue: string): boolean => !EMAIL_REGEX.test(inputValue),
-      errorMessage: messages.authEmail.errors.invalid,
+      errorMessage: messages.errors.emailInvalid,
     },
   ];
 

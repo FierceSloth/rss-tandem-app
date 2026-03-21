@@ -3,12 +3,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-width: 350px;
   width: 100%;
-  gap: 2px;
-  padding-bottom: 23px;
+  gap: 4px;
+  padding-bottom: 24px;
 
   &:focus-within {
+    .toggleBtn {
+      color: var(--text-primary);
+    }
     .input {
       border-color: var(--border-focus);
     }
@@ -34,6 +36,7 @@
   font-size: 1.2rem;
   color: var(--text-secondary);
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 .input {
@@ -55,6 +58,56 @@
   &::placeholder {
     color: var(--text-tertiary);
   }
+
+  &[type='password'],
+  &[type='text'] {
+    padding-right: 42px;
+  }
+}
+
+.toggleBtn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--text-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--border-focus);
+    border-radius: var(--radius-sm);
+  }
+}
+
+.toggleBtn.visible {
+  .eyeOpen {
+    display: flex;
+  }
+  .eyeClosed {
+    display: none;
+  }
+}
+
+.eyeOpen {
+  display: none;
+  align-items: center;
+  pointer-events: none;
+}
+
+.eyeClosed {
+  display: flex;
+  align-items: center;
+  pointer-events: none;
 }
 
 .errorText {
@@ -62,6 +115,6 @@
   color: var(--accent-red);
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: 4px;
   font-size: 1.1rem;
 }

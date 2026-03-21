@@ -5,12 +5,12 @@ import { Component } from '@components/base/component';
 import styles from './modal.module.scss';
 import { Card } from '@/components/layout/card/card.view';
 import { Button } from '@/components/ui/button/button.view';
-import { messages } from '../../common/constants/messages';
+import { messages } from '@/pages/auth-page/common/constants/messages';
 import { StatusBadge } from '@/components/ui/status-badge/status-badge.view';
 
 interface IProps extends IComponentChild {}
 
-export class Modal extends Component {
+export class Modal extends Card {
   public readonly formContainer: Component;
   public readonly loginTab: Button;
   public readonly registerTab: Button;
@@ -18,18 +18,7 @@ export class Modal extends Component {
   constructor({ className = [] }: IProps, ...children: Component[]) {
     const cssClasses = mergeClassNames(styles.modal, className);
 
-    super({ className: cssClasses }, ...children);
-
-    const overlay = new Component({
-      className: styles.overlay,
-    });
-
-    const modal = new Card({
-      tag: 'section',
-      className: styles.modal,
-      glass: false,
-      padding: 'hg',
-    });
+    super({ className: cssClasses, tag: 'section', glass: false, padding: 'hg' }, ...children);
 
     const logo = new Component({
       tag: 'h1',
@@ -39,10 +28,11 @@ export class Modal extends Component {
 
     const label = new StatusBadge({
       text: messages.modal.label,
+      className: styles.label,
       color: 'gray',
       dot: false,
       animation: 'none',
-      capitalize: false,
+      capitalize: true,
     });
 
     const tabs = new Component({
@@ -53,13 +43,13 @@ export class Modal extends Component {
     this.loginTab = new Button({
       type: 'button',
       className: styles.tab,
-      text: messages.modal.tabs.login,
+      text: messages.modal.tabLogin,
     });
 
     this.registerTab = new Button({
       type: 'button',
       className: styles.tab,
-      text: messages.modal.tabs.register,
+      text: messages.modal.tabRegister,
     });
 
     this.formContainer = new Component({
@@ -67,8 +57,6 @@ export class Modal extends Component {
     });
 
     tabs.append(this.loginTab, this.registerTab);
-    modal.append(logo, label, tabs, this.formContainer);
-    overlay.append(modal);
-    this.append(overlay);
+    this.append(logo, label, tabs, this.formContainer);
   }
 }
