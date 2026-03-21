@@ -22,6 +22,8 @@ export class RegisterFormController {
     this.handleButton();
   }
 
+  public destroy(): void {}
+
   private initListeners(): void {
     this.view.login.addListener('input', () => {
       this.validationState.login = this.view.login.validate(loginValidator);

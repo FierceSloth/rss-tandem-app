@@ -10,7 +10,7 @@ import styles from './modal.module.scss';
 export class ModalController {
   private view: Modal;
   private navigate = useNavigate();
-  declare private activeController: RegisterFormController | LoginFormController | null;
+  private activeController: RegisterFormController | LoginFormController | null = null;
 
   constructor(view: Modal) {
     this.view = view;
@@ -19,7 +19,10 @@ export class ModalController {
   }
 
   public destroy(): void {
-    this.activeController = null;
+    if (this.activeController) {
+      this.activeController.destroy();
+      this.activeController = null;
+    }
   }
 
   private initFromUrl(): void {

@@ -20,6 +20,8 @@ export class LoginFormController {
     this.handleButton();
   }
 
+  public destroy(): void {}
+
   private initListeners(): void {
     this.view.loginOrEmail.addListener('input', () => {
       this.validationState.loginOrEmail = this.validateLoginOrEmail();
