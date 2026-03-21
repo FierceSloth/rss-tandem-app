@@ -62,7 +62,7 @@ export class CodeArenaPage implements IPage {
 
     const editorInner = new Component({ className: styles.panelContent }, this.editor);
 
-    const editorPanel = this.buildPanel(styles.editorPanel, messages.headers.soultion, editorInner);
+    const editorPanel = this.buildPanel(styles.editorPanel, messages.headers.solution, editorInner);
 
     const consoleInner = new Component({ className: styles.panelContent });
     const terminalWrapper = new Component({ className: styles.terminalWrapper }, this.terminal);

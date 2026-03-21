@@ -5,7 +5,7 @@ export const messages = {
   },
   headers: {
     description: 'Task Description',
-    soultion: 'Solution',
+    solution: 'Solution',
     output: 'Output',
   },
 };
