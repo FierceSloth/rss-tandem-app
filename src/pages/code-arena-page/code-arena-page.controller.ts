@@ -1,9 +1,16 @@
 import { ExecutionController } from '@/controllers/execution.controller';
 import type { CodeArenaPage } from './code-arena-page';
+import { codeArenaRepository } from './repositories/code-arena.repository';
+import { Toast } from '@/components/ui/toast/toast.view';
+import { messages } from '@/common/constants/messages';
+import { useNavigate } from '@/router/hooks';
+import { ROUTES } from '@/router/constants';
 
 export class CodeArenaController {
   private view: CodeArenaPage;
   private executionController: ExecutionController;
+
+  private navigate = useNavigate();
 
   constructor(view: CodeArenaPage) {
     this.view = view;
@@ -16,24 +23,34 @@ export class CodeArenaController {
   public destroy(): void {}
 
   private init(): void {
-    this.loadTaskData();
+    void this.loadTaskData();
     this.initListeners();
   }
 
-  private loadTaskData(): void {
-    // TODO: add supabase integration
+  private async loadTaskData(): Promise<void> {
+    this.view.showLoading();
 
-    const initialCode = `function solve(tasks) {\n  const result = [];\n  \n  tasks.forEach(task => {\n    if (task.type === 'sync') {\n      result.push(task.id);\n    }\n  });\n\n  return result;\n}`;
-    this.view.editor.setValue(initialCode);
+    try {
+      const entity = await codeArenaRepository.fetchMockTask();
 
-    const taskTests = `
-      if (typeof solve !== 'function') throw new Error("Function solve is not find!");
-      const mockTasks = [{ id: 1, type: 'sync' }];
-      if (JSON.stringify(solve(mockTasks)) !== JSON.stringify([1])) {
-        throw new Error("Expected array [1]");
-      }
-    `;
-    this.executionController.setTests(taskTests);
+      this.view.editor.setValue(entity.initialCode);
+      this.executionController.setTests(entity.tests);
+
+      this.view.renderLayout(entity);
+
+      this.view.setReady();
+    } catch (error) {
+      console.error('Failed to load code arena:', error);
+
+      new Toast({
+        message: messages.errors.failedLoadCodeArena,
+        type: 'error',
+      });
+
+      this.navigate(ROUTES.NOT_FOUND_PAGE);
+    } finally {
+      this.view.hideLoading();
+    }
   }
 
   private initListeners(): void {

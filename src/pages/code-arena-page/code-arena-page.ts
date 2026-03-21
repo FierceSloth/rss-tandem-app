@@ -1,4 +1,5 @@
 import type { IPage } from '@/common/types/types';
+import type { ICodeArenaEntities } from './common/types/types';
 import { Component } from '@/components/base/component';
 import { CodeEditor } from '@/components/features/code-editor/code-editor.view';
 import { Terminal } from '@/components/features/terminal/terminal.view';
@@ -9,17 +10,11 @@ import { CodeArenaController } from './code-arena-page.controller';
 import { messages } from './common/constants/messages';
 
 import styles from './code-arena-page.module.scss';
-
-const MOCK_TEXT = {
-  title: 'JavaScript Basics',
-  descritpion:
-    'Deep dive into the microtask queue, call stack, and non-blocking I/O operations. Predict the execution order of the provided queue.',
-};
+import { LoaderManager } from '@/common/utils/loader-manager.util';
 
 export class CodeArenaPage implements IPage {
   public readonly editor = new CodeEditor({ className: styles.editor });
   public readonly terminal = new Terminal({ className: styles.terminal });
-
   public readonly runButton = new Button({
     className: styles.runButton,
     text: messages.buttons.run,
@@ -31,31 +26,56 @@ export class CodeArenaPage implements IPage {
     variant: 'primary',
   });
 
+  private root = new Component({ className: styles.codeArena });
+  private loader = new LoaderManager();
   private controller: CodeArenaController | null = null;
 
+  /* ========================================================================== */
+  /*                                  Lifecycle                                 */
+  /* ========================================================================== */
+
   public render(): Component {
-    const root = new Component({ className: styles.codeArena });
-
-    const header = new CodeArenaHeader({ titleText: MOCK_TEXT.title });
-    const footer = new CodeArenaFooter({});
-    const workspace = this.buildWorkspace();
-
-    root.append(header, workspace, footer);
-
     this.controller = new CodeArenaController(this);
-
-    return root;
+    return this.root;
   }
 
   public destroy(): void {
     this.controller?.destroy();
   }
 
-  private buildWorkspace(): Component {
+  /* ========================================================================== */
+  /*                                 Public API                                 */
+  /* ========================================================================== */
+
+  public showLoading(): void {
+    this.loader.show('lg', 'green');
+  }
+
+  public hideLoading(): void {
+    this.loader.hide();
+  }
+
+  public setReady(): void {
+    this.root.addClass('showAnimation');
+  }
+
+  public renderLayout(entity: ICodeArenaEntities): void {
+    const header = new CodeArenaHeader({ titleText: entity.title, topicText: entity.topic });
+    const footer = new CodeArenaFooter({});
+    const workspace = this.buildWorkspace(entity);
+
+    this.root.append(header, workspace, footer);
+  }
+
+  /* ========================================================================== */
+  /*                                  Builders                                  */
+  /* ========================================================================== */
+
+  private buildWorkspace(entity: ICodeArenaEntities): Component {
     const workspace = new Component({ className: styles.workspace });
 
     const descriptionInner = new Component({ className: styles.panelContent });
-    const descText = new Component({ tag: 'p', text: MOCK_TEXT.descritpion });
+    const descText = new Component({ tag: 'p', text: entity.description });
     descriptionInner.append(descText);
 
     const descriptionPanel = this.buildPanel(styles.descriptionPanel, messages.headers.description, descriptionInner);

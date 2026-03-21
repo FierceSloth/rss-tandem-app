@@ -41,7 +41,7 @@ export class RoadmapPageController {
       this.view.hideLoading();
 
       if (entities && entities.length > 0) {
-        this.view.showTimelineSkeleton();
+        this.view.renderTimeline();
         this.buildTimeline(entities);
         this.updateProgressHeight();
 

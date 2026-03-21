@@ -1,4 +1,4 @@
-import type { ICodeArenaDto } from './common/types/types';
+import type { ICodeArenaDto } from '../common/types/types';
 
 export const evenOrOddMockData: ICodeArenaDto = {
   id: '550e8400-e29b-41d4-a716-446655440000',

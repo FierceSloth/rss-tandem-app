@@ -7,10 +7,11 @@ import { StatusBadge } from '@/components/ui/status-badge/status-badge.view';
 
 interface IProps extends IComponentChild {
   titleText: string;
+  topicText: string;
 }
 
 export class CodeArenaHeader extends Component {
-  constructor({ className = [], titleText = '' }: IProps, ...children: Component[]) {
+  constructor({ className = [], titleText = '', topicText = '' }: IProps, ...children: Component[]) {
     const cssClasses = mergeClassNames(styles.header, className);
 
     super({ tag: 'header', className: cssClasses }, ...children);
@@ -19,7 +20,7 @@ export class CodeArenaHeader extends Component {
     const title = new Component({ tag: 'h1', className: styles.title, text: titleText });
     const tag = new StatusBadge({
       className: styles.tag,
-      text: 'IN PROGRESS // JS CORE',
+      text: `IN PROGRESS // ${topicText}`,
       capitalize: true,
       color: 'blue',
       dot: false,
