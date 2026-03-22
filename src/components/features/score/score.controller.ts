@@ -4,11 +4,8 @@ import bronze from '@/assets/svg/score/bronze.svg?raw';
 import { createSvgComponent } from '@/common/utils/create-svg.util';
 import { messages } from './common/constants/messages';
 import type { Score } from './score.view';
-import { TOTAL_PROGRESS } from '@/common/constants/constants';
-
-const GOLD_SCORE = 80;
-const SILVER_SCORE = 50;
-const BRONZE_SCORE = 25;
+import { getPercentage, getStarsByPercent } from './common/utils/score.util';
+import { BRONZE_SCORE, GOLD_SCORE, SILVER_SCORE } from './common/constants/constants';
 
 export class ScoreController {
   private view: Score;
@@ -16,15 +13,16 @@ export class ScoreController {
   constructor(view: Score) {
     this.view = view;
 
-    const percent = this.view.total === 0 ? 0 : Math.round((this.view.correct / this.view.total) * TOTAL_PROGRESS);
+    const percent = getPercentage(this.view.correct, this.view.total);
 
-    this.setIcon(percent);
+    this.setCapIcon(percent);
+    this.setStars(percent);
     this.setResultScore();
     this.setPercentageProgress(percent);
     this.setMessage(percent);
   }
 
-  private setIcon(percent: number): void {
+  private setCapIcon(percent: number): void {
     let medalSvg: string | null = null;
     if (percent >= GOLD_SCORE) {
       medalSvg = gold;
@@ -37,10 +35,15 @@ export class ScoreController {
     }
 
     if (medalSvg) {
-      this.view.icon.node.append(createSvgComponent(medalSvg));
+      this.view.cap.node.append(createSvgComponent(medalSvg));
     } else {
-      this.view.icon.setText('💡');
+      this.view.cap.setText('💡');
     }
+  }
+
+  private setStars(percent: number): void {
+    const starsCount: number = getStarsByPercent(percent);
+    this.view.fillStars(starsCount);
   }
 
   private setResultScore(): void {

@@ -5,6 +5,9 @@ import { messages } from './common/constants/messages';
 import type { IComponentChild } from '@common/types/types';
 import { mergeClassNames } from '@common/utils/class-names.util';
 import { ScoreController } from './score.controller';
+import { createSvgComponent } from '@/common/utils/create-svg.util';
+
+import starIcon from '@assets/svg/common/star.svg?raw';
 
 interface IProps extends IComponentChild {
   scoreData: IScore;
@@ -15,7 +18,8 @@ export class Score extends Component {
   public correct: number;
   public total: number;
   public frameId?: number;
-  public icon: Component;
+  public cap: Component;
+  public stars: Component;
   public resultScore: Component;
   public percentText: Component;
   public progress: Component;
@@ -34,12 +38,16 @@ export class Score extends Component {
       text: messages.titles.taskCompleted,
     });
 
-    this.icon = new Component({
-      className: styles.scoreIcon,
+    this.cap = new Component({
+      className: styles.cap,
+    });
+
+    this.stars = new Component({
+      className: styles.stars,
     });
 
     this.resultScore = new Component({
-      className: styles.scoreValue,
+      className: styles.resultScore,
     });
 
     this.percentText = new Component({
@@ -58,10 +66,23 @@ export class Score extends Component {
 
     this.node.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-    this.append(this.icon, title, this.percentText, this.resultScore, bar, this.message);
+    this.append(this.cap, this.stars, title, this.percentText, this.resultScore, bar, this.message);
 
     if (withController) {
       new ScoreController(this);
+    }
+  }
+
+  public fillStars(starsCount: number): void {
+    this.stars.destroyChildren();
+    const starNumbers = 3;
+    for (let i = 0; i < starNumbers; i += 1) {
+      const starCssClasses = [styles.star, i < starsCount ? styles.active : styles.inActive];
+      const star = new Component({ className: starCssClasses });
+      const svg = createSvgComponent(starIcon);
+      star.node.append(svg);
+
+      this.stars.append(star);
     }
   }
 

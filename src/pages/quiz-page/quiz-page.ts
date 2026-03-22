@@ -80,7 +80,6 @@ export class QuizPage implements IPage {
         if (quizState.currentIndex !== this.lastRenderedIndex) {
           this.quizContainer.setTask(quizState.tasks[quizState.currentIndex]);
           this.lastRenderedIndex = quizState.currentIndex;
-          quizEmitter.emit(QuizEvents.START, null);
           quizEmitter.emit(QuizEvents.PROGRESS, null);
         }
         break;
