@@ -12,6 +12,7 @@ interface IProps extends IComponentChild {
   text: string;
   capitalize?: boolean;
   color?: BadgeColor;
+  textColor?: BadgeColor;
   animation?: AnimationVariant;
   container?: boolean;
   dot?: boolean;
@@ -25,6 +26,7 @@ export class StatusBadge extends Component {
     {
       className = [],
       text,
+      textColor,
       capitalize = true,
       color = 'green',
       dot = true,
@@ -37,6 +39,7 @@ export class StatusBadge extends Component {
     const cssClasses = mergeClassNames(
       styles.statusBadge,
       styles[`color-${color}`],
+      textColor ? styles[`text-color-${textColor}`] : styles[`text-color-${color}`],
       animation === 'none' ? undefined : styles[`animation-${animation}` as const],
       container && styles.container,
       capitalize && styles.uppercase,

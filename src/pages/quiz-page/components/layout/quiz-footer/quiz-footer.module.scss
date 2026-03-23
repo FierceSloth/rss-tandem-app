@@ -1,0 +1,47 @@
+@use '@/styles/abstract/mixins' as *;
+
+.quizFooter {
+  padding: 24px 32px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.2);
+
+  @include media-tablet {
+    padding: 24px 20px;
+  }
+
+  @include media-mobile {
+    padding: 24px 20px 12px;
+    gap: 5px;
+    flex-direction: column-reverse;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .ghostButton,
+  .primaryButton {
+    cursor: pointer;
+    height: clamp(38px, 5vw, 44px);
+    user-select: none;
+    padding: 12px 24px;
+    font-size: var(--font-size-semibase);
+    white-space: nowrap;
+  }
+
+  .primaryButton {
+    gap: var(--space-2);
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  .ghostButton {
+    border: none;
+    outline: none;
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+  }
+}

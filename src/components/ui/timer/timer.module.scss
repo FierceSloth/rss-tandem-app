@@ -1,0 +1,74 @@
+@use '@/styles/abstract/mixins' as *;
+
+.timer {
+  font-size: var(--font-size-semibase);
+  color: var(--timer-color);
+  font-family: var(--font-mono, monospace);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.border {
+  border: 1px solid var(--timer-border);
+}
+
+.background {
+  background-color: var(--timer-bg);
+}
+
+.color-primary {
+  --timer-color: var(--text-primary);
+  --timer-bg: var(--text-primary);
+  --timer-border: var(--text-primary);
+}
+
+.color-gray {
+  --timer-color: var(--text-secondary);
+  --timer-bg: rgba(255, 255, 255, 0.05);
+  --timer-border: rgba(255, 255, 255, 0.1);
+}
+
+.color-green {
+  --timer-color: var(--accent-green);
+  --timer-bg: rgba(16, 185, 129, 0.1);
+  --timer-border: rgba(16, 185, 129, 0.3);
+}
+
+.color-green-dark {
+  --timer-color: var(--text-success-dark);
+  --timer-bg: var(--text-success-dark);
+  --timer-border: var(--text-success-dark);
+}
+
+.color-blue {
+  --timer-color: var(--accent-blue);
+  --timer-bg: rgba(59, 130, 246, 0.1);
+  --timer-border: rgba(59, 130, 246, 0.3);
+}
+
+.color-red {
+  --timer-color: var(--accent-red);
+  --timer-bg: rgba(246, 59, 59, 0.1);
+  --timer-border: rgba(246, 59, 59, 0.3);
+}
+
+.padding-none {
+  padding: 0;
+}
+
+.padding-sm {
+  padding: 0.4rem 0.8rem;
+}
+
+.padding-md {
+  padding: 0.6rem 1rem;
+}
+
+.padding-lg {
+  padding: 0.8rem 1.2rem;
+}
+
+.padding-hg {
+  padding: 1rem 1.4rem;
+}
