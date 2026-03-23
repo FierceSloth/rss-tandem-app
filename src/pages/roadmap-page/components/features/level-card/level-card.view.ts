@@ -11,7 +11,7 @@ import { addHoverAnimation } from '@/common/utils/hover-animation.util';
 import checkIcon from '@assets/svg/roadmap-icons/check-mark.svg?raw';
 import playIcon from '@assets/svg/roadmap-icons/play.svg?raw';
 import lockIcon from '@assets/svg/roadmap-icons/lock.svg?raw';
-import starIcon from '@assets/svg/roadmap-icons/star.svg?raw';
+import starIcon from '@assets/svg/common/star.svg?raw';
 import styles from './level-card.module.scss';
 
 interface IProps extends IComponentChild {

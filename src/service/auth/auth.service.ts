@@ -1,59 +1,54 @@
 import { supabase } from '@/api/supabase/supabase-client';
 import type { Session } from '@supabase/supabase-js';
-import { STORAGE_KEYS } from '@/common/constants/constants';
+import { messages } from '@/common/constants/messages';
 
 export interface IAuthResult {
   success: boolean;
   error?: string;
 }
 
-export const authService = {
-  async register(username: string, email: string, password: string): Promise<IAuthResult> {
+export interface IAuthService {
+  register(username: string, email: string, password: string): Promise<IAuthResult>;
+  isUsernameTaken(username: string): Promise<boolean>;
+  login(loginOrEmail: string, password: string): Promise<IAuthResult>;
+  logout(): Promise<void>;
+  getSession(): Promise<Session | null>;
+}
+
+class AuthService implements IAuthService {
+  public async register(username: string, email: string, password: string): Promise<IAuthResult> {
     const { data, error } = await supabase.auth.signUp({ email, password });
 
     if (error || !data.user) {
-      return { success: false, error: error?.message ?? 'Registration failed' };
+      return { success: false, error: messages.errors.registrationFailed };
     }
 
     if (data.user.identities?.length === 0) {
-      return { success: false, error: 'User with this email already exists' };
+      return { success: false, error: messages.errors.emailAlreadyExists };
     }
 
-    const { error: profileError } = await supabase.from('profiles').upsert({ id: data.user.id, username, email });
+    const saved = await this.createProfile(data.user.id, username, email);
 
-    if (profileError) {
-      return { success: false, error: profileError.message };
-    }
-
-    const { data: sessionData } = await supabase.auth.getSession();
-    if (sessionData.session) {
-      localStorage.setItem(STORAGE_KEYS.AUTH, JSON.stringify(sessionData.session.user));
+    if (!saved) {
+      return { success: false, error: messages.errors.profileSaveError };
     }
 
     return { success: true };
-  },
+  }
 
-  async isUsernameTaken(username: string): Promise<boolean> {
+  public async isUsernameTaken(username: string): Promise<boolean> {
     const { data, error } = await supabase.from('profiles').select('id').eq('username', username).single();
 
-    if (error) {
-      return false;
-    }
+    if (error) return false;
 
     return data !== null;
-  },
+  }
 
-  async login(loginOrEmail: string, password: string): Promise<IAuthResult> {
-    let email = loginOrEmail;
+  public async login(loginOrEmail: string, password: string): Promise<IAuthResult> {
+    const email = await this.resolveEmail(loginOrEmail);
 
-    if (!loginOrEmail.includes('@')) {
-      const { data, error } = await supabase.from('profiles').select('email').eq('username', loginOrEmail).single();
-
-      if (error || !data) {
-        return { success: false, error: 'User not found' };
-      }
-
-      email = data.email as string;
+    if (!email) {
+      return { success: false, error: messages.errors.userNotFound };
     }
 
     const { error } = await supabase.auth.signInWithPassword({ email, password });
@@ -62,21 +57,31 @@ export const authService = {
       return { success: false, error: error.message };
     }
 
-    const { data: sessionData } = await supabase.auth.getSession();
-    if (sessionData.session) {
-      localStorage.setItem(STORAGE_KEYS.AUTH, JSON.stringify(sessionData.session.user));
-    }
-
     return { success: true };
-  },
+  }
 
-  async logout(): Promise<void> {
+  public async logout(): Promise<void> {
     await supabase.auth.signOut();
-    localStorage.removeItem(STORAGE_KEYS.AUTH);
-  },
+  }
 
-  async getSession(): Promise<Session | null> {
+  public async getSession(): Promise<Session | null> {
     const { data } = await supabase.auth.getSession();
     return data.session;
-  },
-};
+  }
+
+  private async createProfile(userId: string, username: string, email: string): Promise<boolean> {
+    const { error } = await supabase.from('profiles').upsert({ id: userId, username, email });
+
+    return !error;
+  }
+
+  private async resolveEmail(loginOrEmail: string): Promise<string | null> {
+    if (loginOrEmail.includes('@')) return loginOrEmail;
+
+    const { data, error } = await supabase.from('profiles').select('email').eq('username', loginOrEmail).single();
+
+    return error || !data ? null : (data.email as string);
+  }
+}
+
+export const authService = new AuthService();

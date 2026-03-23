@@ -14,16 +14,30 @@ interface IProps extends IComponentChild {
   typeScript?: boolean;
   readOnly?: boolean;
   showLineNumbers?: boolean;
+  isTransparent?: boolean;
 }
 
 export class CodeEditor extends Component {
   private view: EditorView;
 
   constructor(
-    { className = [], initialCode = '', typeScript = true, readOnly = false, showLineNumbers = true }: IProps,
+    {
+      className = [],
+      initialCode = '',
+      typeScript = true,
+      readOnly = false,
+      showLineNumbers = true,
+      isTransparent = false,
+    }: IProps,
     ...children: Component[]
   ) {
-    const cssClasses = mergeClassNames(styles.codeEditor, className, !showLineNumbers && styles.hideLines);
+    const cssClasses = mergeClassNames(
+      styles.codeEditor,
+      className,
+      !showLineNumbers && styles.hideLines,
+      isTransparent && styles.transparent,
+      readOnly && styles.readonly
+    );
     super({ className: cssClasses }, ...children);
 
     const editorExtensions = [basicSetup, javascript({ typescript: typeScript }), editorSetup];

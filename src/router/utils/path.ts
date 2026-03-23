@@ -11,3 +11,19 @@ export function fullPathWithBaseUrl(path: string): string {
 export function pathnameEqualsRoute(path: string): boolean {
   return location.pathname === fullPathWithBaseUrl(path);
 }
+
+export function pathnameWithParamsEqualsFullPath(fullPath: string): boolean {
+  const currentPath = location.pathname;
+  const currentQuery = new URLSearchParams(location.search);
+
+  const [targetPathname, targetQuery = ''] = fullPathWithBaseUrl(fullPath).split('?');
+  const targetParams = new URLSearchParams(targetQuery);
+
+  if (currentPath !== targetPathname) return false;
+
+  for (const [key, value] of targetParams.entries()) {
+    if (currentQuery.get(key) !== value) return false;
+  }
+
+  return true;
+}

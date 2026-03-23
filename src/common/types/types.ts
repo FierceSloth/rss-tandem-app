@@ -1,4 +1,5 @@
 import type { Component } from '@/components/base/component';
+import type { LevelStatus } from '@/common/enums/enums';
 
 /* ========================================================================== */
 /*                              Global Interfaces                             */
@@ -35,4 +36,14 @@ export interface IValidateResult {
 export interface SystemInfo {
   browser: string;
   os: string;
+}
+
+/* ========================================================================== */
+/*                             User Level Progress                            */
+/* ========================================================================== */
+export interface IUserLevelProgress {
+  user_id: string;
+  level_id: string;
+  status: LevelStatus;
+  stars: number;
 }
