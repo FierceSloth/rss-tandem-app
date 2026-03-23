@@ -7,7 +7,8 @@
   justify-content: space-between;
 
   gap: 20px;
-  height: 650px;
+  height: auto;
+  min-height: 650px;
   flex-grow: 1;
 
   &.hidden {
@@ -16,7 +17,6 @@
 
   @include media-tablet {
     min-height: 570px;
-    height: auto;
     gap: 20px;
     padding: 20px;
   }

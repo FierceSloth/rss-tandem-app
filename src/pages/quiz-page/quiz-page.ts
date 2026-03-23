@@ -23,7 +23,8 @@ export class QuizPage implements IPage {
   private loader: LoaderManager;
   private unsubscribe?: () => void;
   private resultView?: Score;
-  private controller: QuizPageController;
+  private controller: QuizPageController | null;
+  private root: PageLayout;
 
   constructor() {
     this.quizHeader = new QuizHeader({});
@@ -34,15 +35,19 @@ export class QuizPage implements IPage {
     this.unsubscribe = quizStore.subscribe((state) => {
       this.renderState(state);
     });
+    this.root = new PageLayout({ className: styles.quiz, withSidebar: false });
 
-    this.controller = new QuizPageController(this);
+    this.controller = null;
   }
 
   public render(): Component {
-    const root = new PageLayout({ className: styles.quiz, withSidebar: false });
-    this.card.append(this.quizHeader, this.quizContainer, this.quizFooter);
-    root.append(this.card);
-    return root;
+    this.controller = new QuizPageController(this);
+    return this.root;
+  }
+
+  public destroy(): void {
+    this.unsubscribe?.();
+    this.controller?.destroy();
   }
 
   public getFooter(): QuizFooter {
@@ -57,14 +62,19 @@ export class QuizPage implements IPage {
     return this.quizHeader;
   }
 
-  public showResult(result: IQuizState): void {
+  public showContent(): void {
+    this.card.append(this.quizHeader, this.quizContainer, this.quizFooter);
+    this.root.append(this.card);
+  }
+
+  private showResult(result: IQuizState): void {
     this.quizContainer.addHidden();
 
     this.resultView = new Score({ scoreData: { correct: result.correctAnswers, total: result.tasks.length } });
     this.quizHeader.node.after(this.resultView.node);
   }
 
-  public renderState(quizState: IQuizState): void {
+  private renderState(quizState: IQuizState): void {
     switch (quizState.status) {
       case QuizViewState.LOADING: {
         this.showLoading();
@@ -93,11 +103,6 @@ export class QuizPage implements IPage {
         break;
       }
     }
-  }
-
-  public destroy(): void {
-    this.unsubscribe?.();
-    this.controller.destroy();
   }
 
   private hideResult(): void {

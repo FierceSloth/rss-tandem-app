@@ -81,7 +81,6 @@ export class QuizPageController {
 
   private async init(): Promise<void> {
     quizStore.setState({ status: QuizViewState.LOADING });
-
     try {
       const tasks: IQuiz[] = await this.quizRepository.fetchQuestions(this.levelId);
       if (!tasks || tasks.length === 0) {
@@ -94,12 +93,14 @@ export class QuizPageController {
         ...task,
         options: shuffle<IQuizOption>(task.options),
       }));
+
       quizStore.setState({
         tasks: shuffledTasks,
         status: QuizViewState.QUIZ,
         currentIndex: 0,
         correctAnswers: 0,
       });
+      this.view.showContent();
     } catch (error: unknown) {
       quizStore.setState({ status: QuizViewState.ERROR });
       console.error(messages.errors.failedLoadQuiz, error);
