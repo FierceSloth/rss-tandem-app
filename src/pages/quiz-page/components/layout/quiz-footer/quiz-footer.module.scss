@@ -8,8 +8,14 @@
   align-items: center;
   background: rgba(0, 0, 0, 0.2);
 
+  @include media-tablet {
+    padding: 24px 20px;
+  }
+
   @include media-mobile {
-    flex-direction: column;
+    padding: 24px 20px 12px;
+    gap: 5px;
+    flex-direction: column-reverse;
     align-items: stretch;
     width: 100%;
   }

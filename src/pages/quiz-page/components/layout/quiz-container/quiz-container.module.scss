@@ -1,12 +1,24 @@
+@use '@/styles/abstract/mixins' as *;
+
 .quizContainer {
   padding: 40px 32px;
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  min-height: 70vh;
+  justify-content: space-between;
+
+  gap: 20px;
+  height: 650px;
+  flex-grow: 1;
 
   &.hidden {
     display: none;
+  }
+
+  @include media-tablet {
+    min-height: 570px;
+    height: auto;
+    gap: 20px;
+    padding: 20px;
   }
 }
 
@@ -29,9 +41,11 @@
   line-height: 1.6;
   overflow-x: auto;
   position: relative;
+  min-height: 100px;
+  flex-shrink: 0;
 
-  &.hidden {
-    display: none;
+  @include media-tablet {
+    min-height: 70px;
   }
 }
 

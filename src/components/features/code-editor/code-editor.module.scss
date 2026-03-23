@@ -13,6 +13,10 @@
 
   background-color: var(--bg-surface);
 
+  :global(.cm-gutters) {
+    background-color: var(--bg-body);
+  }
+
   :global(.cm-editor) {
     height: 100%;
     width: 100%;
@@ -48,6 +52,24 @@
     }
     :global(.cm-content) {
       padding-left: 4px;
+    }
+  }
+
+  &.transparent {
+    background-color: transparent;
+
+    :global(.cm-gutters) {
+      background-color: transparent;
+    }
+  }
+
+  &.readonly {
+    :global(.cm-activeLine) {
+      background-color: rgba(255, 255, 255, 0);
+    }
+
+    :global(.cm-activeLineGutter) {
+      background-color: rgba(255, 255, 255, 0);
     }
   }
 }

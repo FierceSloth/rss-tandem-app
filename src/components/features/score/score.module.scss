@@ -1,11 +1,19 @@
+@use '@/styles/abstract/mixins' as *;
+
 .score {
   padding: 48px 32px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 20px;
   text-align: center;
   animation: fadeIn 0.35s ease;
+  min-height: 60vh;
+
+  @include media-tablet {
+    gap: 15px;
+  }
 }
 
 .cap {
@@ -17,6 +25,11 @@
   svg {
     height: 100%;
     width: 100%;
+  }
+
+  @include media-tablet {
+    height: 130px;
+    width: 130px;
   }
 }
 
@@ -48,6 +61,11 @@
     stroke: var(--border-focus);
     opacity: 0.4;
   }
+
+  @include media-tablet {
+    width: 48px;
+    height: 48px;
+  }
 }
 
 .star:nth-child(1) {
@@ -64,12 +82,20 @@
   font-size: 28px;
   font-weight: 600;
   color: var(--text-primary);
+
+  @include media-tablet {
+    font-size: 22px;
+  }
 }
 
 .resultScore {
   font-family: var(--font-mono);
   font-size: 18px;
   color: var(--text-secondary);
+
+  @include media-tablet {
+    font-size: 14px;
+  }
 }
 
 .percent {
@@ -78,6 +104,10 @@
   letter-spacing: 1px;
   color: var(--accent-green);
   text-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+
+  @include media-tablet {
+    font-size: 28px;
+  }
 }
 
 .bar {
@@ -100,6 +130,10 @@
   font-size: 14px;
   color: var(--text-secondary);
   max-width: 420px;
+
+  @include media-tablet {
+    font-size: 12px;
+  }
 }
 
 @keyframes fadeIn {

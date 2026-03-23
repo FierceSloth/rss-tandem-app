@@ -8,6 +8,7 @@ import { createSvgComponent } from '@/common/utils/create-svg.util';
 import styles from './answer-card.module.scss';
 import { quizEmitter } from '@/pages/quiz-page/common/utils/quiz-emmiter.util';
 import { QuizEvents } from '@/pages/quiz-page/common/enums/enums';
+import { InlineCodeText } from '@/components/ui/inline-code-text/inline-code-text.view';
 
 interface IProps extends IComponentChild {
   keyHint: string;
@@ -35,7 +36,7 @@ export class AnswerCard extends Component {
     this.index = index;
 
     this.keyHint = new Component({ className: styles.keyHint, text: keyHint });
-    this.answerText = new Component({ className: styles.answerText, text: answerText });
+    this.answerText = new InlineCodeText({ className: styles.answerText, text: answerText });
 
     const answer = new Component({ className: styles.answerContent });
 

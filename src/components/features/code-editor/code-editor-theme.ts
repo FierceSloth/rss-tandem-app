@@ -6,7 +6,7 @@ export const editorTheme = EditorView.theme(
   {
     '&': {
       color: 'var(--text-primary)',
-      backgroundColor: 'var(--bg-surface)',
+      backgroundColor: 'transparent',
       fontFamily: 'var(--font-mono)',
       transition: 'all 0.3s',
     },
@@ -23,7 +23,7 @@ export const editorTheme = EditorView.theme(
       backgroundColor: 'rgba(255, 255, 255, 0.03)',
     },
     '.cm-gutters': {
-      backgroundColor: 'var(--bg-body)',
+      backgroundColor: 'transparent',
       color: 'var(--text-tertiary)',
       borderRight: '1px solid var(--border-subtle)',
     },

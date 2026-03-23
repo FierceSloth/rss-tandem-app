@@ -15,5 +15,7 @@ export const messages = {
     failedSaveProgressWithLevelId: (id: string): string => `Failed save progress for level id ${id}`,
     failedSaveProgress: 'Failed save progress',
   },
-  messages: {},
+  messages: {
+    noCodeQuestion: '// Pure theory question',
+  },
 };

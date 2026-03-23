@@ -1,3 +1,5 @@
+@use '@/styles/abstract/mixins' as *;
+
 .quizHeader {
   display: flex;
   justify-content: space-between;
@@ -6,6 +8,10 @@
   border-bottom: 1px solid var(--border-subtle);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0) 100%);
   position: relative;
+
+  @include media-tablet {
+    padding: 24px 20px;
+  }
 }
 
 .level {

@@ -9,6 +9,7 @@ import { AnswerCard } from '@/pages/quiz-page/components/ui/answer-card/answer-c
 import { EMPTY } from '@/common/constants/constants';
 import { ASCII_A } from '@/pages/quiz-page/common/constants/constants';
 import type { IComponentChild } from '@/common/types/types';
+import { messages } from '@/pages/quiz-page/common/constants/messages';
 
 interface IProps extends IComponentChild {}
 
@@ -31,6 +32,7 @@ export class QuizContainer extends Component {
 
     this.codeSnippet = new CodeEditor({
       className: styles.codeSnippet,
+      isTransparent: true,
       readOnly: true,
     });
     this.codeContainer = new Component({ className: [styles.codeContainer, styles.hidden] }, this.codeSnippet);
@@ -53,7 +55,7 @@ export class QuizContainer extends Component {
       this.codeSnippet.setValue(task.codeSnippet);
     } else {
       this.codeContainer.addClass(styles.hidden);
-      this.codeSnippet.setValue(EMPTY);
+      this.codeSnippet.setValue(messages.messages.noCodeQuestion);
     }
 
     this.renderAnswers(task.options);
