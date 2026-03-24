@@ -1,0 +1,87 @@
+@use '@/styles/abstract/mixins' as *;
+
+.quizContainer {
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  gap: 20px;
+  height: auto;
+  min-height: 650px;
+  flex-grow: 1;
+
+  &.hidden {
+    display: none;
+  }
+
+  @include media-tablet {
+    min-height: 570px;
+    gap: 20px;
+    padding: 20px;
+  }
+}
+
+.questionText {
+  font-size: 20px;
+  line-height: 1.5;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.codeContainer {
+  width: 100%;
+  background: #000;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: #d4d4d4;
+  line-height: 1.6;
+  overflow-x: auto;
+  position: relative;
+  min-height: 100px;
+  flex-shrink: 0;
+
+  @include media-tablet {
+    min-height: 70px;
+  }
+}
+
+.language {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 10px;
+  padding: 2px 8px;
+  border-bottom-left-radius: 4px;
+}
+
+.answerList {
+  display: grid;
+  gap: 16px;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.answerCard {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.answer-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}

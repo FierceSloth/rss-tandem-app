@@ -13,6 +13,8 @@ export const messages = {
     about: 'About',
     logIn: 'Log in',
     signInAndRegister: 'Register',
+    showPassword: 'Show password',
+    hidePassword: 'Hide password',
   },
   errors: {
     urlQueryCorrupted: (url: string): string => `URL ${url} has more than 1 ?query sign`,
@@ -22,6 +24,10 @@ export const messages = {
     errorFetchingIp: (error: string): string => `Failed to fetch IP: ${error}`,
     failedLoadRoadmap: 'Failed to load roadmap data. Please try again later.',
     failedLoadCodeArena: 'Failed to load code arena data. Please try again later.',
+    egistrationFailed: 'Registration failed',
+    emailAlreadyExists: 'User with this email already exists',
+    userNotFound: 'User not found',
+    profileSaveError: 'Failed to save user profile',
   },
   terminal: {
     ready: 'System ready. Awaiting execution...',

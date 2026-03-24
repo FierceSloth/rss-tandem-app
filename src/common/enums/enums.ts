@@ -16,3 +16,9 @@ export enum TerminalLogType {
   SUCCESS = 'success',
   SYSTEM = 'system',
 }
+
+export enum LevelStatus {
+  LOCKED = 'locked',
+  ACTIVE = 'active',
+  COMPLETED = 'completed',
+}

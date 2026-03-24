@@ -3,32 +3,49 @@ import { RegisterForm } from '../register-form/register-form.view';
 import { RegisterFormController } from '../register-form/register-form.controller';
 import { LoginForm } from '../login-form/login-form.view';
 import { LoginFormController } from '../login-form/login-form.controller';
+import { ROUTES } from '@/router/constants';
+import { useNavigate, useParams } from '@/router/hooks';
 import styles from './modal.module.scss';
 
 export class ModalController {
   private view: Modal;
-  declare private activeController: RegisterFormController | LoginFormController | null;
+  private navigate = useNavigate();
+  private activeController: RegisterFormController | LoginFormController | null = null;
 
   constructor(view: Modal) {
     this.view = view;
     this.initListeners();
-    this.showLoginForm();
+    this.initFromUrl();
   }
 
   public destroy(): void {
-    this.activeController = null;
+    if (this.activeController) {
+      this.activeController.destroy();
+      this.activeController = null;
+    }
+  }
+
+  private initFromUrl(): void {
+    const view: string = useParams()['view'];
+
+    if (view === 'register') {
+      this.showRegisterForm();
+    } else {
+      this.showLoginForm();
+    }
   }
 
   private initListeners(): void {
     this.view.loginTab.addListener('click', () => {
+      this.navigate(ROUTES.AUTH_PAGE, {}, { view: 'login' }, { replace: true });
       this.showLoginForm();
     });
 
     this.view.registerTab.addListener('click', () => {
+      this.navigate(ROUTES.AUTH_PAGE, {}, { view: 'register' }, { replace: true });
       this.showRegisterForm();
     });
   }
-
   private showLoginForm(): void {
     this.view.loginTab.addClass(styles.tabActive);
     this.view.registerTab.removeClass(styles.tabActive);

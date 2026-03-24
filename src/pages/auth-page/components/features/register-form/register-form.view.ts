@@ -5,11 +5,11 @@ import { Component } from '@components/base/component';
 import styles from './register-form.module.scss';
 import { Input } from '@/components/ui/input/input.view';
 import { Button } from '@/components/ui/button/button.view';
-import { messages } from '../../common/constants/messages';
+import { messages } from '@/pages/auth-page/common/constants/messages';
 
 interface IProps extends IComponentChild {}
 
-export class RegisterForm extends Component {
+export class RegisterForm extends Component<HTMLFormElement> {
   public readonly form: Component<HTMLFormElement>;
   public readonly login: Input;
   public readonly email: Input;
@@ -18,51 +18,51 @@ export class RegisterForm extends Component {
   public readonly registerButton: Component<HTMLButtonElement>;
 
   constructor({ className = [] }: IProps, ...children: Component[]) {
-    const cssClasses = mergeClassNames(styles.registerForm, className);
+    const cssClasses = mergeClassNames(styles.form, className);
 
-    super({ className: cssClasses }, ...children);
+    super({ tag: 'form', className: cssClasses, attrs: { method: 'post' } }, ...children);
 
-    this.form = new Component<HTMLFormElement>({
-      tag: 'form',
-      className: styles.form,
-      attrs: {
-        method: 'post',
-      },
-    });
+    this.form = this;
 
     this.login = new Input({
       className: styles.input,
-      labelText: messages.authLogin.labelText,
-      placeholder: messages.authLogin.placeholder,
+      labelText: messages.labels.login,
+      placeholder: messages.placeholders.login,
+      id: messages.id.login,
+      autofocus: true,
     });
 
     this.email = new Input({
       className: styles.input,
-      labelText: messages.authEmail.labelText,
-      placeholder: messages.authEmail.placeholder,
+      type: 'email',
+      labelText: messages.labels.email,
+      placeholder: messages.placeholders.email,
+      id: messages.id.email,
     });
 
     this.password = new Input({
       className: styles.input,
-      labelText: messages.password.labelText,
-      placeholder: messages.password.placeholder,
+      type: 'password',
+      labelText: messages.labels.password,
+      placeholder: messages.placeholders.password,
+      id: messages.id.password,
     });
 
     this.confirmPassword = new Input({
       className: styles.input,
-      labelText: messages.confirmPassword.labelText,
-      placeholder: messages.confirmPassword.placeholder,
+      type: 'password',
+      labelText: messages.labels.confirmPassword,
+      placeholder: messages.placeholders.confirmPassword,
+      id: messages.id.confirmPassword,
     });
 
     this.registerButton = new Button({
       className: styles.button,
       type: 'submit',
-      text: messages.registerButton.text,
+      text: messages.buttons.register,
       variant: 'primary',
     });
 
-    this.form.append(this.login, this.email, this.password, this.confirmPassword, this.registerButton);
-
-    this.append(this.form);
+    this.append(this.login, this.email, this.password, this.confirmPassword, this.registerButton);
   }
 }

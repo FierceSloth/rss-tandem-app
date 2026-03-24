@@ -6,6 +6,8 @@
 [![CI/CD Status](https://github.com/fiercesloth/rss-tandem-app/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/fiercesloth/rss-tandem-app/actions/workflows/ci-cd.yml)\
 [RSS Tandem App Deploy](https://fiercesloth.github.io/rss-tandem-app)
 
+[RSS Tandem App Checkpoint 5 Preview](https://www.youtube.com/watch?v=gxiUOW3JuBY)
+
 ## 📖 О проекте
 
 **RS Tandem App** — это интерактивная платформа для подготовки к техническим собеседованиям. Проект разрабатывается в рамках финального задания курса RS School.

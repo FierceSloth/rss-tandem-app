@@ -1,5 +1,5 @@
-import { messages } from '../../common/constants/messages';
-import { loginValidator, registerPasswordValidator, emailValidator } from '../../common/utils/validator';
+import { messages } from '@/pages/auth-page/common/constants/messages';
+import { loginValidator, registerPasswordValidator, emailValidator } from '@/pages/auth-page/common/utils/validator';
 import type { LoginForm } from './login-form.view';
 import { authService } from '@/service/auth/auth.service';
 import { useNavigate } from '@/router/hooks';
@@ -19,6 +19,8 @@ export class LoginFormController {
     this.initListeners();
     this.handleButton();
   }
+
+  public destroy(): void {}
 
   private initListeners(): void {
     this.view.loginOrEmail.addListener('input', () => {
@@ -68,10 +70,10 @@ export class LoginFormController {
       await authService.getSession();
       this.navigate(ROUTES.ROADMAP_PAGE);
     } else {
-      if (result.error === 'User not found') {
-        this.view.loginOrEmail.setError(messages.loginForm.loginOrEmail.errors.notFound);
+      if (result.error === messages.errors.loginRequired) {
+        this.view.loginOrEmail.setError(messages.errors.loginNotFound);
       } else {
-        this.view.password.setError(messages.loginForm.password.errors.incorrect);
+        this.view.password.setError(messages.errors.passwordIncorrect);
         this.view.password.setValue('');
       }
 

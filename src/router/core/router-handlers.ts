@@ -18,7 +18,7 @@ export function isQueryValid(path: string): boolean {
 
 export function resolveSecurity(route: IRoute): INavigationTarget | null {
   if (route.meta.secured && !UserService.isAuthenticated() && route.path !== ROUTES.AUTH_PAGE) {
-    return { to: ROUTES.AUTH_PAGE, options: { replace: true } };
+    return { to: `${ROUTES.AUTH_PAGE}?view=login`, options: { replace: true } };
   }
 
   if (UserService.isAuthenticated() && route.path === ROUTES.AUTH_PAGE) {
