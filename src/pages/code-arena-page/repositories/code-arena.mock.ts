@@ -1,12 +1,38 @@
 import type { ICodeArenaDto } from '../common/types/types';
 
 export const evenOrOddMockData: ICodeArenaDto = {
-  id: '550e8400-e29b-41d4-a716-446655440000',
-  title: 'Even or Odd',
-  topic: 'JS BASICS',
+  id: 'a1b2c3d4-e5f6-7890-1234-567890abcdef',
+  title: 'Valid Palindrome',
+  topic: 'STRINGS & ALGORITHMS',
   description:
-    'Реализуйте функцию `evenOrOdd`, которая принимает целое число в качестве аргумента и возвращает строку `"Even"` для четных чисел или `"Odd"` для нечетных.\n\n### Примеры работы\n- `evenOrOdd(2)` ➞ `"Even"`\n- `evenOrOdd(7)` ➞ `"Odd"`\n- `evenOrOdd(0)` ➞ `"Even"`\n\n### Ограничения (Edge Cases)\n- На вход всегда подается корректное целое число (Integer).\n- Алгоритм должен корректно обрабатывать отрицательные значения.',
-  initial_code: 'function evenOrOdd(number) {\n  // Напишите ваше решение здесь...\n}',
-  tests:
-    'if (typeof evenOrOdd !== \'function\') {\n  throw new Error("ReferenceError: Функция \'evenOrOdd\' не найдена. Проверьте название функции.");\n}\n\nconst testCases = [\n  { input: 2, expected: "Even", desc: "Положительное четное число" },\n  { input: 7, expected: "Odd", desc: "Положительное нечетное число" },\n  { input: 0, expected: "Even", desc: "Ноль считается четным числом" },\n  { input: -42, expected: "Even", desc: "Отрицательное четное число" },\n  { input: -7, expected: "Odd", desc: "Отрицательное нечетное число" }\n];\n\ntestCases.forEach((tc, index) => {\n  const result = evenOrOdd(tc.input);\n  if (result !== tc.expected) {\n    throw new Error(`[Тест ${index + 1} провален] ${tc.desc} (Input: ${tc.input}). Ожидалось: "${tc.expected}", Получено: "${result}"`);\n  }\n});',
+    'Write a function called `isValidPalindrome` that takes a string as input and returns true if the string is a palindrome, and false otherwise.\n\nA palindrome is a word, phrase, or sequence that reads the same backward as forward.\n\nPlease note: your algorithm must ignore all non-alphanumeric characters (like spaces, commas, and punctuation) and be case-insensitive.\n\nExamples:\n- isValidPalindrome("racecar") returns `true`\n- isValidPalindrome("A man, a plan, a canal: Panama") returns `true`\n- isValidPalindrome("hello") returns `false`',
+  initial_code: 'function isValidPalindrome(str) {\n  // Write your code here\n  \n}',
+  tests: `
+    if (typeof isValidPalindrome !== 'function') {
+      throw new Error("ReferenceError: Function 'isValidPalindrome' is not defined.");
+    }
+
+    const testCases = [
+      { input: "racecar", expected: true, desc: "Simple one-word palindrome" },
+      { input: "hello", expected: false, desc: "Simple non-palindrome word" },
+      { input: "A man, a plan, a canal: Panama", expected: true, desc: "Complex palindrome with spaces and punctuation" },
+      { input: "No 'x' in Nixon", expected: true, desc: "Palindrome with single quotes" },
+      { input: "   ", expected: true, desc: "Empty or spaces-only string should be considered a valid palindrome" },
+      { input: "12321", expected: true, desc: "Numeric palindrome" }
+    ];
+
+    testCases.forEach((tc, index) => {
+      try {
+        const result = isValidPalindrome(tc.input);
+        if (result !== tc.expected) {
+          throw new Error(\`[Test \${index + 1} Failed] \${tc.desc}. Expected: \${tc.expected}, but got: \${result}\`);
+        }
+      } catch (err) {
+        if (err.message.includes('Test')) {
+          throw err;
+        }
+        throw new Error(\`[Test \${index + 1} Error] Your code threw an error on input "\${tc.input}": \${err.message}\`);
+      }
+    });
+  `,
 };

@@ -6,7 +6,7 @@
   height: 100vh;
   width: 100%;
 
-  @include media-tablet {
+  @include media-desktop-small {
     height: auto;
     min-height: 100dvh;
   }
@@ -14,17 +14,17 @@
 
 .workspace {
   display: grid;
-  grid-template-columns: 320px 1fr 380px;
+  grid-template-columns: 420px 1fr 380px;
   flex: 1;
 
   gap: 1px;
   background-color: var(--border-subtle);
 
-  @include media-laptop {
+  @include media-desktop {
     grid-template-columns: 1fr 1.5fr 1fr;
   }
 
-  @include media-tablet {
+  @include media-desktop-small {
     grid-template-columns: 1fr;
   }
 }
@@ -35,29 +35,26 @@
   flex-direction: column;
   overflow: hidden;
 
-  @include media-tablet {
+  @include media-desktop-small {
     height: 40vh;
   }
 }
 
 .panelHeader {
-  /* 1. Воздух и границы */
-  padding: 10px 16px; /* Чуть увеличили padding для лучшего визуального баланса */
-  background-color: var(--bg-surface); /* Этот цвет должен быть светлее основного фона */
+  padding: 10px 16px;
+  background-color: var(--bg-surface);
   border-bottom: 1px solid var(--border-subtle);
 
-  /* 2. Идеальная типографика */
   font-family: var(--font-mono);
   font-size: 11px;
-  font-weight: 600; /* Делаем текст чуть плотнее, чтобы он не терялся */
+  font-weight: 600;
   color: var(--text-secondary);
   text-transform: uppercase;
-  letter-spacing: 0.05em; /* Растягиваем буквы для технического стиля */
+  letter-spacing: 0.05em;
   line-height: 1.2;
 
-  /* 3. Микро-UX */
-  -webkit-font-smoothing: antialiased; /* Сглаживание делает моноширинный шрифт четче */
-  user-select: none; /* Текст не будет случайно выделяться при кликах */
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
   flex-shrink: 0;
 }
 
@@ -70,7 +67,7 @@
 }
 
 .descriptionPanel {
-  @include media-tablet {
+  @include media-desktop-small {
     height: auto;
     min-height: 20vh;
     max-height: 60vh;
@@ -82,7 +79,7 @@
     font-size: 14px;
     line-height: 1.6;
 
-    @include media-tablet {
+    @include media-desktop-small {
       padding: 15px;
     }
   }
@@ -91,7 +88,7 @@
 .editorPanel {
   position: relative;
 
-  @include media-tablet {
+  @include media-desktop-small {
     height: 45vh;
   }
 
@@ -103,7 +100,7 @@
 }
 
 .consolePanel {
-  @include media-tablet {
+  @include media-desktop-small {
     height: auto;
   }
 }
@@ -115,12 +112,12 @@
   &:first-child {
     padding: 20px;
 
-    @include media-tablet {
+    @include media-desktop-small {
       padding: 15px;
     }
   }
 
-  @include media-tablet {
+  @include media-desktop-small {
     height: auto;
     min-height: 30vh;
     max-height: 40vh;
@@ -136,7 +133,15 @@
   gap: 12px;
   flex-shrink: 0;
 
-  @include media-tablet {
+  @include media-desktop-small {
     padding: 15px;
+  }
+}
+
+.submitButton,
+.runButton {
+  @include media-desktop-small {
+    height: 48px;
+    font-size: 1.3rem;
   }
 }

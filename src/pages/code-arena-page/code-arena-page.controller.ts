@@ -3,13 +3,14 @@ import type { CodeArenaPage } from './code-arena-page';
 import { codeArenaRepository } from './repositories/code-arena.repository';
 import { Toast } from '@/components/ui/toast/toast.view';
 import { messages } from '@/common/constants/messages';
-import { useNavigate } from '@/router/hooks';
+import { useNavigate, useParams } from '@/router/hooks';
 import { ROUTES } from '@/router/constants';
 
 export class CodeArenaController {
   private view: CodeArenaPage;
   private executionController: ExecutionController;
 
+  private levelId: string = useParams()['id'];
   private navigate = useNavigate();
 
   constructor(view: CodeArenaPage) {

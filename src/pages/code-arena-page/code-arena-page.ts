@@ -11,6 +11,7 @@ import { messages } from './common/constants/messages';
 
 import styles from './code-arena-page.module.scss';
 import { LoaderManager } from '@/common/utils/loader-manager.util';
+import { InlineCodeText } from '@/components/ui/inline-code-text/inline-code-text.view';
 
 export class CodeArenaPage implements IPage {
   public readonly editor = new CodeEditor({ className: styles.editor });
@@ -75,7 +76,7 @@ export class CodeArenaPage implements IPage {
     const workspace = new Component({ className: styles.workspace });
 
     const descriptionInner = new Component({ className: styles.panelContent });
-    const descText = new Component({ tag: 'p', text: entity.description });
+    const descText = new InlineCodeText({ tag: 'p', text: entity.description });
     descriptionInner.append(descText);
 
     const descriptionPanel = this.buildPanel(styles.descriptionPanel, messages.headers.description, descriptionInner);

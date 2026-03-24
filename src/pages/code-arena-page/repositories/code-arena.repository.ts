@@ -29,7 +29,7 @@ export class CodeArenaRepository {
 
   public async fetchMockTask(): Promise<ICodeArenaEntities> {
     const laborIllusionTime = 1000;
-    const errorChange = 0.5;
+    const errorChange = 0.01;
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (Math.random() >= errorChange) {
