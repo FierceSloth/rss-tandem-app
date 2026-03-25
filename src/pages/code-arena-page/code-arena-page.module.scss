@@ -16,6 +16,7 @@
   display: grid;
   grid-template-columns: 420px 1fr 380px;
   flex: 1;
+  min-height: 0;
 
   gap: 1px;
   background-color: var(--border-subtle);
@@ -34,6 +35,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  min-height: 0;
 
   @include media-desktop-small {
     height: 40vh;
@@ -87,6 +89,9 @@
 
 .editorPanel {
   position: relative;
+  background-color: var(--bg-surface);
+  flex: 1;
+  // overflow: hidden;
 
   @include media-desktop-small {
     height: 45vh;
@@ -144,4 +149,12 @@
     height: 48px;
     font-size: 1.3rem;
   }
+}
+
+.runButton {
+  background-color: var(--bg-body);
+}
+
+.score {
+  flex: 1;
 }

@@ -24,7 +24,8 @@ export class InlineCodeText extends Component {
   private renderText(text: string): void {
     this.destroyChildren();
 
-    const parts = text.split('`');
+    const normalizedText = text.replaceAll(String.raw`\n`, '\n');
+    const parts = normalizedText.split('`');
 
     parts.forEach((part, index) => {
       if (index % EVEN === 1) {

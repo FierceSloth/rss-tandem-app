@@ -4,12 +4,13 @@ import { codeArenaMapper } from '../common/utils/code-arena-mapper.util';
 import { evenOrOddMockData } from './code-arena.mock';
 
 export class CodeArenaRepository {
-  public async fetchTaskById(taskId: string): Promise<ICodeArenaEntities> {
+  public async fetchLevelById(levelId: string): Promise<ICodeArenaEntities> {
     const { data, error } = await supabase
-      .from('tasks')
+      .from('code_arena_questions')
       .select(
         `
         id,
+        level_id,
         title,
         topic,
         description,
@@ -17,7 +18,7 @@ export class CodeArenaRepository {
         tests
       `
       )
-      .eq('id', taskId)
+      .eq('level_id', levelId)
       .single();
 
     if (error) {

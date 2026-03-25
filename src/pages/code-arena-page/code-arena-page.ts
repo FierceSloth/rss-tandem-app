@@ -12,6 +12,7 @@ import { messages } from './common/constants/messages';
 import styles from './code-arena-page.module.scss';
 import { LoaderManager } from '@/common/utils/loader-manager.util';
 import { InlineCodeText } from '@/components/ui/inline-code-text/inline-code-text.view';
+import { Score } from '@/components/features/score/score.view';
 
 export class CodeArenaPage implements IPage {
   public readonly editor = new CodeEditor({ className: styles.editor });
@@ -30,6 +31,9 @@ export class CodeArenaPage implements IPage {
   private root = new Component({ className: styles.codeArena });
   private loader = new LoaderManager();
   private controller: CodeArenaController | null = null;
+
+  private workspace: Component | null = null;
+  private resultView: Score | null = null;
 
   /* ========================================================================== */
   /*                                  Lifecycle                                 */
@@ -63,9 +67,17 @@ export class CodeArenaPage implements IPage {
   public renderLayout(entity: ICodeArenaEntities): void {
     const header = new CodeArenaHeader({ titleText: entity.title, topicText: entity.topic });
     const footer = new CodeArenaFooter({});
-    const workspace = this.buildWorkspace(entity);
+    this.workspace = this.buildWorkspace(entity);
 
-    this.root.append(header, workspace, footer);
+    this.root.append(header, this.workspace, footer);
+  }
+
+  public showResult(): void {
+    if (this.workspace) {
+      this.workspace.node.style.display = 'none';
+    }
+    this.resultView = new Score({ className: styles.score, scoreData: { correct: 1, total: 1 }, withButtons: true });
+    this.workspace?.node.after(this.resultView.node);
   }
 
   /* ========================================================================== */

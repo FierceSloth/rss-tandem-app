@@ -5,6 +5,7 @@ import { Toast } from '@/components/ui/toast/toast.view';
 import { messages } from '@/common/constants/messages';
 import { useNavigate, useParams } from '@/router/hooks';
 import { ROUTES } from '@/router/constants';
+import { ProgressService } from '@/service/progress/progress.service';
 
 export class CodeArenaController {
   private view: CodeArenaPage;
@@ -32,7 +33,7 @@ export class CodeArenaController {
     this.view.showLoading();
 
     try {
-      const entity = await codeArenaRepository.fetchMockTask();
+      const entity = await codeArenaRepository.fetchLevelById(this.levelId);
 
       this.view.editor.setValue(entity.initialCode);
       this.executionController.setTests(entity.tests);
@@ -56,8 +57,24 @@ export class CodeArenaController {
 
   private initListeners(): void {
     this.view.submitButton.addListener('click', () => {
-      console.log('Sending to server...');
-      // TODO: add listener
+      void this.handleSubmit();
     });
+  }
+
+  private async handleSubmit(): Promise<void> {
+    this.view.submitButton.setDisabled(true);
+    try {
+      const isTestsPassed = await this.executionController.executeCode();
+      if (!isTestsPassed) {
+        this.view.submitButton.setDisabled(false);
+        return;
+      }
+
+      await ProgressService.saveLevelProgress(this.levelId, 1, 1);
+
+      this.view.showResult();
+    } catch {
+      this.view.submitButton.setDisabled(false);
+    }
   }
 }

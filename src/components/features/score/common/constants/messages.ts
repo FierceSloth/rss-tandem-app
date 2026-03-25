@@ -3,6 +3,10 @@ export const messages = {
     taskCompleted: 'Task Completed 🎉',
     score: (correct: number, total: number): string => `Score: ${correct} / ${total}`,
   },
+  buttons: {
+    retry: 'Try Again',
+    return: 'Back to Roadmap',
+  },
   messages: {
     perfect: 'Perfect score! You really know this topic.',
     greatJob: 'Great job! You have strong knowledge.',
