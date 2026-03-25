@@ -24,7 +24,7 @@ export const messages = {
     errorFetchingIp: (error: string): string => `Failed to fetch IP: ${error}`,
     failedLoadRoadmap: 'Failed to load roadmap data. Please try again later.',
     failedLoadCodeArena: 'Failed to load code arena data. Please try again later.',
-    egistrationFailed: 'Registration failed',
+    registrationFailed: 'Registration failed',
     emailAlreadyExists: 'User with this email already exists',
     userNotFound: 'User not found',
     profileSaveError: 'Failed to save user profile',
