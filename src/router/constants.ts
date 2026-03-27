@@ -10,7 +10,7 @@ export const ROUTES = {
   QUIZ_PAGE: '/quiz/:id',
   TRUE_FALSE_PAGE: '/true-false/:id',
   TASK_RESOLVER_PAGE: '/task-resolver/:id',
-  VIDEO_TASK_PAGE: '/video-task/:id',
+  THEORY_HUB_PAGE: '/theory-hub/:id',
   OUTPUT_PREDICATOR_PAGE: '/output-predictor/:id',
   BOSS_BATTLE_PAGE: '/boss-battle/:id',
   ERROR_SCANNER_PAGE: '/error-scanner/:id',

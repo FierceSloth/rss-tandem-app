@@ -4,7 +4,7 @@ export type WidgetType =
   | 'QUIZ'
   | 'TRUE_FALSE'
   | 'TASK_RESOLVER'
-  | 'VIDEO_TASK'
+  | 'THEORY_HUB'
   | 'OUTPUT_PREDICTOR'
   | 'BOSS_BATTLE'
   | 'ERROR_SCANNER';

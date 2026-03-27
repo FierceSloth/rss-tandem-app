@@ -11,7 +11,7 @@ import { QuizPage } from '@/pages/quiz-page/quiz-page';
 import { TaskResolverPage } from '@/pages/task-resolver-page/task-resolver-page';
 import { TrueFalsePage } from '@/pages/true-false-page/true-false-page';
 import { UserProfilePage } from '@/pages/user-profile-page/user-profile-page';
-import { VideoTaskResolverPage } from '@/pages/video-task-resolver-page/video-task-resolver-page';
+import { TheoryHubPage } from '@/pages/theory-hub-page/theory-hub-page';
 import type { IRoute } from './types';
 import { ROUTES } from './constants';
 
@@ -28,7 +28,7 @@ export const routes: IRoute[] = [
   { path: ROUTES.QUIZ_PAGE, page: () => new QuizPage(), meta: { secured: true } },
   { path: ROUTES.TRUE_FALSE_PAGE, page: () => new TrueFalsePage(), meta: { secured: true } },
   { path: ROUTES.TASK_RESOLVER_PAGE, page: () => new TaskResolverPage(), meta: { secured: true } },
-  { path: ROUTES.VIDEO_TASK_PAGE, page: () => new VideoTaskResolverPage(), meta: { secured: true } },
+  { path: ROUTES.THEORY_HUB_PAGE, page: () => new TheoryHubPage(), meta: { secured: true } },
   { path: ROUTES.OUTPUT_PREDICATOR_PAGE, page: () => new OutputPredictorPage(), meta: { secured: true } },
   { path: ROUTES.BOSS_BATTLE_PAGE, page: () => new BossBattlePage(), meta: { secured: true } },
   { path: ROUTES.ERROR_SCANNER_PAGE, page: () => new ErrorScannerPage(), meta: { secured: true } },
