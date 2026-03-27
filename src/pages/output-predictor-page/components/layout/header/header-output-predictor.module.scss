@@ -1,0 +1,63 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid #222;
+}
+
+.leftContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 200px;
+}
+
+.labelCount {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+}
+
+.title {
+  font-size: 14px;
+  color: var(--text-primary);
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 6px;
+  text-transform: capitalize;
+}
+
+.progressBar {
+  position: static;
+  --progress-color: var(--accent-green);
+  --progress-shadow: rgba(34, 197, 94, 0.5);
+}
+
+.timer {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  color: var(--accent-blue);
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  letter-spacing: 1px;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.difficultyLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
