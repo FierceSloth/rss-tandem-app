@@ -1,6 +1,6 @@
 import type { IResourceLinkDto, IResourceLinkEntity, ITheoryHubDto, ITheoryHubEntity } from '../types/types';
 
-export const roadmapMapper = {
+export const theoryHubMapper = {
   mapResource(dto: IResourceLinkDto): IResourceLinkEntity {
     return {
       title: dto.title,
