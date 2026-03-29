@@ -48,7 +48,7 @@ export class RoadmapPageController {
         this.view.setReady();
       }
     } catch (error) {
-      console.error('Failed to load roadmap:', error);
+      console.error(messages.errors.failedLoadRoadmap, error);
 
       new Toast({
         message: messages.errors.failedLoadRoadmap,

@@ -42,7 +42,7 @@ export class CodeArenaController {
 
       this.view.setReady();
     } catch (error) {
-      console.error('Failed to load code arena:', error);
+      console.error(messages.errors.failedLoadCodeArena, error);
 
       new Toast({
         message: messages.errors.failedLoadCodeArena,

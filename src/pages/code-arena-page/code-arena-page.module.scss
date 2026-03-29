@@ -91,7 +91,6 @@
   position: relative;
   background-color: var(--bg-surface);
   flex: 1;
-  // overflow: hidden;
 
   @include media-desktop-small {
     height: 45vh;

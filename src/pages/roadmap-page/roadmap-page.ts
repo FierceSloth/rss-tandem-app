@@ -22,10 +22,6 @@ export class RoadmapPage implements IPage {
     this.loader = new LoaderManager();
   }
 
-  /* ========================================================================== */
-  /*                                  Lifecycle                                 */
-  /* ========================================================================== */
-
   public render(): Component {
     const header = new RoadmapHeader({});
 
@@ -38,10 +34,6 @@ export class RoadmapPage implements IPage {
   public destroy(): void {
     this.controller?.destroy();
   }
-
-  /* ========================================================================== */
-  /*                                 Public API                                 */
-  /* ========================================================================== */
 
   public showLoading(): void {
     this.loader.show('lg', 'green');

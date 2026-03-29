@@ -1,7 +1,6 @@
 import { supabase } from '@/api/supabase/supabase-client';
 import type { ICodeArenaEntities } from '../common/types/types';
 import { codeArenaMapper } from '../common/utils/code-arena-mapper.util';
-import { evenOrOddMockData } from './code-arena.mock';
 
 export class CodeArenaRepository {
   public async fetchLevelById(levelId: string): Promise<ICodeArenaEntities> {
@@ -26,21 +25,6 @@ export class CodeArenaRepository {
     }
 
     return codeArenaMapper.mapTask(data);
-  }
-
-  public async fetchMockTask(): Promise<ICodeArenaEntities> {
-    const laborIllusionTime = 1000;
-    const errorChange = 0.01;
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (Math.random() >= errorChange) {
-          const entity = codeArenaMapper.mapTask(evenOrOddMockData);
-          resolve(entity);
-        } else {
-          reject(new Error('Не удалось загрузить виджет'));
-        }
-      }, laborIllusionTime);
-    });
   }
 }
 

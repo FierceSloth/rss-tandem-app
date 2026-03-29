@@ -8,4 +8,7 @@ export const messages = {
     solution: 'Solution',
     output: 'Output',
   },
+  titles: {
+    inProgress: (topicText: string): string => `IN PROGRESS // ${topicText}`,
+  },
 };

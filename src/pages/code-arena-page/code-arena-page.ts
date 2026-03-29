@@ -35,10 +35,6 @@ export class CodeArenaPage implements IPage {
   private workspace: Component | null = null;
   private resultView: Score | null = null;
 
-  /* ========================================================================== */
-  /*                                  Lifecycle                                 */
-  /* ========================================================================== */
-
   public render(): Component {
     this.controller = new CodeArenaController(this);
     return this.root;
@@ -47,10 +43,6 @@ export class CodeArenaPage implements IPage {
   public destroy(): void {
     this.controller?.destroy();
   }
-
-  /* ========================================================================== */
-  /*                                 Public API                                 */
-  /* ========================================================================== */
 
   public showLoading(): void {
     this.loader.show('lg', 'green');
@@ -79,10 +71,6 @@ export class CodeArenaPage implements IPage {
     this.resultView = new Score({ className: styles.score, scoreData: { correct: 1, total: 1 }, withButtons: true });
     this.workspace?.node.after(this.resultView.node);
   }
-
-  /* ========================================================================== */
-  /*                                  Builders                                  */
-  /* ========================================================================== */
 
   private buildWorkspace(entity: ICodeArenaEntities): Component {
     const workspace = new Component({ className: styles.workspace });
