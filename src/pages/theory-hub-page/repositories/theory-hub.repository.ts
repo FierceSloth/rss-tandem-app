@@ -42,4 +42,4 @@ export class TheoryHubRepository {
   }
 }
 
-export const codeArenaRepository = new TheoryHubRepository();
+export const theoryHubRepository = new TheoryHubRepository();

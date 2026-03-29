@@ -23,6 +23,7 @@ export const messages = {
     svgNotFound: 'Could not find SVG element in the string passed',
     errorFetchingIp: (error: string): string => `Failed to fetch IP: ${error}`,
     failedLoadRoadmap: 'Failed to load roadmap data. Please try again later.',
+    failedLoadTheoryHub: 'Failed to load theory hub data. Please try again later.',
     registrationFailed: 'Registration failed',
     emailAlreadyExists: 'User with this email already exists',
     userNotFound: 'User not found',
