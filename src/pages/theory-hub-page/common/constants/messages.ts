@@ -1,6 +1,6 @@
 export const messages = {
-  header: {
-    title: 'Theory Hub',
+  titles: {
     subTitle: 'Knowledge Base // Preparation',
+    materialTitle: 'Curated Resources',
   },
 };

@@ -1,24 +1,26 @@
 import styles from './theory-hub-page.module.scss';
 import type { IPage } from '@/common/types/types';
-import type { Component } from '@/components/base/component';
+import { Component } from '@/components/base/component';
 import type { ITheoryHubEntity } from './common/types/types';
 import { PageLayout } from '@/components/layout/page-layout/page-layout.view';
-import { TheoryHubHeader } from './components/layout/theory-hub-header/theory-hub-header.view';
 import { LoaderManager } from '@/common/utils/loader-manager.util';
 import { InlineCodeText } from '@/components/ui/inline-code-text/inline-code-text.view';
 import { ResourceLink } from './components/features/resource-link/resource-link.view';
 import { TheoryHubController } from './theory-hub-page.controller';
+import { Card } from '@/components/layout/card/card.view';
+import { StatusBadge } from '@/components/ui/status-badge/status-badge.view';
+import { messages } from './common/constants/messages';
 
 export class TheoryHubPage implements IPage {
-  private header = new TheoryHubHeader({});
   private root: PageLayout | null = null;
+  private card: Card | null = null;
   private loader = new LoaderManager();
   private controller: TheoryHubController | null = null;
 
   public render(): Component {
-    this.header.addClass(styles.hide);
-    this.root = new PageLayout({ className: styles.theoryHub, withSidebar: false, header: this.header });
     this.controller = new TheoryHubController(this);
+
+    this.root = new PageLayout({ className: styles.theoryHub, withSidebar: false });
     return this.root;
   }
 
@@ -35,16 +37,39 @@ export class TheoryHubPage implements IPage {
   }
 
   public renderLayout(entity: ITheoryHubEntity): void {
-    this.header.removeClass(styles.hide);
-    const description = new InlineCodeText({ text: entity.description });
-    this.root?.append(description);
+    this.card = new Card({ tag: 'section', className: styles.card, glass: false });
+    this.root?.append(this.card);
+
+    const cardHeader = new Component({ tag: 'header', className: styles.cardHeader });
+
+    const title = new Component({ tag: 'h1', className: styles.title, text: entity.title });
+    const subTitle = new StatusBadge({
+      className: styles.subTitle,
+      text: messages.titles.subTitle,
+      color: 'blue',
+      capitalize: true,
+      animation: 'pulse-slow',
+      dot: false,
+    });
+    cardHeader.append(subTitle, title);
+
+    const description = new InlineCodeText({ tag: 'p', className: styles.description, text: entity.description });
+
+    const divider = new Component({ className: styles.divider });
+
+    const materialsList = new Component({ className: styles.materialsList });
+    const materialTitle = new Component({ className: styles.materialTitle, text: messages.titles.materialTitle });
+    materialsList.append(materialTitle);
+
     entity.materials.forEach((resourceData) => {
       const resource = new ResourceLink({ data: resourceData });
-      this.root?.append(resource);
+      materialsList.append(resource);
     });
+
+    this.card?.append(cardHeader, description, divider, materialsList);
   }
 
   public setReady(): void {
-    this.root?.addClass('showAnimation');
+    this.card?.addClass(styles.showAnimation);
   }
 }
