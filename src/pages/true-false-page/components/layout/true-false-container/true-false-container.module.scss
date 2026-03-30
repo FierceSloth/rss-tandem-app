@@ -1,0 +1,108 @@
+@use '@/styles/abstract/mixins' as *;
+
+.trueFalseContainer {
+  padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 89.6rem;
+  margin: 0 auto;
+
+  gap: 48px;
+  height: auto;
+  flex-grow: 1;
+  width: 100%;
+
+  &.hidden {
+    display: none;
+  }
+
+  @include media-tablet {
+    min-height: 570px;
+    gap: 20px;
+    padding: 20px;
+  }
+}
+
+.card {
+  padding: 64px;
+  min-height: clamp(260px, 40vh, 420px);
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  @include media-tablet {
+    padding: 48px;
+  }
+
+  .tag {
+    display: inline-block;
+    text-align: center;
+  }
+
+  .answerText {
+    margin-top: 16px;
+    font-size: clamp(16px, 3.5vw, 22px);
+    line-height: 1.3;
+    text-align: center;
+    color: var(--text-primary);
+
+    @include media-tablet {
+    }
+  }
+}
+
+.codeContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: auto 0;
+
+  .codeSnippet {
+    font-size: clamp(16px, 4vw, 28px);
+    line-height: 1.3;
+
+    display: block;
+    margin: 0;
+
+    @include media-tablet {
+    }
+  }
+}
+
+.cardHeader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding-inline: var(--space-4);
+  height: clamp(3.5rem, 5vw, 4rem);
+  font-size: var(--font-size-semismall);
+  font-family: var(--font-mono);
+
+  .id {
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-0-025);
+    color: var(--text-secondary);
+  }
+
+  .dots {
+    display: inline-flex;
+    gap: var(--space-2);
+    .dot {
+      background-color: var(--border-focus);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+  }
+}

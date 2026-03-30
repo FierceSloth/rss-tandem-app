@@ -1,0 +1,162 @@
+@use '@/styles/abstract/mixins' as *;
+
+.trueFalseButtons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.4rem;
+  width: 100%;
+  margin: 0 auto;
+
+  @include media-tablet {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .verifyButton,
+  .rejectButton {
+    cursor: pointer;
+    width: 100%;
+    height: clamp(64px, 10vw, 96px);
+    padding-inline: clamp(16px, 4vw, 32px);
+    user-select: none;
+    outline: none;
+    font-size: var(--font-size-semibase);
+    white-space: nowrap;
+    font-weight: 500;
+    border-radius: var(--radius-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    --bg: transparent;
+    --border: transparent;
+    --shadow: none;
+    --hover-bg: rgba(0, 0, 0, 0.05);
+    --hover-border: var(--border);
+    --hover-shadow: var(--shadow);
+    --text-color: rgba(0, 0, 0, 0.05);
+
+    background: var(--bg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    color: var(--text-color);
+
+    transition: var(--transition);
+
+    &:hover {
+      transform: translateY(-2px);
+      background: var(--hover-bg);
+      border-color: var(--hover-border);
+      box-shadow: var(--hover-shadow);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    .svgWrapper {
+      width: clamp(28px, 6vw, 40px);
+      height: clamp(28px, 6vw, 40px);
+      border: 1px solid var(--hover-border);
+      border-radius: 0.4rem;
+      opacity: 0.3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--text-color);
+      background: transparent;
+
+      transition: var(--transition);
+    }
+
+    &:hover .svgWrapper {
+      background: var(--text-color);
+      opacity: 1;
+    }
+
+    &:hover .verifyDescription,
+    &:hover .rejectDescription {
+      opacity: 0.8;
+    }
+  }
+
+  .verifyButton:hover .svgWrapper {
+    color: black;
+  }
+
+  .rejectButton:hover .svgWrapper {
+    color: white;
+  }
+
+  .verifyButton {
+    --bg: rgba(16, 185, 129, 0.1);
+    --border: rgba(16, 185, 129, 0.3);
+    --shadow: 0 0 20px rgba(16, 185, 129, 0.1);
+    --hover-bg: rgba(16, 185, 129, 0.2);
+    --hover-border: var(--accent-green);
+    --hover-shadow: 0 0 30px rgba(16, 185, 129, 0.3);
+    --text-color: var(--accent-green);
+  }
+
+  .rejectButton {
+    --bg: rgba(233, 53, 53, 0.1);
+    --border: rgba(233, 53, 53, 0.3);
+    --shadow: 0 0 20px rgba(233, 53, 53, 0.1);
+    --hover-bg: rgba(233, 53, 53, 0.2);
+    --hover-border: var(--accent-red);
+    --hover-shadow: 0 0 30px rgba(233, 53, 53, 0.3);
+    --text-color: var(--accent-red);
+  }
+
+  .correct {
+    --bg: rgba(16, 185, 129, 0.3);
+    --border: var(--accent-green);
+    --shadow: 0 0 30px rgba(16, 185, 129, 0.3);
+    --hover-bg: rgba(16, 185, 129, 0.4);
+    --hover-border: var(--accent-green);
+    --hover-shadow: 0 0 35px rgba(16, 185, 129, 0.4);
+    --text-color: var(--accent-green);
+  }
+
+  .incorrect {
+    --bg: rgba(233, 53, 53, 0.3);
+    --border: var(--accent-red);
+    --shadow: 0 0 30px rgba(233, 53, 53, 0.3);
+    --hover-bg: rgba(233, 53, 53, 0.4);
+    --hover-border: var(--accent-red);
+    --hover-shadow: 0 0 35px rgba(233, 53, 53, 0.4);
+    --text-color: var(--accent-red);
+  }
+}
+
+.buttonText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-family: var(--font-mono-secondary);
+  text-transform: uppercase;
+
+  .verifyName,
+  .verifyDescription,
+  .rejectName,
+  .rejectDescription {
+    color: var(--text-color);
+
+    transition: var(--transition);
+  }
+
+  .verifyName,
+  .rejectName {
+    letter-spacing: 0.18rem;
+    font-weight: 700;
+    font-size: clamp(14px, 2.5vw, 20px);
+    line-height: var(--line-height-superlarge);
+  }
+
+  .verifyDescription,
+  .rejectDescription {
+    margin-top: 0.4rem;
+    font-size: clamp(8px, 2vw, 10px);
+    opacity: 0.4;
+    letter-spacing: normal;
+  }
+}

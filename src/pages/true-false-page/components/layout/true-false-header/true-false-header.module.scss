@@ -1,0 +1,92 @@
+@use '@/styles/abstract/mixins' as *;
+
+.trueFalseHeader {
+  position: sticky;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 50;
+  margin: 0;
+  line-height: inherit;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 32px 24px;
+    position: relative;
+    max-width: var(--desktop-max);
+    margin-left: auto;
+    margin-right: auto;
+
+    @include media-tablet {
+      padding: 24px 20px;
+    }
+  }
+}
+
+.bar {
+  width: 100%;
+  padding-inline: 32px;
+  height: 8px;
+
+  @include media-tablet {
+    left: 20px;
+  }
+}
+
+.timeRemainingWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 0.4rem;
+
+  .timeRemainingText {
+    color: var(--text-secondary);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-family: var(--font-mono-secondary);
+  }
+
+  .timer {
+    line-height: 3.6rem;
+    font-weight: 700;
+    font-size: 3rem;
+    text-shadow: 0 0 10px rgba(233, 53, 53, 0.5);
+    letter-spacing: var(--letter-spacing-narrowing-0-025);
+    font-family: var(--font-mono-secondary);
+  }
+}
+
+.progressWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 0.4rem;
+
+  .progressText {
+    color: var(--text-secondary);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-family: var(--font-mono-secondary);
+  }
+
+  .level {
+    font-size: 2rem;
+    line-height: 2.8rem;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.5px;
+    font-family: var(--font-mono-secondary);
+
+    .levelCurrent {
+      color: var(--text-primary);
+    }
+
+    .levelTotal {
+      color: var(--text-secondary);
+    }
+  }
+}

@@ -9,6 +9,10 @@ type Color = 'primary' | 'green' | 'green-dark' | 'blue' | 'gray' | 'red';
 
 type Padding = 'none' | 'sm' | 'md' | 'lg' | 'hg';
 
+type Divider = '.' | ':';
+
+type Postfix = '' | 's';
+
 interface IProps extends IComponentChild {
   color?: Color;
   icon?: Element;
@@ -16,6 +20,8 @@ interface IProps extends IComponentChild {
   time?: number;
   dangerTimeFrom?: number;
   countdown?: boolean;
+  divider?: Divider;
+  postfix?: Postfix;
 }
 
 const LAST_10_MINUTES = 600;
@@ -31,6 +37,8 @@ export class Timer extends Component {
   private engine: TimerEngine;
   private dangerTimeFrom: number;
   private countdown: boolean;
+  private divider: Divider;
+  private postfix: Postfix;
 
   constructor(
     {
@@ -41,6 +49,8 @@ export class Timer extends Component {
       time = SIXTY_SECONDS,
       dangerTimeFrom = LAST_10_MINUTES,
       countdown = true,
+      divider = ':',
+      postfix = '',
     }: IProps,
     ...children: Component[]
   ) {
@@ -54,6 +64,8 @@ export class Timer extends Component {
     this.color = color;
     this.dangerTimeFrom = dangerTimeFrom;
     this.countdown = countdown;
+    this.divider = divider;
+    this.postfix = postfix;
 
     this.engine = new TimerEngine(time, countdown);
 
@@ -90,15 +102,22 @@ export class Timer extends Component {
     const minutes = Math.floor(remainder / SIXTY_SECONDS);
     const seconds = remainder % SIXTY_SECONDS;
 
-    return hours ? this.formatTimerWithHours(hours, minutes, seconds) : this.formatTimer(minutes, seconds);
+    return hours
+      ? `${this.formatTimerWithHours(hours, minutes, seconds, this.divider)}${this.postfix}`
+      : `${this.formatTimer(minutes, seconds, this.divider)}${this.postfix}`;
   }
 
-  private formatTimerWithHours(hours: number | string, minutes: number | string, seconds: number | string): string {
-    return `${this.formatTime(hours)}:${this.formatTime(minutes)}:${this.formatTime(seconds)}`;
+  private formatTimerWithHours(
+    hours: number | string,
+    minutes: number | string,
+    seconds: number | string,
+    divider: Divider
+  ): string {
+    return `${this.formatTime(hours)}${divider}${this.formatTime(minutes)}${divider}${this.formatTime(seconds)}`;
   }
 
-  private formatTimer(minutes: number | string, seconds: number | string): string {
-    return `${this.formatTime(minutes)}:${this.formatTime(seconds)}`;
+  private formatTimer(minutes: number | string, seconds: number | string, divider: Divider): string {
+    return `${this.formatTime(minutes)}${divider}${this.formatTime(seconds)}`;
   }
 
   private formatTime(time: number | string): string {
