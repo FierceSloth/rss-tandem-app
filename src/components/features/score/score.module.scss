@@ -136,6 +136,23 @@
   }
 }
 
+.buttonContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  button {
+    width: 200px;
+
+    @include media-tablet {
+      font-size: 13px;
+      width: 150px;
+    }
+  }
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

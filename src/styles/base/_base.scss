@@ -90,6 +90,10 @@ body {
   transform: translate(-50%, -50%);
 }
 
+.showAnimation {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
 /* Headings (Desktop) */
 h1 {
   font-size: var(--font-h1-size);
@@ -119,4 +123,13 @@ h5 {
   font-size: var(--font-h5-size);
   line-height: var(--line-h5-height);
   font-weight: 500;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

@@ -1,6 +1,7 @@
 import styles from './score.module.scss';
 import type { IScore } from '@/components/features/score/types/types';
 import { Component } from '@/components/base/component';
+import { Button } from '@/components/ui/button/button.view';
 import { messages } from './common/constants/messages';
 import type { IComponentChild } from '@common/types/types';
 import { mergeClassNames } from '@common/utils/class-names.util';
@@ -11,6 +12,7 @@ import starIcon from '@assets/svg/common/star.svg?raw';
 
 interface IProps extends IComponentChild {
   scoreData: IScore;
+  withButtons?: boolean;
   withController?: boolean;
 }
 
@@ -24,8 +26,13 @@ export class Score extends Component {
   public percentText: Component;
   public progress: Component;
   public message: Component;
+  public returnButton: Button;
+  public retryButton: Button;
 
-  constructor({ scoreData, className = [], withController = true }: IProps, ...children: Component[]) {
+  constructor(
+    { scoreData, className = [], withButtons = false, withController = true }: IProps,
+    ...children: Component[]
+  ) {
     const cssClasses = mergeClassNames(styles.score, className);
     super({ className: cssClasses }, ...children);
 
@@ -64,9 +71,25 @@ export class Score extends Component {
       className: styles.message,
     });
 
+    this.retryButton = new Button({
+      type: 'button',
+      text: messages.buttons.retry,
+      variant: 'ghost',
+    });
+    this.returnButton = new Button({
+      type: 'button',
+      text: messages.buttons.return,
+      variant: 'primary',
+    });
+
     this.node.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
     this.append(this.cap, this.stars, title, this.percentText, this.resultScore, bar, this.message);
+
+    if (withButtons) {
+      const buttonContainer = new Component({ className: styles.buttonContainer }, this.retryButton, this.returnButton);
+      this.append(buttonContainer);
+    }
 
     if (withController) {
       new ScoreController(this);
