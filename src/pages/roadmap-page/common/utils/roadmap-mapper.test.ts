@@ -39,7 +39,7 @@ describe('roadmapMapper utility', () => {
       id: '456',
       title: 'Empty Level',
       description: 'Desc',
-      widget_type: 'TASK_RESOLVER',
+      widget_type: 'CODE_ARENA',
       difficulty: 'medium',
       // without user_level_progress
     } as ILevelDto;

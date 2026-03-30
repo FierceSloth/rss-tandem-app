@@ -1,0 +1,159 @@
+@use '@/styles/abstract/mixins' as *;
+
+.codeArena {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+
+  @include media-desktop-small {
+    height: auto;
+    min-height: 100dvh;
+  }
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: 420px 1fr 380px;
+  flex: 1;
+  min-height: 0;
+
+  gap: 1px;
+  background-color: var(--border-subtle);
+
+  @include media-desktop {
+    grid-template-columns: 1fr 1.5fr 1fr;
+  }
+
+  @include media-desktop-small {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel {
+  background-color: var(--bg-body);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+
+  @include media-desktop-small {
+    height: 40vh;
+  }
+}
+
+.panelHeader {
+  padding: 10px 16px;
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.panelContent {
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.descriptionPanel {
+  @include media-desktop-small {
+    height: auto;
+    min-height: 20vh;
+    max-height: 60vh;
+  }
+
+  .panelContent {
+    padding: 20px;
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+
+    @include media-desktop-small {
+      padding: 15px;
+    }
+  }
+}
+
+.editorPanel {
+  position: relative;
+  background-color: var(--bg-surface);
+  flex: 1;
+
+  @include media-desktop-small {
+    height: 45vh;
+  }
+
+  .panelContent {
+    :global(.cm-editor) {
+      height: 100%;
+    }
+  }
+}
+
+.consolePanel {
+  @include media-desktop-small {
+    height: auto;
+  }
+}
+
+.terminalWrapper {
+  flex: 1;
+  overflow-y: auto;
+
+  &:first-child {
+    padding: 20px;
+
+    @include media-desktop-small {
+      padding: 15px;
+    }
+  }
+
+  @include media-desktop-small {
+    height: auto;
+    min-height: 30vh;
+    max-height: 40vh;
+  }
+}
+
+.actionsContainer {
+  padding: 20px;
+  border-top: 1px solid var(--border-subtle);
+  background-color: var(--bg-surface);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-shrink: 0;
+
+  @include media-desktop-small {
+    padding: 15px;
+  }
+}
+
+.submitButton,
+.runButton {
+  @include media-desktop-small {
+    height: 48px;
+    font-size: 1.3rem;
+  }
+}
+
+.runButton {
+  background-color: var(--bg-body);
+}
+
+.score {
+  flex: 1;
+}

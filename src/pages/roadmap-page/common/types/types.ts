@@ -3,7 +3,7 @@ export type LevelDifficulty = 'easy' | 'medium' | 'hard' | 'expert';
 export type WidgetType =
   | 'QUIZ'
   | 'TRUE_FALSE'
-  | 'TASK_RESOLVER'
+  | 'CODE_ARENA'
   | 'VIDEO_TASK'
   | 'OUTPUT_PREDICTOR'
   | 'BOSS_BATTLE'
