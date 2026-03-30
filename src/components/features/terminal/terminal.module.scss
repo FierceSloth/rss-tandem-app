@@ -1,6 +1,5 @@
 .terminal {
   background-color: var(--bg-body, #050505);
-  padding: 12px 16px;
   font-family: var(--font-mono, monospace);
   font-size: 1.3rem;
 
@@ -33,7 +32,6 @@
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  word-break: break-all;
   line-height: 1.4;
 }
 

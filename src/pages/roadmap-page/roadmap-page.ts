@@ -31,6 +31,10 @@ export class RoadmapPage implements IPage {
     return root;
   }
 
+  public destroy(): void {
+    this.controller?.destroy();
+  }
+
   public showLoading(): void {
     this.loader.show('lg', 'green');
   }
@@ -39,18 +43,14 @@ export class RoadmapPage implements IPage {
     this.loader.hide();
   }
 
-  public showTimelineSkeleton(): void {
+  public setReady(): void {
+    this.timelineContainer.addClass('showAnimation');
+  }
+
+  public renderTimeline(): void {
     const circuitLineBg = new Component({ className: styles.circuitlineBg });
     const timelineEnd = new Component({ className: styles.timelineEnd, text: messages.footer.endOfRoadmap });
 
     this.timelineContainer.append(circuitLineBg, this.circuitLineProgress, timelineEnd);
-  }
-
-  public setReady(): void {
-    this.timelineContainer.addClass(styles.ready);
-  }
-
-  public destroy(): void {
-    this.controller?.destroy();
   }
 }
