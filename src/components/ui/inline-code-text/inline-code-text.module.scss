@@ -1,5 +1,9 @@
+.inlineCodeText {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
 .code {
-  white-space: nowrap;
   font-family: var(--font-mono);
   font-size: 0.9em;
   background: rgba(255, 255, 255, 0.1);

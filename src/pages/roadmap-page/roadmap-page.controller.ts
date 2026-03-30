@@ -41,14 +41,14 @@ export class RoadmapPageController {
       this.view.hideLoading();
 
       if (entities && entities.length > 0) {
-        this.view.showTimelineSkeleton();
+        this.view.renderTimeline();
         this.buildTimeline(entities);
         this.updateProgressHeight();
 
         this.view.setReady();
       }
     } catch (error) {
-      console.error('Failed to load roadmap:', error);
+      console.error(messages.errors.failedLoadRoadmap, error);
 
       new Toast({
         message: messages.errors.failedLoadRoadmap,

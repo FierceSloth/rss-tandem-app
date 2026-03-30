@@ -109,6 +109,12 @@ export class CodeEngineService {
         }
       });
 
+      worker.addEventListener('error', (event: ErrorEvent) => {
+        event.preventDefault();
+        cleanup();
+        reject(new Error(`${event.message}`));
+      });
+
       timer = setTimeout(() => {
         cleanup();
         reject(new Error(messages.engine.timeout));

@@ -8,16 +8,11 @@ import { quizStore } from './store/quiz.store';
 import type { QuizPage } from './quiz-page';
 import { Toast } from '@/components/ui/toast/toast.view';
 import { messages } from './common/constants/messages';
-import { messages as commonMessages } from '@/common/constants/messages';
 import { QUIZ_LOADING_ERROR_DURATION } from './common/constants/constants';
 import { shuffle } from '@/common/utils/shuffle.util';
 import { ROUTES } from '@/router/constants';
-import { UserService } from '@/service/user-service/user.service';
-import type { IUserDetails } from '@/service/user-service/types/types';
-import { LevelStatus } from '@/common/enums/enums';
-import { getStars } from '@/components/features/score/common/utils/score.util';
 import { QuizRepository } from './repositories/quiz.repository';
-import { userLevelProgressRepository } from '@/common/repositories/user-level-progress.repository';
+import { ProgressService } from '@/service/progress/progress.service';
 
 export class QuizPageController {
   private levelId: string = useParams()['id'];
@@ -139,34 +134,7 @@ export class QuizPageController {
   };
 
   private onResult = (): void => {
-    void this.saveProgress();
+    const state = quizStore.getState();
+    void ProgressService.saveLevelProgress(this.levelId, state.correctAnswers, state.tasks.length);
   };
-
-  private async saveProgress(): Promise<void> {
-    try {
-      const user: IUserDetails | null = await UserService.getUserDetails();
-      if (!user) {
-        console.error(messages.errors.failedSaveProgressWithLevelId(this.levelId), commonMessages.errors.userNotFound);
-        new Toast({
-          message: commonMessages.errors.userNotFound,
-          type: 'error',
-        });
-        return;
-      }
-      const state = quizStore.getState();
-      const stars = getStars(state.correctAnswers, state.tasks.length);
-      void userLevelProgressRepository.saveUserLevelProgress({
-        user_id: user.id,
-        level_id: this.levelId,
-        status: LevelStatus.COMPLETED,
-        stars: stars,
-      });
-    } catch (error: unknown) {
-      console.error(messages.errors.failedSaveProgressWithLevelId(this.levelId), error);
-      new Toast({
-        message: messages.errors.failedSaveProgress,
-        type: 'error',
-      });
-    }
-  }
 }

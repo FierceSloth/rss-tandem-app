@@ -1,0 +1,80 @@
+import { ExecutionController } from '@/controllers/execution.controller';
+import type { CodeArenaPage } from './code-arena-page';
+import { codeArenaRepository } from './repositories/code-arena.repository';
+import { Toast } from '@/components/ui/toast/toast.view';
+import { messages } from '@/common/constants/messages';
+import { useNavigate, useParams } from '@/router/hooks';
+import { ROUTES } from '@/router/constants';
+import { ProgressService } from '@/service/progress/progress.service';
+
+export class CodeArenaController {
+  private view: CodeArenaPage;
+  private executionController: ExecutionController;
+
+  private levelId: string = useParams()['id'];
+  private navigate = useNavigate();
+
+  constructor(view: CodeArenaPage) {
+    this.view = view;
+
+    this.executionController = new ExecutionController(this.view.editor, this.view.terminal, this.view.runButton);
+
+    this.init();
+  }
+
+  public destroy(): void {}
+
+  private init(): void {
+    void this.loadTaskData();
+    this.initListeners();
+  }
+
+  private async loadTaskData(): Promise<void> {
+    this.view.showLoading();
+
+    try {
+      const entity = await codeArenaRepository.fetchLevelById(this.levelId);
+
+      this.view.editor.setValue(entity.initialCode);
+      this.executionController.setTests(entity.tests);
+
+      this.view.renderLayout(entity);
+
+      this.view.setReady();
+    } catch (error) {
+      console.error(messages.errors.failedLoadCodeArena, error);
+
+      new Toast({
+        message: messages.errors.failedLoadCodeArena,
+        type: 'error',
+      });
+
+      this.navigate(ROUTES.NOT_FOUND_PAGE);
+    } finally {
+      this.view.hideLoading();
+    }
+  }
+
+  private initListeners(): void {
+    this.view.submitButton.addListener('click', () => {
+      void this.handleSubmit();
+    });
+  }
+
+  private async handleSubmit(): Promise<void> {
+    this.view.submitButton.setDisabled(true);
+    try {
+      const isTestsPassed = await this.executionController.executeCode();
+      if (!isTestsPassed) {
+        this.view.submitButton.setDisabled(false);
+        return;
+      }
+
+      await ProgressService.saveLevelProgress(this.levelId, 1, 1);
+
+      this.view.showResult();
+    } catch {
+      this.view.submitButton.setDisabled(false);
+    }
+  }
+}
