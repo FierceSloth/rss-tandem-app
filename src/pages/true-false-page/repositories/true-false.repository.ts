@@ -20,8 +20,6 @@ export class TrueFalseRepository {
       .eq('level_id', levelId)
       .order('id', { ascending: true });
 
-    console.log(data);
-
     if (error) throw error;
     return trueFalseMapper.mapDtoToTrueFalse(data);
   }

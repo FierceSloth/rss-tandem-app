@@ -1,10 +1,7 @@
 export enum TrueFalseEvents {
-  NEXT = 'true-false:next',
-  SKIP = 'true-false:skip',
   ANSWER = 'true-false:answer',
   PROGRESS = 'true-false:progress',
   MARK_ANSWER = 'true-false:mark-answer',
-  RETRY = 'true-false:retry',
   RESULT = 'true-false:result',
 }
 

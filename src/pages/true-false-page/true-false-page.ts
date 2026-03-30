@@ -15,32 +15,30 @@ import { TrueFalseContainer } from './components/layout/true-false-container/tru
 
 export class TrueFalsePage implements IPage {
   public lastRenderedIndex = -1;
-  private header: TrueFalseHeader;
-  private trueFalseContainer: TrueFalseContainer;
-  private loader: LoaderManager;
+  private readonly header: TrueFalseHeader;
+  private readonly footer: Footer;
+  private readonly trueFalseContainer: TrueFalseContainer;
+  private readonly loader: LoaderManager;
+  private readonly root: PageLayout;
   private unsubscribe?: () => void;
   private resultView?: Score;
   private controller: TrueFalsePageController | null = null;
-  private root: PageLayout;
 
   constructor() {
     this.header = new TrueFalseHeader({});
     this.trueFalseContainer = new TrueFalseContainer({});
-    const footer: Footer = new Footer({});
+    this.footer = new Footer({});
     this.loader = new LoaderManager();
     this.unsubscribe = trueFalseStore.subscribe((state) => {
       this.renderState(state);
     });
 
-    this.root = new PageLayout(
-      {
-        className: styles.trueFalse,
-        withSidebar: false,
-        header: this.header,
-        footer: footer,
-      },
-      this.trueFalseContainer
-    );
+    this.root = new PageLayout({
+      className: styles.trueFalse,
+      withSidebar: false,
+      header: this.header,
+      footer: this.footer,
+    });
   }
 
   public render(): Component {
@@ -57,14 +55,21 @@ export class TrueFalsePage implements IPage {
     return this.trueFalseContainer;
   }
 
+  public getHeader(): TrueFalseHeader {
+    return this.header;
+  }
+
   public showContent(): void {
-    this.root.append(this.header, this.trueFalseContainer);
+    this.root.append(this.trueFalseContainer);
   }
 
   private showResult(result: ITrueFalseState): void {
     this.trueFalseContainer.addHidden();
 
-    this.resultView = new Score({ scoreData: { correct: result.correctAnswers, total: result.tasks.length } });
+    this.resultView = new Score({
+      scoreData: { correct: result.correctAnswers, total: result.tasks.length },
+      withButtons: true,
+    });
     this.header.node.after(this.resultView.node);
   }
 

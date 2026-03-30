@@ -5,6 +5,8 @@ import { Component } from '@components/base/component';
 import { messages } from '@/pages/landing-page/common/constants/messages';
 import { CodeEditor } from '@/components/features/code-editor/code-editor.view';
 import { initialCode } from '@/pages/landing-page/common/code/initial-code';
+import { Dots } from '@/components/ui/dots/dots';
+import { DEFAULT_DOTS_COUNT } from '@/common/constants/constants';
 
 interface IProps extends IComponentChild {}
 
@@ -46,21 +48,9 @@ export class LandingCodeEditor extends Component {
       text: messages.titles.javaScriptArrays,
     });
 
-    const dots: Component = this.createDots();
+    const dots: Component = new Dots({ dotsCount: DEFAULT_DOTS_COUNT });
     header.append(itemQ, topic, dots);
 
     return header;
-  }
-
-  private createDots(): Component {
-    const dots = new Component({ className: styles.dots });
-    const dotsCount = 3;
-    for (let i = 0; i < dotsCount; i++) {
-      const dot = new Component({ className: styles.dot });
-
-      dots.append(dot);
-    }
-
-    return dots;
   }
 }

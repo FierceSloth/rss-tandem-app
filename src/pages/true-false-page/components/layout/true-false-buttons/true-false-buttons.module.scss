@@ -3,12 +3,13 @@
 .trueFalseButtons {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2.4rem;
+  gap: clamp(16px, 2vw, 2.4rem);
   width: 100%;
   margin: 0 auto;
 
   @include media-tablet {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .verifyButton,
@@ -23,6 +24,7 @@
     white-space: nowrap;
     font-weight: 500;
     border-radius: var(--radius-lg);
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -140,7 +142,6 @@
   .rejectName,
   .rejectDescription {
     color: var(--text-color);
-
     transition: var(--transition);
   }
 

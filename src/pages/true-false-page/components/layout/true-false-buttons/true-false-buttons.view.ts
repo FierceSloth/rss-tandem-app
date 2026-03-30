@@ -7,7 +7,7 @@ import incorrectIcon from '@assets/svg/common/incorrect.svg?raw';
 import { TrueFalseButtonsController } from './true-false-buttons.controller';
 import type { ITrueFalseMetadata } from '@/pages/true-false-page/common/types/types';
 import { Action } from '@/pages/true-false-page/common/enums/enums';
-import { TrueFalseButton } from '../../ui/true-false-button/true-false-button';
+import { TrueFalseButton } from '@/pages/true-false-page/components/ui/true-false-button/true-false-button';
 
 interface IProps extends IComponentChild {
   withController?: boolean;

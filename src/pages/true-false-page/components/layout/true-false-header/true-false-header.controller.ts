@@ -23,13 +23,11 @@ export class TrueFalseHeaderController {
 
   public destroy(): void {
     trueFalseEmitter.off(TrueFalseEvents.PROGRESS, this.onProgress);
-    trueFalseEmitter.off(TrueFalseEvents.RETRY, this.onTrueFalseRetry);
     trueFalseEmitter.off(TrueFalseEvents.RESULT, this.onTrueFalseFinished);
   }
 
   private initListeners(): void {
     trueFalseEmitter.on(TrueFalseEvents.PROGRESS, this.onProgress);
-    trueFalseEmitter.on(TrueFalseEvents.RETRY, this.onTrueFalseRetry);
     trueFalseEmitter.on(TrueFalseEvents.RESULT, this.onTrueFalseFinished);
   }
 
@@ -42,10 +40,5 @@ export class TrueFalseHeaderController {
 
   private onTrueFalseFinished = (): void => {
     this.view.timer.getEngine().stop();
-  };
-
-  private onTrueFalseRetry = (): void => {
-    this.view.timer.getEngine().reset();
-    this.view.timer.getEngine().start();
   };
 }

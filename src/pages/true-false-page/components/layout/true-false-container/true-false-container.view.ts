@@ -3,7 +3,7 @@ import type { ITrueFalse, ITrueFalseMetadata } from '@/pages/true-false-page/com
 import { mergeClassNames } from '@/common/utils/class-names.util';
 import { Component } from '@components/base/component';
 import { CodeEditor } from '@/components/features/code-editor/code-editor.view';
-import { EMPTY } from '@/common/constants/constants';
+import { DEFAULT_DOTS_COUNT, EMPTY } from '@/common/constants/constants';
 import type { IComponentChild } from '@/common/types/types';
 import { Tag } from '@/components/ui/tag/tag.view';
 import { Card } from '@/components/layout/card/card.view';
@@ -12,23 +12,23 @@ import { TrueFalseButtons } from '../true-false-buttons/true-false-buttons.view'
 import { trueFalseEmitter } from '@/pages/true-false-page/common/utils/true-false-emmiter.util';
 import { Action, TrueFalseEvents } from '@/pages/true-false-page/common/enums/enums';
 import { messages } from '@/pages/true-false-page/common/constants/messages';
+import { Dots } from '@/components/ui/dots/dots';
 
 interface IProps extends IComponentChild {}
 
 export class TrueFalseContainer extends Component {
-  public tag: Tag;
-  public codeSnippet: CodeEditor;
-  public answerText: InlineCodeText;
+  private readonly tag: Tag;
+  private readonly codeSnippet: CodeEditor;
+  private readonly answerText: InlineCodeText;
+  private readonly codeContainer: Component;
   private isCorrect: boolean = false;
   private moduleId: Component;
-  private codeContainer: Component;
 
   constructor({ className = [] }: IProps, ...children: Component[]) {
     const cssClasses = mergeClassNames(styles.trueFalseContainer, className);
     super({ className: cssClasses }, ...children);
 
     this.moduleId = new Component({ tag: 'span', className: styles.id, text: messages.titles.id('-') });
-    const cardHeader = this.createCardHeader();
 
     this.tag = new Tag({ className: styles.tag, text: EMPTY, color: 'gray', padding: 'md' });
 
@@ -41,6 +41,8 @@ export class TrueFalseContainer extends Component {
 
     this.answerText = new InlineCodeText({ className: styles.answerText });
     this.codeContainer = new Component({ className: styles.codeContainer }, this.codeSnippet);
+
+    const cardHeader = this.createCardHeader();
 
     const card = new Card({ tag: 'section', className: styles.card, padding: 'none', glass: true });
     card.append(cardHeader, this.tag, this.codeContainer, this.answerText);
@@ -76,21 +78,9 @@ export class TrueFalseContainer extends Component {
 
   private createCardHeader(): Component {
     const header = new Component({ className: styles.cardHeader });
-    const dots: Component = this.createDots();
+    const dots: Component = new Dots({ dotsCount: DEFAULT_DOTS_COUNT });
     header.append(this.moduleId, dots);
 
     return header;
-  }
-
-  private createDots(): Component {
-    const dots = new Component({ className: styles.dots });
-    const dotsCount = 3;
-    for (let i = 0; i < dotsCount; i++) {
-      const dot = new Component({ className: styles.dot });
-
-      dots.append(dot);
-    }
-
-    return dots;
   }
 }

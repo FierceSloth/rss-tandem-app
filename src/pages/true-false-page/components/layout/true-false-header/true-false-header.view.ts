@@ -13,7 +13,7 @@ interface IProps extends IComponentChild {
 }
 
 export class TrueFalseHeader extends Component {
-  public timeRemainingText: Component;
+  public readonly timeRemainingText: Component;
   public readonly timer: Timer;
   private readonly progressText: Component;
   private readonly level: Component;
@@ -43,6 +43,7 @@ export class TrueFalseHeader extends Component {
       divider: '.',
       postfix: 's',
     });
+    this.timer.getEngine().pause();
     timeRemainingWrapper.append(this.timeRemainingText, this.timer);
 
     const progressWrapper = new Component({
