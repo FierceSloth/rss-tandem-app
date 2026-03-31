@@ -6,7 +6,7 @@ import { TrueFalseHeaderController } from './true-false-header.controller';
 import { Timer } from '@/components/ui/timer/timer.view';
 import { messages } from '@/pages/true-false-page/common/constants/messages';
 import { ProgressBar } from '@/components/ui/progress-bar/progress-bar.view';
-import { TRUE_FALSE_TIMER } from '@/common/constants/constants';
+import { PLACEHOLDER, TRUE_FALSE_TIMER } from '@/common/constants/constants';
 
 interface IProps extends IComponentChild {
   withController?: boolean;
@@ -59,12 +59,12 @@ export class TrueFalseHeader extends Component {
     this.levelCurrent = new Component({
       tag: 'span',
       className: styles.levelCurrent,
-      text: '-',
+      text: PLACEHOLDER,
     });
     this.levelTotal = new Component({
       tag: 'span',
       className: styles.levelTotal,
-      text: '/-',
+      text: `/${PLACEHOLDER}`,
     });
     this.level.append(this.levelCurrent, this.levelTotal);
     progressWrapper.append(this.progressText, this.level);

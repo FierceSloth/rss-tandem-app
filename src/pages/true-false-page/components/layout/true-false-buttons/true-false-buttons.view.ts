@@ -54,19 +54,8 @@ export class TrueFalseButtons extends Component {
 
   public markCorrect = ({ action, isCorrect }: ITrueFalseMetadata): void => {
     this.resetState();
-    if (isCorrect) {
-      if (action === Action.CONFIRM) {
-        this.verifyButton.addClass(styles.correct);
-      } else {
-        this.rejectButton.addClass(styles.correct);
-      }
-    } else {
-      if (action === Action.CONFIRM) {
-        this.verifyButton.addClass(styles.incorrect);
-      } else {
-        this.rejectButton.addClass(styles.incorrect);
-      }
-    }
+    const button = action === Action.CONFIRM ? this.verifyButton : this.rejectButton;
+    button.addClass(isCorrect ? styles.correct : styles.incorrect);
   };
 
   public resetState = (): void => {

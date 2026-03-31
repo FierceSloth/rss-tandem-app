@@ -3,7 +3,7 @@ import type { ITrueFalse, ITrueFalseMetadata } from '@/pages/true-false-page/com
 import { mergeClassNames } from '@/common/utils/class-names.util';
 import { Component } from '@components/base/component';
 import { CodeEditor } from '@/components/features/code-editor/code-editor.view';
-import { EMPTY } from '@/common/constants/constants';
+import { EMPTY, PLACEHOLDER } from '@/common/constants/constants';
 import type { IComponentChild } from '@/common/types/types';
 import { Tag } from '@/components/ui/tag/tag.view';
 import { Card } from '@/components/layout/card/card.view';
@@ -28,7 +28,7 @@ export class TrueFalseContainer extends Component {
     const cssClasses = mergeClassNames(styles.trueFalseContainer, className);
     super({ className: cssClasses }, ...children);
 
-    this.moduleId = new Component({ tag: 'span', className: styles.id, text: messages.titles.id('-') });
+    this.moduleId = new Component({ tag: 'span', className: styles.id, text: messages.titles.id(PLACEHOLDER) });
 
     this.tag = new Tag({ className: styles.tag, text: EMPTY, color: 'gray', padding: 'md' });
 
@@ -56,7 +56,7 @@ export class TrueFalseContainer extends Component {
     this.codeSnippet.setValue(task.codeSnippet);
     this.answerText.setInlineCodeText(task.answer);
     this.isCorrect = task.isCorrect;
-    this.moduleId.setText(messages.titles.id(task.moduleId ?? '-'));
+    this.moduleId.setText(messages.titles.id(task.moduleId ?? PLACEHOLDER));
   }
 
   public checkAnswer({ action }: ITrueFalseMetadata): boolean {
