@@ -15,5 +15,3 @@ export const EVEN = 2;
 export const TOTAL_PROGRESS = 100;
 
 export const LOADING_ERROR_DURATION_60_SEC = 60000;
-
-export const DEFAULT_DOTS_COUNT = 3;

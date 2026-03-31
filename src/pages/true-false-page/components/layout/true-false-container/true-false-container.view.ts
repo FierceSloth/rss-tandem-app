@@ -3,7 +3,7 @@ import type { ITrueFalse, ITrueFalseMetadata } from '@/pages/true-false-page/com
 import { mergeClassNames } from '@/common/utils/class-names.util';
 import { Component } from '@components/base/component';
 import { CodeEditor } from '@/components/features/code-editor/code-editor.view';
-import { DEFAULT_DOTS_COUNT, EMPTY } from '@/common/constants/constants';
+import { EMPTY } from '@/common/constants/constants';
 import type { IComponentChild } from '@/common/types/types';
 import { Tag } from '@/components/ui/tag/tag.view';
 import { Card } from '@/components/layout/card/card.view';
@@ -78,7 +78,7 @@ export class TrueFalseContainer extends Component {
 
   private createCardHeader(): Component {
     const header = new Component({ className: styles.cardHeader });
-    const dots: Component = new Dots({ dotsCount: DEFAULT_DOTS_COUNT });
+    const dots: Component = new Dots({ size: 'hg', colored: false });
     header.append(this.moduleId, dots);
 
     return header;

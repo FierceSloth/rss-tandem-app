@@ -1,10 +1,57 @@
 .dots {
+  --first: var(--border-focus);
+  --second: var(--border-focus);
+  --third: var(--border-focus);
+
   display: inline-flex;
-  gap: var(--space-2);
+  position: relative;
+  gap: var(--gap);
+
   .dot {
-    background-color: var(--border-focus);
-    width: 10px;
-    height: 10px;
+    width: var(--dot-width);
+    height: var(--dot-height);
     border-radius: 50%;
   }
+
+  .dot:nth-child(1) {
+    background-color: var(--first);
+  }
+
+  .dot:nth-child(2) {
+    background-color: var(--second);
+  }
+
+  .dot:nth-child(3) {
+    background-color: var(--third);
+  }
+}
+
+.colored {
+  --first: #e93535;
+  --second: #f59e0b;
+  --third: #10b981;
+}
+
+.size-sm {
+  --dot-width: 0.4rem;
+  --dot-height: 0.4rem;
+  --gap: 0.6rem;
+}
+
+.size-md {
+  --dot-width: 0.6rem;
+  --dot-height: 0.6rem;
+  --gap: 0.6rem;
+}
+
+.size-lg {
+  --dot-width: 0.8rem;
+  --dot-height: 0.8rem;
+  --gap: 0.8rem;
+}
+
+.size-hg {
+  --dot-width: 1rem;
+  --dot-height: 1rem;
+  --gap: 0.8rem;
 }

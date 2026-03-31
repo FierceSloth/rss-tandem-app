@@ -1,24 +1,29 @@
 import type { IComponentChild } from '@common/types/types';
 import { mergeClassNames } from '@common/utils/class-names.util';
 import { Component } from '@components/base/component';
-import { DEFAULT_DOTS_COUNT } from '@/common/constants/constants';
 
 import styles from './dots.module.scss';
 
+type Size = 'sm' | 'md' | 'lg' | 'hg';
+
 interface IProps extends IComponentChild {
-  dotsCount: number;
+  size?: Size;
+  colored?: boolean;
 }
 
+const DOTS_COUNT = 3;
+
 export class Dots extends Component {
-  constructor({ className = [], dotsCount: number = DEFAULT_DOTS_COUNT }: IProps, ...children: Component[]) {
-    const cssClasses = mergeClassNames(styles.dots, className);
+  constructor({ className = [], size = 'hg', colored = true }: IProps, ...children: Component[]) {
+    const cssClasses = mergeClassNames(styles.dots, styles[`size-${size}`], colored && styles['colored'], className);
 
     super({ className: cssClasses }, ...children);
-    this.createDots(number);
+
+    this.createDots();
   }
 
-  private createDots(dotsCount: number): void {
-    for (let i = 0; i < dotsCount; i++) {
+  private createDots(): void {
+    for (let i = 0; i < DOTS_COUNT; i++) {
       const dot = new Component({ className: styles.dot });
 
       this.append(dot);
