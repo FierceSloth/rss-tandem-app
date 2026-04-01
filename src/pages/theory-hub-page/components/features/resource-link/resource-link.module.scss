@@ -11,18 +11,20 @@
 
   transition: all 0.3s;
 
-  &:hover {
-    &,
-    .iconContainer {
-      border-color: rgb(51 51 51);
-    }
+  @media (hover: hover) {
+    &:hover {
+      &,
+      .iconContainer {
+        border-color: rgb(51 51 51);
+      }
 
-    svg {
-      color: var(--text-primary);
-    }
+      svg {
+        color: var(--text-primary);
+      }
 
-    .title {
-      color: var(--accent-blue);
+      .title {
+        color: var(--accent-blue);
+      }
     }
   }
 }

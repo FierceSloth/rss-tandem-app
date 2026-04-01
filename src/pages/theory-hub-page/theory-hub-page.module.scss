@@ -14,7 +14,7 @@
   width: 100%;
   max-width: 800px;
   max-height: calc(100vh - 80px);
-  padding: 60px 40px;
+  padding: 60px 40px 30px;
 
   overflow-y: auto;
   overflow-x: hidden;
@@ -29,11 +29,11 @@
   transform: translateY(20px);
 
   @include media-tablet {
-    padding: 50px 30px;
+    padding: 50px 30px 30px;
   }
 
   @include media-mobile {
-    padding: 35px 20px;
+    padding: 35px 20px 25px;
   }
 
   &::-webkit-scrollbar {
@@ -63,6 +63,10 @@
   margin-top: 5px;
   font-size: clamp(2.4rem, 5vw, 3rem);
   line-height: normal;
+
+  @include media-mobile {
+    margin-top: 7px;
+  }
 }
 
 .subTitle {
@@ -105,6 +109,36 @@
   font-size: 1.2rem;
   color: var(--text-secondary);
   text-transform: uppercase;
+}
+
+.buttonContainer {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap-reverse;
+  gap: 10px;
+
+  @include media-mobile {
+    flex-direction: column-reverse;
+    width: 100%;
+  }
+}
+
+.button {
+  height: 45px;
+  user-select: none;
+  padding: 15px 26px;
+  font-size: var(--font-size-semibase);
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.backButton {
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
 }
 
 .showAnimation {
