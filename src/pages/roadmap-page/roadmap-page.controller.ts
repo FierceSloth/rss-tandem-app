@@ -60,6 +60,7 @@ export class RoadmapPageController {
   private buildTimeline(modules: IModuleEntity[]): void {
     let levelCounter = 1;
     let moduleCounter = 1;
+    let hasFoundActiveCard = false;
 
     modules.forEach((moduleData) => {
       const separator = new ModuleSeparator({ text: moduleData.title, displayId: String(moduleCounter) });
@@ -72,9 +73,11 @@ export class RoadmapPageController {
         let status = progress?.status ?? 'locked';
         const stars = progress?.stars ?? 0;
 
-        const isFirstLocked = status === 'locked' && levelCounter === 1 && moduleCounter === 1;
-        if (isFirstLocked) {
+        if (hasFoundActiveCard) {
+          status = 'locked';
+        } else if (status !== 'completed') {
           status = 'active';
+          hasFoundActiveCard = true;
         }
 
         const cardData: ILevelData = {
