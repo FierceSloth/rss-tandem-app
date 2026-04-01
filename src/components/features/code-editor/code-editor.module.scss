@@ -59,7 +59,7 @@
     background-color: transparent;
 
     :global(.cm-gutters) {
-      background-color: transparent;
+      background-color: var(--bg-body);
     }
   }
 

@@ -6,20 +6,33 @@ import { messages } from './common/constants/messages';
 import type { Score } from './score.view';
 import { getPercentage, getStarsByPercent } from './common/utils/score.util';
 import { BRONZE_SCORE, GOLD_SCORE, SILVER_SCORE } from './common/constants/constants';
+import { useNavigate } from '@/router/hooks';
+import { ROUTES } from '@/router/constants';
 
 export class ScoreController {
   private view: Score;
+  private navigate = useNavigate();
 
   constructor(view: Score) {
     this.view = view;
 
     const percent = getPercentage(this.view.correct, this.view.total);
 
+    this.init(percent);
+  }
+
+  private init(percent: number): void {
     this.setCapIcon(percent);
     this.setStars(percent);
     this.setResultScore();
     this.setPercentageProgress(percent);
     this.setMessage(percent);
+    this.initHandlers();
+  }
+
+  private initHandlers(): void {
+    this.view.returnButton.addListener('click', () => this.navigate(ROUTES.ROADMAP_PAGE));
+    this.view.retryButton.addListener('click', () => location.reload());
   }
 
   private setCapIcon(percent: number): void {

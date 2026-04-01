@@ -1,0 +1,32 @@
+@use '@/styles/abstract/mixins' as *;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 20px;
+  border-bottom: 1px solid var(--border-subtle);
+  background-color: var(--bg-body-09);
+
+  @include media-tablet {
+    padding: 24px 15px;
+  }
+}
+
+.taskInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  .tag {
+    justify-content: start;
+    font-size: clamp(1.2rem, 2.5vw, 1.3rem);
+  }
+
+  .title {
+    line-height: normal;
+    font-size: clamp(2.7rem, 5vw, 3rem);
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+}

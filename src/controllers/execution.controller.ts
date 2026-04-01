@@ -31,16 +31,10 @@ export class ExecutionController {
     this.terminal.print(messages.terminal.ready, TerminalLogType.SYSTEM);
   }
 
-  private initListeners(): void {
-    this.runButton.addListener('click', () => {
-      void this.runHandler();
-    });
-  }
-
-  private runHandler = async (): Promise<void> => {
+  public executeCode = async (): Promise<boolean> => {
     if (!this.currentTests) {
       this.terminal.print(messages.terminal.testsNotSet, TerminalLogType.ERROR);
-      return;
+      return false;
     }
 
     const code = this.codeEditor.getValue();
@@ -61,14 +55,22 @@ export class ExecutionController {
       });
 
       this.terminal.print(messages.terminal.success, TerminalLogType.SUCCESS);
+      return true;
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : String(error);
       this.terminal.print(errorMessage, TerminalLogType.ERROR);
+      return false;
     } finally {
       this.runButton.setDisabled(false);
       clearInterval(runningInterval);
     }
   };
+
+  private initListeners(): void {
+    this.runButton.addListener('click', () => {
+      void this.executeCode();
+    });
+  }
 
   private textAnimation(textElement: Component, defaultText: string): ReturnType<typeof setInterval> {
     const animationTime = 300;
