@@ -1,5 +1,5 @@
 import type { TheoryHubPage } from './theory-hub-page';
-import { useNavigate } from '@/router/hooks';
+import { useNavigate, useParams } from '@/router/hooks';
 import { theoryHubRepository } from './repositories/theory-hub.repository';
 import { ROUTES } from '@/router/constants';
 import { Toast } from '@/components/ui/toast/toast.view';
@@ -8,7 +8,7 @@ import { messages } from '@/common/constants/messages';
 export class TheoryHubController {
   private view: TheoryHubPage;
 
-  // private levelId: string = useParams()['id'];
+  private levelId: string = useParams()['id'];
   private navigate = useNavigate();
 
   constructor(view: TheoryHubPage) {
@@ -21,14 +21,14 @@ export class TheoryHubController {
 
   private init(): void {
     void this.loadTaskData();
-    // this.initListeners();
+    this.initListeners();
   }
 
   private async loadTaskData(): Promise<void> {
     this.view.showLoading();
 
     try {
-      const entity = await theoryHubRepository.fetchMockTask();
+      const entity = await theoryHubRepository.fetchLevelById(this.levelId);
 
       this.view.renderLayout(entity);
 
@@ -44,5 +44,15 @@ export class TheoryHubController {
     } finally {
       this.view.hideLoading();
     }
+  }
+
+  private initListeners(): void {
+    this.view.backButton.addListener('click', () => {
+      this.navigate(ROUTES.ROADMAP_PAGE);
+    });
+
+    this.view.continueButton.addListener('click', () => {
+      this.navigate(ROUTES.ROADMAP_PAGE);
+    });
   }
 }

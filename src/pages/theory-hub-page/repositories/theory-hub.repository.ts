@@ -6,7 +6,7 @@ import { eventLoopTheoryMock } from './theory-hub.mock';
 export class TheoryHubRepository {
   public async fetchLevelById(levelId: string): Promise<ITheoryHubEntity> {
     const { data, error } = await supabase
-      .from('theory_hub_data')
+      .from('theory_hubs')
       .select(
         `
         id,

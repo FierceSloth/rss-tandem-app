@@ -5,6 +5,7 @@ export type WidgetType =
   | 'TRUE_FALSE'
   | 'TASK_RESOLVER'
   | 'THEORY_HUB'
+  | 'VIDEO_TASK'
   | 'OUTPUT_PREDICTOR'
   | 'BOSS_BATTLE'
   | 'ERROR_SCANNER';

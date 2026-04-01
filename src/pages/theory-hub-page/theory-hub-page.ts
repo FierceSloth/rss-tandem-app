@@ -10,10 +10,23 @@ import { TheoryHubController } from './theory-hub-page.controller';
 import { Card } from '@/components/layout/card/card.view';
 import { StatusBadge } from '@/components/ui/status-badge/status-badge.view';
 import { messages } from './common/constants/messages';
+import { Button } from '@/components/ui/button/button.view';
 
 export class TheoryHubPage implements IPage {
+  public backButton = new Button({
+    className: [styles.button, styles.backButton],
+    variant: 'ghost',
+    text: messages.buttons.back,
+  });
+  public continueButton = new Button({
+    className: [styles.button, styles.continueButton],
+    variant: 'primary',
+    text: messages.buttons.continue,
+  });
+
   private root: PageLayout | null = null;
   private card: Card | null = null;
+
   private loader = new LoaderManager();
   private controller: TheoryHubController | null = null;
 
@@ -66,7 +79,9 @@ export class TheoryHubPage implements IPage {
       materialsList.append(resource);
     });
 
-    this.card?.append(cardHeader, description, divider, materialsList);
+    const buttonContainer = new Component({ className: styles.buttonContainer }, this.backButton, this.continueButton);
+
+    this.card?.append(cardHeader, description, divider, materialsList, buttonContainer);
   }
 
   public setReady(): void {
