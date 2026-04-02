@@ -1,5 +1,7 @@
 # Self-Assessment
 
+**Ссылка на PR:** https://github.com/FierceSloth/rss-tandem-app/pull/55
+
 ## 1. Реализованные фичи (Итого: 185 баллов)
 
 - **[My Components] Сложный бэкенд-сервис (+30 баллов)**
