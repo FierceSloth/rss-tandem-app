@@ -11,7 +11,9 @@ export const messages = {
   },
   buttons: {
     about: 'About',
+    landing: 'Main',
     logIn: 'Log in',
+    logOut: 'Log out',
     signInAndRegister: 'Register',
     showPassword: 'Show password',
     hidePassword: 'Hide password',
