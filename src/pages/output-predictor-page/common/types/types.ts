@@ -12,6 +12,7 @@ export interface IOutputPredictor {
   title: string;
   code: string;
   tag: string;
+  difficulty: 'EASY' | 'MEDIUM' | 'HARD';
   options: IOutputPredictorOption[];
 }
 

@@ -1,0 +1,1 @@
+export const OUTPUT_PREDICTOR_TIMER = 180;

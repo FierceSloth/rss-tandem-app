@@ -8,13 +8,16 @@ export class OutputPredictorRepository {
       .from('output_predictor_questions')
       .select(
         `
-        id,
-        level_id,
-        title,
-        code,
-        tag,
-        options
-      `
+      id,
+      level_id,
+      title,
+      code,
+      tag,
+      options,
+      levels (
+        difficulty
+      )
+    `
       )
       .eq('level_id', levelId)
       .order('id', { ascending: true });

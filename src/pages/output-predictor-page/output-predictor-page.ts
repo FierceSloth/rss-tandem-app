@@ -1,48 +1,102 @@
 import styles from './output-predictor-page.module.scss';
 import type { IPage } from '@/common/types/types';
 import type { Component } from '@/components/base/component';
+import type { IOutputPredictorState } from './common/types/types';
 import { PageLayout } from '@/components/layout/page-layout/page-layout.view';
-import { OutputPredictorRepository } from './repositories/output-predictor.repositories';
+import { LoaderManager } from '@/common/utils/loader-manager.util';
+import { HeaderOutputPredictor } from './components/layout/header/header-output-predictor.view';
+import { MainOutputPredictor } from './components/layout/main/main-output-predictor.view';
+import { OutputPredictorPageController } from './output-predictor-controller';
+import { outputPredictorStore } from './store/output-predictor.store';
+import { outputPredictorEmitter } from './common/utils/output-predictor-emitter.utils';
+import { OutputPredictorEvents, OutputPredictorViewState } from './common/enum/enum';
 import { OptionCard } from './components/features/option-card/option-card.view';
-import { OutputPredictorMain } from './components/features/main/main.view';
-
-const LEVEL_ID = '65dbc9a2-57d7-40d5-a266-a7f045f9e808';
 
 export class OutputPredictorPage implements IPage {
-  public render(): Component {
-    const root = new PageLayout({ className: styles.outputPredictor, withSidebar: false });
+  public lastRenderedIndex = -1;
 
-    const main = new OutputPredictorMain({});
-    root.append(main);
+  private readonly root: PageLayout;
+  private readonly header: HeaderOutputPredictor;
+  private readonly main: MainOutputPredictor;
+  private readonly loader: LoaderManager;
+  private unsubscribe?: () => void;
+  private controller: OutputPredictorPageController | null = null;
 
-    const repo = new OutputPredictorRepository();
+  constructor() {
+    this.root = new PageLayout({ className: styles.outputPredictor, withSidebar: false });
+    this.header = new HeaderOutputPredictor({});
+    this.main = new MainOutputPredictor({});
+    this.loader = new LoaderManager();
 
-    repo
-      .fetchQuestions(LEVEL_ID)
-      .then((tasks) => {
-        const first = tasks[0];
-        if (!first) return;
-
-        // Код вопроса → в редактор
-        main.setCode(first.code ?? '');
-
-        // Тег → в header
-        main.setMeta(first.tag);
-
-        // Карточки вариантов → в OutputOptions
-        const cards = first.options.map(
-          (opt, index) =>
-            new OptionCard({
-              optionKey: opt.key,
-              lines: opt.lines,
-              index,
-            })
-        );
-        main.container.outputOptions.setOptions(cards);
-      })
-      .catch(console.error);
-    return root;
+    this.unsubscribe = outputPredictorStore.subscribe((state) => {
+      this.renderState(state);
+    });
   }
 
-  public destroy(): void {}
+  public render(): Component {
+    this.controller = new OutputPredictorPageController(this);
+    return this.root;
+  }
+
+  public destroy(): void {
+    if (this.unsubscribe) {
+      this.unsubscribe();
+    }
+    if (this.controller) {
+      this.controller.destroy();
+    }
+  }
+
+  public getHeader(): HeaderOutputPredictor {
+    return this.header;
+  }
+
+  public getMain(): MainOutputPredictor {
+    return this.main;
+  }
+
+  public showContent(): void {
+    this.root.append(this.header, this.main);
+  }
+
+  private renderState(state: IOutputPredictorState): void {
+    switch (state.status) {
+      case OutputPredictorViewState.LOADING: {
+        this.showLoading();
+        break;
+      }
+      case OutputPredictorViewState.ERROR: {
+        this.hideLoading();
+        break;
+      }
+      case OutputPredictorViewState.PLAYING: {
+        this.hideLoading();
+        if (state.currentIndex !== this.lastRenderedIndex) {
+          const currentTask = state.tasks[state.currentIndex];
+          this.main.setCode(currentTask.code);
+          this.main.setMeta(currentTask.tag);
+
+          const optionCards = currentTask.options.map(
+            (option, index) => new OptionCard({ optionKey: option.key, lines: option.lines, index })
+          );
+          this.main.outputOptions.setOptions(optionCards);
+
+          this.lastRenderedIndex = state.currentIndex;
+          outputPredictorEmitter.emit(OutputPredictorEvents.LOADED, null);
+        }
+        break;
+      }
+      case OutputPredictorViewState.FINISHED: {
+        break;
+      }
+    }
+  }
+
+  private showLoading(): void {
+    this.loader.show('lg', 'green');
+  }
+
+  private hideLoading(): void {
+    this.loader.hide();
+  }
 }

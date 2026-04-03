@@ -8,4 +8,6 @@ export enum OutputPredictorViewState {
 export enum OutputPredictorEvents {
   OPTION_SELECTED = 'option_selected',
   NEXT = 'next',
+  LOADED = 'loaded',
+  SKIP = 'skip',
 }

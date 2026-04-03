@@ -7,6 +7,7 @@ interface OutputPredictorDto {
   code: string;
   tag: string;
   options: IOutputPredictor['options'];
+  levels: { difficulty: 'EASY' | 'MEDIUM' | 'HARD' }[];
 }
 
 class OutputPredictorMapper {
@@ -17,6 +18,7 @@ class OutputPredictorMapper {
       title: dto.title,
       code: dto.code,
       tag: dto.tag,
+      difficulty: dto.levels[0]?.difficulty ?? 'HARD',
       options: dto.options,
     };
   }
