@@ -1,6 +1,6 @@
 # Self-Assessment
 
-**Ссылка на PR:**
+**Ссылка на PR:** https://github.com/FierceSloth/rss-tandem-app/pull/59
 
 ## Реализованные фичи (Итого: 175 баллов)
 
