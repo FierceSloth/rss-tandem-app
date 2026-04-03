@@ -56,6 +56,7 @@ export class TrueFalseButtons extends Component {
     this.resetState();
     const button = action === Action.CONFIRM ? this.verifyButton : this.rejectButton;
     button.addClass(isCorrect ? styles.correct : styles.incorrect);
+    document.body.classList.add(isCorrect ? styles['flash-correct'] : styles['flash-incorrect']);
   };
 
   public resetState = (): void => {
@@ -63,5 +64,6 @@ export class TrueFalseButtons extends Component {
     this.verifyButton.removeClass(styles.incorrect);
     this.rejectButton.removeClass(styles.correct);
     this.rejectButton.removeClass(styles.incorrect);
+    document.body.classList.remove(styles['flash-correct'], styles['flash-incorrect']);
   };
 }

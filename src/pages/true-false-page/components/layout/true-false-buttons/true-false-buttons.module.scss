@@ -18,8 +18,10 @@
     width: 100%;
     height: clamp(64px, 10vw, 96px);
     padding-inline: clamp(16px, 4vw, 32px);
-    user-select: none;
-    outline: none;
+
+    appearance: none;
+    -webkit-appearance: none;
+
     font-size: var(--font-size-semibase);
     white-space: nowrap;
     font-weight: 500;
@@ -44,15 +46,16 @@
 
     transition: var(--transition);
 
-    &:hover {
-      transform: translateY(-2px);
-      background: var(--hover-bg);
-      border-color: var(--hover-border);
-      box-shadow: var(--hover-shadow);
-    }
+    user-select: none;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 
-    &:active {
-      transform: translateY(0);
+    &:focus,
+    &:active,
+    &:focus-visible {
+      outline: none !important;
+      box-shadow: var(--shadow) !important;
+      border-color: var(--border) !important;
     }
 
     .svgWrapper {
@@ -70,23 +73,38 @@
       transition: var(--transition);
     }
 
-    &:hover .svgWrapper {
-      background: var(--text-color);
-      opacity: 1;
+    &:active {
+      transform: translateY(0);
     }
 
-    &:hover .verifyDescription,
-    &:hover .rejectDescription {
-      opacity: 0.8;
+    @media (hover: hover) {
+      &:hover {
+        transform: translateY(-2px);
+        background: var(--hover-bg);
+        border-color: var(--hover-border);
+        box-shadow: var(--hover-shadow);
+      }
+
+      &:hover .svgWrapper {
+        background: var(--text-color);
+        opacity: 1;
+      }
+
+      &:hover .verifyDescription,
+      &:hover .rejectDescription {
+        opacity: 0.8;
+      }
     }
   }
 
-  .verifyButton:hover .svgWrapper {
-    color: black;
-  }
+  @media (hover: hover) {
+    .verifyButton:hover .svgWrapper {
+      color: black;
+    }
 
-  .rejectButton:hover .svgWrapper {
-    color: white;
+    .rejectButton:hover .svgWrapper {
+      color: white;
+    }
   }
 
   .verifyButton {
@@ -110,20 +128,20 @@
   }
 
   .correct {
-    --bg: rgba(16, 185, 129, 0.3);
+    --bg: rgba(16, 185, 129, 0.1);
     --border: var(--accent-green);
-    --shadow: 0 0 30px rgba(16, 185, 129, 0.3);
-    --hover-bg: rgba(16, 185, 129, 0.4);
+    --shadow: 0 0 30px rgba(16, 185, 129, 0.2);
+    --hover-bg: rgba(16, 185, 129, 0.2);
     --hover-border: var(--accent-green);
     --hover-shadow: 0 0 35px rgba(16, 185, 129, 0.4);
     --text-color: var(--accent-green);
   }
 
   .incorrect {
-    --bg: rgba(233, 53, 53, 0.3);
+    --bg: rgba(233, 53, 53, 0.1);
     --border: var(--accent-red);
-    --shadow: 0 0 30px rgba(233, 53, 53, 0.3);
-    --hover-bg: rgba(233, 53, 53, 0.4);
+    --shadow: 0 0 30px rgba(233, 53, 53, 0.2);
+    --hover-bg: rgba(233, 53, 53, 0.2);
     --hover-border: var(--accent-red);
     --hover-shadow: 0 0 35px rgba(233, 53, 53, 0.4);
     --text-color: var(--accent-red);
@@ -159,5 +177,48 @@
     font-size: clamp(8px, 2vw, 10px);
     opacity: 0.4;
     letter-spacing: normal;
+  }
+}
+
+body {
+  &::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    background-color: transparent;
+  }
+
+  &.flash-correct::after {
+    animation: flashSuccess 1s ease-out forwards;
+  }
+
+  &.flash-incorrect::after {
+    animation: flashError 1s ease-out forwards;
+  }
+}
+
+@keyframes flashSuccess {
+  0% {
+    background-color: transparent;
+  }
+  15% {
+    background-color: rgba(16, 185, 129, 0.3);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes flashError {
+  0% {
+    background-color: transparent;
+  }
+  15% {
+    background-color: rgba(233, 53, 53, 0.3);
+  }
+  100% {
+    background-color: transparent;
   }
 }

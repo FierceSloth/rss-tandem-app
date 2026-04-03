@@ -70,7 +70,7 @@ export class TrueFalsePage implements IPage {
       scoreData: { correct: result.correctAnswers, total: result.tasks.length },
       withButtons: true,
     });
-    this.header.node.after(this.resultView.node);
+    this.root.append(this.resultView);
   }
 
   private renderState(trueFalseState: ITrueFalseState): void {

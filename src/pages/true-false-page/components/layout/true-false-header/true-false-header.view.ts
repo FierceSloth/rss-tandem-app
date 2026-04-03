@@ -40,8 +40,7 @@ export class TrueFalseHeader extends Component {
     this.timer = new Timer({
       className: styles.timer,
       time: TRUE_FALSE_TIMER,
-      divider: '.',
-      postfix: 's',
+      divider: ':',
     });
     this.timer.getEngine().pause();
     timeRemainingWrapper.append(this.timeRemainingText, this.timer);

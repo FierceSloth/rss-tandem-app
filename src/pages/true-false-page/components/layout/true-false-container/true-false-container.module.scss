@@ -17,13 +17,10 @@
   &.hidden {
     display: none;
   }
-
-  @include media-tablet {
-    min-height: 570px;
-  }
 }
 
 .card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
   padding: clamp(24px, 5vw, 64px);
   min-height: clamp(260px, 40vh, 420px);
   height: auto;
@@ -36,6 +33,10 @@
 
   @include media-tablet {
     padding: 32px;
+  }
+
+  @include media-mobile {
+    min-height: clamp(260px, 260px, 420px);
   }
 }
 
@@ -93,6 +94,10 @@
 
     @include media-tablet {
       font-size: clamp(14px, 5vw, 20px);
+    }
+
+    @include media-mobile {
+      font-size: clamp(12px, 5vw, 14px);
     }
   }
 }
