@@ -39,7 +39,7 @@ export class AboutContributor extends Component {
       tag: 'a',
       className: styles.github,
       text: messages.titles.github,
-      attrs: { href: contributor.githubUrl, target: '_blank' },
+      attrs: { href: contributor.githubUrl, target: '_blank', rel: 'noopener noreferrer' },
     });
 
     const personalInfo = new Component({ className: styles.personalInfo });
