@@ -1,6 +1,6 @@
 # [PR](https://github.com/FierceSloth/rss-tandem-app/pull/61)
 
-## 1. Реализованные фичи (Итого: 90 баллов)
+## 1. Реализованные фичи (Итого: 130 баллов)
 
 ## My Components 45 баллов
 
@@ -21,6 +21,17 @@
 
 - **[UI & Interaction] Responsive (+5 баллов)**
   - Реализована адаптивная верстка для всех страниц
+
+- **Advanced Animations (+10 баллов)**
+  - Сложные анимации переходов или микро-взаимодействия
+
+- **Unit Tests (Basic) (+10 баллов)**
+  - Покрытие тестами 20%+ кода [PR #46](https://github.com/FierceSloth/rss-tandem-app/pull/46)
+
+- **Architect (+10 баллов)**
+  - Документирование архитектурных решений (ui components) [UI KIT](https://github.com/FierceSloth/rss-tandem-app/blob/main/docs/UI_KIT.md)
+- **API Layer (+10 баллов)**
+  - Выделение слоя работы с API (изоляция от UI компонентов)
 
   ### Другие фичи, которых нет в критериях
   - Создание БД для виджетов в supabase
