@@ -6,7 +6,7 @@ import styles from './status-badge.module.scss';
 
 type BadgeColor = 'primary' | 'green' | 'green-dark' | 'blue' | 'gray' | 'red';
 
-type AnimationVariant = 'none' | 'pulse' | 'pulse-ring' | 'pulse-slow';
+type AnimationVariant = 'none' | 'pulse' | 'pulse-dot' | 'pulse-ring' | 'pulse-slow';
 
 interface IProps extends IComponentChild {
   text: string;

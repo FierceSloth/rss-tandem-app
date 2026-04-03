@@ -1,2 +1,7 @@
 .about {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  gap: 20px;
 }
