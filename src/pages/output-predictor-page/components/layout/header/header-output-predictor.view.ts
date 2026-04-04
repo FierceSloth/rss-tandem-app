@@ -7,6 +7,7 @@ import { Tag } from '@/components/ui/tag/tag.view';
 import { HeaderOutputPredictorController } from './header-output-predictor.contoller';
 import { OUTPUT_PREDICTOR_TIMER } from '@/pages/output-predictor-page/common/constants/constants';
 import styles from './header-output-predictor.module.scss';
+import { messages } from '@/pages/output-predictor-page/common/constants/messages';
 
 interface IProps extends IComponentChild {
   withController?: boolean;
@@ -31,13 +32,13 @@ export class HeaderOutputPredictor extends Component {
     this.labelCount = new Component({
       tag: 'span',
       className: styles.labelCount,
-      text: 'SIMULATION -/-',
+      text: messages.labels.simulationDefault,
     });
 
     this.title = new Component({
       tag: 'h2',
       className: styles.title,
-      text: 'Loading...',
+      text: messages.defaults.titleLoading,
     });
 
     this.progressBar = new ProgressBar({ className: styles.progressBar });
@@ -48,11 +49,11 @@ export class HeaderOutputPredictor extends Component {
     const difficultyLabel = new Component({
       tag: 'span',
       className: styles.difficultyLabel,
-      text: 'DIFFICULTY',
+      text: messages.labels.difficulty,
     });
 
     this.difficultyTag = new Tag({
-      text: '-',
+      text: messages.defaults.difficultyDefault,
       color: 'red',
       padding: 'sm',
     });
@@ -74,7 +75,7 @@ export class HeaderOutputPredictor extends Component {
   }
 
   public setSimulation(current: number, total: number): void {
-    this.labelCount.setText(`SIMULATION ${current}/${total}`);
+    this.labelCount.setText(messages.labels.simulationCount(current, total));
     this.progressBar.setProgress(current, total);
   }
 

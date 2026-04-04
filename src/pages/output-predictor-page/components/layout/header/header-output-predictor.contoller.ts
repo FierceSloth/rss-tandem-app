@@ -8,6 +8,7 @@ export class HeaderOutputPredictorController {
 
   constructor(view: HeaderOutputPredictor) {
     this.view = view;
+    this.view.timer.getEngine().onEnd(this.onTimerEnd);
     this.initListeners();
   }
 
@@ -39,5 +40,9 @@ export class HeaderOutputPredictorController {
 
     this.view.setTitle(current.title);
     this.view.setSimulation(currentIndex + 1, tasks.length);
+  };
+
+  private onTimerEnd = (): void => {
+    outputPredictorEmitter.emit(OutputPredictorEvents.SKIP, null);
   };
 }

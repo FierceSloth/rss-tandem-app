@@ -11,6 +11,7 @@ import { outputPredictorStore } from './store/output-predictor.store';
 import { outputPredictorEmitter } from './common/utils/output-predictor-emitter.utils';
 import { OutputPredictorEvents, OutputPredictorViewState } from './common/enum/enum';
 import { OptionCard } from './components/features/option-card/option-card.view';
+import { Score } from '@/components/features/score/score.view';
 
 export class OutputPredictorPage implements IPage {
   public lastRenderedIndex = -1;
@@ -21,6 +22,7 @@ export class OutputPredictorPage implements IPage {
   private readonly loader: LoaderManager;
   private unsubscribe?: () => void;
   private controller: OutputPredictorPageController | null = null;
+  private resultView?: Score;
 
   constructor() {
     this.root = new PageLayout({ className: styles.outputPredictor, withSidebar: false });
@@ -87,6 +89,10 @@ export class OutputPredictorPage implements IPage {
         break;
       }
       case OutputPredictorViewState.FINISHED: {
+        this.hideLoading();
+        if (!this.resultView) {
+          this.showResult(state);
+        }
         break;
       }
     }
@@ -98,5 +104,20 @@ export class OutputPredictorPage implements IPage {
 
   private hideLoading(): void {
     this.loader.hide();
+  }
+
+  private showResult(state: IOutputPredictorState): void {
+    this.main.node.style.display = 'none';
+    this.header.node.style.display = 'none';
+
+    this.resultView = new Score({
+      scoreData: {
+        correct: state.correctAnswers,
+        total: state.tasks.length,
+      },
+      withButtons: true,
+    });
+
+    this.root.append(this.resultView);
   }
 }

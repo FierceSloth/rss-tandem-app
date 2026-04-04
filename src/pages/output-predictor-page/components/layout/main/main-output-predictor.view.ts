@@ -5,6 +5,7 @@ import { OutputPredictorEditor } from '../../features/output-predictor-container
 import { OutputOptions } from '../../features/output-options/output-options.view';
 
 import styles from './main-output-predictor.module.scss';
+import { messages } from '@/pages/output-predictor-page/common/constants/messages';
 
 interface IProps extends IComponentChild {}
 
@@ -28,7 +29,7 @@ export class MainOutputPredictor extends Component {
     this.buttonContainer = new Component({ className: styles.buttonContainer });
     this.skipHint = new Component({
       className: styles.skipHint,
-      text: 'SKIP CHALLENGE [Esc]',
+      text: messages.labels.skipChallenge,
     });
     this.buttonContainer.append(this.skipHint);
 

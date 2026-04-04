@@ -5,6 +5,7 @@ import { CodeEditor } from '@/components/features/code-editor/code-editor.view';
 import { StatusBadge } from '@/components/ui/status-badge/status-badge.view';
 
 import styles from './output-predictor-container.module.scss';
+import { messages } from '@/pages/output-predictor-page/common/constants/messages';
 
 interface IProps extends IComponentChild {}
 
@@ -23,7 +24,7 @@ export class OutputPredictorEditor extends Component {
     const dots = new Component({ className: styles.dots });
 
     this.tag = new StatusBadge({
-      text: 'EXECUTION // JS_CORE_V8',
+      text: messages.labels.executionTagDefault,
       className: styles.executionBadge,
       color: 'gray',
       dot: false,
@@ -32,7 +33,7 @@ export class OutputPredictorEditor extends Component {
     });
 
     this.status = new StatusBadge({
-      text: 'running',
+      text: messages.labels.statusRunning,
       className: styles.status,
       color: 'green',
       dot: true,
@@ -53,7 +54,7 @@ export class OutputPredictorEditor extends Component {
   }
 
   public setData(tag: string): void {
-    this.tag.setText(`EXECUTION // ${tag.toUpperCase()}`);
+    this.tag.setText(messages.labels.executionTag(tag));
   }
 
   public setCode(code: string): void {

@@ -4,6 +4,7 @@ import { Component } from '@components/base/component';
 import type { OptionCard } from '../option-card/option-card.view';
 
 import styles from './output-options.module.scss';
+import { messages } from '@/pages/output-predictor-page/common/constants/messages';
 
 interface IProps extends IComponentChild {}
 
@@ -19,7 +20,7 @@ export class OutputOptions extends Component {
     this.title = new Component({
       tag: 'h2',
       className: styles.title,
-      text: 'Predict output sequence',
+      text: messages.labels.predictOutputSequence,
     });
 
     this.container = new Component({ className: styles.container });

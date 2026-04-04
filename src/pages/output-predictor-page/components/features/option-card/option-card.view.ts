@@ -7,6 +7,7 @@ import { OutputPredictorEvents } from '@/pages/output-predictor-page/common/enum
 import { Card } from '@/components/layout/card/card.view';
 import styles from './option-card.module.scss';
 import { StatusBadge } from '@/components/ui/status-badge/status-badge.view';
+import { messages } from '@/pages/output-predictor-page/common/constants/messages';
 
 interface IProps extends IComponentChild {
   optionKey: string;
@@ -36,12 +37,12 @@ export class OptionCard extends Card {
       capitalize: true,
     });
 
-    const label = new Component({ className: styles.label, text: `OPTION ${optionKey}` });
+    const label = new Component({ className: styles.label, text: messages.labels.optionKey(optionKey) });
 
     this.checkbox = new Component({
       tag: 'p',
       className: styles.checkbox,
-      text: '[ ]',
+      text: messages.checkbox.empty,
     });
 
     title.append(label, this.checkbox);
@@ -68,12 +69,12 @@ export class OptionCard extends Card {
 
   public markCorrect(): void {
     this.addClass(styles.correct);
-    this.checkbox.node.textContent = '[x]';
+    this.checkbox.node.textContent = messages.checkbox.checked;
   }
 
   public markIncorrect(): void {
     this.addClass(styles.incorrect);
-    this.checkbox.node.textContent = '[x]';
+    this.checkbox.node.textContent = messages.checkbox.checked;
   }
 
   public disable(): void {

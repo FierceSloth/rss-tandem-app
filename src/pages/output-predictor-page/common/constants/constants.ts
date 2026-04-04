@@ -1,1 +1,1 @@
-export const OUTPUT_PREDICTOR_TIMER = 180;
+export const OUTPUT_PREDICTOR_TIMER = 60;
