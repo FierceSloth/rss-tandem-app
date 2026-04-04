@@ -11,6 +11,7 @@ import { Component } from '@/components/base/component';
 import { AppEvents } from '@/common/enums/enums';
 import { NavigationMode } from './navigation-mode';
 import { normalizePath, resolveSecurity, isQueryValid } from './core/router-handlers';
+import { EMPTY } from '@/common/constants/constants';
 
 export class Router {
   private root: Component;
@@ -36,15 +37,16 @@ export class Router {
   }
 
   public init(): void {
-    document.addEventListener('DOMContentLoaded', () => {
-      const route: string = `${normalizePath(location.pathname)}${location.search ?? ''}`;
-      this.handleRoute(route, NavigationMode.PUSH);
-    });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', this.onStart);
+    } else {
+      this.onStart();
+    }
 
     addEventListener('popstate', (event: PopStateEvent) => {
       const historyPath: string = isHistoryState(event.state)
         ? event.state.path
-        : `${location.pathname}${location.search ?? ''}`;
+        : `${location.pathname}${location.search ?? EMPTY}`;
       const route: string = normalizePath(historyPath);
 
       this.locationState = event.state?.state ?? null;
@@ -88,6 +90,11 @@ export class Router {
       state: this.locationState as T | null,
     };
   }
+
+  private onStart = (): void => {
+    const route: string = `${normalizePath(location.pathname)}${location.search ?? EMPTY}`;
+    this.handleRoute(route, NavigationMode.PUSH);
+  };
 
   private handleRoute(fullPath: string, mode: NavigationMode = NavigationMode.SKIP): void {
     if (!isQueryValid(fullPath)) {

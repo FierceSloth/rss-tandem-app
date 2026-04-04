@@ -1,9 +1,13 @@
-import type { Router } from '@/router/router';
 import { createRouter } from '@/router/router-instance';
+import { authStore } from '@/service/auth/auth-store';
 
 export class App {
   constructor() {
-    const router: Router = createRouter();
-    router.init();
+    void this.init();
+  }
+
+  public async init(): Promise<void> {
+    await authStore.initAuth();
+    createRouter().init();
   }
 }

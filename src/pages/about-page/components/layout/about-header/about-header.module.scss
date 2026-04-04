@@ -1,0 +1,47 @@
+@use '@/styles/abstract/mixins' as *;
+
+.aboutHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--space-5);
+  gap: var(--space-4);
+}
+
+.statusBadge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+  font-family: var(--font-mono-secondary);
+  color: var(--text-secondary);
+  letter-spacing: 0.12rem;
+
+  @include media-tablet {
+    font-size: var(--font-size-default);
+  }
+}
+
+.heading {
+  font-size: var(--font-size-h1-superlarge);
+  line-height: var(--line-height-h1-superlarge);
+  font-weight: 700;
+  text-align: center;
+
+  @include media-tablet {
+    font-size: var(--font-h2-size);
+    line-height: var(--line-h2-height);
+  }
+}
+
+.description {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  font-family: var(--font-mono-secondary);
+  color: var(--text-secondary);
+  letter-spacing: 0.28rem;
+
+  @include media-tablet {
+    font-size: var(--font-size-small);
+    line-height: var(--line-height-small);
+  }
+}

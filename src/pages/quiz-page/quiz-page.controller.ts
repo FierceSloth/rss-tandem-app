@@ -96,6 +96,7 @@ export class QuizPageController {
         correctAnswers: 0,
       });
       this.view.showContent();
+      this.view.getHeader().timer.getEngine().resume();
     } catch (error: unknown) {
       quizStore.setState({ status: QuizViewState.ERROR });
       console.error(messages.errors.failedLoadQuiz, error);

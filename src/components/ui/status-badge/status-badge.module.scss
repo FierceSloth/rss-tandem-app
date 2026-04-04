@@ -15,8 +15,8 @@
   @include transition-colors(300ms);
 
   &.container {
-    border: 1px solid var(--badge-border);
-    background-color: var(--badge-bg);
+    border: 1px solid var(--badge-text-color);
+    padding: 0.4rem 1.2rem;
   }
 }
 
@@ -114,6 +114,12 @@
   &.animation-pulse {
     @include animate-pulse;
 
+    .dot {
+      @include animate-pulse;
+    }
+  }
+
+  &.animation-pulse-dot {
     .dot {
       @include animate-pulse;
     }

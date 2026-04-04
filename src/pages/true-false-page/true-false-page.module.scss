@@ -1,2 +1,9 @@
+@use '@/styles/abstract/mixins' as *;
+
 .trueFalse {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
 }
