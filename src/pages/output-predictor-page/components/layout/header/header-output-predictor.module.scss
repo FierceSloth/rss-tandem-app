@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 10px 0;
+  padding: 10px 5px;
   border-bottom: 1px solid #222;
 }
 
@@ -12,6 +12,7 @@
   flex-direction: column;
   gap: 6px;
   max-width: 200px;
+  width: 30%;
 }
 
 .labelCount {
@@ -45,13 +46,15 @@
   padding: 8px 16px;
   border-radius: var(--radius-sm);
   letter-spacing: 1px;
+  width: 30%;
 }
 
 .center {
   display: flex;
-  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   gap: 6px;
+  width: 30%;
 }
 
 .difficultyLabel {
