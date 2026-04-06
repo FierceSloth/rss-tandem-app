@@ -13,12 +13,14 @@ import { OutputPredictorEvents, OutputPredictorViewState } from './common/enum/e
 import { OptionCard } from './components/features/option-card/option-card.view';
 import { Score } from '@/components/features/score/score.view';
 import { ProgressService } from '@/service/progress/progress.service';
+import { Footer } from '@/components/layout/footer/footer.view';
 
 export class OutputPredictorPage implements IPage {
   public lastRenderedIndex = -1;
 
   private readonly root: PageLayout;
   private readonly header: HeaderOutputPredictor;
+  private readonly footer: Footer;
   private readonly main: MainOutputPredictor;
   private readonly loader: LoaderManager;
   private unsubscribe?: () => void;
@@ -26,8 +28,14 @@ export class OutputPredictorPage implements IPage {
   private resultView?: Score;
 
   constructor() {
-    this.root = new PageLayout({ className: styles.outputPredictor, withSidebar: false });
     this.header = new HeaderOutputPredictor({});
+    this.footer = new Footer({});
+    this.root = new PageLayout({
+      className: styles.outputPredictor,
+      withSidebar: false,
+      header: this.header,
+      footer: this.footer,
+    });
     this.main = new MainOutputPredictor({});
     this.loader = new LoaderManager();
 
@@ -59,7 +67,7 @@ export class OutputPredictorPage implements IPage {
   }
 
   public showContent(): void {
-    this.root.append(this.header, this.main);
+    this.root.append(this.main);
   }
 
   private renderState(state: IOutputPredictorState): void {
@@ -110,6 +118,7 @@ export class OutputPredictorPage implements IPage {
   private showResult(state: IOutputPredictorState): void {
     this.main.node.style.display = 'none';
     this.header.node.style.display = 'none';
+    this.footer.node.style.display = 'none';
 
     this.resultView = new Score({
       scoreData: {

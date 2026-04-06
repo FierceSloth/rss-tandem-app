@@ -27,6 +27,8 @@ export class HeaderOutputPredictor extends Component {
     const cssClasses = mergeClassNames(styles.header, className);
     super({ className: cssClasses });
 
+    const container = new Component({ className: styles.container });
+
     const leftContainer = new Component({ className: styles.leftContainer });
 
     this.labelCount = new Component({
@@ -61,13 +63,15 @@ export class HeaderOutputPredictor extends Component {
     centerSection.append(difficultyLabel, this.difficultyTag);
 
     this.timer = new Timer({
+      className: styles.timer,
       color: 'blue',
       padding: 'sm',
       time: OUTPUT_PREDICTOR_TIMER,
       countdown: true,
     });
 
-    this.append(leftContainer, centerSection, this.timer);
+    container.append(leftContainer, centerSection, this.timer);
+    this.append(container);
 
     if (withController) {
       this.controller = new HeaderOutputPredictorController(this);

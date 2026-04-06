@@ -2,20 +2,21 @@
   position: relative;
   transition: all 0.2s ease;
   cursor: pointer;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
 
-  &:hover:not(.selected):not(.correct):not(.incorrect) {
-    border-color: var(--border-focus);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%);
-    transform: translateY(-2px);
+  @media (hover: hover) {
+    &:hover:not(.selected):not(.correct):not(.incorrect) {
+      border-color: var(--border-focus);
+      transform: translateY(-2px);
 
-    .list {
-      color: #ffffff;
+      .list {
+        color: #ffffff;
+      }
     }
   }
 
   &.selected {
     border-color: var(--border-focus);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%);
   }
 
   &.correct {

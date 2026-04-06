@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { ROUTES } from '@/router/constants';
 import { pushStateSpy, testRouter as router, setupRouter } from './utils/router-setup';
-import { TEST_URL } from 'test/constants/constants';
+import { TEST_URL } from '../constants/constants';
 
 describe('Router navigation', () => {
   setupRouter();
