@@ -21,15 +21,13 @@
 
     /* Alias */
 
-    "baseUrl": ".",
-
     "paths": {
-      "@/*": ["src/*"],
-      "@components/*": ["src/components/*"],
-      "@pages/*": ["src/pages/*"],
-      "@assets/*": ["src/assets/*"],
-      "@service/*": ["src/service/*"],
-      "@common/*": ["src/common/*"]
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@service/*": ["./src/service/*"],
+      "@common/*": ["./src/common/*"]
     }
   },
   "include": ["src", "test", "eslint.config.mjs", "vite.config.ts", "vitest.config.ts", "vite-env.d.ts"]
