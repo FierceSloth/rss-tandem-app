@@ -1,8 +1,8 @@
 import type { IComponentChild } from '@common/types/types';
 import { mergeClassNames } from '@common/utils/class-names.util';
 import { Component } from '@components/base/component';
-import { OutputPredictorEditor } from '../../features/output-predictor-container/output-predictor-container.view';
-import { OutputOptions } from '../../features/output-options/output-options.view';
+import { OutputPredictorEditor } from '@/pages/output-predictor-page/components/features/output-predictor-container/output-predictor-container.view';
+import { OutputOptions } from '@/pages/output-predictor-page/components/features/output-options/output-options.view';
 
 import styles from './main-output-predictor.module.scss';
 import { messages } from '@/pages/output-predictor-page/common/constants/messages';

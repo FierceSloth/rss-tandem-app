@@ -13,7 +13,7 @@ import { OutputPredictorRepository } from './repositories/output-predictor.repos
 const DURATION = 3000;
 
 export class OutputPredictorPageController {
-  private readonly levelId: string = useParams()['id'];
+  public readonly levelId: string = useParams()['id'];
   private readonly view: OutputPredictorPage;
   private readonly repository: OutputPredictorRepository;
   private readonly navigate: ReturnType<typeof useNavigate>;
@@ -60,7 +60,7 @@ export class OutputPredictorPageController {
     const state = outputPredictorStore.getState();
     if (state.isAnswered) return;
 
-    const correctOption = state.tasks[state.currentIndex].options.find((option) => option.is_correct);
+    const correctOption = state.tasks[state.currentIndex].options.find((option) => option.isCorrect);
     const correctKey = correctOption?.key ?? '';
 
     this.view.getMain().outputOptions.checkAnswers('', correctKey);
@@ -122,7 +122,7 @@ export class OutputPredictorPageController {
     if (state.isAnswered) return;
 
     const currentTask = state.tasks[state.currentIndex];
-    const correctOption = currentTask.options.find((option) => option.is_correct);
+    const correctOption = currentTask.options.find((option) => option.isCorrect);
     const correctKey = correctOption?.key ?? '';
     const isCorrect = key === correctKey;
 

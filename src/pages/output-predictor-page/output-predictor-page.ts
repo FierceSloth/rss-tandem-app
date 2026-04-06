@@ -12,6 +12,7 @@ import { outputPredictorEmitter } from './common/utils/output-predictor-emitter.
 import { OutputPredictorEvents, OutputPredictorViewState } from './common/enum/enum';
 import { OptionCard } from './components/features/option-card/option-card.view';
 import { Score } from '@/components/features/score/score.view';
+import { ProgressService } from '@/service/progress/progress.service';
 
 export class OutputPredictorPage implements IPage {
   public lastRenderedIndex = -1;
@@ -117,6 +118,8 @@ export class OutputPredictorPage implements IPage {
       },
       withButtons: true,
     });
+
+    void ProgressService.saveLevelProgress(String(this.controller?.levelId), state.correctAnswers, state.tasks.length);
 
     this.root.append(this.resultView);
   }

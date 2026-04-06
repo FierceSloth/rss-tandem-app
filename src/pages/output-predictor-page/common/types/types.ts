@@ -1,9 +1,15 @@
 import type { OutputPredictorViewState } from '../enum/enum';
 
-export interface IOutputPredictorOption {
+export interface IOutputPredictorOptionDto {
   key: string;
   lines: string[];
   is_correct: boolean;
+}
+
+export interface IOutputPredictorOption {
+  key: string;
+  lines: string[];
+  isCorrect: boolean;
 }
 
 export interface IOutputPredictor {
@@ -23,4 +29,14 @@ export interface IOutputPredictorState {
   isAnswered: boolean;
   correctAnswers: number;
   status: OutputPredictorViewState;
+}
+
+export interface IOutputPredictorDto {
+  id: string;
+  level_id: string;
+  title: string;
+  code: string;
+  tag: string;
+  options: IOutputPredictorOptionDto[];
+  levels: { difficulty: 'EASY' | 'MEDIUM' | 'HARD' }[];
 }
