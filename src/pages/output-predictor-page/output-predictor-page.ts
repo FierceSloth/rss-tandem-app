@@ -6,7 +6,7 @@ import { PageLayout } from '@/components/layout/page-layout/page-layout.view';
 import { LoaderManager } from '@/common/utils/loader-manager.util';
 import { HeaderOutputPredictor } from './components/layout/header/header-output-predictor.view';
 import { MainOutputPredictor } from './components/layout/main/main-output-predictor.view';
-import { OutputPredictorPageController } from './output-predictor-controller';
+import { OutputPredictorPageController } from './output-predictor.controller';
 import { outputPredictorStore } from './store/output-predictor.store';
 import { outputPredictorEmitter } from './common/utils/output-predictor-emitter.utils';
 import { OutputPredictorEvents, OutputPredictorViewState } from './common/enum/enum';

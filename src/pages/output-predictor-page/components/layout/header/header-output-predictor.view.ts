@@ -4,7 +4,7 @@ import { Component } from '@components/base/component';
 import { ProgressBar } from '@/components/ui/progress-bar/progress-bar.view';
 import { Timer } from '@/components/ui/timer/timer.view';
 import { Tag } from '@/components/ui/tag/tag.view';
-import { HeaderOutputPredictorController } from './header-output-predictor.contoller';
+import { HeaderOutputPredictorController } from './header-output-predictor.controller';
 import { OUTPUT_PREDICTOR_TIMER } from '@/pages/output-predictor-page/common/constants/constants';
 import styles from './header-output-predictor.module.scss';
 import { messages } from '@/pages/output-predictor-page/common/constants/messages';

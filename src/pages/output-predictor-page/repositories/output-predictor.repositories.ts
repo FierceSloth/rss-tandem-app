@@ -1,6 +1,6 @@
 import { supabase } from '@/api/supabase/supabase-client';
 import type { IOutputPredictor } from '../common/types/types';
-import { outputPredictorMapper } from '../common/utils/mapper';
+import { outputPredictorMapper } from '../common/utils/output-predictor-mapper.util';
 
 export class OutputPredictorRepository {
   public async fetchQuestions(levelId: string): Promise<IOutputPredictor[]> {
