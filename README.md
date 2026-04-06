@@ -8,7 +8,7 @@
 
 ## Ссылка на командную презентацию
 
-[Team presentation](https://youtu.be/yZuDaW99EvU)
+[Team presentation](https://www.youtube.com/watch?v=yZuDaW99EvU)
 
 ## Записи дневников
 
