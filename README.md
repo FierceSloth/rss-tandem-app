@@ -6,6 +6,10 @@
 
 [RSS Tandem App Checkpoint 5 Preview](https://www.youtube.com/watch?v=gxiUOW3JuBY)
 
+## Ссылка на командную презентацию
+
+[Team presentation](https://youtu.be/yZuDaW99EvU)
+
 ## Записи дневников
 
 [First meet](./development-notes/meets/2026-02-10.md)
@@ -17,6 +21,10 @@
 **RS Tandem App** — это интерактивная платформа для подготовки к техническим собеседованиям. Проект разрабатывается в рамках финального задания курса RS School.
 
 Ключевая особенность приложения — обучающие виджеты в формате мини-игр, которые разбиты по ключевым темам разработки. Вместо скучной зубрежки теории, пользователи могут прокачивать свои знания, решать задачи и проверять свой код в интерактивном формате. Платформа помогает не просто повторить материал, а закрепить его, систематизировать знания и почувствовать уверенность перед реальными техническими интервью.
+
+## Чем мы гордимся?
+
+Мы гордимся своим взаимодействием в команде, регулярными созвонами. Тем что мы смогли дойти до конца и выполнили проект.
 
 ## 🛠 Технологический стек
 
@@ -35,6 +43,13 @@
   - Ссылка на дневники [Oleg diaries](./development-notes/coicoin/)
 - **Anna** (Developer) — [@dilmun1101](https://github.com/dilmun1101)
   - Ссылка на дневники [Anna diaries](./development-notes/dilmun1101/)
+
+## 📜 Лучшие PR
+
+- [PR4](https://github.com/FierceSloth/rss-tandem-app/pull/4)
+- [PR31](https://github.com/FierceSloth/rss-tandem-app/pull/31)
+- [PR45](https://github.com/FierceSloth/rss-tandem-app/pull/45)
+- [PR50](https://github.com/FierceSloth/rss-tandem-app/pull/50)
 
 ## 📚 Документация проекта (Developer Guides)
 
