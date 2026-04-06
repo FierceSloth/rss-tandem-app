@@ -8,6 +8,9 @@ import { HeaderController } from './header.controller';
 import { useNavigate } from '@/router/hooks';
 import { StatusBadge } from '@/components/ui/status-badge/status-badge.view';
 import { EMPTY } from '@/common/constants/constants';
+import { ROUTES } from '@/router/constants';
+import { pathnameEqualsRoute } from '@/router/utils/path';
+import { UserService } from '@/service/user-service/user.service';
 
 interface IProps extends IComponentChild {
   withController?: boolean;
@@ -15,9 +18,12 @@ interface IProps extends IComponentChild {
 
 export class Header extends Component {
   private readonly aboutButton: Component;
+  private readonly landingButton: Component;
   private readonly loginButton: Component;
+  private readonly logoutButton: Component;
   private readonly registerButton: Component;
   private readonly logoTitle: Component;
+  private readonly authNav: Component;
 
   constructor({ className = [], withController = true }: IProps, ...children: Component[]) {
     const cssClasses = mergeClassNames(styles.header, className);
@@ -26,9 +32,17 @@ export class Header extends Component {
       className: styles.aboutButton,
       text: messages.buttons.about,
     });
+    this.landingButton = new Button({
+      className: styles.landingButton,
+      text: messages.buttons.landing,
+    });
     this.loginButton = new Button({
       className: styles.loginButton,
       text: messages.buttons.logIn,
+    });
+    this.logoutButton = new Button({
+      className: styles.logoutButton,
+      text: messages.buttons.logOut,
     });
     this.registerButton = new Button({
       className: styles.registerButton,
@@ -39,6 +53,9 @@ export class Header extends Component {
       tag: 'span',
       className: styles.logoTitle,
       text: messages.titles.logoTitle,
+    });
+    this.authNav = new Component({
+      className: styles.authNav,
     });
 
     this.createLayout();
@@ -52,12 +69,33 @@ export class Header extends Component {
     this.aboutButton.addListener('click', handler);
   }
 
+  public onLandingClick(handler: () => void): void {
+    this.landingButton.addListener('click', handler);
+  }
+
   public onLoginClick(handler: () => void): void {
     this.loginButton.addListener('click', handler);
   }
 
+  public onLogoutClick(handler: () => void): void {
+    this.logoutButton.addListener('click', handler);
+  }
+
   public onRegisterClick(handler: () => void): void {
     this.registerButton.addListener('click', handler);
+  }
+
+  public updateAuthButtons(): void {
+    if (!this.authNav) return;
+
+    this.authNav.node.replaceChildren();
+
+    if (UserService.isAuthenticated()) {
+      this.authNav.append(this.logoutButton);
+    } else {
+      this.authNav.append(this.loginButton);
+    }
+    this.authNav.append(this.registerButton);
   }
 
   private createLayout(): void {
@@ -78,14 +116,20 @@ export class Header extends Component {
     const middleNav: Component = new Component({
       className: styles.middleNav,
     });
-    middleNav.append(this.aboutButton);
+    if (pathnameEqualsRoute(ROUTES.ABOUT_PAGE)) {
+      middleNav.append(this.landingButton);
+    } else {
+      middleNav.append(this.aboutButton);
+    }
 
-    const authNav: Component = new Component({
-      className: styles.authNav,
-    });
-    authNav.append(this.loginButton, this.registerButton);
+    if (UserService.isAuthenticated()) {
+      this.authNav.append(this.logoutButton);
+    } else {
+      this.authNav.append(this.loginButton);
+    }
+    this.authNav.append(this.registerButton);
 
-    container.append(logoBadge, middleNav, authNav);
+    container.append(logoBadge, middleNav, this.authNav);
     this.append(container);
   }
 }

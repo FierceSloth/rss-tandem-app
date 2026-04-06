@@ -1,0 +1,207 @@
+@use '@/styles/abstract/mixins' as *;
+
+.contributor {
+  padding: 3.2rem 2rem;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 460px;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  border: 1px solid var(--border-focus);
+  border-radius: 0.8rem;
+  overflow: hidden;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.05);
+  background: var(--bg-dark);
+
+  transition: var(--transition);
+  will-change: transform, box-shadow, border-color;
+
+  &:nth-child(1)::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: var(--gold-gradient);
+    z-index: -1;
+    border-radius: inherit;
+    transition: box-shadow 0.3s ease;
+  }
+
+  &:hover {
+    transform: translateY(-4px) scale(1.01);
+    z-index: 2;
+  }
+
+  &:not(:nth-child(1)):hover {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.2);
+  }
+
+  &:nth-child(1):hover::after {
+    box-shadow:
+      0 0 40px rgba(255, 215, 0, 0.15),
+      0 0 20px rgba(139, 92, 246, 0.2);
+  }
+
+  @include media-tablet {
+    min-height: 400px;
+    padding: 2rem 1.5rem;
+  }
+
+  @include media-mobile {
+    min-height: 360px;
+    padding: 1.5rem 1rem;
+  }
+}
+
+.personalInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.role {
+  font-size: var(--font-size-default);
+  line-height: var(--line-height-small);
+  font-family: var(--font-mono-secondary);
+  color: #ccc;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  margin-bottom: 3.2rem;
+  letter-spacing: 1px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.avatar {
+  width: 9.6rem;
+  height: 9.6rem;
+  border-radius: 50%;
+  background-image: linear-gradient(to top right, var(--tw-gradient-stops));
+  text-align: center;
+  opacity: 0.85;
+  user-select: none;
+  margin-bottom: 2.4rem;
+
+  transition:
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.contributor:nth-child(1) .avatar {
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  border: 2px solid var(--accent-gold);
+}
+
+.contributor:not(:nth-child(1)) .avatar {
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+  border: 2px solid var(--accent-blue);
+}
+
+.name {
+  font-size: var(--font-h2-size);
+  line-height: var(--line-h2-height);
+  color: var(--text-primary);
+  letter-spacing: var(--letter-spacing-narrowing-0-025);
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+.contributionsTitle {
+  font-weight: 700;
+}
+
+.contributionsTitle,
+.contributionsText {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  font-family: var(--font-mono-secondary);
+  color: #ccc;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.contributions {
+  margin-bottom: 3.2rem;
+  flex: 1;
+}
+
+.line {
+  width: 80%;
+  height: 1px;
+  margin: 1rem auto;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    var(--border-subtle) 20%,
+    var(--border-subtle) 80%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  border-radius: 1px;
+  transition: var(--transition);
+}
+
+.contributor:nth-child(1) .line {
+  background: linear-gradient(
+    to right,
+    rgba(255, 215, 0, 0) 0%,
+    var(--accent-purple) 20%,
+    var(--accent-purple) 80%,
+    rgba(255, 215, 0, 0) 100%
+  );
+}
+
+.contributor:nth-child(1):hover .line {
+  background: linear-gradient(
+    to right,
+    rgba(255, 215, 0, 0) 0%,
+    var(--accent-gold) 20%,
+    var(--accent-gold) 80%,
+    rgba(255, 215, 0, 0) 100%
+  );
+}
+
+.contributor:not(:nth-child(1)):hover .line,
+.contributor:hover .line {
+  background: linear-gradient(
+    to right,
+    rgba(59, 130, 246, 0) 0%,
+    var(--accent-blue) 20%,
+    var(--accent-blue) 80%,
+    rgba(59, 130, 246, 0) 100%
+  );
+}
+
+.github {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  font-family: var(--font-mono-secondary);
+  color: var(--text-secondary);
+  transition:
+    color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.contributor:not(:nth-child(1)) .github:hover {
+  color: var(--accent-blue);
+  transform: scale(1.05);
+}
+
+.contributor:nth-child(1) .github:hover {
+  color: var(--accent-gold);
+  transform: scale(1.05);
+}
+
+.contributor:nth-child(1) .role,
+.contributor:nth-child(1) .components,
+.contributor:nth-child(1) .name,
+.contributor:nth-child(1) .github {
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}

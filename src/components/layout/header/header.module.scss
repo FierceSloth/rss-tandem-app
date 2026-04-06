@@ -32,6 +32,11 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  min-width: 180px;
+
+  @include media-mobile {
+    min-width: fit-content;
+  }
 
   .logoTitle {
     text-transform: uppercase;
@@ -52,7 +57,8 @@
     display: none;
   }
 
-  .aboutButton {
+  .aboutButton,
+  .landingButton {
     outline: none;
     box-shadow: none;
     color: var(--text-secondary);
@@ -66,7 +72,8 @@
   align-items: center;
   gap: clamp(var(--space-3), 2vw, var(--space-6));
 
-  .loginButton {
+  .loginButton,
+  .logoutButton {
     outline: none;
     box-shadow: none;
     font-size: var(--font-size-base);

@@ -1,0 +1,157 @@
+@use '@/styles/abstract/mixins' as *;
+
+.theoryHub {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.card {
+  width: 100%;
+  max-width: 800px;
+  max-height: calc(100vh - 80px);
+  padding: 60px 40px 30px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+
+  opacity: 0;
+  transform: translateY(20px);
+
+  @include media-tablet {
+    padding: 50px 30px 30px;
+  }
+
+  @include media-mobile {
+    padding: 35px 20px 25px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--border-subtle);
+    border-radius: 4px;
+
+    &:hover {
+      background-color: var(--border-focus);
+    }
+  }
+}
+
+.cardHeader {
+  @include media-mobile {
+    margin-top: 10px;
+  }
+}
+
+.title {
+  margin-top: 5px;
+  font-size: clamp(2.4rem, 5vw, 3rem);
+  line-height: normal;
+
+  @include media-mobile {
+    margin-top: 7px;
+  }
+}
+
+.subTitle {
+  span {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+  }
+}
+
+.description {
+  margin-top: 10px;
+  color: var(--text-secondary);
+  font-size: 1.4rem;
+  line-height: 2.25rem;
+}
+
+.divider {
+  width: 100%;
+  min-height: 1px;
+  max-height: 1px;
+  background-color: rgb(31 31 31 / var(--tw-bg-opacity, 1));
+  margin: 30px 0;
+
+  @include media-tablet {
+    margin: 25px 0;
+  }
+
+  @include media-mobile {
+    margin: 20px 0;
+  }
+}
+
+.materialsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.materialTitle {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.buttonContainer {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap-reverse;
+  gap: 10px;
+
+  @include media-mobile {
+    flex-direction: column-reverse;
+    width: 100%;
+  }
+}
+
+.button {
+  height: 45px;
+  user-select: none;
+  padding: 15px 26px;
+  font-size: var(--font-size-semibase);
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.backButton {
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+}
+
+.showAnimation {
+  animation: slide-up-fade 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes slide-up-fade {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

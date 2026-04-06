@@ -1,6 +1,7 @@
 import { supabase } from '@/api/supabase/supabase-client';
 import type { Session } from '@supabase/supabase-js';
 import { messages } from '@/common/constants/messages';
+import { authStore } from './auth-store';
 
 export interface IAuthResult {
   success: boolean;
@@ -62,6 +63,7 @@ class AuthService implements IAuthService {
 
   public async logout(): Promise<void> {
     await supabase.auth.signOut();
+    authStore.setIsAuthenticated(false);
   }
 
   public async getSession(): Promise<Session | null> {

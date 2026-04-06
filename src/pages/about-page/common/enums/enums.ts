@@ -1,0 +1,5 @@
+export enum ROLE {
+  MENTOR = 'MENTOR',
+  SOFTWARE_ENGINEER = 'SOFTWARE ENGINEER',
+  LEAD = 'LEAD',
+}

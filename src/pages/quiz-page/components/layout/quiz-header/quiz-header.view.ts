@@ -38,6 +38,7 @@ export class QuizHeader extends Component {
 
     const timerSvgElement = createSvgComponent(timerIcon);
     this.timer = new Timer({ icon: timerSvgElement, time: QUIZ_TIMER });
+    this.timer.getEngine().pause();
 
     this.append(this.progressBar, this.level, this.timer);
 
