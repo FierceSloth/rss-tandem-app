@@ -1,0 +1,42 @@
+@use '@/styles/abstract/mixins' as *;
+
+.userProfileHeader {
+  position: sticky;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 50;
+  margin: 0;
+  line-height: inherit;
+  background-color: var(--bg-body-09);
+}
+
+.container {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: var(--desktop-max);
+  height: 72px;
+  padding: 0 20px;
+
+  @include media-tablet {
+    padding-inline: clamp(var(--space-2), 4vw, var(--space-6));
+    padding: 0 15px;
+  }
+}
+
+.authNav {
+  display: flex;
+  align-items: center;
+  gap: clamp(var(--space-3), 2vw, var(--space-6));
+
+  .loginButton,
+  .logoutButton {
+    outline: none;
+    box-shadow: none;
+    font-size: var(--font-size-base);
+    @include header-button-style;
+  }
+}
