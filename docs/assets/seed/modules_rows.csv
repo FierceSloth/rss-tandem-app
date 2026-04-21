@@ -1,0 +1,18 @@
+id,title
+1,"Variables: var, let, const, TDZ and Hoisting"
+2,Advanced Expressions and Comparison Specifics
+3,"Functions: Declarations, Expressions, Arrow Functions"
+4,Functional Scope and Nested Scopes
+5,Function Parameters and Arguments
+6,Closures and Lexical Environment (Advanced)
+7,Advanced Functions and this
+8,"ECMAScript Intermediate: Parameters, Spread/Rest, Destructuring"
+9,Objects and Built-in Methods
+10,"Data Types, Expressions, and Computed Properties"
+11,Arrays: Built-in Methods
+12,"Arrays: Iteration, Sorting, Filtering"
+13,"JavaScript in the Browser: DOM, Window, Events Basics"
+14,"Events: Propagation, Delegation, Custom Events, Timers"
+15,"Web Storage, Cookies, Date/Time and Architectural Principles"
+16,TypeScript Basics and Core Types
+17,"TypeScript Interfaces, Type Aliases, and Generics"
