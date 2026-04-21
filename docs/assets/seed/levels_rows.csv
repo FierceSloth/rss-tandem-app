@@ -1,0 +1,86 @@
+id,module_id,title,description,widget_type,difficulty
+0137de57-b7d8-4a56-a2e6-d09cf93f2c52,9,Objects: True or False,Decide which statements about objects and descriptors are correct.,TRUE_FALSE,medium
+0497829e-f4d0-4074-9af4-7ef069f3240f,17,Interfaces and Types Quiz,"Test your understanding of interfaces, type aliases, and unions.",QUIZ,medium
+07205846-d207-417a-aef6-79e7ca77e4a8,2,Code Arena: Expressions & Comparisons,"Implement solutions that rely on strict equality, type coercion rules, and complex comparison expressions without bugs.",CODE_ARENA,expert
+0c0217d7-7d29-49cf-97c2-c4a5c9c6b46a,4,Code Arena: Scope & Nested Scopes,Write functions that correctly manage variable access across deeply nested functional scopes without leaking or shadowing unintentionally.,CODE_ARENA,expert
+0c047f1b-818b-4cd4-a868-1641d1c719f3,7,Code Arena: Advanced this & Functions,"Write code that correctly handles this binding in nested functions, callbacks, and method chaining using call, apply, and bind.",CODE_ARENA,expert
+0cd747c8-84db-4c5f-bd20-4ef26f1426d9,6,Predict the Output: Closures,Predict values returned by functions using closures.,OUTPUT_PREDICTOR,hard
+0fad1cf7-ef51-4cce-a1d4-21fffb966a0e,4,Scope Behavior: True or False,Judge if statements about scope chains are correct.,TRUE_FALSE,medium
+120a5dcb-a297-4209-904a-28a534fbf8fc,13,Predict the Output: DOM,Predict what happens when the DOM is manipulated in code.,OUTPUT_PREDICTOR,hard
+19e1714e-9546-4ae3-b760-fa3e5cb8e9d8,13,DOM Basics: True or False,Judge which statements about DOM and Window are correct.,TRUE_FALSE,medium
+1c234839-c556-4e04-917a-aed9e9f5fe02,15,Code Arena: Storage & Date/Time,"Build utilities that correctly use localStorage, sessionStorage, cookies, and the Date API to manage persistent state.",CODE_ARENA,expert
+23216e88-1946-4c6d-8e2f-c4e2235bec62,6,Closures Quiz,Test your understanding of closures and lexical scoping patterns.,QUIZ,medium
+27016f62-4516-40fb-88f0-2bba5bbbe453,3,Predict the Output: Functions,"Predict results for code using declarations, expressions, and arrow functions.",OUTPUT_PREDICTOR,hard
+2747a3ac-563a-4405-8d48-ac4a24643f31,5,Intro: Parameters vs Arguments,Learn how functions receive values and how arguments are passed.,VIDEO_TASK,easy
+2b0fd6fb-685a-4553-9c94-09b879a0af36,5,Code Arena: Parameters & Arguments,"Build functions that handle rest parameters, default values, and the arguments object correctly in complex call scenarios.",CODE_ARENA,expert
+2e7d8658-dd34-46dd-a8d9-47a206b99fd8,13,Code Arena: DOM & Browser Events,"Write code that dynamically manipulates the DOM, handles event listeners, and manages Window properties correctly.",CODE_ARENA,expert
+310f983b-d4b8-402d-9b7a-4c6126d07f03,3,Function Forms Quiz,Check how well you distinguish different function forms and their use cases.,QUIZ,medium
+3b3241a4-76b2-4064-904a-03d80f248f13,11,Intro: Array Methods,Understand core array methods and how they transform data.,VIDEO_TASK,easy
+4649c22e-907c-4760-904c-f9b17e6e48a9,16,TS Basics: True or False,Evaluate statements about core TypeScript concepts.,TRUE_FALSE,medium
+4a55c609-2566-4e3b-bdf7-bb07e2ef56e2,15,Principles: True or False,"Judge statements about KISS, DRY, YAGNI in frontend architecture.",TRUE_FALSE,medium
+4f1d5d37-a9d3-40eb-ae85-c22e0931bc86,16,Intro: TypeScript Basics,See how TypeScript adds types on top of JavaScript.,VIDEO_TASK,easy
+4f748f49-ead6-4339-996c-830b2cd8b227,15,Predict the Output: Dates and Storage,Predict the result of operations with Date and Web Storage APIs.,OUTPUT_PREDICTOR,hard
+5021ba3c-412d-4c43-a298-baa1562db3e0,11,Code Arena: Array Built-in Methods,"Solve problems using chained array methods like map, filter, reduce, flat, and flatMap to transform complex data structures.",CODE_ARENA,expert
+54fb6cd1-e862-4051-9f80-c3ff215b88e3,9,Intro: Objects and Utilities,Overview of Object utilities and property descriptors.,VIDEO_TASK,easy
+569d2fa7-453b-4a3a-bb12-668dab8e5932,11,Arrays: True or False,Judge correctness of statements about array operations.,TRUE_FALSE,medium
+57f173c5-9d58-4baf-af61-f6c33e226985,10,Predict the Output: Types,Predict output of expressions involving different data types.,OUTPUT_PREDICTOR,hard
+591a8e1f-24f6-4242-9ddd-ef5bdc1333a9,3,Code Arena: Function Declarations,"Solve challenges requiring mastery of function declarations, expressions, and arrow functions including subtle behavioral differences.",CODE_ARENA,expert
+5ccef322-f027-43b5-969d-f5b1b64c56b1,14,Code Arena: Event Propagation & Timers,"Implement solutions involving event delegation, custom events, and precise timer-based logic using setTimeout and setInterval.",CODE_ARENA,expert
+5d95c5d9-6b8a-46c9-9779-f9090870a8f3,8,"Code Arena: Spread, Rest & Destructuring",Solve complex tasks using spread/rest syntax and nested destructuring patterns with default values and renaming.,CODE_ARENA,expert
+621a99fa-161b-48ff-8248-56d053cfa5cf,7,Predict the Output: this,Predict what this refers to and what gets logged.,OUTPUT_PREDICTOR,hard
+63b970d8-27c9-4374-8f14-c3c6537040a1,12,Predict the Output: Sorting,Predict final order of arrays after sorting and filtering.,OUTPUT_PREDICTOR,hard
+65dbc9a2-57d7-40d5-a266-a7f045f9e808,1,Predict the Output: Variables,Guess what value will be logged for tricky variable and hoisting snippets.,OUTPUT_PREDICTOR,hard
+67089f81-ecc6-4f20-8680-e12509b694d8,10,Data Types Quiz,Test your understanding of JS types and expressions.,QUIZ,medium
+6807e7e4-0000-45cd-9fc0-328c60d38c98,11,Predict the Output: Arrays,Predict final arrays after multiple transformations.,OUTPUT_PREDICTOR,hard
+6a3091f8-6eb4-4720-8c9b-347c398cebb7,12,Sorting: True or False,Evaluate statements about array sorting and filtering behavior.,TRUE_FALSE,medium
+6a3ba0c9-0c1e-4c81-a812-6a2b53eccf87,6,Closures: True or False,Check which closure-related statements are correct or wrong.,TRUE_FALSE,medium
+6bdf07f6-3288-4b87-94f0-3f99526b315c,17,Generics: True or False,Judge which statements about generics and type safety are correct.,TRUE_FALSE,medium
+6c54cf32-2028-46ad-9a3d-36e6c763fbc9,16,Predict the Output: TS Types,Predict behavior of code using TypeScript core types.,OUTPUT_PREDICTOR,hard
+70feea50-89cb-413d-a5a9-991a4105fa79,15,"Intro: Storage, Time, and Principles","Overview of Web Storage, cookies, dates, and core architecture principles.",VIDEO_TASK,easy
+71401768-c639-4e4c-9aa8-7eece0d8c455,6,Code Arena: Closures,"Implement advanced closure-based patterns such as memoization, partial application, and private state encapsulation.",CODE_ARENA,expert
+73220e05-5228-4bf8-a5d2-9301e6d89d20,1,Intro: Variables and Hoisting,"Learn how var, let, and const behave in memory and during hoisting.",VIDEO_TASK,easy
+762caa41-9401-4119-b7b0-f2ed5a6c6cda,12,Iteration and Sorting Quiz,Test your understanding of different iteration and sort patterns.,QUIZ,medium
+79b93a68-d914-43de-9d9b-ed749a2b9af8,9,Predict the Output: Objects,Predict behavior of code using object utilities and properties.,OUTPUT_PREDICTOR,hard
+7bfacaa9-0ada-484b-9f37-ef63d4c0145f,2,Predict the Output: Expressions,Predict console output for non-trivial comparison and expression snippets.,OUTPUT_PREDICTOR,hard
+7d1541a7-7471-4a49-bb01-512395d5b836,4,Scope Rules Quiz,Test your understanding of variable visibility and nested scopes.,QUIZ,medium
+7ff8b41c-6907-44d3-a77e-09ec10d21b52,8,Intro: ES Parameters and Destructuring,"Learn about default parameters, spread/rest, and destructuring.",VIDEO_TASK,easy
+800a76ec-4de2-4864-b446-8bea5d790ef3,5,Predict the Output: Arguments,Predict behavior when objects and primitives are passed to functions.,OUTPUT_PREDICTOR,hard
+8b407753-248f-4316-997f-9c71e5a72123,8,Destructuring: True or False,Evaluate statements about destructuring and iteration.,TRUE_FALSE,medium
+9759a2f9-6ab9-4cc8-8324-b646dd95c461,16,TS Core Types Quiz,Test your understanding of basic TypeScript types and annotations.,QUIZ,medium
+978cabe5-d262-4b5a-871a-eeddcddddab1,17,Predict the Output: Generics,Predict behavior of functions and helpers that use generics.,OUTPUT_PREDICTOR,hard
+98392717-a5f6-4405-870a-15b65a5057b9,1,Code Arena: Variables & Hoisting,"Write code that correctly demonstrates variable scoping, TDZ behavior, and hoisting edge cases using var, let, and const.",CODE_ARENA,expert
+983eefee-33d0-415c-b86a-0b5dac3df2f9,13,DOM and Window Quiz,Test your knowledge of DOM APIs and global browser objects.,QUIZ,medium
+9b39980d-df3f-4517-94cc-4f7153966fa0,6,Intro: Closures and Lexical Environment,See how functions capture variables from their lexical environment.,VIDEO_TASK,easy
+9bc68481-29b9-41c9-95cf-bd0019185a24,2,Intro: Advanced Expressions,Walk through tricky JavaScript expressions and comparison edge cases.,VIDEO_TASK,easy
+9ca2f9a2-4802-4d54-b7c1-dd1a10dda632,8,ES Parameters Quiz,"Test your knowledge of spread, rest, and default arguments.",QUIZ,medium
+a880a588-800f-4675-a2bd-7642b426398a,10,Code Arena: Data Types & Computed Props,"Write code that correctly uses computed property names, Symbol keys, and handles type coercion in object expressions.",CODE_ARENA,expert
+afb50491-1a19-4489-a8f3-69055fa6e076,4,Intro: Scope and Nesting,Understand global vs function scope and nested scopes in JavaScript.,VIDEO_TASK,easy
+b18e351f-2bda-4e14-8810-f1034aea2d90,12,Code Arena: Sorting & Filtering,Implement custom sorting algorithms and advanced filtering pipelines that handle edge cases and multi-criteria sorting.,CODE_ARENA,expert
+ba69b599-7844-4a16-9ce2-e738b62d2ed4,14,Intro: Events and Timers,Learn how events propagate and how timers work in the browser.,VIDEO_TASK,easy
+bab938e0-2c13-4d57-82f2-78a7b827100b,10,Intro: Types and Computed Properties,Review JavaScript data types and computed object properties.,VIDEO_TASK,easy
+c1ddc588-ffe6-4c50-aebb-a59bd8ef8d7d,9,Object Methods Quiz,"Test your knowledge of Object.keys, values, entries, and more.",QUIZ,medium
+c463908a-34e4-415e-8bcd-27815334b7f7,1,Variable Behavior: True or False,"Decide which statements about var, let, const, and hoisting are correct.",TRUE_FALSE,medium
+c6e709da-8f97-4b5c-a920-cef11c6ff803,10,Types and Objects: True or False,Check statements about types and computed properties.,TRUE_FALSE,medium
+c731a21a-6a18-43ef-8d91-904cc7d3bc31,14,Events and Timers Quiz,"Test your understanding of event phases, delegation, and timers.",QUIZ,medium
+c8f33926-1cd6-4890-8199-c3f1c34c7b2b,7,this: True or False,Judge correctness of statements about this in JavaScript.,TRUE_FALSE,medium
+cb0931a3-7b34-40fa-a17d-b60e5db7a301,7,Intro: this and Advanced Functions,Understand how this works in different function contexts.,VIDEO_TASK,easy
+cb318465-447a-4257-94dc-07b23e9cfd06,2,Comparison Rules Quiz,"Test your knowledge of ==, ===, Object.is, NaN, and coercion.",QUIZ,medium
+cce6b952-abde-4171-b671-2c7ed001cd7a,5,Arguments: True or False,Evaluate statements about passing data into functions.,TRUE_FALSE,medium
+cfafc13a-b24f-4293-842d-b16f35cbfa36,11,Array Methods Quiz,"Check your knowledge of map, filter, reduce, and friends.",QUIZ,medium
+d312e123-05ab-4d5e-b6da-a4b82f790340,8,Predict the Output: Destructuring,Predict results of using spread/rest and destructuring in code.,OUTPUT_PREDICTOR,hard
+d89d3f51-2c37-44f6-9dfd-a01dce363be8,7,this Binding Quiz,"Test your knowledge of call, apply, bind, and lost context.",QUIZ,medium
+d9537b41-8ea2-4900-96b7-3584192a082d,15,Storage and Time Quiz,"Test your understanding of storage APIs, Date, and Intl basics.",QUIZ,medium
+d99c669c-ae5a-4007-9d18-e1ce815b998c,9,Code Arena: Objects & Built-in Methods,"Implement solutions using Object.keys, Object.assign, property descriptors, and prototype chain manipulation.",CODE_ARENA,expert
+d9d362e9-010f-4505-8d05-fdf2a6abf337,5,Parameters and Arguments Quiz,Check your knowledge of value vs reference and rest parameters.,QUIZ,medium
+dba47640-7f84-4270-820f-047fe54e4515,4,Predict the Output: Scope,Predict variable values in nested scope scenarios.,OUTPUT_PREDICTOR,hard
+e03248eb-dd00-4203-9cb7-aad776b1714f,13,Intro: JS in the Browser,See how JavaScript interacts with the DOM and the Window object.,VIDEO_TASK,easy
+e39a0abf-6bc2-40a9-aa59-86ac06b9fbdd,12,Intro: Iteration and Sorting,"Review array iteration patterns, filtering, and sorting rules.",VIDEO_TASK,easy
+e3c378a6-188e-479f-a59e-95494f972b5a,16,Code Arena: TypeScript Core Types,"Write strongly-typed TypeScript code using unions, intersections, literal types, and type narrowing to solve real-world problems.",CODE_ARENA,expert
+e48088b1-69c8-430c-b3ae-5c5dc47cf146,2,Expression Semantics: True or False,Decide which advanced expression statements are correct.,TRUE_FALSE,medium
+e828bcad-8531-45fe-8f26-f597176e6b4e,14,Predict the Output: Events,Predict which handlers fire and what timers log.,OUTPUT_PREDICTOR,hard
+e96c3e0c-0cf1-4724-b2aa-183ac9660a0f,14,Events: True or False,Evaluate claims about event propagation and custom events.,TRUE_FALSE,medium
+ee0a23d9-3b02-4283-9c36-fcedba78fb03,3,Intro: Function Forms,"Explore function declarations, expressions, and arrow functions.",VIDEO_TASK,easy
+f0b352af-6dd7-48bc-92ce-89969cf1cbe5,1,Variables and Hoisting Quiz,Check your understanding of variable declarations and the Temporal Dead Zone.,QUIZ,medium
+faf7301e-b003-47f3-8f8b-9ccc126bdd1e,17,"Intro: Interfaces, Types, and Generics","Learn how interfaces, type aliases, and generics shape your code.",VIDEO_TASK,easy
+fd73f6a0-f210-4e8a-b1ea-45534e541a9d,17,Code Arena: TypeScript Generics,"Implement reusable generic functions, interfaces, and utility types that correctly constrain and infer complex TypeScript types.",CODE_ARENA,expert
+fe41ae72-55ac-4c3e-945c-3873ccca0f3c,3,Functions: True or False,Evaluate claims about how different function forms behave.,TRUE_FALSE,medium

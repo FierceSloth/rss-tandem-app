@@ -1,0 +1,366 @@
+id,level_id,question,code_snippet,options,language,tags
+006cc983-d834-4303-b14e-58b385fe5d1f,d89d3f51-2c37-44f6-9dfd-a01dce363be8,Which call ensures that `this` inside `getValue` is always `obj`?,"const obj = { value: 1, getValue() { console.log(this.value); } };","[{""text"":""const bound = obj.getValue.bind(obj); bound();"",""is_correct"":true},{""text"":""const bound = obj.getValue; bound.call();"",""is_correct"":false},{""text"":""const bound = () => obj.getValue(); bound();"",""is_correct"":false},{""text"":""obj.getValue.call(null);"",""is_correct"":false}]",javascript,"[""BIND"",""CALL"",""THIS""]"
+02f6b5ae-b708-4625-aa55-cd2d762a6f11,d89d3f51-2c37-44f6-9dfd-a01dce363be8,"In non‑strict mode, what does `this` refer to in a plain function call `foo()` (not as a method)?",,"[{""text"":""The global object (`window` in browsers)"",""is_correct"":true},{""text"":""`undefined`"",""is_correct"":false},{""text"":""The function itself"",""is_correct"":false},{""text"":""The last object used in code"",""is_correct"":false}]",javascript,"[""THIS"",""CALL""]"
+03579123-7def-40c6-ba66-3ebc816888bc,c1ddc588-ffe6-4c50-aebb-a59bd8ef8d7d,"What does `Object.assign(target, source)` do?",,"[{""text"":""Copies enumerable own properties from `source` to `target`"",""is_correct"":true},{""text"":""Creates a deep clone of `source`"",""is_correct"":false},{""text"":""Freezes both objects"",""is_correct"":false},{""text"":""Returns an array of keys"",""is_correct"":false}]",javascript,"[""ASSIGN""]"
+045a34c7-df8b-40a3-a742-85435111c42d,0497829e-f4d0-4074-9af4-7ef069f3240f,Which utility type picks a subset of properties?,,"[{""text"":""Pick<User, 'id' | 'name'>"",""is_correct"":true},{""text"":""Partial<User>"",""is_correct"":false},{""text"":""Record<'id', User>"",""is_correct"":false},{""text"":""Omit<User, 'id'>"",""is_correct"":false}]",typescript,"[""UTILITY_TYPES"",""PICK""]"
+0476f2b1-c641-4ffd-b903-cb6db67986ce,cb318465-447a-4257-94dc-07b23e9cfd06,Which comparison considers `NaN` equal to itself?,,"[{""text"":""`Object.is(NaN, NaN)`"",""is_correct"":true},{""text"":""`NaN === NaN`"",""is_correct"":false},{""text"":""`NaN == NaN`"",""is_correct"":false},{""text"":""`Number(NaN) === NaN`"",""is_correct"":false}]",javascript,"[""OBJECT_IS"",""NaN""]"
+06753f7f-428c-4d4c-9b18-c51ac408d8c9,cb318465-447a-4257-94dc-07b23e9cfd06,What will this code log?,"console.log(`NaN === NaN`, NaN === NaN);","[{""text"":""`false`"",""is_correct"":true},{""text"":""`true`"",""is_correct"":false},{""text"":""`NaN`"",""is_correct"":false},{""text"":""`undefined`"",""is_correct"":false}]",javascript,"[""NaN"",""STRICT_EQUALITY""]"
+06e79964-4940-4f25-b12a-ac62eb193090,0497829e-f4d0-4074-9af4-7ef069f3240f,Which syntax correctly declares a type alias?,,"[{""text"":""type Id = number | string;"",""is_correct"":true},{""text"":""alias Id = number | string;"",""is_correct"":false},{""text"":""typedef Id = number | string;"",""is_correct"":false},{""text"":""type: Id { number | string }"",""is_correct"":false}]",typescript,"[""TYPE_ALIASES""]"
+08d2f24e-af00-495d-a3d4-ada12738d9ab,23216e88-1946-4c6d-8e2f-c4e2235bec62,What will this code log?,"function make() {
+  const arr = [];
+  for (let i = 0; i < 3; i++) {
+    arr.push(() => console.log(i));
+  }
+  return arr;
+}
+const fns = make();
+fns[0]();
+fns[2]();","[{""text"":""`0` then `2`"",""is_correct"":true},{""text"":""`3` then `3`"",""is_correct"":false},{""text"":""`1` then `3`"",""is_correct"":false},{""text"":""`2` then `2`"",""is_correct"":false}]",javascript,"[""CLOSURES"",""LET""]"
+09e61d53-9eef-44bc-a42d-7caf7bc6b169,f0b352af-6dd7-48bc-92ce-89969cf1cbe5,Where is `a` stored before the line `var a = 10` is executed?,,"[{""text"":""In the global scope with value `undefined`"",""is_correct"":true},{""text"":""Nowhere, `a` does not exist yet"",""is_correct"":false},{""text"":""On the call stack with value `10`"",""is_correct"":false},{""text"":""In `localStorage`"",""is_correct"":false}]",javascript,"[""VARIABLES"",""HOISTING""]"
+0e4ac421-2b46-472c-8906-3df7bfc1b368,c731a21a-6a18-43ef-8d91-904cc7d3bc31,What does `event.stopPropagation()` do?,,"[{""text"":""Stops the event from moving to the next phase/element"",""is_correct"":true},{""text"":""Prevents the default action"",""is_correct"":false},{""text"":""Removes the event listener"",""is_correct"":false},{""text"":""Reloads the page"",""is_correct"":false}]",javascript,"[""EVENTS"",""PROPAGATION""]"
+0ebe322d-6630-4ff4-a2bf-3a363352ff16,d89d3f51-2c37-44f6-9dfd-a01dce363be8,Which statement about binding `this` twice is correct?,,"[{""text"":""Calling `bind` on an already bound function keeps the first `this`"",""is_correct"":true},{""text"":""Each `bind` completely overrides previous bindings"",""is_correct"":false},{""text"":""`bind` can only be called once per function"",""is_correct"":false},{""text"":""`bind` throws if used more than once"",""is_correct"":false}]",javascript,"[""BIND"",""THIS""]"
+0faaa4d4-8460-49b0-b149-65180786cb12,762caa41-9401-4119-b7b0-f2ed5a6c6cda,Which iteration will also include inherited enumerable properties?,,"[{""text"":""`for...in`"",""is_correct"":true},{""text"":""`for...of`"",""is_correct"":false},{""text"":""`forEach`"",""is_correct"":false},{""text"":""`map`"",""is_correct"":false}]",javascript,"[""FOR_IN"",""INHERITANCE""]"
+101a65e3-20ae-43bc-96d2-a21458e6eb92,cfafc13a-b24f-4293-842d-b16f35cbfa36,What will this code log?,"const arr = [1, 2, 3];
+const sum = arr.reduce((acc, x) => acc + x, 0);
+console.log(sum);","[{""text"":""`6`"",""is_correct"":true},{""text"":""`0`"",""is_correct"":false},{""text"":""`3`"",""is_correct"":false},{""text"":""`NaN`"",""is_correct"":false}]",javascript,"[""ARRAYS"",""REDUCE""]"
+10441fa6-4bb3-4485-b581-ffcf236808cc,983eefee-33d0-415c-b86a-0b5dac3df2f9,Which property refers to the global object in browsers?,,"[{""text"":""`window`"",""is_correct"":true},{""text"":""`global`"",""is_correct"":false},{""text"":""`document`"",""is_correct"":false},{""text"":""`navigator`"",""is_correct"":false}]",javascript,"[""WINDOW"",""GLOBAL""]"
+163644fa-32c3-490e-b8ca-05e84eaeabc9,cfafc13a-b24f-4293-842d-b16f35cbfa36,Which method returns the **index** of the first matching element?,,"[{""text"":""`findIndex`"",""is_correct"":true},{""text"":""`find`"",""is_correct"":false},{""text"":""`indexOf` only"",""is_correct"":false},{""text"":""`some`"",""is_correct"":false}]",javascript,"[""FINDINDEX""]"
+16c38d17-7e3e-4a53-870d-68e69cd9c7d0,d9d362e9-010f-4505-8d05-fdf2a6abf337,What will this code log?,"function change(x) {
+  x = 10;
+}
+let n = 5;
+change(n);
+console.log(n);","[{""text"":""`5`"",""is_correct"":true},{""text"":""`10`"",""is_correct"":false},{""text"":""`undefined`"",""is_correct"":false},{""text"":""`ReferenceError`"",""is_correct"":false}]",javascript,"[""PRIMITIVES"",""PARAMETERS""]"
+19dc88aa-60f6-47f2-afe9-c7e7583cd9af,c1ddc588-ffe6-4c50-aebb-a59bd8ef8d7d,What does `Object.keys(obj)` return?,,"[{""text"":""An array of enumerable own property names"",""is_correct"":true},{""text"":""An array of property values"",""is_correct"":false},{""text"":""A `Promise` with keys"",""is_correct"":false},{""text"":""A `Map` of keys and values"",""is_correct"":false}]",javascript,"[""OBJECTS"",""KEYS""]"
+1d5d6ea5-a48a-448e-8aa1-e57fda40dd3c,c1ddc588-ffe6-4c50-aebb-a59bd8ef8d7d,Which statement about `Object.create(proto)` is correct?,,"[{""text"":""It creates a new object with `proto` as its prototype"",""is_correct"":true},{""text"":""It copies all properties from `proto`"",""is_correct"":false},{""text"":""It freezes the prototype"",""is_correct"":false},{""text"":""It returns an array of keys"",""is_correct"":false}]",javascript,"[""PROTOTYPE"",""OBJECT_CREATE""]"
+1ecddf16-2ac6-45a6-8ea1-861e730d2dc7,0497829e-f4d0-4074-9af4-7ef069f3240f,Which syntax correctly declares an interface?,,"[{""text"":""interface User { id: number; name: string; }"",""is_correct"":true},{""text"":""type interface User = { id: number }"",""is_correct"":false},{""text"":""User interface { id: number }"",""is_correct"":false},{""text"":""interface: User { id: number }"",""is_correct"":false}]",typescript,"[""INTERFACES""]"
+1fa273d2-32e4-432c-83ee-8b1083dc0329,f0b352af-6dd7-48bc-92ce-89969cf1cbe5,Which variables end up in the Temporal Dead Zone?,,"[{""text"":""Variables declared with `let` and `const`"",""is_correct"":true},{""text"":""Variables declared with `var`"",""is_correct"":false},{""text"":""Function declarations"",""is_correct"":false},{""text"":""Only arrow functions"",""is_correct"":false}]",javascript,"[""TDZ"",""LET"",""CONST""]"
+1fb3c2d0-c2c0-4dda-a113-a27b66e0921a,f0b352af-6dd7-48bc-92ce-89969cf1cbe5,What will this code log?,"console.log(typeof z);
+var z = 42;","[{""text"":""`undefined`"",""is_correct"":false},{""text"":""`number`"",""is_correct"":false},{""text"":""`object`"",""is_correct"":false},{""text"":""`undefined` then assigns `42` later due to hoisting"",""is_correct"":true}]",javascript,"[""TYPEOF"",""HOISTING""]"
+21603e01-9da2-4fde-bcb6-1e95d9604c54,7d1541a7-7471-4a49-bb01-512395d5b836,What is a scope chain?,,"[{""text"":""A chain of lexical environments used to resolve identifiers"",""is_correct"":true},{""text"":""A list of all global variables"",""is_correct"":false},{""text"":""A call stack of functions"",""is_correct"":false},{""text"":""A list of imported modules"",""is_correct"":false}]",javascript,"[""SCOPE_CHAIN""]"
+258c09d4-be27-4f5c-9f10-1a273e8da4bb,9ca2f9a2-4802-4d54-b7c1-dd1a10dda632,Which statement about `arguments` vs rest parameters is correct?,,"[{""text"":""`arguments` is array-like, rest parameters are real arrays"",""is_correct"":true},{""text"":""Both are real arrays"",""is_correct"":false},{""text"":""Rest parameters only work in arrow functions"",""is_correct"":false},{""text"":""`arguments` works in arrow functions"",""is_correct"":false}]",javascript,"[""ARGUMENTS"",""REST_PARAMETERS""]"
+26868692-b984-4a49-9034-8a176bc2be81,9759a2f9-6ab9-4cc8-8324-b646dd95c461,What is the type of `id` here?,const id = 5 as const;,"[{""text"":""`5` (literal type)"",""is_correct"":true},{""text"":""`number`"",""is_correct"":false},{""text"":""`any`"",""is_correct"":false},{""text"":""`unknown`"",""is_correct"":false}]",typescript,"[""LITERAL_TYPES""]"
+2692e377-3c4f-481d-a28a-32fdb5e41f64,310f983b-d4b8-402d-9b7a-4c6126d07f03,What will this code log?,"bar();
+var bar = function () {
+  console.log(`called`);
+};","[{""text"":""`TypeError` at `bar()`"",""is_correct"":true},{""text"":""`called`"",""is_correct"":false},{""text"":""`ReferenceError`"",""is_correct"":false},{""text"":""Nothing"",""is_correct"":false}]",javascript,"[""FUNCTION_EXPRESSION"",""HOISTING""]"
+2816ed2b-5292-49d8-ab4a-89bfc886910c,f0b352af-6dd7-48bc-92ce-89969cf1cbe5,Which declaration is function‑scoped?,,"[{""text"":""`var`"",""is_correct"":true},{""text"":""`let`"",""is_correct"":false},{""text"":""`const`"",""is_correct"":false},{""text"":""All three"",""is_correct"":false}]",javascript,"[""SCOPE"",""VARIABLES""]"
+2865dcee-a16d-4e5b-b865-a1096f1e76c5,d9d362e9-010f-4505-8d05-fdf2a6abf337,Which syntax correctly defines rest parameters?,,"[{""text"":""function foo(...args) {}"",""is_correct"":true},{""text"":""function foo(args...) {}"",""is_correct"":false},{""text"":""function foo(..args) {}"",""is_correct"":false},{""text"":""function foo(args, ...) {}"",""is_correct"":false}]",javascript,"[""REST_PARAMETERS""]"
+2979f356-2c42-4301-a743-f802c5a8d3d9,7d1541a7-7471-4a49-bb01-512395d5b836,What will this code log?,"let y = 1;
+function test() {
+  y = 2;
+  console.log(y);
+}
+test();
+console.log(y);","[{""text"":""`2` then `2`"",""is_correct"":true},{""text"":""`1` then `2`"",""is_correct"":false},{""text"":""`2` then `1`"",""is_correct"":false},{""text"":""`1` then `1`"",""is_correct"":false}]",javascript,"[""MUTATION"",""SCOPE""]"
+2b462b79-3144-4af8-b9a0-795a92cfec0b,7d1541a7-7471-4a49-bb01-512395d5b836,Where is a variable declared with `var` inside a function accessible?,,"[{""text"":""Everywhere inside that function"",""is_correct"":true},{""text"":""Only inside the block where it is defined"",""is_correct"":false},{""text"":""Only before its declaration"",""is_correct"":false},{""text"":""Only inside nested functions"",""is_correct"":false}]",javascript,"[""FUNCTION_SCOPE"",""VAR""]"
+2c3a8c55-5091-4373-ae80-0704235f2e7a,7d1541a7-7471-4a49-bb01-512395d5b836,What will this code log?,"function foo() {
+  console.log(x);
+  var x = 5;
+}
+foo();","[{""text"":""`undefined`"",""is_correct"":true},{""text"":""`5`"",""is_correct"":false},{""text"":""`ReferenceError`"",""is_correct"":false},{""text"":""`TypeError`"",""is_correct"":false}]",javascript,"[""HOISTING"",""VAR""]"
+2e212895-5d13-445f-a0bc-145d1122326e,d9537b41-8ea2-4900-96b7-3584192a082d,Which method stores a value in `localStorage`?,,"[{""text"":""`localStorage.setItem(`key`, `value`)`"",""is_correct"":true},{""text"":""`localStorage.store(`key`, `value`)`"",""is_correct"":false},{""text"":""`localStorage.save(`key`, `value`)`"",""is_correct"":false},{""text"":""`localStorage.push(`key`, `value`)`"",""is_correct"":false}]",javascript,"[""LOCALSTORAGE"",""API""]"
+2e6e4ae1-b5c4-4607-9f36-64b6de8b8dd3,c1ddc588-ffe6-4c50-aebb-a59bd8ef8d7d,What will this code log?,"const obj = {};
+Object.defineProperty(obj, `a`, {
+  value: 1,
+  enumerable: false
+});
+console.log(Object.keys(obj));","[{""text"":""`[]`"",""is_correct"":true},{""text"":""`[`a`]`"",""is_correct"":false},{""text"":""`[1]`"",""is_correct"":false},{""text"":""`[`a`, 1]`"",""is_correct"":false}]",javascript,"[""DESCRIPTORS"",""ENUMERABLE""]"
+2fd57ba5-2da2-4a7c-99ee-60b67794b3cf,cfafc13a-b24f-4293-842d-b16f35cbfa36,What will this code log?,"const arr = [1, 2, 3];
+const res = arr.map(x => x * 2);
+console.log(res);","[{""text"":""`[2, 4, 6]`"",""is_correct"":true},{""text"":""`[1, 2, 3]`"",""is_correct"":false},{""text"":""`[1, 4, 9]`"",""is_correct"":false},{""text"":""`[2, 3, 4]`"",""is_correct"":false}]",javascript,"[""ARRAYS"",""MAP""]"
+300a2b7d-0833-4bd9-9227-81ca59b10c9d,67089f81-ecc6-4f20-8680-e12509b694d8,What will this code log?,console.log(typeof 10n);,"[{""text"":""`bigint`"",""is_correct"":true},{""text"":""`number`"",""is_correct"":false},{""text"":""`string`"",""is_correct"":false},{""text"":""`object`"",""is_correct"":false}]",javascript,"[""BIGINT"",""TYPEOF""]"
+30ba615c-096b-46dc-a396-683d6951bfda,23216e88-1946-4c6d-8e2f-c4e2235bec62,How can you fix the previous loop using `let`?,,"[{""text"":""Replace `var i` with `let i` so each iteration has its own binding"",""is_correct"":true},{""text"":""Wrap the body in a `try/catch`"",""is_correct"":false},{""text"":""Use `Promise` instead of `setTimeout`"",""is_correct"":false},{""text"":""Call `setTimeout` without a callback"",""is_correct"":false}]",javascript,"[""LET"",""BLOCK_SCOPE"",""CLOSURES""]"
+33bfe037-9139-401c-9197-5bc4a541ec63,d9537b41-8ea2-4900-96b7-3584192a082d,Which statement about cookies vs `localStorage` is correct?,,"[{""text"":""Cookies are sent with HTTP requests; `localStorage` is not"",""is_correct"":true},{""text"":""`localStorage` is sent with every HTTP request"",""is_correct"":false},{""text"":""Cookies cannot have an expiration date"",""is_correct"":false},{""text"":""Cookies are always larger than `localStorage`"",""is_correct"":false}]",javascript,"[""COOKIES"",""STORAGE""]"
+366343b3-2788-495f-8884-c040b7399c35,f0b352af-6dd7-48bc-92ce-89969cf1cbe5,What will `console.log(a)` print before `var a = 5` is executed?,"console.log(a);
+var a = 5;","[{""text"":""`undefined`"",""is_correct"":true},{""text"":""`5`"",""is_correct"":false},{""text"":""`ReferenceError`"",""is_correct"":false},{""text"":""`TypeError`"",""is_correct"":false}]",javascript,"[""VARIABLES"",""HOISTING"",""BASICS""]"
+38081d93-8dbe-41a9-a445-72372e8f9ea9,c1ddc588-ffe6-4c50-aebb-a59bd8ef8d7d,Which method creates a new object from key‑value pairs?,,"[{""text"":""`Object.fromEntries()`"",""is_correct"":true},{""text"":""`Object.assign()`"",""is_correct"":false},{""text"":""`Object.values()`"",""is_correct"":false},{""text"":""`Object.create()`"",""is_correct"":false}]",javascript,"[""FROM_ENTRIES""]"
+3869d14e-2b05-4c4e-a6ca-8d9c45217f69,cfafc13a-b24f-4293-842d-b16f35cbfa36,What will this code log?,"const arr = [1, 2, 3];
+const res = arr.filter(x => x % 2 === 1);
+console.log(res);","[{""text"":""`[1, 3]`"",""is_correct"":true},{""text"":""`[2]`"",""is_correct"":false},{""text"":""`[1, 2, 3]`"",""is_correct"":false},{""text"":""`[]`"",""is_correct"":false}]",javascript,"[""ARRAYS"",""FILTER""]"
+3aa514f4-83d9-4dc2-9bef-a3a6d55a3587,7d1541a7-7471-4a49-bb01-512395d5b836,What will this code log?,"let a = 1;
+function outer() {
+  let b = 2;
+  function inner() {
+    let c = 3;
+    console.log(a, b, c);
+  }
+  inner();
+}
+outer();","[{""text"":""`1 2 3`"",""is_correct"":true},{""text"":""`ReferenceError`"",""is_correct"":false},{""text"":""`1 2 undefined`"",""is_correct"":false},{""text"":""`undefined` three times"",""is_correct"":false}]",javascript,"[""NESTED_SCOPE"",""LEXICAL_ENV""]"
+3b52d9f7-9e84-4945-a069-845ce18723ac,67089f81-ecc6-4f20-8680-e12509b694d8,Which statement about `undefined` is correct?,,"[{""text"":""`undefined` is the default value for uninitialized variables"",""is_correct"":true},{""text"":""`undefined` and `null` are the same value"",""is_correct"":false},{""text"":""`undefined` is a reserved keyword you cannot shadow"",""is_correct"":false},{""text"":""You cannot assign `undefined` manually"",""is_correct"":false}]",javascript,"[""UNDEFINED"",""DEFAULTS""]"
+3c50a536-6bb7-4efa-b8bf-f8a2ac310e65,9ca2f9a2-4802-4d54-b7c1-dd1a10dda632,What will this code log?,"function log(first, ...rest) {
+  console.log(rest.length);
+}
+log(1, 2, 3, 4);","[{""text"":""`3`"",""is_correct"":true},{""text"":""`4`"",""is_correct"":false},{""text"":""`2`"",""is_correct"":false},{""text"":""`1`"",""is_correct"":false}]",javascript,"[""REST_PARAMETERS""]"
+3df66b9b-f25f-4b9d-9c0f-ce1823c176e7,67089f81-ecc6-4f20-8680-e12509b694d8,What will this code log?,console.log(Array.isArray([]));,"[{""text"":""`true`"",""is_correct"":true},{""text"":""`false`"",""is_correct"":false},{""text"":""`undefined`"",""is_correct"":false},{""text"":""`object`"",""is_correct"":false}]",javascript,"[""ARRAYS"",""CHECKS""]"
+4088e276-e002-42d0-abb1-5ac98cfc63fa,762caa41-9401-4119-b7b0-f2ed5a6c6cda,What will this code log?,"const arr = [3, 1, 2];
+arr.sort();
+console.log(arr);","[{""text"":""`[1, 2, 3]`"",""is_correct"":true},{""text"":""`[3, 2, 1]`"",""is_correct"":false},{""text"":""`[1, 3, 2]`"",""is_correct"":false},{""text"":""`[2, 1, 3]`"",""is_correct"":false}]",javascript,"[""SORT"",""DEFAULT""]"
+4179b57e-03ee-4b92-a9a2-0930a94083c5,cb318465-447a-4257-94dc-07b23e9cfd06,Which comparison returns `true`?,,"[{""text"":""`null == undefined`"",""is_correct"":true},{""text"":""`null === undefined`"",""is_correct"":false},{""text"":""`null == 0`"",""is_correct"":false},{""text"":""`undefined == 0`"",""is_correct"":false}]",javascript,"[""NULL"",""UNDEFINED"",""COERCION""]"
+4212b0e3-7069-47f1-85b8-a7588846aacc,9ca2f9a2-4802-4d54-b7c1-dd1a10dda632,What will this code log?,"function greet(name = `Guest`) {
+  console.log(name);
+}
+greet();","[{""text"":""`Guest`"",""is_correct"":true},{""text"":""`undefined`"",""is_correct"":false},{""text"":""`null`"",""is_correct"":false},{""text"":""`name`"",""is_correct"":false}]",javascript,"[""DEFAULT_PARAMETERS""]"
+437481af-eefa-4a9b-82b3-4f28e1d5754a,f0b352af-6dd7-48bc-92ce-89969cf1cbe5,What will this code log?,"if (true) {
+  let y = 20;
+}
+console.log(y);","[{""text"":""`ReferenceError`"",""is_correct"":true},{""text"":""`undefined`"",""is_correct"":false},{""text"":""`20`"",""is_correct"":false},{""text"":""`null`"",""is_correct"":false}]",javascript,"[""LET"",""BLOCK_SCOPE""]"
+43a14e6d-5a56-4e02-a052-7ad04b106083,c731a21a-6a18-43ef-8d91-904cc7d3bc31,What is the correct way to attach a click handler?,,"[{""text"":""element.addEventListener(`click`, handler)"",""is_correct"":true},{""text"":""element.on(`click`, handler)"",""is_correct"":false},{""text"":""addEventListener(element, `click`, handler)"",""is_correct"":false},{""text"":""element.click(handler)"",""is_correct"":false}]",javascript,"[""EVENTS"",""LISTENERS""]"
+4609b4a3-bdb9-4bcc-af4e-edc8cd1614e4,f0b352af-6dd7-48bc-92ce-89969cf1cbe5,Which statement about `const` is correct?,,"[{""text"":""`const` prevents reassigning the binding, not mutating the object"",""is_correct"":true},{""text"":""`const` makes the entire object deeply immutable"",""is_correct"":false},{""text"":""`const` behaves exactly like `var`"",""is_correct"":false},{""text"":""`const` can be redeclared in the same scope"",""is_correct"":false}]",javascript,"[""CONST"",""MUTATION""]"
+467ffaa5-0670-44e6-8803-7563ce01bff2,d9d362e9-010f-4505-8d05-fdf2a6abf337,Which statement about the `arguments` object is correct?,,"[{""text"":""`arguments` is array-like and available in non-arrow functions"",""is_correct"":true},{""text"":""`arguments` is a real array in all functions"",""is_correct"":false},{""text"":""`arguments` works in arrow functions"",""is_correct"":false},{""text"":""`arguments` only exists in strict mode"",""is_correct"":false}]",javascript,"[""ARGUMENTS"",""FUNCTIONS""]"
+483e4954-145b-4282-90a9-f751ec9e9ccb,cb318465-447a-4257-94dc-07b23e9cfd06,What is the result of `0 === false`?,,"[{""text"":""`true`"",""is_correct"":false},{""text"":""`false`"",""is_correct"":true},{""text"":""`TypeError`"",""is_correct"":false},{""text"":""`NaN`"",""is_correct"":false}]",javascript,"[""COMPARISON"",""STRICT_EQUALITY""]"
+4eb81a40-e704-4435-beb4-ccc1af4940d4,c1ddc588-ffe6-4c50-aebb-a59bd8ef8d7d,Which object is **iterable** by default and can be used with `for...of`?,,"[{""text"":""`Map`"",""is_correct"":true},{""text"":""Plain `{}` object"",""is_correct"":false},{""text"":""`Object.keys(obj)`"",""is_correct"":false},{""text"":""`Object.values(obj)`"",""is_correct"":false}]",javascript,"[""ITERABLE"",""MAP""]"
+4f9ee54f-00ff-41a6-9926-2223ae2a6857,9ca2f9a2-4802-4d54-b7c1-dd1a10dda632,Which call correctly spreads an array into parameters?,"function print(a, b, c) {
+  console.log(a, b, c);
+}","[{""text"":""print(...[1, 2, 3])"",""is_correct"":true},{""text"":""print([1, 2, 3]...)"",""is_correct"":false},{""text"":""print(...[1, 2], 3)"",""is_correct"":false},{""text"":""print([1, 2, 3])"",""is_correct"":false}]",javascript,"[""SPREAD"",""CALLS""]"
+51e2c5bb-12fc-412f-a303-8d34d9607e8b,cfafc13a-b24f-4293-842d-b16f35cbfa36,What does `some` return?,,"[{""text"":""A `boolean` indicating if any element matches"",""is_correct"":true},{""text"":""The first matching element"",""is_correct"":false},{""text"":""The number of matches"",""is_correct"":false},{""text"":""An array of matches"",""is_correct"":false}]",javascript,"[""SOME"",""BOOLEANS""]"
+51ee7336-ad31-43d4-9cd3-220b69fd192c,310f983b-d4b8-402d-9b7a-4c6126d07f03,Which function form is best for methods that rely on `this`?,,"[{""text"":""Regular function expression or method shorthand"",""is_correct"":true},{""text"":""Arrow function as a method"",""is_correct"":false},{""text"":""Anonymous IIFE"",""is_correct"":false},{""text"":""Generator function"",""is_correct"":false}]",javascript,"[""METHODS"",""THIS""]"
+52db6a48-21cf-4a5f-8584-f742fd3d7b9e,67089f81-ecc6-4f20-8680-e12509b694d8,Which statement about `symbol` is correct?,,"[{""text"":""Each `Symbol()` call creates a unique value"",""is_correct"":true},{""text"":""`symbol` values are numbers"",""is_correct"":false},{""text"":""`symbol` values can be auto‑coerced to string"",""is_correct"":false},{""text"":""`symbol` is an alias for `bigint`"",""is_correct"":false}]",javascript,"[""SYMBOL""]"
+5361d4bb-138d-435b-9c1a-ec2b4b97a1f1,983eefee-33d0-415c-b86a-0b5dac3df2f9,What will this code do?,"const el = document.querySelector(`#app`);
+el.textContent = `Hello`; ","[{""text"":""Set the text content of the element with id `app` to `Hello`"",""is_correct"":true},{""text"":""Create a new element called `app`"",""is_correct"":false},{""text"":""Throw a `ReferenceError`"",""is_correct"":false},{""text"":""Reload the page"",""is_correct"":false}]",javascript,"[""DOM"",""TEXTCONTENT""]"
+53a146d0-1076-42cc-9141-b5d378533f2d,cb318465-447a-4257-94dc-07b23e9cfd06,What is the result of `[] === 0`?,,"[{""text"":""`true`"",""is_correct"":false},{""text"":""`false`"",""is_correct"":true},{""text"":""`TypeError`"",""is_correct"":false},{""text"":""`NaN`"",""is_correct"":false}]",javascript,"[""STRICT_EQUALITY"",""ARRAYS""]"
+548ba397-e49b-48d0-8102-1228098b3709,9759a2f9-6ab9-4cc8-8324-b646dd95c461,What does `unknown` represent?,,"[{""text"":""A type-safe counterpart to `any` that must be narrowed"",""is_correct"":true},{""text"":""Exactly the same as `any`"",""is_correct"":false},{""text"":""A subtype of all types"",""is_correct"":false},{""text"":""A type that can only be `null`"",""is_correct"":false}]",typescript,"[""UNKNOWN""]"
+55e6674a-3b3c-4eb9-a74f-281261cca42f,9759a2f9-6ab9-4cc8-8324-b646dd95c461,Which annotation defines an array of numbers?,,"[{""text"":""let values: number[];"",""is_correct"":true},{""text"":""let values: [number];"",""is_correct"":false},{""text"":""let values: Array;"",""is_correct"":false},{""text"":""let values: number;"",""is_correct"":false}]",typescript,"[""ARRAY_TYPES""]"
+5852cdfd-086c-4164-a898-28f5de246fd4,c731a21a-6a18-43ef-8d91-904cc7d3bc31,What will this code do?,"const event = new CustomEvent(`greet`, { detail: { name: `Alex` } });
+document.addEventListener(`greet`, e => {
+  console.log(e.detail.name);
+});
+document.dispatchEvent(event);","[{""text"":""Log `Alex`"",""is_correct"":true},{""text"":""Throw `ReferenceError`"",""is_correct"":false},{""text"":""Do nothing"",""is_correct"":false},{""text"":""Reload the page"",""is_correct"":false}]",javascript,"[""CUSTOM_EVENTS"",""DETAIL""]"
+59b192a6-28eb-493d-a2f5-51f3ac0b622d,c731a21a-6a18-43ef-8d91-904cc7d3bc31,What does `event.preventDefault()` do?,,"[{""text"":""Prevents the default browser behavior"",""is_correct"":true},{""text"":""Stops all event listeners"",""is_correct"":false},{""text"":""Stops propagation"",""is_correct"":false},{""text"":""Cancels `Promise` execution"",""is_correct"":false}]",javascript,"[""EVENTS"",""DEFAULT""]"
+5c3fd012-7cfb-4db1-8b4d-120c877ddda7,310f983b-d4b8-402d-9b7a-4c6126d07f03,Which property is unique to function declarations compared to expressions?,,"[{""text"":""They are fully hoisted and can be called before their definition"",""is_correct"":true},{""text"":""They cannot have a name"",""is_correct"":false},{""text"":""They always run asynchronously"",""is_correct"":false},{""text"":""They cannot be recursive"",""is_correct"":false}]",javascript,"[""DECLARATION"",""HOISTING""]"
+61e4609d-f84d-4edd-8efd-90535cfdb04e,9ca2f9a2-4802-4d54-b7c1-dd1a10dda632,Which statement about parameter defaults is correct?,,"[{""text"":""Default values are used only when the argument is `undefined`"",""is_correct"":true},{""text"":""Default values are used when the argument is `null`"",""is_correct"":false},{""text"":""Default values ignore `undefined`"",""is_correct"":false},{""text"":""Default values must be constants"",""is_correct"":false}]",javascript,"[""DEFAULT_PARAMETERS""]"
+62001d40-39a3-4792-b656-eccfea09d467,7d1541a7-7471-4a49-bb01-512395d5b836,What is variable shadowing?,,"[{""text"":""A local variable with the same name hides an outer variable"",""is_correct"":true},{""text"":""Deleting a variable from global scope"",""is_correct"":false},{""text"":""Reassigning a `const` variable"",""is_correct"":false},{""text"":""Using `var` instead of `let`"",""is_correct"":false}]",javascript,"[""SHADOWING"",""SCOPE""]"
+634ae2a9-41d8-4aff-9327-aa9fcc041ccf,983eefee-33d0-415c-b86a-0b5dac3df2f9,Which property gives the height of the viewport (excluding scrollbars)?,,"[{""text"":""`window.innerHeight`"",""is_correct"":true},{""text"":""`document.body.clientHeight`"",""is_correct"":false},{""text"":""`screen.height`"",""is_correct"":false},{""text"":""`document.documentElement.scrollHeight`"",""is_correct"":false}]",javascript,"[""WINDOW"",""VIEWPORT""]"
+63914116-d8b0-406c-a881-f9b613881da6,d9d362e9-010f-4505-8d05-fdf2a6abf337,How are primitives passed into functions in JavaScript?,,"[{""text"":""By value"",""is_correct"":true},{""text"":""By reference"",""is_correct"":false},{""text"":""By pointer"",""is_correct"":false},{""text"":""By copy-on-write"",""is_correct"":false}]",javascript,"[""PARAMETERS"",""PRIMITIVES""]"
+651923bc-5b54-4396-bb8c-472417256bbe,d9537b41-8ea2-4900-96b7-3584192a082d,Which storage is cleared when the browser tab is closed?,,"[{""text"":""`sessionStorage`"",""is_correct"":true},{""text"":""`localStorage`"",""is_correct"":false},{""text"":""Cookies"",""is_correct"":false},{""text"":""`IndexedDB`"",""is_correct"":false}]",javascript,"[""SESSIONSTORAGE""]"
+67a2e399-af2f-4359-951a-97dce923d2aa,762caa41-9401-4119-b7b0-f2ed5a6c6cda,What will this code log?,"const arr = [1, 2, 3];
+const res = arr.sort((a, b) => b - a);
+console.log(res);","[{""text"":""`[3, 2, 1]`"",""is_correct"":true},{""text"":""`[1, 2, 3]`"",""is_correct"":false},{""text"":""`[2, 3, 1]`"",""is_correct"":false},{""text"":""`[3, 1, 2]`"",""is_correct"":false}]",javascript,"[""SORT"",""DESC""]"
+6899b72c-9a00-41c8-890e-d741d1602c9a,cfafc13a-b24f-4293-842d-b16f35cbfa36,Which statement about `map` is correct?,,"[{""text"":""`map` always returns an array of the same length"",""is_correct"":true},{""text"":""`map` can remove elements like `filter`"",""is_correct"":false},{""text"":""`map` mutates the original array"",""is_correct"":false},{""text"":""`map` stops after the first match"",""is_correct"":false}]",javascript,"[""MAP"",""TRANSFORM""]"
+69795096-982b-44ed-a7bc-1d0a7d84fd3e,f0b352af-6dd7-48bc-92ce-89969cf1cbe5,What happens when you redeclare the same name with `var` in the same scope?,,"[{""text"":""The second `var` silently overwrites the first"",""is_correct"":true},{""text"":""JavaScript throws a `SyntaxError`"",""is_correct"":false},{""text"":""JavaScript throws a `TypeError`"",""is_correct"":false},{""text"":""The code is ignored at parse time"",""is_correct"":false}]",javascript,"[""VAR"",""REDECLARATION""]"
+69d33be7-07f4-48d6-b0a5-00d67eab3f10,23216e88-1946-4c6d-8e2f-c4e2235bec62,What will this code log?,"function createGreeter(name) {
+  return function () {
+    console.log(`Hello, ` + name);
+  };
+}
+const greet = createGreeter(`Alex`);
+greet();","[{""text"":""`Hello, Alex`"",""is_correct"":true},{""text"":""`Hello, undefined`"",""is_correct"":false},{""text"":""`Hello,`"",""is_correct"":false},{""text"":""`ReferenceError`"",""is_correct"":false}]",javascript,"[""CLOSURES"",""FACTORY""]"
+6ca22ae6-d2f3-4f02-9576-d460bb812592,9759a2f9-6ab9-4cc8-8324-b646dd95c461,What will cause a compile-time error?,"let x: string = `hello`;
+x = 42;","[{""text"":""Assigning `number` to a `string` variable"",""is_correct"":true},{""text"":""Declaring `x` as `string`"",""is_correct"":false},{""text"":""Using backticks for strings"",""is_correct"":false},{""text"":""Using `let` instead of `const`"",""is_correct"":false}]",typescript,"[""ASSIGNABILITY""]"
+717f865f-dfe6-4636-95d9-a532d41ea0cc,c1ddc588-ffe6-4c50-aebb-a59bd8ef8d7d,What will this code log?,"const obj = { a: 1, b: 2 };
+console.log(Object.entries(obj));","[{""text"":""`[[`a`, 1], [`b`, 2]]`"",""is_correct"":true},{""text"":""`[`a`, `b`]`"",""is_correct"":false},{""text"":""`[1, 2]`"",""is_correct"":false},{""text"":""`{ a: 1, b: 2 }`"",""is_correct"":false}]",javascript,"[""ENTRIES""]"
+7193564c-df63-4e38-9d59-afc030e30d86,c1ddc588-ffe6-4c50-aebb-a59bd8ef8d7d,Which property flag controls whether a property shows up in `for...in`?,,"[{""text"":""`enumerable`"",""is_correct"":true},{""text"":""`configurable`"",""is_correct"":false},{""text"":""`writable`"",""is_correct"":false},{""text"":""`frozen`"",""is_correct"":false}]",javascript,"[""DESCRIPTORS""]"
+72004304-d4e9-4e5a-a16a-8368f500ac7a,23216e88-1946-4c6d-8e2f-c4e2235bec62,Which statement about `closures` is **false**?,,"[{""text"":""Closures can access variables from outer scopes"",""is_correct"":false},{""text"":""Closures keep variables alive even after the outer function returns"",""is_correct"":false},{""text"":""Closures can cause memory leaks if not used carefully"",""is_correct"":false},{""text"":""Closures can only be created inside `async` functions"",""is_correct"":true}]",javascript,"[""CLOSURES""]"
+7292edf8-8b63-4085-ae7d-d472268d472b,9ca2f9a2-4802-4d54-b7c1-dd1a10dda632,What will this code log?,"function foo(a, b = a * 2) {
+  console.log(b);
+}
+foo(3);","[{""text"":""`6`"",""is_correct"":true},{""text"":""`3`"",""is_correct"":false},{""text"":""`NaN`"",""is_correct"":false},{""text"":""`undefined`"",""is_correct"":false}]",javascript,"[""DEFAULT_PARAMETERS"",""EXPRESSIONS""]"
+73e8c174-1f44-4e99-8cab-5989ae10f278,d9537b41-8ea2-4900-96b7-3584192a082d,Which `Intl` API is used for formatting dates and times?,,"[{""text"":""`Intl.DateTimeFormat`"",""is_correct"":true},{""text"":""`Intl.NumberFormat`"",""is_correct"":false},{""text"":""`Intl.Locale`"",""is_correct"":false},{""text"":""`Intl.TimeZone`"",""is_correct"":false}]",javascript,"[""INTL"",""DATE""]"
+74f2f4df-fe5d-41f8-8130-db3428f307d0,f0b352af-6dd7-48bc-92ce-89969cf1cbe5,What will this code log?,"console.log(typeof z);
+var z = 42;","[{""text"":""`undefined`"",""is_correct"":false},{""text"":""`number`"",""is_correct"":false},{""text"":""`object`"",""is_correct"":false},{""text"":""`undefined` then assigns `42` later due to hoisting"",""is_correct"":true}]",javascript,"[""TYPEOF"",""HOISTING""]"
+76822ddb-d94d-4d73-9ba6-1c0ae90b1604,cfafc13a-b24f-4293-842d-b16f35cbfa36,Which method does **not** mutate the original array?,,"[{""text"":""`slice`"",""is_correct"":true},{""text"":""`splice`"",""is_correct"":false},{""text"":""`sort`"",""is_correct"":false},{""text"":""`reverse`"",""is_correct"":false}]",javascript,"[""IMMUTABILITY"",""ARRAYS""]"
+7bafa4cc-eb4d-4b01-8fa3-1167dcbca8b0,762caa41-9401-4119-b7b0-f2ed5a6c6cda,Which statement about `for...of` is correct?,,"[{""text"":""`for...of` iterates over iterable values like arrays and `Map`"",""is_correct"":true},{""text"":""`for...of` iterates over keys of plain objects by default"",""is_correct"":false},{""text"":""`for...of` is identical to `for...in`"",""is_correct"":false},{""text"":""`for...of` only works with `Promise`"",""is_correct"":false}]",javascript,"[""FOR_OF"",""ITERABLES""]"
+7e045340-00fe-47eb-90dd-14ae3bb84386,cfafc13a-b24f-4293-842d-b16f35cbfa36,What will this code log?,"const arr = [1, 2, 3];
+arr.push(4);
+console.log(arr.length);","[{""text"":""`4`"",""is_correct"":true},{""text"":""`3`"",""is_correct"":false},{""text"":""`undefined`"",""is_correct"":false},{""text"":""`NaN`"",""is_correct"":false}]",javascript,"[""PUSH"",""LENGTH""]"
+7f0d7538-ca67-4691-a049-5bbc80016e4d,0497829e-f4d0-4074-9af4-7ef069f3240f,What will this type represent?,"type ReadonlyUser = {
+  readonly id: number;
+  name: string;
+};","[{""text"":""An object where `id` cannot be reassigned"",""is_correct"":true},{""text"":""An object where `name` cannot be reassigned"",""is_correct"":false},{""text"":""An object that is deeply immutable"",""is_correct"":false},{""text"":""A `const` variable"",""is_correct"":false}]",typescript,"[""READONLY""]"
+8128cb48-f03c-49ab-b7ca-ec700f7988ae,f0b352af-6dd7-48bc-92ce-89969cf1cbe5,What will this code log?,"if (true) {
+  let y = 20;
+}
+console.log(y);","[{""text"":""`ReferenceError`"",""is_correct"":true},{""text"":""`undefined`"",""is_correct"":false},{""text"":""`20`"",""is_correct"":false},{""text"":""`null`"",""is_correct"":false}]",javascript,"[""LET"",""BLOCK_SCOPE""]"
+8156a914-6a62-471b-a2b8-27cbce382ea5,0497829e-f4d0-4074-9af4-7ef069f3240f,What is the generic parameter `T` in this example?,"function identity<T>(value: T): T {
+  return value;
+}","[{""text"":""A type parameter representing the type of `value`"",""is_correct"":true},{""text"":""A runtime variable used in the body"",""is_correct"":false},{""text"":""A reserved keyword for tuples"",""is_correct"":false},{""text"":""A constraint that must always be `string`"",""is_correct"":false}]",typescript,"[""GENERICS""]"
+830f84e5-da60-4e0a-948f-a54df55a390b,983eefee-33d0-415c-b86a-0b5dac3df2f9,What will this code do?,"const el = document.createElement(`div`);
+el.className = `box`;
+document.body.appendChild(el);","[{""text"":""Create a new `div` with class `box` and append it to `body`"",""is_correct"":true},{""text"":""Replace the entire `body` with a `div`"",""is_correct"":false},{""text"":""Throw a `TypeError`"",""is_correct"":false},{""text"":""Do nothing"",""is_correct"":false}]",javascript,"[""DOM"",""APPEND""]"
+84798ec3-8ab5-4f0e-882b-84d58b53c4f8,67089f81-ecc6-4f20-8680-e12509b694d8,Which operator checks if a value is `NaN` in a reliable way?,,"[{""text"":""`Number.isNaN(value)`"",""is_correct"":true},{""text"":""`value === NaN`"",""is_correct"":false},{""text"":""`value == NaN`"",""is_correct"":false},{""text"":""`typeof value === `NaN``"",""is_correct"":false}]",javascript,"[""NaN"",""CHECKS""]"
+84973345-5e96-4e4d-a72a-d5c668b7e1b9,9ca2f9a2-4802-4d54-b7c1-dd1a10dda632,Which statement about rest parameters is correct?,,"[{""text"":""A function can have only one rest parameter and it must be last"",""is_correct"":true},{""text"":""A function can have multiple rest parameters"",""is_correct"":false},{""text"":""Rest parameters can appear anywhere in the list"",""is_correct"":false},{""text"":""Rest parameters are automatically spread into separate arguments"",""is_correct"":false}]",javascript,"[""REST_PARAMETERS""]"
+85c04b0d-fe90-4bd1-a454-2f52522fe305,7d1541a7-7471-4a49-bb01-512395d5b836,Which scope can **always** access global variables?,,"[{""text"":""Any inner (nested) scope"",""is_correct"":true},{""text"":""Only the global scope"",""is_correct"":false},{""text"":""Only block scopes"",""is_correct"":false},{""text"":""Only function scopes"",""is_correct"":false}]",javascript,"[""GLOBAL_SCOPE"",""LEXICAL_ENV""]"
+8905f26d-87e8-427f-9295-7675ab4412b4,23216e88-1946-4c6d-8e2f-c4e2235bec62,What will this code log?,"for (var i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 0);
+}","[{""text"":""`3` three times"",""is_correct"":true},{""text"":""`0 1 2`"",""is_correct"":false},{""text"":""`0 0 0`"",""is_correct"":false},{""text"":""`1 2 3`"",""is_correct"":false}]",javascript,"[""CLOSURES"",""VAR"",""ASYNC""]"
+8ad68006-070d-4911-84ad-20c427da78ee,c731a21a-6a18-43ef-8d91-904cc7d3bc31,What will this code log?,"setTimeout(() => {
+  console.log(`timeout`);
+}, 0);
+console.log(`sync`);","[{""text"":""`sync` then `timeout`"",""is_correct"":true},{""text"":""`timeout` then `sync`"",""is_correct"":false},{""text"":""Only `timeout`"",""is_correct"":false},{""text"":""Only `sync`"",""is_correct"":false}]",javascript,"[""TIMERS"",""EVENT_LOOP""]"
+8adb5941-f196-4bcc-8673-207797d23592,23216e88-1946-4c6d-8e2f-c4e2235bec62,Which pattern is a classic use case for `closures`?,,"[{""text"":""Creating private variables and functions"",""is_correct"":true},{""text"":""Declaring global variables"",""is_correct"":false},{""text"":""Serializing data to JSON"",""is_correct"":false},{""text"":""Styling elements with CSS"",""is_correct"":false}]",javascript,"[""PRIVACY"",""PATTERNS""]"
+8b6b7bd4-1eda-41b1-a323-9d2fedf42db3,cb318465-447a-4257-94dc-07b23e9cfd06,What is the result of `0 == false`?,,"[{""text"":""`true`"",""is_correct"":true},{""text"":""`false`"",""is_correct"":false},{""text"":""`TypeError`"",""is_correct"":false},{""text"":""`NaN`"",""is_correct"":false}]",javascript,"[""COMPARISON"",""COERCION""]"
+8b87530f-9424-461c-8775-4d8bc709716a,310f983b-d4b8-402d-9b7a-4c6126d07f03,What does this code log?,"(function () {
+  console.log(`IIFE`);
+})();","[{""text"":""`IIFE`"",""is_correct"":true},{""text"":""`undefined`"",""is_correct"":false},{""text"":""Nothing"",""is_correct"":false},{""text"":""`ReferenceError`"",""is_correct"":false}]",javascript,"[""IIFE"",""FUNCTIONS""]"
+8ca5be74-be67-4458-bf7a-a66256c74476,23216e88-1946-4c6d-8e2f-c4e2235bec62,What will this code log?,"function makeCounter() {
+  let count = 0;
+  return function () {
+    count++;
+    console.log(count);
+  };
+}
+const counter = makeCounter();
+counter();
+counter();","[{""text"":""`1` then `2`"",""is_correct"":true},{""text"":""`0` then `1`"",""is_correct"":false},{""text"":""`2` then `3`"",""is_correct"":false},{""text"":""`1` then `1`"",""is_correct"":false}]",javascript,"[""CLOSURES"",""STATE""]"
+8d7e6de2-254b-412d-9a4f-16e92af01cb8,d9d362e9-010f-4505-8d05-fdf2a6abf337,Which statement about parameter order is best practice?,,"[{""text"":""Required parameters first, then optional, then rest"",""is_correct"":true},{""text"":""Optional parameters should always come first"",""is_correct"":false},{""text"":""Rest parameters can appear anywhere"",""is_correct"":false},{""text"":""Order of parameters never matters"",""is_correct"":false}]",javascript,"[""PARAMETER_DESIGN""]"
+8dc6e774-7734-42ce-82c2-d81f853324a5,0497829e-f4d0-4074-9af4-7ef069f3240f,Which statement about interfaces vs type aliases is correct?,,"[{""text"":""Interfaces can be merged by declaration; type aliases cannot"",""is_correct"":true},{""text"":""Type aliases can only describe primitives"",""is_correct"":false},{""text"":""Interfaces cannot extend other interfaces"",""is_correct"":false},{""text"":""Interfaces cannot describe function types"",""is_correct"":false}]",typescript,"[""INTERFACES"",""TYPE_ALIASES""]"
+8fc9fdb1-54c0-4eb4-8000-4ef96c84e978,d89d3f51-2c37-44f6-9dfd-a01dce363be8,What is true about arrow functions and `this`?,,"[{""text"":""Arrow functions capture `this` from the surrounding lexical scope"",""is_correct"":true},{""text"":""Arrow functions have their own dynamic `this`"",""is_correct"":false},{""text"":""Arrow functions can be used as constructors with `new`"",""is_correct"":false},{""text"":""Arrow functions always bind `this` to `window`"",""is_correct"":false}]",javascript,"[""ARROW_FUNCTIONS"",""THIS""]"
+90305d3d-6c2b-48ff-a7d0-dd285e1e49ee,c731a21a-6a18-43ef-8d91-904cc7d3bc31,Which interface is used to create custom events?,,"[{""text"":""`CustomEvent`"",""is_correct"":true},{""text"":""`UserEvent`"",""is_correct"":false},{""text"":""`EventEmitter`"",""is_correct"":false},{""text"":""`EventTarget`"",""is_correct"":false}]",javascript,"[""CUSTOM_EVENTS""]"
+92b8af9b-b7f1-47af-915f-3e05b868f3e6,310f983b-d4b8-402d-9b7a-4c6126d07f03,Which code defines a function expression?,,"[{""text"":""const foo = function () {};"",""is_correct"":true},{""text"":""function foo() {}"",""is_correct"":false},{""text"":""foo() {}"",""is_correct"":false},{""text"":""function() {}"",""is_correct"":false}]",javascript,"[""FUNCTION_EXPRESSIONS""]"
+96090b51-8845-4744-b765-cc05105204d5,d9537b41-8ea2-4900-96b7-3584192a082d,What will this code log approximately?,"const start = Date.now();
+// some work
+const end = Date.now();
+console.log(end - start);","[{""text"":""Elapsed time in milliseconds"",""is_correct"":true},{""text"":""Elapsed time in seconds"",""is_correct"":false},{""text"":""Time in `ISO` format"",""is_correct"":false},{""text"":""Difference in days"",""is_correct"":false}]",javascript,"[""DATE"",""PERFORMANCE""]"
+98ac9e60-c2e1-4512-95e4-4b348eef8e08,d9d362e9-010f-4505-8d05-fdf2a6abf337,How are objects passed into functions in JavaScript?,,"[{""text"":""The reference is passed by value"",""is_correct"":true},{""text"":""The whole object is deeply copied"",""is_correct"":false},{""text"":""They are passed by reference like in C++"",""is_correct"":false},{""text"":""They cannot be passed as parameters"",""is_correct"":false}]",javascript,"[""OBJECTS"",""REFERENCES""]"
+9bb23465-1f65-42ce-b8be-251086b20f31,67089f81-ecc6-4f20-8680-e12509b694d8,What is the result of `typeof NaN`?,,"[{""text"":""`number`"",""is_correct"":true},{""text"":""`NaN`"",""is_correct"":false},{""text"":""`undefined`"",""is_correct"":false},{""text"":""`object`"",""is_correct"":false}]",javascript,"[""NaN"",""TYPEOF""]"
+9c382d07-5857-4088-a112-dafab2ebae09,9759a2f9-6ab9-4cc8-8324-b646dd95c461,What is the type of a function that does not return a value?,"function log(message: string): void {
+  console.log(message);
+}","[{""text"":""`void`"",""is_correct"":true},{""text"":""`never`"",""is_correct"":false},{""text"":""`any`"",""is_correct"":false},{""text"":""`unknown`"",""is_correct"":false}]",typescript,"[""VOID""]"
+a05024aa-971f-4d5c-8f32-f1b0317f76c0,cb318465-447a-4257-94dc-07b23e9cfd06,Which operator performs **no** type coercion?,,"[{""text"":""`===`"",""is_correct"":true},{""text"":""`==`"",""is_correct"":false},{""text"":""`!=`"",""is_correct"":false},{""text"":""`<=`"",""is_correct"":false}]",javascript,"[""STRICT_EQUALITY""]"
+a0ae27f7-6ccc-4600-87fc-1c05e566350b,cb318465-447a-4257-94dc-07b23e9cfd06,What is the result of `[] == 0`?,,"[{""text"":""`true`"",""is_correct"":true},{""text"":""`false`"",""is_correct"":false},{""text"":""`TypeError`"",""is_correct"":false},{""text"":""`NaN`"",""is_correct"":false}]",javascript,"[""COERCION"",""ARRAYS""]"
+a30dcd3f-537e-48b2-84c4-904754130a98,0497829e-f4d0-4074-9af4-7ef069f3240f,Which utility type makes all properties optional?,,"[{""text"":""Partial<User>"",""is_correct"":true},{""text"":""Required<User>"",""is_correct"":false},{""text"":""Readonly<User>"",""is_correct"":false},{""text"":""Pick<User, 'id'>"",""is_correct"":false}]",typescript,"[""PARTIAL""]"
+a510c7f4-1199-4d19-850b-d7b8aac4e8ad,67089f81-ecc6-4f20-8680-e12509b694d8,Which of the following is **not** a primitive type in JavaScript?,,"[{""text"":""`object`"",""is_correct"":true},{""text"":""`string`"",""is_correct"":false},{""text"":""`number`"",""is_correct"":false},{""text"":""`boolean`"",""is_correct"":false}]",javascript,"[""TYPES"",""PRIMITIVES""]"
+a693cc29-70fe-47df-b6c1-c76021bfa67f,67089f81-ecc6-4f20-8680-e12509b694d8,What will this code log?,console.log(typeof null);,"[{""text"":""`object`"",""is_correct"":true},{""text"":""`null`"",""is_correct"":false},{""text"":""`undefined`"",""is_correct"":false},{""text"":""`boolean`"",""is_correct"":false}]",javascript,"[""TYPEOF"",""NULL""]"
+a82a71e9-a57f-41cd-95e4-eab849d3a9cb,9759a2f9-6ab9-4cc8-8324-b646dd95c461,Which annotation correctly declares a variable that can be `number` or `string`?,,"[{""text"":""let id: number | string;"",""is_correct"":true},{""text"":""let id: number || string;"",""is_correct"":false},{""text"":""let id: number & string;"",""is_correct"":false},{""text"":""let id: `number,string`;"",""is_correct"":false}]",typescript,"[""UNION_TYPES""]"
+ace4fafa-1476-455f-aa04-57b0cd3a0b45,d9537b41-8ea2-4900-96b7-3584192a082d,Which API persists data across browser sessions on the same device?,,"[{""text"":""`localStorage`"",""is_correct"":true},{""text"":""`sessionStorage`"",""is_correct"":false},{""text"":""JavaScript variables"",""is_correct"":false},{""text"":""`console.log`"",""is_correct"":false}]",javascript,"[""STORAGE"",""LOCALSTORAGE""]"
+adf3228a-7836-4d52-829d-9b80222150cd,d89d3f51-2c37-44f6-9dfd-a01dce363be8,What will this code log?,"const obj = {
+  value: 1,
+  inc() {
+    this.value++;
+  }
+};
+const inc = obj.inc.bind(obj);
+inc();
+console.log(obj.value);","[{""text"":""`2`"",""is_correct"":true},{""text"":""`1`"",""is_correct"":false},{""text"":""`undefined`"",""is_correct"":false},{""text"":""`NaN`"",""is_correct"":false}]",javascript,"[""BIND"",""METHODS""]"
+af3378f9-d4d5-4970-b666-c1b72dbdb6c1,23216e88-1946-4c6d-8e2f-c4e2235bec62,Where is the variable `count` stored after `makeCounter` has returned?,,"[{""text"":""In the lexical environment kept alive by the closure"",""is_correct"":true},{""text"":""It is fully destroyed after the function returns"",""is_correct"":false},{""text"":""In `localStorage`"",""is_correct"":false},{""text"":""In the global object"",""is_correct"":false}]",javascript,"[""LEXICAL_ENV"",""CLOSURES""]"
+b4229b30-c84a-4a14-8c1c-8bff7f22ddda,9759a2f9-6ab9-4cc8-8324-b646dd95c461,Which statement about `non-null assertion` is correct?,,"[{""text"":""`value!` tells the compiler you know `value` is not `null`/`undefined`"",""is_correct"":true},{""text"":""`value!` converts `null` to `undefined`"",""is_correct"":false},{""text"":""`value!` throws at runtime if `value` is `null`"",""is_correct"":false},{""text"":""`value!` casts the value to `any`"",""is_correct"":false}]",typescript,"[""NON_NULL_ASSERTION""]"
+b8a97f02-4a34-476e-bdf5-2bfa92597970,762caa41-9401-4119-b7b0-f2ed5a6c6cda,How do you sort numbers ascending correctly?,,"[{""text"":""arr.sort((a, b) => a - b)"",""is_correct"":true},{""text"":""arr.sort((a, b) => b - a)"",""is_correct"":false},{""text"":""arr.sort()"",""is_correct"":false},{""text"":""arr.sort(`asc`)"",""is_correct"":false}]",javascript,"[""SORT"",""COMPAREFN""]"
+b8ceb135-3c3f-4a05-9066-b0f782a05ace,7d1541a7-7471-4a49-bb01-512395d5b836,What will this code log?,"function foo() {
+  if (true) {
+    var x = 1;
+    let y = 2;
+  }
+  console.log(typeof x, typeof y);
+}
+foo();","[{""text"":""`number` and `undefined`"",""is_correct"":true},{""text"":""`number` and `number`"",""is_correct"":false},{""text"":""`undefined` and `number`"",""is_correct"":false},{""text"":""`undefined` and `undefined`"",""is_correct"":false}]",javascript,"[""FUNCTION_SCOPE"",""BLOCK_SCOPE""]"
+b91ed1aa-1aaa-4f59-9474-87ad274eca22,7d1541a7-7471-4a49-bb01-512395d5b836,Which variables are block‑scoped?,,"[{""text"":""`let` and `const`"",""is_correct"":true},{""text"":""`var` only"",""is_correct"":false},{""text"":""All: `var`, `let`, `const`"",""is_correct"":false},{""text"":""None of them"",""is_correct"":false}]",javascript,"[""BLOCK_SCOPE"",""VARIABLES""]"
+ba9078b5-fe3a-47c0-8cf8-62e0693fe58c,c731a21a-6a18-43ef-8d91-904cc7d3bc31,Which pattern describes event delegation?,,"[{""text"":""Attaching a single listener on a parent and handling events from children"",""is_correct"":true},{""text"":""Attaching a listener on every child element"",""is_correct"":false},{""text"":""Using `setTimeout` to delay event handlers"",""is_correct"":false},{""text"":""Removing listeners after they fire once"",""is_correct"":false}]",javascript,"[""EVENT_DELEGATION""]"
+bbb1a498-2e85-4dca-8352-f99b6c226abe,762caa41-9401-4119-b7b0-f2ed5a6c6cda,What will this code log?,"const arr = [1, 2, 3];
+arr.forEach(x => console.log(x * 2));","[{""text"":""`2 4 6` logged separately"",""is_correct"":true},{""text"":""`[2, 4, 6]` logged once"",""is_correct"":false},{""text"":""`[1, 2, 3]`"",""is_correct"":false},{""text"":""`undefined`"",""is_correct"":false}]",javascript,"[""FOREACH"",""SIDE_EFFECTS""]"
+bc793152-dae7-4986-9ef5-13470fe2cbe7,983eefee-33d0-415c-b86a-0b5dac3df2f9,Which DOM API creates a new element?,,"[{""text"":""`document.createElement`"",""is_correct"":true},{""text"":""`document.appendChild`"",""is_correct"":false},{""text"":""`document.querySelector`"",""is_correct"":false},{""text"":""`document.write`"",""is_correct"":false}]",javascript,"[""DOM"",""CREATE""]"
+bdcf927a-14b5-46b2-9263-543ba8bffe50,983eefee-33d0-415c-b86a-0b5dac3df2f9,Which event fires when the DOM tree has been fully parsed (without waiting for images)?,,"[{""text"":""`DOMContentLoaded`"",""is_correct"":true},{""text"":""`load`"",""is_correct"":false},{""text"":""`beforeunload`"",""is_correct"":false},{""text"":""`resize`"",""is_correct"":false}]",javascript,"[""EVENTS"",""DOMCONTENTLOADED""]"
+c0b10519-ae33-42b9-aed0-74b0930d4ebe,d89d3f51-2c37-44f6-9dfd-a01dce363be8,"In strict mode, what does `this` equal in a plain function call?","`use strict`;
+function foo() {
+  console.log(this);
+}
+foo();","[{""text"":""`undefined`"",""is_correct"":true},{""text"":""`window`"",""is_correct"":false},{""text"":""`globalThis`"",""is_correct"":false},{""text"":""The function `foo`"",""is_correct"":false}]",javascript,"[""THIS"",""STRICT_MODE""]"
+c2351a7f-de45-42c0-98be-e4428eafcd98,0497829e-f4d0-4074-9af4-7ef069f3240f,Which syntax constrains a generic type to objects with an `id` field?,,"[{""text"":""function fn<T extends { id: number }>(value: T) {}"",""is_correct"":true},{""text"":""function fn<T: { id: number }>(value: T) {}"",""is_correct"":false},{""text"":""function fn<T = { id: number }>(value: T) {}"",""is_correct"":false},{""text"":""function fn<T super { id: number }>(value: T) {}"",""is_correct"":false}]",typescript,"[""GENERICS"",""CONSTRAINTS""]"
+c268e2b4-fcd8-428f-9678-6fa4e9c4a1be,67089f81-ecc6-4f20-8680-e12509b694d8,What is the result of `typeof (() => {})`?,,"[{""text"":""`function`"",""is_correct"":true},{""text"":""`object`"",""is_correct"":false},{""text"":""`arrow`"",""is_correct"":false},{""text"":""`undefined`"",""is_correct"":false}]",javascript,"[""FUNCTIONS"",""TYPEOF""]"
+c2ec30d8-12b1-45b7-9c05-e1037e6fc118,9ca2f9a2-4802-4d54-b7c1-dd1a10dda632,Which destructuring syntax is correct for function parameters?,,"[{""text"":""function f({ x, y }) {}"",""is_correct"":true},{""text"":""function f({ x: y }) {}"",""is_correct"":false},{""text"":""function f(x: {x, y}) {}"",""is_correct"":false},{""text"":""function f[x, y] {}"",""is_correct"":false}]",javascript,"[""DESTRUCTURING"",""PARAMETERS""]"
+c3d79b21-700e-43d7-9fa8-d2f561ca01df,310f983b-d4b8-402d-9b7a-4c6126d07f03,Which statement about arrow functions is correct?,,"[{""text"":""Arrow functions do not have their own `this`"",""is_correct"":true},{""text"":""Arrow functions are always hoisted with a body"",""is_correct"":false},{""text"":""Arrow functions can be used as constructors with `new`"",""is_correct"":false},{""text"":""Arrow functions have their own `arguments` object"",""is_correct"":false}]",javascript,"[""ARROW_FUNCTIONS"",""THIS""]"
+c40cf608-4e78-4b97-9c37-35890b5526cc,d9d362e9-010f-4505-8d05-fdf2a6abf337,What will this code log?,"function sum(a, b = 2) {
+  return a + b;
+}
+console.log(sum(3));","[{""text"":""`5`"",""is_correct"":true},{""text"":""`NaN`"",""is_correct"":false},{""text"":""`undefined`"",""is_correct"":false},{""text"":""`3`"",""is_correct"":false}]",javascript,"[""DEFAULT_PARAMETERS""]"
+c54ebb75-b254-41b9-a446-0c2b98b56853,762caa41-9401-4119-b7b0-f2ed5a6c6cda,What will this code log?,"const arr = [10, 2, 5];
+arr.sort();
+console.log(arr);","[{""text"":""`[10, 2, 5]`"",""is_correct"":false},{""text"":""`[10, 5, 2]`"",""is_correct"":true},{""text"":""`[2, 5, 10]`"",""is_correct"":false},{""text"":""`[5, 2, 10]`"",""is_correct"":false}]",javascript,"[""SORT"",""LEXICOGRAPHIC""]"
+c68030ea-3998-4d51-a83d-2a1574bdd7bd,23216e88-1946-4c6d-8e2f-c4e2235bec62,What is a `closure`?,,"[{""text"":""A function bundled together with its lexical environment"",""is_correct"":true},{""text"":""Any anonymous function"",""is_correct"":false},{""text"":""A function that calls itself"",""is_correct"":false},{""text"":""A special kind of `Promise`"",""is_correct"":false}]",javascript,"[""CLOSURES"",""LEXICAL_ENV""]"
+c7aeebde-5bbc-41e9-8a8d-284a46453133,9759a2f9-6ab9-4cc8-8324-b646dd95c461,Which type should you prefer instead of `any` to keep type safety?,,"[{""text"":""`unknown`"",""is_correct"":true},{""text"":""`void`"",""is_correct"":false},{""text"":""`never`"",""is_correct"":false},{""text"":""`object`"",""is_correct"":false}]",typescript,"[""ANY"",""UNKNOWN""]"
+c82558f2-be4e-40d1-8216-64dcc546f05a,cfafc13a-b24f-4293-842d-b16f35cbfa36,What will this code log?,"const arr = [1, 2, 3, 4];
+const res = arr.slice(1, 3);
+console.log(res);","[{""text"":""`[2, 3]`"",""is_correct"":true},{""text"":""`[2, 3, 4]`"",""is_correct"":false},{""text"":""`[1, 2]`"",""is_correct"":false},{""text"":""`[1, 2, 3]`"",""is_correct"":false}]",javascript,"[""SLICE"",""ARRAYS""]"
+cabddf4f-4fbd-41b3-b926-52ed1e0154c4,762caa41-9401-4119-b7b0-f2ed5a6c6cda,Which method is best for **checking** if at least one element matches a condition?,,"[{""text"":""`some`"",""is_correct"":true},{""text"":""`every`"",""is_correct"":false},{""text"":""`filter`"",""is_correct"":false},{""text"":""`find`"",""is_correct"":false}]",javascript,"[""SOME"",""PREDICATE""]"
+cac3a60e-faec-451d-98c1-d75a9049b6ff,d9537b41-8ea2-4900-96b7-3584192a082d,What will this code log?,"localStorage.setItem(`count`, `5`);
+console.log(localStorage.getItem(`count`));","[{""text"":""`5` as a string"",""is_correct"":true},{""text"":""`5` as a number"",""is_correct"":false},{""text"":""`undefined`"",""is_correct"":false},{""text"":""`null`"",""is_correct"":false}]",javascript,"[""LOCALSTORAGE"",""STRINGS""]"
+caec629a-2dc7-4ac4-8c04-215d30440426,d9537b41-8ea2-4900-96b7-3584192a082d,What will this code do?,"const expires = new Date(Date.now() + 24 * 60 * 60 * 1000).toUTCString();
+document.cookie = `token=abc; expires=` + expires + `; path=/`; ","[{""text"":""Set a cookie `token` that lives for about one day"",""is_correct"":true},{""text"":""Store `token` in `localStorage`"",""is_correct"":false},{""text"":""Throw a syntax error"",""is_correct"":false},{""text"":""Clear all cookies"",""is_correct"":false}]",javascript,"[""COOKIES"",""EXPIRES""]"
+cd293202-5f69-4d13-957d-85695aab9ef9,d9537b41-8ea2-4900-96b7-3584192a082d,Which statement about time zones is correct?,,"[{""text"":""`Date` stores timestamps as milliseconds since the epoch in UTC"",""is_correct"":true},{""text"":""`Date` always stores local time"",""is_correct"":false},{""text"":""`Date` cannot represent UTC"",""is_correct"":false},{""text"":""Time zone is stored as part of the `Date` value"",""is_correct"":false}]",javascript,"[""DATE"",""TIMEZONES""]"
+d0731698-0783-4f92-939c-7eecd406d92d,310f983b-d4b8-402d-9b7a-4c6126d07f03,Which function form is hoisted with its body?,,"[{""text"":""Function declaration"",""is_correct"":true},{""text"":""Function expression"",""is_correct"":false},{""text"":""Arrow function"",""is_correct"":false},{""text"":""Method shorthand in object"",""is_correct"":false}]",javascript,"[""FUNCTIONS"",""HOISTING""]"
+d079e1c6-228b-4b4f-8cd8-3a28b0abbe1c,d89d3f51-2c37-44f6-9dfd-a01dce363be8,What will this code log?,"const obj = {
+  value: 42,
+  getValue() {
+    console.log(this.value);
+  }
+};
+obj.getValue();","[{""text"":""`42`"",""is_correct"":true},{""text"":""`undefined`"",""is_correct"":false},{""text"":""`ReferenceError`"",""is_correct"":false},{""text"":""`null`"",""is_correct"":false}]",javascript,"[""METHODS"",""THIS""]"
+d1ae8429-9f27-41f9-9ea3-b8471ca1d970,cb318465-447a-4257-94dc-07b23e9cfd06,Which statement about `Object.is` is correct?,,"[{""text"":""`Object.is` treats `NaN` as equal to `NaN` and distinguishes `+0` from `-0`"",""is_correct"":true},{""text"":""`Object.is` behaves exactly like `===` in all cases"",""is_correct"":false},{""text"":""`Object.is` performs type coercion like `==`"",""is_correct"":false},{""text"":""`Object.is` can only compare objects"",""is_correct"":false}]",javascript,"[""OBJECT_IS"",""COMPARISON""]"
+d6487c72-8db1-4762-8579-b37faaa9be0e,983eefee-33d0-415c-b86a-0b5dac3df2f9,Which method is best for selecting a single element by CSS selector?,,"[{""text"":""`document.querySelector`"",""is_correct"":true},{""text"":""`document.getElementById`"",""is_correct"":false},{""text"":""`document.querySelectorAll`"",""is_correct"":false},{""text"":""`document.getElementsByClassName`"",""is_correct"":false}]",javascript,"[""DOM"",""SELECTORS""]"
+d7e0b01f-3186-42d9-8432-b32c89b0d5ab,c1ddc588-ffe6-4c50-aebb-a59bd8ef8d7d,What will this code log?,"const obj = { a: 1 };
+Object.freeze(obj);
+obj.a = 2;
+console.log(obj.a);","[{""text"":""`1`"",""is_correct"":true},{""text"":""`2`"",""is_correct"":false},{""text"":""`undefined`"",""is_correct"":false},{""text"":""`NaN`"",""is_correct"":false}]",javascript,"[""FREEZE"",""IMMUTABILITY""]"
+d8b5b647-1530-44a6-b10d-d272a5dfc805,cb318465-447a-4257-94dc-07b23e9cfd06,What will this log?,"console.log(`5` == 5, `5` === 5);","[{""text"":""`true false`"",""is_correct"":true},{""text"":""`false true`"",""is_correct"":false},{""text"":""`true true`"",""is_correct"":false},{""text"":""`false false`"",""is_correct"":false}]",javascript,"[""STRING_NUMBER"",""COERCION""]"
+d94cf7a5-3a43-44e4-8eb9-e076932c4cc8,d89d3f51-2c37-44f6-9dfd-a01dce363be8,What will this code log?,"const obj = {
+  value: 42,
+  getValue() {
+    console.log(this.value);
+  }
+};
+const fn = obj.getValue;
+fn();","[{""text"":""`undefined` in non-strict mode"",""is_correct"":true},{""text"":""`42`"",""is_correct"":false},{""text"":""`ReferenceError`"",""is_correct"":false},{""text"":""`null`"",""is_correct"":false}]",javascript,"[""THIS"",""LOST_CONTEXT""]"
+db7e0bf2-f890-48b0-9d55-074a7127a831,d9d362e9-010f-4505-8d05-fdf2a6abf337,What will this code log?,"function mutate(obj) {
+  obj.value = 2;
+}
+const o = { value: 1 };
+mutate(o);
+console.log(o.value);","[{""text"":""`2`"",""is_correct"":true},{""text"":""`1`"",""is_correct"":false},{""text"":""`undefined`"",""is_correct"":false},{""text"":""`ReferenceError`"",""is_correct"":false}]",javascript,"[""OBJECTS"",""MUTATION""]"
+df1b228a-e9c6-46d6-b226-fe16d1bcc423,c731a21a-6a18-43ef-8d91-904cc7d3bc31,Which phase comes **first** in the DOM event flow?,,"[{""text"":""Capturing phase"",""is_correct"":true},{""text"":""Bubbling phase"",""is_correct"":false},{""text"":""Target phase"",""is_correct"":false},{""text"":""Trick question: there is no order"",""is_correct"":false}]",javascript,"[""EVENT_PHASES""]"
+df3a15a4-496d-4839-8327-c29906ad6568,9759a2f9-6ab9-4cc8-8324-b646dd95c461,What is the type of a function that never returns (always throws or loops)?,,"[{""text"":""`never`"",""is_correct"":true},{""text"":""`void`"",""is_correct"":false},{""text"":""`any`"",""is_correct"":false},{""text"":""`unknown`"",""is_correct"":false}]",typescript,"[""NEVER""]"
+e01bcb93-3fa6-4221-9cf8-20d0fda05f26,d89d3f51-2c37-44f6-9dfd-a01dce363be8,What is the main difference between `call` and `apply`?,,"[{""text"":""`call` takes arguments separately, `apply` takes them as an array"",""is_correct"":true},{""text"":""`call` changes `this`, `apply` does not"",""is_correct"":false},{""text"":""`apply` works only with `Promise`"",""is_correct"":false},{""text"":""They are completely identical"",""is_correct"":false}]",javascript,"[""CALL"",""APPLY""]"
+e3976e7e-4d32-40f5-ad0c-692c2f982056,c731a21a-6a18-43ef-8d91-904cc7d3bc31,Which statement about timers and the event loop is correct?,,"[{""text"":""`setTimeout` callbacks run after the current call stack is empty"",""is_correct"":true},{""text"":""`setTimeout` with `0` always runs before any synchronous code"",""is_correct"":false},{""text"":""Timers run in a separate thread from JavaScript"",""is_correct"":false},{""text"":""`setInterval` guarantees exact timing"",""is_correct"":false}]",javascript,"[""EVENT_LOOP"",""TIMERS""]"
+e9e1dfc3-94b2-4029-a1de-b831c4e73e73,310f983b-d4b8-402d-9b7a-4c6126d07f03,What does this code log?,"const foo = () => {};
+console.log(typeof foo);","[{""text"":""`function`"",""is_correct"":true},{""text"":""`object`"",""is_correct"":false},{""text"":""`arrow`"",""is_correct"":false},{""text"":""`undefined`"",""is_correct"":false}]",javascript,"[""ARROW_FUNCTIONS"",""TYPEOF""]"
+e9e2219f-4cf1-401f-911f-7f78cefe7f63,c1ddc588-ffe6-4c50-aebb-a59bd8ef8d7d,What does `Object.values(obj)` return?,,"[{""text"":""An array of enumerable own property values"",""is_correct"":true},{""text"":""An array of keys"",""is_correct"":false},{""text"":""A `Set` of values"",""is_correct"":false},{""text"":""A `Map` of entries"",""is_correct"":false}]",javascript,"[""OBJECTS"",""VALUES""]"
+ea3ceb42-4afa-427c-8f7d-7a9f01962dab,d9d362e9-010f-4505-8d05-fdf2a6abf337,Which call correctly uses rest parameters?,"function logAll(...values) {
+  console.log(values.length);
+}","[{""text"":""`logAll(1, 2, 3)`"",""is_correct"":true},{""text"":""`logAll([1, 2, 3])`"",""is_correct"":false},{""text"":""`logAll(...[1, 2, 3])` only"",""is_correct"":false},{""text"":""`logAll(values: [1,2,3])`"",""is_correct"":false}]",javascript,"[""REST_PARAMETERS"",""CALLS""]"
+eaafd5e9-92b6-451b-b381-11a9bf224442,c731a21a-6a18-43ef-8d91-904cc7d3bc31,How do you stop a repeating timer started with `setInterval`?,,"[{""text"":""Call `clearInterval(id)` with the returned id"",""is_correct"":true},{""text"":""Call `clearTimeout(id)`"",""is_correct"":false},{""text"":""Return `false` from the callback"",""is_correct"":false},{""text"":""Throw an error inside the callback"",""is_correct"":false}]",javascript,"[""TIMERS"",""INTERVAL""]"
+eb02ebfc-6668-43a9-8209-dff1251871d5,d9d362e9-010f-4505-8d05-fdf2a6abf337,What is the main difference between rest parameters and the `arguments` object?,,"[{""text"":""Rest parameters are a real array, `arguments` is array-like"",""is_correct"":true},{""text"":""They are identical in every way"",""is_correct"":false},{""text"":""Rest parameters work only in arrow functions"",""is_correct"":false},{""text"":""`arguments` can be used in arrow functions, rest cannot"",""is_correct"":false}]",javascript,"[""REST_PARAMETERS"",""ARGUMENTS""]"
+eb0bf764-5e73-4d0b-9f2d-cfff24105815,7d1541a7-7471-4a49-bb01-512395d5b836,What will this code log?,"let x = 10;
+if (true) {
+  let x = 20;
+  console.log(x);
+}
+console.log(x);","[{""text"":""`20` then `10`"",""is_correct"":true},{""text"":""`10` then `20`"",""is_correct"":false},{""text"":""`20` then `20`"",""is_correct"":false},{""text"":""`10` then `10`"",""is_correct"":false}]",javascript,"[""SHADOWING"",""BLOCK_SCOPE""]"
+eb2dd82e-9fac-477c-8b23-3ebcc6df5d3e,983eefee-33d0-415c-b86a-0b5dac3df2f9,Which statement about `document` vs `window` is correct?,,"[{""text"":""`window` is the global object; `document` represents the DOM of the page"",""is_correct"":true},{""text"":""`document` is the global object; `window` is a child node"",""is_correct"":false},{""text"":""They are aliases of each other"",""is_correct"":false},{""text"":""Only `document` can emit events"",""is_correct"":false}]",javascript,"[""WINDOW"",""DOCUMENT""]"
+ec106d6c-1bb6-47fb-9e5c-0a37c19f7922,310f983b-d4b8-402d-9b7a-4c6126d07f03,What will this code log?,"foo();
+function foo() {
+  console.log(`called`);
+}","[{""text"":""`called`"",""is_correct"":true},{""text"":""`ReferenceError`"",""is_correct"":false},{""text"":""`TypeError`"",""is_correct"":false},{""text"":""Nothing"",""is_correct"":false}]",javascript,"[""DECLARATION"",""HOISTING""]"
+ec2840af-7551-4ef0-9c3c-81a52294f4f6,983eefee-33d0-415c-b86a-0b5dac3df2f9,What will this code do?,"window.addEventListener(`resize`, () => {
+  console.log(`resized`);
+});","[{""text"":""Log `resized` every time the window is resized"",""is_correct"":true},{""text"":""Resize the window to a default size"",""is_correct"":false},{""text"":""Run once when the page loads"",""is_correct"":false},{""text"":""Throw an error because `resize` is reserved"",""is_correct"":false}]",javascript,"[""WINDOW"",""EVENTS""]"
+ec7ed23b-4c7f-41f0-beaf-7cc87c7603fc,9759a2f9-6ab9-4cc8-8324-b646dd95c461,What is the inferred type of `value`?,let value = `hello`;,"[{""text"":""`string`"",""is_correct"":true},{""text"":""`any`"",""is_correct"":false},{""text"":""`unknown`"",""is_correct"":false},{""text"":""`never`"",""is_correct"":false}]",typescript,"[""INFERENCE"",""STRING""]"
+ed035e90-9536-4cd3-bae5-17a874054f1a,67089f81-ecc6-4f20-8680-e12509b694d8,What will this code log?,"const obj = {};
+console.log(typeof obj);","[{""text"":""`object`"",""is_correct"":true},{""text"":""`function`"",""is_correct"":false},{""text"":""`array`"",""is_correct"":false},{""text"":""`null`"",""is_correct"":false}]",javascript,"[""OBJECTS"",""TYPEOF""]"
+ed1923ca-e789-4b5d-819e-4e8fecbdaffc,d9537b41-8ea2-4900-96b7-3584192a082d,Which object represents a point in time in JavaScript?,,"[{""text"":""`Date`"",""is_correct"":true},{""text"":""`Time`"",""is_correct"":false},{""text"":""`Clock`"",""is_correct"":false},{""text"":""`Moment`"",""is_correct"":false}]",javascript,"[""DATE""]"
+edf373b6-349a-4f2a-98c6-673e07da169d,310f983b-d4b8-402d-9b7a-4c6126d07f03,Which form is most convenient when passing a short callback (for example to `map` or `forEach`)?,,"[{""text"":""Arrow function"",""is_correct"":true},{""text"":""Named function declaration"",""is_correct"":false},{""text"":""Function expression with `function`"",""is_correct"":false},{""text"":""Generator function"",""is_correct"":false}]",javascript,"[""CALLBACKS"",""ARROW_FUNCTIONS""]"
+ee228bf7-378b-4381-a79d-65bc1acf2149,762caa41-9401-4119-b7b0-f2ed5a6c6cda,Which method is best for checking if **all** elements match a condition?,,"[{""text"":""`every`"",""is_correct"":true},{""text"":""`some`"",""is_correct"":false},{""text"":""`filter`"",""is_correct"":false},{""text"":""`reduce`"",""is_correct"":false}]",javascript,"[""EVERY"",""PREDICATE""]"
+f0f58c55-ab70-4e7a-a4dc-5980bc941c69,23216e88-1946-4c6d-8e2f-c4e2235bec62,What will this code log?,"function outer() {
+  let x = 10;
+  function inner() {
+    console.log(x);
+  }
+  x = 20;
+  return inner;
+}
+const fn = outer();
+fn();","[{""text"":""`20`"",""is_correct"":true},{""text"":""`10`"",""is_correct"":false},{""text"":""`undefined`"",""is_correct"":false},{""text"":""`ReferenceError`"",""is_correct"":false}]",javascript,"[""CLOSURES"",""MUTATION""]"
+f2e664d0-e039-4030-902e-2c84560a57bc,983eefee-33d0-415c-b86a-0b5dac3df2f9,Which property gives you the current URL of the page?,,"[{""text"":""`window.location.href`"",""is_correct"":true},{""text"":""`document.url`"",""is_correct"":false},{""text"":""`window.href`"",""is_correct"":false},{""text"":""`document.location`"",""is_correct"":false}]",javascript,"[""LOCATION"",""URL""]"
+f5009bf1-6055-4a35-b2f6-3549ffc55b78,762caa41-9401-4119-b7b0-f2ed5a6c6cda,Which loop is **not** safe for iterating over arrays with extra properties on the prototype?,,"[{""text"":""`for...in`"",""is_correct"":true},{""text"":""`for` with index"",""is_correct"":false},{""text"":""`for...of`"",""is_correct"":false},{""text"":""`forEach`"",""is_correct"":false}]",javascript,"[""LOOPS"",""FOR_IN""]"
+f7dc93ed-0252-446e-b32d-86e481ff920a,0497829e-f4d0-4074-9af4-7ef069f3240f,Which syntax creates an intersection type?,,"[{""text"":""type A = B & C;"",""is_correct"":true},{""text"":""type A = B | C;"",""is_correct"":false},{""text"":""type A = B && C;"",""is_correct"":false},{""text"":""type A: B & C;"",""is_correct"":false}]",typescript,"[""INTERSECTION""]"
+f852742b-dc95-4c4d-b685-87d1a2812a68,d89d3f51-2c37-44f6-9dfd-a01dce363be8,What will this code log?,"const obj = {
+  value: 5,
+  arrow: () => console.log(this.value)
+};
+obj.arrow();","[{""text"":""`undefined` in most cases"",""is_correct"":true},{""text"":""`5`"",""is_correct"":false},{""text"":""`ReferenceError`"",""is_correct"":false},{""text"":""`null`"",""is_correct"":false}]",javascript,"[""ARROW_FUNCTIONS"",""THIS""]"
+f8a7a39f-046d-4a42-a871-df992ae41845,cfafc13a-b24f-4293-842d-b16f35cbfa36,Which method removes the **first** element and returns it?,,"[{""text"":""`shift`"",""is_correct"":true},{""text"":""`pop`"",""is_correct"":false},{""text"":""`unshift`"",""is_correct"":false},{""text"":""`slice`"",""is_correct"":false}]",javascript,"[""SHIFT"",""MUTATION""]"
+f9f7066c-4bbd-48f4-8bd6-f73f0f7c7a66,9ca2f9a2-4802-4d54-b7c1-dd1a10dda632,Which syntax correctly uses the spread operator in a function call?,,"[{""text"":""sum(...numbers)"",""is_correct"":true},{""text"":""sum(numbers...)"",""is_correct"":false},{""text"":""sum(..numbers)"",""is_correct"":false},{""text"":""sum(...numbers, 4)"",""is_correct"":false}]",javascript,"[""SPREAD"",""FUNCTION_CALL""]"
+fafea206-6659-427b-bacd-b179f5626dc9,0497829e-f4d0-4074-9af4-7ef069f3240f,How do you extend an interface?,"interface User { id: number; }
+interface Admin extends User { role: string; }","[{""text"":""Using `extends` between interfaces"",""is_correct"":true},{""text"":""Using `&` between interfaces"",""is_correct"":false},{""text"":""Using `implements`"",""is_correct"":false},{""text"":""You cannot extend interfaces"",""is_correct"":false}]",typescript,"[""INTERFACES"",""EXTENDS""]"
+fc603437-d8ea-4d6a-8cfc-a32f537e11b3,9ca2f9a2-4802-4d54-b7c1-dd1a10dda632,What will this code log?,"function sum([a, b]) {
+  console.log(a + b);
+}
+sum([2, 3]);","[{""text"":""`5`"",""is_correct"":true},{""text"":""`23`"",""is_correct"":false},{""text"":""`undefined`"",""is_correct"":false},{""text"":""`NaN`"",""is_correct"":false}]",javascript,"[""ARRAY_DESTRUCTURING""]"
