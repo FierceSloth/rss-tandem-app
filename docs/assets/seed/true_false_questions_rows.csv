@@ -1,0 +1,131 @@
+id,level_id,order,tag,code_snippet,answer,is_correct
+05229830-89e4-45f9-a0dd-8d085ba5c79b,c463908a-34e4-415e-8bcd-27815334b7f7,1,JAVASCRIPT // PROMISES,"Promise.allSettled([Promise.reject(""err"")])
+  .then(r => r[0].status)",returns `rejected`,true
+0560f596-b8a7-4e9b-9856-64dcf18568ba,4649c22e-907c-4760-904c-f9b17e6e48a9,1,TYPESCRIPT // TYPES,type A = string | number; \nconst a: A = true,compiles without error,false
+0977dc45-520a-4986-a94a-22a8f3b5bbf3,4649c22e-907c-4760-904c-f9b17e6e48a9,2,TYPESCRIPT // CONDITIONAL,type Unwrap<T> = T extends Promise<infer U> ? U : T; \ntype R = Unwrap<Promise<string>>,resolves to string,true
+0c22e23a-a8cf-42b4-a6f5-e1e4194c9ef7,4649c22e-907c-4760-904c-f9b17e6e48a9,3,TYPESCRIPT // MAPPED_TYPES,type Readonly<T> = { readonly [K in keyof T]: T[K] }; \nconst a: Readonly<{x:number}> = {x:1}; \na.x = 2,compiles without error,false
+0ff29487-791b-41bc-b2d8-415c2d35d5cb,4649c22e-907c-4760-904c-f9b17e6e48a9,4,TYPESCRIPT // ADVANCED,type A = never extends string ? true : false,resolves to true,true
+10bf4636-c43d-4b08-bd42-23f1eba779e1,4a55c609-2566-4e3b-bdf7-bb07e2ef56e2,1,PATTERNS // DATABASE,SQL databases are always \nfaster than NoSQL,returns true,false
+1297dcc7-17b6-450f-a93b-b3087d63c8ba,6a3ba0c9-0c1e-4c81-a812-6a2b53eccf87,1,ALGORITHMS // DYNAMIC_PROGRAMMING,"function fib(n, memo={}) { \nif (n<=1) return n; \nreturn memo[n] ??= fib(n-1,memo)+fib(n-2,memo); } \nfib(6)",returns 8,true
+14e80637-44ba-49e0-97ca-4099668e6706,0137de57-b7d8-4a56-a2e6-d09cf93f2c52,1,JAVASCRIPT // PROTOTYPES,function F(){} \nF.prototype.x = 1; \nnew F().x,returns 1,true
+17eb358b-48ed-4015-9f1e-3ca36c99e3fe,4649c22e-907c-4760-904c-f9b17e6e48a9,5,TYPESCRIPT // INTERFACES,"interface A { x: number } \nconst a: A = { x: 1, y: 2 }",compiles without error,false
+25259b3b-a775-454f-a08c-c0e87b8045ec,6bdf07f6-3288-4b87-94f0-3f99526b315c,1,TYPESCRIPT // GENERICS,"function id<T>(x: T): T { return x; } \nid<number>(""hello"")",compiles without error,false
+272b567f-c260-4cfe-abd2-d39fd2e8498a,4649c22e-907c-4760-904c-f9b17e6e48a9,6,TYPESCRIPT // NARROWING,"""value"" in { value: 1 }",returns true,true
+2b48abb0-dd49-47fb-8350-019585c50768,0fad1cf7-ef51-4cce-a1d4-21fffb966a0e,1,JAVASCRIPT // CLOSURES,(function() { var x = 1; })(); \ntypeof x,"returns ""undefined""",true
+2e9df0c0-9799-423f-a86e-5b209151afb7,6bdf07f6-3288-4b87-94f0-3f99526b315c,2,TYPESCRIPT // UTILITY_TYPES,"type K = keyof { x: 1; y: 2 }; \nconst a: K = ""z""",compiles without error,false
+2efb5719-3b76-4b90-a248-efe0a9e407fe,6a3ba0c9-0c1e-4c81-a812-6a2b53eccf87,2,ALGORITHMS // DYNAMIC_PROGRAMMING,Memoized fibonacci is O(n),returns true,true
+35cb49a6-769d-4e1c-becf-57e7ff90d171,6a3ba0c9-0c1e-4c81-a812-6a2b53eccf87,3,ALGORITHMS // RECURSION,Every recursive function \nmust have a base case,returns true,true
+3863e501-bf6c-42b3-8648-b755625864d0,4a55c609-2566-4e3b-bdf7-bb07e2ef56e2,2,PATTERNS // SYSTEM_DESIGN,A CDN reduces \nserver load,returns true,true
+39da1273-9837-492d-9e62-10b343ad9b78,569d2fa7-453b-4a3a-bb12-668dab8e5932,1,JAVASCRIPT // MAPS,"new Map([[1,""a""]]).has(1)",returns true,true
+3b9a6fa8-aed7-4223-a447-80c13ddc440f,0fad1cf7-ef51-4cce-a1d4-21fffb966a0e,2,JAVASCRIPT // SCOPE,var x = 1; \n(function(){ var x = 2; })(); \nconsole.log(x),returns 1,true
+3eb02fd7-448f-4ef2-85c6-83e3452bf855,c463908a-34e4-415e-8bcd-27815334b7f7,2,JAVASCRIPT // ASYNC,"async function f() {
+  return 1;
+} 
+f() === 1",returns `true`,false
+3fe645fa-5f56-43fb-b8de-08fce9f250fb,569d2fa7-453b-4a3a-bb12-668dab8e5932,2,JAVASCRIPT // ARRAYS,"[1,2,3].length",returns 3,true
+409a354d-6b0a-48d7-aa06-b1d681a2a027,4649c22e-907c-4760-904c-f9b17e6e48a9,7,TYPESCRIPT // ADVANCED,type N = string & number,resolves to never,true
+41aaeb72-e5af-44b6-93db-f6ae2ce2bd6a,6bdf07f6-3288-4b87-94f0-3f99526b315c,3,TYPESCRIPT // GENERICS,function id<T>(x: T): T { return x; } \ntypeof id(42),"returns ""number""",true
+41d2e948-8dde-4c9e-9ca9-5c6aa390e735,0137de57-b7d8-4a56-a2e6-d09cf93f2c52,2,JAVASCRIPT // CLASSES,class A { constructor() { this.x = 1; } } \nnew A().x,returns 1,true
+433c6f9b-785b-4bba-b763-37aa80482dd9,0137de57-b7d8-4a56-a2e6-d09cf93f2c52,3,JAVASCRIPT // CLASSES,class A {} \ntypeof A,"returns ""class""",false
+4491137b-57eb-468e-a12c-1d2b51ce04bf,c463908a-34e4-415e-8bcd-27815334b7f7,3,JAVASCRIPT // PROMISES,Promise.resolve(42) instanceof Promise,returns `true`,true
+4703cc3e-dd27-4a94-a1e8-919e908c5384,4a55c609-2566-4e3b-bdf7-bb07e2ef56e2,3,PATTERNS // CACHING,Cache hit means \ndata was NOT found in cache,returns true,false
+4b597cea-de77-49a9-b780-92c6b86c1eee,569d2fa7-453b-4a3a-bb12-668dab8e5932,3,JAVASCRIPT // MAPS,"new Set([1,1,2,2,3]).size",returns 3,true
+4d4afbbb-7f13-4031-9f69-b438903a3ca2,0fad1cf7-ef51-4cce-a1d4-21fffb966a0e,3,JAVASCRIPT // SCOPE,console.log(typeof undeclaredVar),throws ReferenceError,false
+4e00e71c-a310-4d0b-82a8-98416ee0fa15,6a3ba0c9-0c1e-4c81-a812-6a2b53eccf87,4,ALGORITHMS // RECURSION,function f(n) { return n <= 1 ? 1 : n * f(n-1); } \nf(0),returns 0,false
+53b71bc1-9ab6-4528-a9d2-d095492bb4df,569d2fa7-453b-4a3a-bb12-668dab8e5932,4,JAVASCRIPT // ARRAYS,"[1,2,3].indexOf(5)",returns -1,true
+56328929-1a2e-41fe-b631-e59eec179920,6a3091f8-6eb4-4720-8c9b-347c398cebb7,1,ALGORITHMS // SEARCHING,Linear search O(n) is faster than \nbinary search O(log n) on sorted arrays,returns true,false
+57f4e41c-d404-4f0b-8ee7-a8591da8ec56,4a55c609-2566-4e3b-bdf7-bb07e2ef56e2,4,PATTERNS // SYSTEM_DESIGN,A single server can handle \nunlimited traffic with vertical scaling,returns true,false
+59b482f2-7a82-4166-9914-6a3eb0d2fd45,4649c22e-907c-4760-904c-f9b17e6e48a9,8,TYPESCRIPT // TYPES,"const x: readonly number[] = [1,2,3]; \nx.push(4)",compiles without error,false
+5bcff8b9-c942-42f0-aa82-b02d1cd8f44e,4649c22e-907c-4760-904c-f9b17e6e48a9,9,TYPESCRIPT // TYPES,function f(x: number): string { return x.toString(); } \nf(5),"returns ""5""",true
+5c4dca20-c492-4a85-b4a8-2c46ef2f1fbe,4a55c609-2566-4e3b-bdf7-bb07e2ef56e2,5,PATTERNS // SINGLETON,class S { static #i; static get() { return this.#i ??= new S(); } } \nS.get() === S.get(),returns true,true
+5c5355e6-b2cb-4eae-93ba-be98601f7251,0fad1cf7-ef51-4cce-a1d4-21fffb966a0e,4,JAVASCRIPT // SCOPE,function f() { return x; var x = 1; }  \nf(),returns undefined,true
+5d2f995d-20a7-4504-a944-d722fb67f013,4649c22e-907c-4760-904c-f9b17e6e48a9,10,TYPESCRIPT // ASYNC,async function f(): Promise<number> { return 5; },compiles without error,true
+5d9c162c-2adc-4067-b0cc-266885a6536d,0137de57-b7d8-4a56-a2e6-d09cf93f2c52,4,JAVASCRIPT // PROTOTYPES,null instanceof Object,returns false,true
+5f2cfa50-3b35-4c9c-ae3a-762f8ef21aa1,4649c22e-907c-4760-904c-f9b17e6e48a9,11,TYPESCRIPT // CONDITIONAL,type IsString<T> = T extends string ? true : false; \ntype R = IsString<number>,resolves to true,false
+5f2f9b0f-9353-4202-be40-3599c3e0dfde,6a3091f8-6eb4-4720-8c9b-347c398cebb7,2,ALGORITHMS // SEARCHING,"binarySearch([1,2,3,4,5], 3) \n// returns index",returns 2,true
+5fdd4a50-9c11-4ab5-8d80-0835b7a82a8d,c463908a-34e4-415e-8bcd-27815334b7f7,4,JAVASCRIPT // ASYNC,await Promise.resolve(5),returns `5`,true
+61cf62d7-50de-417b-842c-f455574f96e5,4a55c609-2566-4e3b-bdf7-bb07e2ef56e2,6,PATTERNS // CACHING,Redis is commonly used \nas an in-memory cache,returns true,true
+61f504ae-6179-4de8-bbe6-2a912e81e95f,4a55c609-2566-4e3b-bdf7-bb07e2ef56e2,7,PATTERNS // OBSERVER,EventEmitter is an example \nof the Observer pattern,returns true,true
+6320c34a-0471-4a02-bee0-ca1ff5c68eed,6a3091f8-6eb4-4720-8c9b-347c398cebb7,3,ALGORITHMS // SORTING,Quick sort worst case is O(n log n),returns true,false
+6512bd5a-e933-426c-b249-fa0857d32a7c,4a55c609-2566-4e3b-bdf7-bb07e2ef56e2,8,PATTERNS // DATABASE,Database sharding splits \ndata across multiple servers,returns true,true
+663e8737-ceb3-49c0-a3bc-ae90398d7075,4a55c609-2566-4e3b-bdf7-bb07e2ef56e2,9,PATTERNS // FACTORY,Factory pattern decouples \nobject creation from usage,returns true,true
+66c2a213-04e4-4b52-854a-965912acd7ec,6a3091f8-6eb4-4720-8c9b-347c398cebb7,4,ALGORITHMS // SORTING,Merge sort is stable,returns true,true
+6c38aab1-095b-4a12-b59d-4e709cd622b1,4a55c609-2566-4e3b-bdf7-bb07e2ef56e2,10,PATTERNS // SYSTEM_DESIGN,Load balancer distributes \ntraffic across servers,returns true,true
+6e74035d-4ace-49d6-8dc7-662a88769751,6bdf07f6-3288-4b87-94f0-3f99526b315c,4,TYPESCRIPT // UTILITY_TYPES,type P = Partial<{x:number;y:number}>; \nconst a: P = {},compiles without error,true
+701ef304-bfc5-4a2c-9081-09971575dffe,4649c22e-907c-4760-904c-f9b17e6e48a9,12,TYPESCRIPT // TEMPLATE_LITERALS,"type E = `on${Capitalize<""click"">}`; \nconst a: E = ""onClick""",compiles without error,true
+740ee3b6-e5d2-474a-9bcb-40925a551f68,569d2fa7-453b-4a3a-bb12-668dab8e5932,5,JAVASCRIPT // MAPS,"new Map([[1,""a""]]).get(2)",returns null,false
+7741380c-0ded-4189-ad70-736f5ef0ee1c,4649c22e-907c-4760-904c-f9b17e6e48a9,13,TYPESCRIPT // ASYNC,"const data: unknown = await fetch(""/api""); \ndata.json()",compiles without error,false
+799a73a5-6592-449b-a181-290292dc3e97,0fad1cf7-ef51-4cce-a1d4-21fffb966a0e,5,JAVASCRIPT // CLOSURES,function f() { let x = 0; return () => ++x; } \nf()(),returns 1,true
+7a59dfc7-1f97-49c1-9fd5-3dd044209455,569d2fa7-453b-4a3a-bb12-668dab8e5932,6,JAVASCRIPT // MAPS,new Map().size,returns 0,true
+7f41decc-5426-4920-abcf-ffef0e64692c,0137de57-b7d8-4a56-a2e6-d09cf93f2c52,5,JAVASCRIPT // PROTOTYPES,Object.getPrototypeOf([]) === Array.prototype,returns true,true
+8213d08e-eb08-4b1c-8125-d0898848e80b,6a3091f8-6eb4-4720-8c9b-347c398cebb7,5,ALGORITHMS // SEARCHING,"binarySearch([1,2,3,4,5], 6) \n// returns index",returns -1,true
+8241bf5c-6d97-4ab3-b9e0-ba7e8bdc9da7,0137de57-b7d8-4a56-a2e6-d09cf93f2c52,6,JAVASCRIPT // PROTOTYPES,function F(){} \nnew F() instanceof F,returns true,true
+838c263f-ec68-4f7d-99f7-16aa2550608c,0fad1cf7-ef51-4cce-a1d4-21fffb966a0e,6,JAVASCRIPT // SCOPE,let x = 1; \n{ let x = 2; } \nconsole.log(x),returns 1,true
+847ff7b5-a231-4cbe-bf29-d90db7b71eba,0fad1cf7-ef51-4cce-a1d4-21fffb966a0e,7,JAVASCRIPT // SCOPE,let x = 1; \nfunction f() { return x; } \nf(),returns 1,true
+85ca313b-eda0-4283-a523-02efb04680ba,c463908a-34e4-415e-8bcd-27815334b7f7,5,JAVASCRIPT // EVENT_LOOP,"setTimeout(() => {}, 0)",runs before `Promise.then`,false
+88790e17-1d40-4db7-88ae-65eebfa822a8,6a3ba0c9-0c1e-4c81-a812-6a2b53eccf87,5,ALGORITHMS // RECURSION,"function sum(arr) { \nif (!arr.length) return 0; \nreturn arr[0] + sum(arr.slice(1)); } \nsum([1,2,3,4])",returns 10,true
+8cf4f9fa-61ee-49be-8106-540f1af9ffd2,0fad1cf7-ef51-4cce-a1d4-21fffb966a0e,8,JAVASCRIPT // SCOPE,var a = 1; \ndelete a; \ntypeof a,"returns ""undefined""",false
+8fbab62b-0eee-45af-adbc-d8c70221d02c,6a3091f8-6eb4-4720-8c9b-347c398cebb7,6,ALGORITHMS // SORTING,"[3,1,2].sort()","returns [1, 2, 3]",false
+900f1256-423b-4076-928f-f4e79e543fe6,0137de57-b7d8-4a56-a2e6-d09cf93f2c52,7,JAVASCRIPT // PROTOTYPES,typeof null,"returns ""null""",false
+939ac405-f3cb-43e1-af76-76d707b9dd1b,569d2fa7-453b-4a3a-bb12-668dab8e5932,7,JAVASCRIPT // ARRAYS,Array.isArray({}),returns true,false
+9864289d-4c3f-48af-9406-2efac0202621,569d2fa7-453b-4a3a-bb12-668dab8e5932,8,JAVASCRIPT // ARRAYS,"[1,2,3].includes(2)",returns false,false
+98f965e5-c839-44c7-a999-b0e1ee7efdef,569d2fa7-453b-4a3a-bb12-668dab8e5932,9,JAVASCRIPT // ARRAYS,"[].push(1, 2, 3)",returns 1,false
+9bc4cd20-f7fc-481f-992b-b8b64009bd48,4a55c609-2566-4e3b-bdf7-bb07e2ef56e2,11,PATTERNS // OBSERVER,"In Observer pattern, \nsubject holds reference to observers",returns true,true
+9eb8f00c-3eca-4a7d-b12b-c5c99fb6ebb9,6bdf07f6-3288-4b87-94f0-3f99526b315c,5,TYPESCRIPT // UTILITY_TYPES,"type Rec = Record<string, number>; \nconst a: Rec = { x: ""1"" }",compiles without error,false
+9ee194e6-5c83-40f0-86e5-17e72eaa45c8,4a55c609-2566-4e3b-bdf7-bb07e2ef56e2,12,PATTERNS // SYSTEM_DESIGN,Vertical scaling means \nadding more servers,returns true,false
+a134f0b9-5154-4d40-b14a-67ae7a064dc7,6a3ba0c9-0c1e-4c81-a812-6a2b53eccf87,6,ALGORITHMS // RECURSION,Tail recursion always \ncauses a stack overflow,returns true,false
+a2f32bdf-5f78-49c6-bec4-f0eebdac828c,c463908a-34e4-415e-8bcd-27815334b7f7,6,JAVASCRIPT // PROMISES,"Promise.race(
+  [Promise.resolve(1), Promise.resolve(2)]
+)",resolves with `1`,true
+a7eba968-75be-4cd3-8343-d5fc685b5843,6bdf07f6-3288-4b87-94f0-3f99526b315c,6,TYPESCRIPT // GENERICS,function first<T>(arr: T[]): T { return arr[0]; } \nfirst([]),returns undefined,true
+ab5cd1af-4540-441b-9efc-75820c98c278,4649c22e-907c-4760-904c-f9b17e6e48a9,14,TYPESCRIPT // PRACTICE,const x = { a: 1 } as { a: number; b: string }; \nx.b,compiles without error,true
+ac165101-9575-495b-8f1f-b9a4c3492922,4649c22e-907c-4760-904c-f9b17e6e48a9,15,TYPESCRIPT // PRACTICE,"const arr = [1, 2, 3] as const; \narr.push(4)",compiles without error,false
+af520612-f847-496a-8322-c6fb7db4ed1f,6a3091f8-6eb4-4720-8c9b-347c398cebb7,7,ALGORITHMS // SORTING,"[10,9,2].sort()","returns [10, 2, 9]",true
+b13abb1c-ffb3-4892-bc0c-3d5a5c33e63e,4649c22e-907c-4760-904c-f9b17e6e48a9,16,TYPESCRIPT // TYPES,let x: never; \nx = 1,compiles without error,false
+b18165c9-f39b-48e4-aa3f-ab223e9e55b7,4649c22e-907c-4760-904c-f9b17e6e48a9,17,TYPESCRIPT // PRACTICE,"const el = document.getElementById(""app"")!; \nel.style.color = ""red""",compiles without error,true
+b30150d9-e765-42df-a3e9-133ffb0419bd,6a3ba0c9-0c1e-4c81-a812-6a2b53eccf87,7,ALGORITHMS // DYNAMIC_PROGRAMMING,Bottom-up DP uses recursion,returns true,false
+b59e0bd8-1594-4f1b-b1db-6977797764df,4a55c609-2566-4e3b-bdf7-bb07e2ef56e2,13,PATTERNS // CACHING,HTTP Cache-Control header \ncontrols browser caching,returns true,true
+b90ac741-ab37-4011-8a22-2dd03d00aa09,6bdf07f6-3288-4b87-94f0-3f99526b315c,7,TYPESCRIPT // UTILITY_TYPES,"type O = Omit<{x:number;y:string}, ""x"">; \nconst a: O = { y: ""hi"" }",compiles without error,true
+b942f070-3819-42ba-b3fc-6ea8d0b9b25b,4649c22e-907c-4760-904c-f9b17e6e48a9,18,TYPESCRIPT // TYPES,"type A = { x: number } & { y: string }; \nconst a: A = { x: 1, y: ""hi"" }",compiles without error,true
+b9646214-79ad-404a-9822-86fd6f3ce44c,0fad1cf7-ef51-4cce-a1d4-21fffb966a0e,9,JAVASCRIPT // CLOSURES,const add = x => y => x + y; \nadd(2)(3),returns 5,true
+b9ce60ea-ac3a-4e90-ac94-9d3f2cfa304b,6a3ba0c9-0c1e-4c81-a812-6a2b53eccf87,8,ALGORITHMS // RECURSION,function f(n) { return n <= 1 ? 1 : n * f(n-1); } \nf(5),returns 120,true
+ba2bf1e3-4df4-4530-aab1-2d948fe4f920,0137de57-b7d8-4a56-a2e6-d09cf93f2c52,8,JAVASCRIPT // CLASSES,class A {} class B extends A {} \nnew B() instanceof A,returns true,true
+bb8c1edc-aacf-496f-9dc7-2f2619b9bfd4,4649c22e-907c-4760-904c-f9b17e6e48a9,19,TYPESCRIPT // PRACTICE,"const el = document.getElementById(""app""); \nel.style.color = ""red""",compiles without error,false
+c133afeb-054f-44a7-b8a5-39b77c9c8a8e,c463908a-34e4-415e-8bcd-27815334b7f7,7,JAVASCRIPT // ASYNC,"async function f(){}
+typeof f()",returns `object`,true
+c16fbe5e-bf52-4490-aaf4-d3908a7ccc7e,6bdf07f6-3288-4b87-94f0-3f99526b315c,8,TYPESCRIPT // UTILITY_TYPES,type R = Required<{x?:number}>; \nconst a: R = {},compiles without error,false
+c18a4f65-6f48-48d1-896d-0feed51b0a57,569d2fa7-453b-4a3a-bb12-668dab8e5932,10,JAVASCRIPT // ARRAYS,"[1,2,3].push(4)",returns 4,true
+c5ca29b9-5b38-4347-b1df-b9b47b013c99,6a3ba0c9-0c1e-4c81-a812-6a2b53eccf87,9,ALGORITHMS // RECURSION,function f(n) { if(n===0) return 0; return f(n-1); } \nf(3),returns 0,true
+c6993dbb-ac2e-4d11-a3b7-a72dc42a6214,4649c22e-907c-4760-904c-f9b17e6e48a9,20,TYPESCRIPT // MAPPED_TYPES,type Optional<T> = { [K in keyof T]?: T[K] }; \nconst a: Optional<{x:number}> = {},compiles without error,true
+c6a6b919-1201-4fd5-b7c2-7788e210884e,4a55c609-2566-4e3b-bdf7-bb07e2ef56e2,14,PATTERNS // PATTERNS,Design patterns are \nlanguage-specific solutions,returns true,false
+c6d789f7-b667-4087-8a4c-8708b33e18da,4649c22e-907c-4760-904c-f9b17e6e48a9,21,TYPESCRIPT // TYPES,const x: unknown = 5; \nx + 1,compiles without error,false
+ca7dd669-1f08-40fc-9cee-3c02ba6fd84f,6a3091f8-6eb4-4720-8c9b-347c398cebb7,8,ALGORITHMS // SORTING,"[3,1,2].sort((a,b) => a - b)","returns [1, 2, 3]",true
+ccab6464-e87d-40cc-a019-5f77d51362b3,0137de57-b7d8-4a56-a2e6-d09cf93f2c52,9,JAVASCRIPT // PROTOTYPES,Object.create(null).toString,returns undefined,true
+cdff979b-a08e-4bc4-a469-9d71a85fb4c8,c463908a-34e4-415e-8bcd-27815334b7f7,8,JAVASCRIPT // PROMISES,typeof Promise.resolve(),returns `object`,true
+cfd334ae-1fef-4da2-8ae1-ee2185c51ee9,6a3091f8-6eb4-4720-8c9b-347c398cebb7,9,ALGORITHMS // SORTING,Bubble sort best case complexity is O(n),returns true,true
+d1fb6a80-ca63-4194-957b-b4f9edc39960,4649c22e-907c-4760-904c-f9b17e6e48a9,22,TYPESCRIPT // NARROWING,function f(x: string | number): string { return x; },compiles without error,false
+d61b244c-67f1-4f73-b9d2-bd6c2368f58c,4649c22e-907c-4760-904c-f9b17e6e48a9,23,TYPESCRIPT // TYPES,"const x = [1, 2, 3]; \nx.push(""hello"")",compiles without error,false
+d66be49b-4fe1-4d54-a8fc-9c556d8cbee8,4649c22e-907c-4760-904c-f9b17e6e48a9,24,TYPESCRIPT // INTERFACES,interface A { x?: number } \nconst a: A = {},compiles without error,true
+d6b3eaf1-2051-49bc-b31c-f2fc330463c7,6bdf07f6-3288-4b87-94f0-3f99526b315c,9,TYPESCRIPT // GENERICS,"type Arr<T> = T[]; \nconst a: Arr<number> = [1,2,""3""]",compiles without error,false
+d8f9195a-f14e-49a8-b5a2-976a9be51bed,4649c22e-907c-4760-904c-f9b17e6e48a9,25,TYPESCRIPT // NARROWING,"function f(x: string | number) { \nif (typeof x === ""string"") return x.toUpperCase(); \nreturn x.toFixed(); \n}",compiles without error,true
+db9cd985-0edf-4318-9764-b17b9bd4b1f2,4a55c609-2566-4e3b-bdf7-bb07e2ef56e2,15,PATTERNS // FACTORY,new keyword is required \nto use the Factory pattern,returns true,false
+dccf25d5-8552-4fa0-8b04-6243bddb8859,4649c22e-907c-4760-904c-f9b17e6e48a9,26,TYPESCRIPT // PRACTICE,"const x = JSON.parse(""{}""); \ntypeof x","returns ""object""",true
+e45ab34e-a66d-472f-8dfb-78d454b45d17,6a3091f8-6eb4-4720-8c9b-347c398cebb7,10,ALGORITHMS // SORTING,"[1,2,3].sort((a,b) => b - a)","returns [3, 2, 1]",true
+e5c69917-dfcd-4474-9c6a-5c20ea39f2a8,0137de57-b7d8-4a56-a2e6-d09cf93f2c52,10,JAVASCRIPT // CLASSES,"class A { x = 1; } \nnew A().hasOwnProperty(""x"")",returns true,true
+e74928b7-868e-45f3-8fbb-ce1a5b88ed5b,4649c22e-907c-4760-904c-f9b17e6e48a9,27,TYPESCRIPT // PRACTICE,function f(x: string): asserts x is string {} \nf(42),compiles without error,false
+e84ae2e4-c3e8-4a51-a2e5-1aafe7e06a66,4a55c609-2566-4e3b-bdf7-bb07e2ef56e2,16,PATTERNS // SINGLETON,Singleton pattern allows \nmultiple instances,returns true,false
+eaca156e-c5d8-4e38-96b5-968c42135686,6bdf07f6-3288-4b87-94f0-3f99526b315c,10,TYPESCRIPT // UTILITY_TYPES,"type P = Pick<{x:number;y:string}, ""x"">; \nconst a: P = { x: 1 }",compiles without error,true
+eecf9aa2-b641-4de3-82b0-73afe568c56b,4a55c609-2566-4e3b-bdf7-bb07e2ef56e2,17,PATTERNS // OBSERVER,Removing an observer \nprevents memory leaks,returns true,true
+ef2f0610-66dd-4883-9009-6abc9a3b600e,0fad1cf7-ef51-4cce-a1d4-21fffb966a0e,10,JAVASCRIPT // CLOSURES,const fns = []; \nfor(var i=0;i<3;i++) fns.push(()=>i); \nfns[0](),returns 0,false
+f1916702-adab-4d7c-b65c-3a88fc7c53e8,4649c22e-907c-4760-904c-f9b17e6e48a9,28,TYPESCRIPT // ASYNC,"async function f(): Promise<number> { return ""5""; }",compiles without error,false
+f3a1ee24-770c-44c1-8dd2-762d6554c848,4a55c609-2566-4e3b-bdf7-bb07e2ef56e2,18,PATTERNS // STRATEGY,class Sorter { constructor(private s) {} \nsort(d) { return this.s.sort(d); } } \n// This is Strategy pattern,returns true,true
+f3c6a712-402e-4c74-a7d4-1ae716ce1de3,c463908a-34e4-415e-8bcd-27815334b7f7,9,JAVASCRIPT // PROMISES,"Promise.all([])
+  .then(r => r.length)",returns `0`,true
+f4d72db0-2d62-46b2-ab14-a3f247dc60d5,c463908a-34e4-415e-8bcd-27815334b7f7,10,JAVASCRIPT // PROMISES,"new Promise(resolve => resolve(1))
+  .then(v => v + 1)
+  .then(v => v)",resolves with `2`,true
+f4f1e4ca-d124-4feb-b811-799031af7094,4a55c609-2566-4e3b-bdf7-bb07e2ef56e2,19,PATTERNS // STRATEGY,Strategy pattern allows \nswapping algorithms at runtime,returns true,true
+f7c289d8-7cbf-41b8-960e-986faa2863cd,4a55c609-2566-4e3b-bdf7-bb07e2ef56e2,20,PATTERNS // SYSTEM_DESIGN,Microservices are always \nbetter than monoliths,returns true,false
+fcb76864-da94-450b-9d24-3b1f5582d091,6a3ba0c9-0c1e-4c81-a812-6a2b53eccf87,10,ALGORITHMS // DYNAMIC_PROGRAMMING,Naive recursive fibonacci is O(2^n),returns true,true
+feffdb5c-7d37-4b7d-bd6e-7ef2ec8022a4,4649c22e-907c-4760-904c-f9b17e6e48a9,29,TYPESCRIPT // TYPES,const x: any = 5; \nx + 1,compiles without error,true
+fffdd405-e2f1-44c9-814b-2fd96bd10f91,4649c22e-907c-4760-904c-f9b17e6e48a9,30,TYPESCRIPT // PRACTICE,"enum Dir { Up, Down } \nDir.Up === 0",returns true,true
