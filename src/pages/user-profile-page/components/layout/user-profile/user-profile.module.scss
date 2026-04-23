@@ -1,0 +1,119 @@
+@use '@/styles/abstract/mixins' as *;
+
+.userProfile {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  height: 90%;
+  gap: var(--space-10);
+
+  padding: var(--space-8);
+  border: 1px solid var(--border-subtle);
+
+  transition: var(--transition);
+
+  &:hover {
+    border-color: var(--border-focus);
+    background: var(--bg-surface);
+  }
+}
+
+.primaryPanel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar {
+  min-width: 400px;
+  min-height: 400px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--bg-dark);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10%;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.secondaryPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-10);
+  flex: 1;
+  min-width: 300px;
+}
+
+.email input,
+.username input {
+  color: var(--text-secondary);
+  pointer-events: none;
+}
+
+.deleteProfileButton {
+  font-size: var(--font-size-small);
+  color: var(--accent-red);
+  padding: var(--space-2) var(--space-8);
+  border-radius: var(--radius-md);
+
+  cursor: pointer;
+
+  transition: var(--transition);
+
+  &:hover {
+    background: var(--accent-red);
+    border-color: var(--accent-red);
+  }
+}
+
+@include media-tablet {
+  .userProfile {
+    flex-direction: column;
+    padding: var(--space-4);
+  }
+
+  .primaryPanel {
+    margin-bottom: var(--space-2);
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .avatar {
+    min-width: 200px;
+    min-height: 200px;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+
+    svg {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .secondaryPanel {
+    flex: 1;
+    width: 100%;
+    padding-top: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-width: 200px;
+  }
+
+  .deleteProfileButton {
+    width: 100%;
+  }
+}
